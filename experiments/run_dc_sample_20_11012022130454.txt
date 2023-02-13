@@ -1,0 +1,18 @@
+TIME MEASUREMENTS:
+****************************************
+retrain                                 #calls: 26                  total-time: 643.10887218
+
+COUNTERS:
+****************************************
+number of count_retrains      26                  
+number of lookup_count        17                  
+
+PARAMS:
+****************************************
+featurize: 143.83528691530228
+fit_repair_model: 279.7357276380062
+get_inferred_values: 15.691734090447426
+query: 49.78283016383648
+setup_repair_model: 0.011549592018127441
+
+{'t1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)\n': [-1], 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)\n': [-1], 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)\n': [-1], 't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)\n': [-1], 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)\n': [-1], 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)\n': [-1], 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)': [-1]}

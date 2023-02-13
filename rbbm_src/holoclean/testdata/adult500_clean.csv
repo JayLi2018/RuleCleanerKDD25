@@ -1,0 +1,5501 @@
+tid,attribute,correct_val
+0,age,29
+0,workclass, Private
+0,education, HS-grad
+0,marital-status, Married-civ-spouse
+0,occupation, Other-service
+0,relationship, Wife
+0,race, White
+0,sex, Female
+0,hours-per-week,40
+0,native-country, United-States
+0,income, >50K
+1,age,40
+1,workclass, Private
+1,education, HS-grad
+1,marital-status, Married-civ-spouse
+1,occupation, Machine-op-inspct
+1,relationship, Husband
+1,race, White
+1,sex, Male
+1,hours-per-week,40
+1,native-country, United-States
+1,income, <=50K
+2,age,45
+2,workclass, Private
+2,education, Masters
+2,marital-status, Married-civ-spouse
+2,occupation, Exec-managerial
+2,relationship, Husband
+2,race, White
+2,sex, Male
+2,hours-per-week,40
+2,native-country, United-States
+2,income, >50K
+3,age,53
+3,workclass, Private
+3,education, Some-college
+3,marital-status, Married-civ-spouse
+3,occupation, Transport-moving
+3,relationship, Husband
+3,race, White
+3,sex, Male
+3,hours-per-week,45
+3,native-country, United-States
+3,income, >50K
+4,age,27
+4,workclass, Local-gov
+4,education, HS-grad
+4,marital-status, Married-civ-spouse
+4,occupation, Protective-serv
+4,relationship, Wife
+4,race, White
+4,sex, Female
+4,hours-per-week,40
+4,native-country, United-States
+4,income, <=50K
+5,age,18
+5,workclass, Self-emp-not-inc
+5,education, 11th
+5,marital-status, Never-married
+5,occupation, Other-service
+5,relationship, Own-child
+5,race, White
+5,sex, Female
+5,hours-per-week,4
+5,native-country, United-States
+5,income, <=50K
+6,age,54
+6,workclass, Private
+6,education, Bachelors
+6,marital-status, Divorced
+6,occupation, Exec-managerial
+6,relationship, Not-in-family
+6,race, Black
+6,sex, Female
+6,hours-per-week,45
+6,native-country, United-States
+6,income, >50K
+7,age,67
+7,workclass, Federal-gov
+7,education, Bachelors
+7,marital-status, Widowed
+7,occupation, Adm-clerical
+7,relationship, Not-in-family
+7,race, White
+7,sex, Female
+7,hours-per-week,40
+7,native-country, United-States
+7,income, <=50K
+8,age,30
+8,workclass, Private
+8,education, Bachelors
+8,marital-status, Never-married
+8,occupation, Exec-managerial
+8,relationship, Not-in-family
+8,race, White
+8,sex, Male
+8,hours-per-week,42
+8,native-country, United-States
+8,income, <=50K
+9,age,33
+9,workclass, Private
+9,education, Some-college
+9,marital-status, Divorced
+9,occupation, Tech-support
+9,relationship, Unmarried
+9,race, White
+9,sex, Female
+9,hours-per-week,40
+9,native-country, United-States
+9,income, <=50K
+10,age,28
+10,workclass, Private
+10,education, 11th
+10,marital-status, Never-married
+10,occupation, Handlers-cleaners
+10,relationship, Other-relative
+10,race, White
+10,sex, Male
+10,hours-per-week,40
+10,native-country, United-States
+10,income, <=50K
+11,age,49
+11,workclass, Private
+11,education, HS-grad
+11,marital-status, Married-civ-spouse
+11,occupation, Craft-repair
+11,relationship, Husband
+11,race, White
+11,sex, Male
+11,hours-per-week,40
+11,native-country, United-States
+11,income, >50K
+12,age,42
+12,workclass, Private
+12,education, 7th-8th
+12,marital-status, Married-civ-spouse
+12,occupation, Handlers-cleaners
+12,relationship, Husband
+12,race, White
+12,sex, Male
+12,hours-per-week,30
+12,native-country, Mexico
+12,income, <=50K
+13,age,34
+13,workclass, Self-emp-inc
+13,education, Some-college
+13,marital-status, Married-civ-spouse
+13,occupation, Sales
+13,relationship, Husband
+13,race, White
+13,sex, Male
+13,hours-per-week,60
+13,native-country, United-States
+13,income, >50K
+14,age,54
+14,workclass, Local-gov
+14,education, Masters
+14,marital-status, Married-civ-spouse
+14,occupation, Prof-specialty
+14,relationship, Husband
+14,race, White
+14,sex, Male
+14,hours-per-week,40
+14,native-country, United-States
+14,income, >50K
+15,age,64
+15,workclass, Private
+15,education, HS-grad
+15,marital-status, Married-civ-spouse
+15,occupation, Craft-repair
+15,relationship, Husband
+15,race, White
+15,sex, Male
+15,hours-per-week,40
+15,native-country, United-States
+15,income, <=50K
+16,age,38
+16,workclass, Private
+16,education, Some-college
+16,marital-status, Separated
+16,occupation, Prof-specialty
+16,relationship, Unmarried
+16,race, White
+16,sex, Female
+16,hours-per-week,40
+16,native-country, Germany
+16,income, <=50K
+17,age,29
+17,workclass, Private
+17,education, Bachelors
+17,marital-status, Never-married
+17,occupation, Craft-repair
+17,relationship, Not-in-family
+17,race, White
+17,sex, Male
+17,hours-per-week,40
+17,native-country, United-States
+17,income, <=50K
+18,age,30
+18,workclass, Private
+18,education, Masters
+18,marital-status, Never-married
+18,occupation, Prof-specialty
+18,relationship, Not-in-family
+18,race, White
+18,sex, Male
+18,hours-per-week,40
+18,native-country, United-States
+18,income, >50K
+19,age,27
+19,workclass, Private
+19,education, Bachelors
+19,marital-status, Never-married
+19,occupation, Prof-specialty
+19,relationship, Own-child
+19,race, Asian-Pac-Islander
+19,sex, Male
+19,hours-per-week,40
+19,native-country, United-States
+19,income, <=50K
+20,age,34
+20,workclass, Private
+20,education, Some-college
+20,marital-status, Married-civ-spouse
+20,occupation, Tech-support
+20,relationship, Husband
+20,race, White
+20,sex, Male
+20,hours-per-week,40
+20,native-country, United-States
+20,income, >50K
+21,age,51
+21,workclass, Private
+21,education, 9th
+21,marital-status, Married-civ-spouse
+21,occupation, Sales
+21,relationship, Husband
+21,race, White
+21,sex, Male
+21,hours-per-week,40
+21,native-country, United-States
+21,income, <=50K
+22,age,49
+22,workclass, Self-emp-inc
+22,education, Bachelors
+22,marital-status, Married-civ-spouse
+22,occupation, Exec-managerial
+22,relationship, Husband
+22,race, White
+22,sex, Male
+22,hours-per-week,50
+22,native-country, United-States
+22,income, >50K
+23,age,36
+23,workclass, Private
+23,education, HS-grad
+23,marital-status, Divorced
+23,occupation, Machine-op-inspct
+23,relationship, Unmarried
+23,race, White
+23,sex, Male
+23,hours-per-week,40
+23,native-country, United-States
+23,income, <=50K
+24,age,42
+24,workclass, Private
+24,education, HS-grad
+24,marital-status, Divorced
+24,occupation, Machine-op-inspct
+24,relationship, Not-in-family
+24,race, Black
+24,sex, Male
+24,hours-per-week,40
+24,native-country, United-States
+24,income, <=50K
+25,age,47
+25,workclass, Private
+25,education, HS-grad
+25,marital-status, Married-civ-spouse
+25,occupation, Machine-op-inspct
+25,relationship, Husband
+25,race, Black
+25,sex, Male
+25,hours-per-week,40
+25,native-country, United-States
+25,income, >50K
+26,age,30
+26,workclass, State-gov
+26,education, Some-college
+26,marital-status, Never-married
+26,occupation, Prof-specialty
+26,relationship, Not-in-family
+26,race, White
+26,sex, Male
+26,hours-per-week,40
+26,native-country, United-States
+26,income, <=50K
+27,age,44
+27,workclass, Private
+27,education, Bachelors
+27,marital-status, Married-civ-spouse
+27,occupation, Exec-managerial
+27,relationship, Husband
+27,race, White
+27,sex, Male
+27,hours-per-week,50
+27,native-country, United-States
+27,income, >50K
+28,age,29
+28,workclass, Private
+28,education, Some-college
+28,marital-status, Married-civ-spouse
+28,occupation, Adm-clerical
+28,relationship, Husband
+28,race, Amer-Indian-Eskimo
+28,sex, Male
+28,hours-per-week,40
+28,native-country, United-States
+28,income, <=50K
+29,age,23
+29,workclass, Private
+29,education, Some-college
+29,marital-status, Married-civ-spouse
+29,occupation, Sales
+29,relationship, Own-child
+29,race, White
+29,sex, Female
+29,hours-per-week,16
+29,native-country, United-States
+29,income, <=50K
+30,age,39
+30,workclass, Private
+30,education, 10th
+30,marital-status, Married-civ-spouse
+30,occupation, Machine-op-inspct
+30,relationship, Husband
+30,race, White
+30,sex, Male
+30,hours-per-week,40
+30,native-country, United-States
+30,income, <=50K
+31,age,51
+31,workclass, Private
+31,education, Some-college
+31,marital-status, Divorced
+31,occupation, Adm-clerical
+31,relationship, Unmarried
+31,race, White
+31,sex, Female
+31,hours-per-week,40
+31,native-country, United-States
+31,income, <=50K
+32,age,53
+32,workclass, ?
+32,education, Bachelors
+32,marital-status, Married-civ-spouse
+32,occupation, ?
+32,relationship, Husband
+32,race, White
+32,sex, Male
+32,hours-per-week,30
+32,native-country, United-States
+32,income, >50K
+33,age,43
+33,workclass, Private
+33,education, 9th
+33,marital-status, Never-married
+33,occupation, Machine-op-inspct
+33,relationship, Not-in-family
+33,race, White
+33,sex, Female
+33,hours-per-week,20
+33,native-country, United-States
+33,income, <=50K
+34,age,51
+34,workclass, Private
+34,education, HS-grad
+34,marital-status, Never-married
+34,occupation, Farming-fishing
+34,relationship, Not-in-family
+34,race, White
+34,sex, Male
+34,hours-per-week,60
+34,native-country, ?
+34,income, <=50K
+35,age,60
+35,workclass, Private
+35,education, 7th-8th
+35,marital-status, Married-civ-spouse
+35,occupation, Craft-repair
+35,relationship, Husband
+35,race, White
+35,sex, Male
+35,hours-per-week,40
+35,native-country, United-States
+35,income, <=50K
+36,age,54
+36,workclass, Private
+36,education, HS-grad
+36,marital-status, Married-civ-spouse
+36,occupation, Transport-moving
+36,relationship, Husband
+36,race, White
+36,sex, Male
+36,hours-per-week,70
+36,native-country, United-States
+36,income, <=50K
+37,age,21
+37,workclass, ?
+37,education, Assoc-acdm
+37,marital-status, Never-married
+37,occupation, ?
+37,relationship, Not-in-family
+37,race, White
+37,sex, Male
+37,hours-per-week,55
+37,native-country, United-States
+37,income, <=50K
+38,age,22
+38,workclass, Private
+38,education, HS-grad
+38,marital-status, Never-married
+38,occupation, Transport-moving
+38,relationship, Not-in-family
+38,race, White
+38,sex, Male
+38,hours-per-week,70
+38,native-country, United-States
+38,income, <=50K
+39,age,43
+39,workclass, State-gov
+39,education, Masters
+39,marital-status, Married-civ-spouse
+39,occupation, Exec-managerial
+39,relationship, Husband
+39,race, White
+39,sex, Male
+39,hours-per-week,40
+39,native-country, United-States
+39,income, >50K
+40,age,21
+40,workclass, Private
+40,education, HS-grad
+40,marital-status, Never-married
+40,occupation, Craft-repair
+40,relationship, Own-child
+40,race, White
+40,sex, Male
+40,hours-per-week,40
+40,native-country, United-States
+40,income, <=50K
+41,age,35
+41,workclass, Private
+41,education, HS-grad
+41,marital-status, Married-civ-spouse
+41,occupation, Machine-op-inspct
+41,relationship, Husband
+41,race, Black
+41,sex, Male
+41,hours-per-week,40
+41,native-country, United-States
+41,income, <=50K
+42,age,44
+42,workclass, Self-emp-not-inc
+42,education, Some-college
+42,marital-status, Divorced
+42,occupation, Other-service
+42,relationship, Not-in-family
+42,race, White
+42,sex, Male
+42,hours-per-week,45
+42,native-country, United-States
+42,income, <=50K
+43,age,23
+43,workclass, Local-gov
+43,education, HS-grad
+43,marital-status, Never-married
+43,occupation, Prof-specialty
+43,relationship, Not-in-family
+43,race, White
+43,sex, Female
+43,hours-per-week,40
+43,native-country, United-States
+43,income, <=50K
+44,age,30
+44,workclass, Private
+44,education, HS-grad
+44,marital-status, Never-married
+44,occupation, Adm-clerical
+44,relationship, Own-child
+44,race, White
+44,sex, Female
+44,hours-per-week,40
+44,native-country, United-States
+44,income, <=50K
+45,age,43
+45,workclass, Private
+45,education, Bachelors
+45,marital-status, Married-civ-spouse
+45,occupation, Exec-managerial
+45,relationship, Husband
+45,race, White
+45,sex, Male
+45,hours-per-week,50
+45,native-country, United-States
+45,income, <=50K
+46,age,60
+46,workclass, State-gov
+46,education, Bachelors
+46,marital-status, Divorced
+46,occupation, Prof-specialty
+46,relationship, Not-in-family
+46,race, White
+46,sex, Female
+46,hours-per-week,40
+46,native-country, United-States
+46,income, <=50K
+47,age,35
+47,workclass, ?
+47,education, HS-grad
+47,marital-status, Never-married
+47,occupation, ?
+47,relationship, Own-child
+47,race, White
+47,sex, Male
+47,hours-per-week,40
+47,native-country, United-States
+47,income, <=50K
+48,age,24
+48,workclass, Local-gov
+48,education, Some-college
+48,marital-status, Never-married
+48,occupation, Protective-serv
+48,relationship, Own-child
+48,race, White
+48,sex, Male
+48,hours-per-week,40
+48,native-country, United-States
+48,income, <=50K
+49,age,29
+49,workclass, Self-emp-not-inc
+49,education, HS-grad
+49,marital-status, Married-civ-spouse
+49,occupation, Farming-fishing
+49,relationship, Husband
+49,race, White
+49,sex, Male
+49,hours-per-week,40
+49,native-country, United-States
+49,income, <=50K
+50,age,39
+50,workclass, Private
+50,education, 9th
+50,marital-status, Married-civ-spouse
+50,occupation, Other-service
+50,relationship, Wife
+50,race, Black
+50,sex, Female
+50,hours-per-week,34
+50,native-country, United-States
+50,income, <=50K
+51,age,31
+51,workclass, Self-emp-not-inc
+51,education, Some-college
+51,marital-status, Married-civ-spouse
+51,occupation, Craft-repair
+51,relationship, Husband
+51,race, White
+51,sex, Male
+51,hours-per-week,40
+51,native-country, United-States
+51,income, <=50K
+52,age,23
+52,workclass, Private
+52,education, Bachelors
+52,marital-status, Never-married
+52,occupation, Exec-managerial
+52,relationship, Unmarried
+52,race, White
+52,sex, Male
+52,hours-per-week,40
+52,native-country, United-States
+52,income, <=50K
+53,age,42
+53,workclass, Private
+53,education, Some-college
+53,marital-status, Married-civ-spouse
+53,occupation, Craft-repair
+53,relationship, Husband
+53,race, White
+53,sex, Male
+53,hours-per-week,40
+53,native-country, United-States
+53,income, <=50K
+54,age,18
+54,workclass, ?
+54,education, Some-college
+54,marital-status, Never-married
+54,occupation, ?
+54,relationship, Own-child
+54,race, White
+54,sex, Male
+54,hours-per-week,40
+54,native-country, United-States
+54,income, <=50K
+55,age,51
+55,workclass, Private
+55,education, HS-grad
+55,marital-status, Married-civ-spouse
+55,occupation, Transport-moving
+55,relationship, Husband
+55,race, White
+55,sex, Male
+55,hours-per-week,40
+55,native-country, United-States
+55,income, >50K
+56,age,49
+56,workclass, Private
+56,education, Some-college
+56,marital-status, Divorced
+56,occupation, Other-service
+56,relationship, Not-in-family
+56,race, White
+56,sex, Female
+56,hours-per-week,40
+56,native-country, United-States
+56,income, <=50K
+57,age,50
+57,workclass, Private
+57,education, HS-grad
+57,marital-status, Divorced
+57,occupation, Exec-managerial
+57,relationship, Unmarried
+57,race, White
+57,sex, Male
+57,hours-per-week,38
+57,native-country, United-States
+57,income, <=50K
+58,age,38
+58,workclass, Private
+58,education, Some-college
+58,marital-status, Married-civ-spouse
+58,occupation, Exec-managerial
+58,relationship, Husband
+58,race, White
+58,sex, Male
+58,hours-per-week,40
+58,native-country, United-States
+58,income, <=50K
+59,age,20
+59,workclass, Private
+59,education, HS-grad
+59,marital-status, Never-married
+59,occupation, Craft-repair
+59,relationship, Not-in-family
+59,race, White
+59,sex, Male
+59,hours-per-week,35
+59,native-country, United-States
+59,income, <=50K
+60,age,35
+60,workclass, Private
+60,education, HS-grad
+60,marital-status, Married-civ-spouse
+60,occupation, Craft-repair
+60,relationship, Husband
+60,race, White
+60,sex, Male
+60,hours-per-week,40
+60,native-country, United-States
+60,income, <=50K
+61,age,42
+61,workclass, Private
+61,education, HS-grad
+61,marital-status, Married-civ-spouse
+61,occupation, Machine-op-inspct
+61,relationship, Husband
+61,race, White
+61,sex, Male
+61,hours-per-week,45
+61,native-country, United-States
+61,income, >50K
+62,age,35
+62,workclass, Private
+62,education, Bachelors
+62,marital-status, Never-married
+62,occupation, Other-service
+62,relationship, Not-in-family
+62,race, White
+62,sex, Female
+62,hours-per-week,45
+62,native-country, United-States
+62,income, <=50K
+63,age,50
+63,workclass, Self-emp-inc
+63,education, 7th-8th
+63,marital-status, Married-civ-spouse
+63,occupation, Craft-repair
+63,relationship, Husband
+63,race, White
+63,sex, Male
+63,hours-per-week,63
+63,native-country, ?
+63,income, >50K
+64,age,45
+64,workclass, Self-emp-inc
+64,education, Bachelors
+64,marital-status, Divorced
+64,occupation, Exec-managerial
+64,relationship, Unmarried
+64,race, White
+64,sex, Male
+64,hours-per-week,50
+64,native-country, United-States
+64,income, >50K
+65,age,47
+65,workclass, Federal-gov
+65,education, Bachelors
+65,marital-status, Married-civ-spouse
+65,occupation, Adm-clerical
+65,relationship, Husband
+65,race, White
+65,sex, Male
+65,hours-per-week,45
+65,native-country, Germany
+65,income, >50K
+66,age,31
+66,workclass, Private
+66,education, Assoc-acdm
+66,marital-status, Divorced
+66,occupation, Craft-repair
+66,relationship, Not-in-family
+66,race, White
+66,sex, Male
+66,hours-per-week,50
+66,native-country, United-States
+66,income, >50K
+67,age,38
+67,workclass, ?
+67,education, 7th-8th
+67,marital-status, Married-civ-spouse
+67,occupation, ?
+67,relationship, Husband
+67,race, White
+67,sex, Male
+67,hours-per-week,45
+67,native-country, United-States
+67,income, <=50K
+68,age,61
+68,workclass, Private
+68,education, Some-college
+68,marital-status, Married-civ-spouse
+68,occupation, Sales
+68,relationship, Husband
+68,race, White
+68,sex, Male
+68,hours-per-week,40
+68,native-country, United-States
+68,income, <=50K
+69,age,18
+69,workclass, Private
+69,education, 12th
+69,marital-status, Never-married
+69,occupation, Handlers-cleaners
+69,relationship, Own-child
+69,race, White
+69,sex, Male
+69,hours-per-week,20
+69,native-country, United-States
+69,income, <=50K
+70,age,24
+70,workclass, Private
+70,education, HS-grad
+70,marital-status, Never-married
+70,occupation, Other-service
+70,relationship, Own-child
+70,race, White
+70,sex, Female
+70,hours-per-week,30
+70,native-country, United-States
+70,income, <=50K
+71,age,46
+71,workclass, Private
+71,education, Assoc-voc
+71,marital-status, Never-married
+71,occupation, Exec-managerial
+71,relationship, Own-child
+71,race, White
+71,sex, Female
+71,hours-per-week,40
+71,native-country, United-States
+71,income, <=50K
+72,age,18
+72,workclass, Private
+72,education, 11th
+72,marital-status, Never-married
+72,occupation, Handlers-cleaners
+72,relationship, Not-in-family
+72,race, Black
+72,sex, Male
+72,hours-per-week,40
+72,native-country, United-States
+72,income, <=50K
+73,age,34
+73,workclass, Private
+73,education, Assoc-acdm
+73,marital-status, Married-civ-spouse
+73,occupation, Adm-clerical
+73,relationship, Wife
+73,race, White
+73,sex, Female
+73,hours-per-week,40
+73,native-country, United-States
+73,income, >50K
+74,age,70
+74,workclass, Private
+74,education, Bachelors
+74,marital-status, Married-civ-spouse
+74,occupation, Handlers-cleaners
+74,relationship, Husband
+74,race, White
+74,sex, Male
+74,hours-per-week,40
+74,native-country, United-States
+74,income, >50K
+75,age,28
+75,workclass, Private
+75,education, Some-college
+75,marital-status, Married-civ-spouse
+75,occupation, Adm-clerical
+75,relationship, Husband
+75,race, White
+75,sex, Male
+75,hours-per-week,40
+75,native-country, United-States
+75,income, >50K
+76,age,51
+76,workclass, State-gov
+76,education, Assoc-voc
+76,marital-status, Divorced
+76,occupation, Tech-support
+76,relationship, Not-in-family
+76,race, White
+76,sex, Male
+76,hours-per-week,39
+76,native-country, United-States
+76,income, >50K
+77,age,68
+77,workclass, Without-pay
+77,education, Some-college
+77,marital-status, Married-spouse-absent
+77,occupation, Farming-fishing
+77,relationship, Unmarried
+77,race, White
+77,sex, Female
+77,hours-per-week,25
+77,native-country, United-States
+77,income, <=50K
+78,age,20
+78,workclass, Private
+78,education, Some-college
+78,marital-status, Never-married
+78,occupation, Adm-clerical
+78,relationship, Not-in-family
+78,race, Other
+78,sex, Female
+78,hours-per-week,35
+78,native-country, United-States
+78,income, <=50K
+79,age,38
+79,workclass, Private
+79,education, Bachelors
+79,marital-status, Married-civ-spouse
+79,occupation, Sales
+79,relationship, Husband
+79,race, White
+79,sex, Male
+79,hours-per-week,40
+79,native-country, United-States
+79,income, >50K
+80,age,27
+80,workclass, Private
+80,education, 12th
+80,marital-status, Never-married
+80,occupation, Transport-moving
+80,relationship, Not-in-family
+80,race, White
+80,sex, Male
+80,hours-per-week,40
+80,native-country, United-States
+80,income, <=50K
+81,age,44
+81,workclass, Private
+81,education, Some-college
+81,marital-status, Married-civ-spouse
+81,occupation, Sales
+81,relationship, Husband
+81,race, Asian-Pac-Islander
+81,sex, Male
+81,hours-per-week,40
+81,native-country, United-States
+81,income, >50K
+82,age,41
+82,workclass, Private
+82,education, HS-grad
+82,marital-status, Never-married
+82,occupation, Craft-repair
+82,relationship, Not-in-family
+82,race, White
+82,sex, Male
+82,hours-per-week,54
+82,native-country, United-States
+82,income, <=50K
+83,age,68
+83,workclass, Private
+83,education, HS-grad
+83,marital-status, Married-civ-spouse
+83,occupation, Adm-clerical
+83,relationship, Husband
+83,race, White
+83,sex, Male
+83,hours-per-week,24
+83,native-country, United-States
+83,income, <=50K
+84,age,40
+84,workclass, State-gov
+84,education, Prof-school
+84,marital-status, Married-civ-spouse
+84,occupation, Prof-specialty
+84,relationship, Husband
+84,race, White
+84,sex, Male
+84,hours-per-week,38
+84,native-country, United-States
+84,income, >50K
+85,age,27
+85,workclass, Private
+85,education, Some-college
+85,marital-status, Never-married
+85,occupation, Exec-managerial
+85,relationship, Own-child
+85,race, White
+85,sex, Female
+85,hours-per-week,40
+85,native-country, United-States
+85,income, <=50K
+86,age,52
+86,workclass, Private
+86,education, HS-grad
+86,marital-status, Married-civ-spouse
+86,occupation, Machine-op-inspct
+86,relationship, Husband
+86,race, White
+86,sex, Male
+86,hours-per-week,40
+86,native-country, United-States
+86,income, <=50K
+87,age,44
+87,workclass, Private
+87,education, Some-college
+87,marital-status, Divorced
+87,occupation, Transport-moving
+87,relationship, Own-child
+87,race, White
+87,sex, Male
+87,hours-per-week,40
+87,native-country, United-States
+87,income, <=50K
+88,age,36
+88,workclass, Private
+88,education, Masters
+88,marital-status, Married-civ-spouse
+88,occupation, Exec-managerial
+88,relationship, Husband
+88,race, Asian-Pac-Islander
+88,sex, Male
+88,hours-per-week,40
+88,native-country, Taiwan
+88,income, >50K
+89,age,45
+89,workclass, Private
+89,education, Some-college
+89,marital-status, Married-civ-spouse
+89,occupation, Adm-clerical
+89,relationship, Wife
+89,race, White
+89,sex, Female
+89,hours-per-week,35
+89,native-country, United-States
+89,income, >50K
+90,age,25
+90,workclass, Private
+90,education, HS-grad
+90,marital-status, Never-married
+90,occupation, Adm-clerical
+90,relationship, Not-in-family
+90,race, White
+90,sex, Male
+90,hours-per-week,40
+90,native-country, United-States
+90,income, <=50K
+91,age,35
+91,workclass, Private
+91,education, HS-grad
+91,marital-status, Married-civ-spouse
+91,occupation, Other-service
+91,relationship, Wife
+91,race, White
+91,sex, Female
+91,hours-per-week,38
+91,native-country, United-States
+91,income, <=50K
+92,age,50
+92,workclass, Local-gov
+92,education, HS-grad
+92,marital-status, Married-civ-spouse
+92,occupation, Craft-repair
+92,relationship, Husband
+92,race, White
+92,sex, Male
+92,hours-per-week,35
+92,native-country, United-States
+92,income, >50K
+93,age,43
+93,workclass, Private
+93,education, HS-grad
+93,marital-status, Married-civ-spouse
+93,occupation, Adm-clerical
+93,relationship, Husband
+93,race, White
+93,sex, Male
+93,hours-per-week,40
+93,native-country, United-States
+93,income, <=50K
+94,age,25
+94,workclass, Private
+94,education, HS-grad
+94,marital-status, Never-married
+94,occupation, Machine-op-inspct
+94,relationship, Own-child
+94,race, White
+94,sex, Male
+94,hours-per-week,36
+94,native-country, United-States
+94,income, <=50K
+95,age,70
+95,workclass, Federal-gov
+95,education, HS-grad
+95,marital-status, Married-civ-spouse
+95,occupation, Adm-clerical
+95,relationship, Husband
+95,race, Black
+95,sex, Male
+95,hours-per-week,40
+95,native-country, United-States
+95,income, <=50K
+96,age,23
+96,workclass, Private
+96,education, Some-college
+96,marital-status, Married-spouse-absent
+96,occupation, Handlers-cleaners
+96,relationship, Unmarried
+96,race, White
+96,sex, Male
+96,hours-per-week,40
+96,native-country, United-States
+96,income, <=50K
+97,age,29
+97,workclass, Private
+97,education, HS-grad
+97,marital-status, Never-married
+97,occupation, Other-service
+97,relationship, Own-child
+97,race, White
+97,sex, Male
+97,hours-per-week,30
+97,native-country, Canada
+97,income, <=50K
+98,age,43
+98,workclass, Private
+98,education, HS-grad
+98,marital-status, Married-civ-spouse
+98,occupation, Craft-repair
+98,relationship, Husband
+98,race, White
+98,sex, Male
+98,hours-per-week,55
+98,native-country, United-States
+98,income, <=50K
+99,age,17
+99,workclass, Private
+99,education, 11th
+99,marital-status, Never-married
+99,occupation, Handlers-cleaners
+99,relationship, Own-child
+99,race, Amer-Indian-Eskimo
+99,sex, Male
+99,hours-per-week,20
+99,native-country, United-States
+99,income, <=50K
+100,age,51
+100,workclass, Self-emp-not-inc
+100,education, HS-grad
+100,marital-status, Never-married
+100,occupation, Farming-fishing
+100,relationship, Unmarried
+100,race, White
+100,sex, Male
+100,hours-per-week,45
+100,native-country, United-States
+100,income, <=50K
+101,age,68
+101,workclass, ?
+101,education, HS-grad
+101,marital-status, Married-civ-spouse
+101,occupation, ?
+101,relationship, Wife
+101,race, White
+101,sex, Female
+101,hours-per-week,25
+101,native-country, United-States
+101,income, <=50K
+102,age,30
+102,workclass, Private
+102,education, Some-college
+102,marital-status, Divorced
+102,occupation, Adm-clerical
+102,relationship, Unmarried
+102,race, White
+102,sex, Female
+102,hours-per-week,40
+102,native-country, United-States
+102,income, <=50K
+103,age,41
+103,workclass, Private
+103,education, 11th
+103,marital-status, Never-married
+103,occupation, Handlers-cleaners
+103,relationship, Other-relative
+103,race, Black
+103,sex, Female
+103,hours-per-week,40
+103,native-country, United-States
+103,income, <=50K
+104,age,54
+104,workclass, Local-gov
+104,education, HS-grad
+104,marital-status, Never-married
+104,occupation, Adm-clerical
+104,relationship, Not-in-family
+104,race, White
+104,sex, Female
+104,hours-per-week,30
+104,native-country, United-States
+104,income, <=50K
+105,age,61
+105,workclass, Private
+105,education, HS-grad
+105,marital-status, Married-civ-spouse
+105,occupation, Other-service
+105,relationship, Husband
+105,race, Black
+105,sex, Male
+105,hours-per-week,40
+105,native-country, United-States
+105,income, <=50K
+106,age,18
+106,workclass, Private
+106,education, 12th
+106,marital-status, Never-married
+106,occupation, Sales
+106,relationship, Own-child
+106,race, Black
+106,sex, Female
+106,hours-per-week,15
+106,native-country, United-States
+106,income, <=50K
+107,age,33
+107,workclass, State-gov
+107,education, Some-college
+107,marital-status, Divorced
+107,occupation, Adm-clerical
+107,relationship, Unmarried
+107,race, White
+107,sex, Female
+107,hours-per-week,45
+107,native-country, United-States
+107,income, <=50K
+108,age,28
+108,workclass, Private
+108,education, Some-college
+108,marital-status, Never-married
+108,occupation, Adm-clerical
+108,relationship, Unmarried
+108,race, Black
+108,sex, Female
+108,hours-per-week,40
+108,native-country, United-States
+108,income, <=50K
+109,age,52
+109,workclass, Private
+109,education, HS-grad
+109,marital-status, Divorced
+109,occupation, Sales
+109,relationship, Not-in-family
+109,race, White
+109,sex, Female
+109,hours-per-week,48
+109,native-country, United-States
+109,income, <=50K
+110,age,38
+110,workclass, Private
+110,education, HS-grad
+110,marital-status, Widowed
+110,occupation, Other-service
+110,relationship, Unmarried
+110,race, White
+110,sex, Female
+110,hours-per-week,20
+110,native-country, United-States
+110,income, <=50K
+111,age,41
+111,workclass, Private
+111,education, Bachelors
+111,marital-status, Divorced
+111,occupation, Exec-managerial
+111,relationship, Not-in-family
+111,race, White
+111,sex, Male
+111,hours-per-week,50
+111,native-country, United-States
+111,income, >50K
+112,age,25
+112,workclass, Private
+112,education, Some-college
+112,marital-status, Married-civ-spouse
+112,occupation, Adm-clerical
+112,relationship, Husband
+112,race, White
+112,sex, Male
+112,hours-per-week,45
+112,native-country, United-States
+112,income, <=50K
+113,age,19
+113,workclass, Private
+113,education, 11th
+113,marital-status, Never-married
+113,occupation, Handlers-cleaners
+113,relationship, Not-in-family
+113,race, White
+113,sex, Male
+113,hours-per-week,40
+113,native-country, United-States
+113,income, <=50K
+114,age,31
+114,workclass, Local-gov
+114,education, Bachelors
+114,marital-status, Married-civ-spouse
+114,occupation, Machine-op-inspct
+114,relationship, Husband
+114,race, White
+114,sex, Male
+114,hours-per-week,40
+114,native-country, ?
+114,income, <=50K
+115,age,30
+115,workclass, Private
+115,education, HS-grad
+115,marital-status, Never-married
+115,occupation, Farming-fishing
+115,relationship, Own-child
+115,race, White
+115,sex, Male
+115,hours-per-week,40
+115,native-country, United-States
+115,income, <=50K
+116,age,44
+116,workclass, Federal-gov
+116,education, Assoc-acdm
+116,marital-status, Married-civ-spouse
+116,occupation, Adm-clerical
+116,relationship, Husband
+116,race, White
+116,sex, Male
+116,hours-per-week,40
+116,native-country, United-States
+116,income, >50K
+117,age,38
+117,workclass, ?
+117,education, Assoc-voc
+117,marital-status, Separated
+117,occupation, ?
+117,relationship, Unmarried
+117,race, White
+117,sex, Female
+117,hours-per-week,25
+117,native-country, United-States
+117,income, <=50K
+118,age,54
+118,workclass, Self-emp-inc
+118,education, Doctorate
+118,marital-status, Married-civ-spouse
+118,occupation, Prof-specialty
+118,relationship, Husband
+118,race, White
+118,sex, Male
+118,hours-per-week,50
+118,native-country, ?
+118,income, >50K
+119,age,58
+119,workclass, Private
+119,education, HS-grad
+119,marital-status, Married-civ-spouse
+119,occupation, Craft-repair
+119,relationship, Husband
+119,race, White
+119,sex, Male
+119,hours-per-week,40
+119,native-country, United-States
+119,income, >50K
+120,age,44
+120,workclass, Self-emp-not-inc
+120,education, HS-grad
+120,marital-status, Married-civ-spouse
+120,occupation, Farming-fishing
+120,relationship, Husband
+120,race, White
+120,sex, Male
+120,hours-per-week,50
+120,native-country, United-States
+120,income, <=50K
+121,age,43
+121,workclass, Private
+121,education, HS-grad
+121,marital-status, Never-married
+121,occupation, Machine-op-inspct
+121,relationship, Own-child
+121,race, White
+121,sex, Male
+121,hours-per-week,40
+121,native-country, United-States
+121,income, <=50K
+122,age,54
+122,workclass, Local-gov
+122,education, Bachelors
+122,marital-status, Married-civ-spouse
+122,occupation, Exec-managerial
+122,relationship, Husband
+122,race, Asian-Pac-Islander
+122,sex, Male
+122,hours-per-week,40
+122,native-country, Philippines
+122,income, >50K
+123,age,53
+123,workclass, Federal-gov
+123,education, Some-college
+123,marital-status, Widowed
+123,occupation, Adm-clerical
+123,relationship, Not-in-family
+123,race, Black
+123,sex, Female
+123,hours-per-week,40
+123,native-country, United-States
+123,income, <=50K
+124,age,42
+124,workclass, Private
+124,education, 9th
+124,marital-status, Married-civ-spouse
+124,occupation, Transport-moving
+124,relationship, Husband
+124,race, White
+124,sex, Male
+124,hours-per-week,40
+124,native-country, United-States
+124,income, <=50K
+125,age,46
+125,workclass, Private
+125,education, HS-grad
+125,marital-status, Married-civ-spouse
+125,occupation, Adm-clerical
+125,relationship, Wife
+125,race, White
+125,sex, Female
+125,hours-per-week,52
+125,native-country, United-States
+125,income, >50K
+126,age,34
+126,workclass, ?
+126,education, Masters
+126,marital-status, Never-married
+126,occupation, ?
+126,relationship, Not-in-family
+126,race, White
+126,sex, Male
+126,hours-per-week,30
+126,native-country, United-States
+126,income, <=50K
+127,age,19
+127,workclass, Private
+127,education, HS-grad
+127,marital-status, Never-married
+127,occupation, Tech-support
+127,relationship, Own-child
+127,race, White
+127,sex, Male
+127,hours-per-week,40
+127,native-country, United-States
+127,income, <=50K
+128,age,20
+128,workclass, Private
+128,education, Some-college
+128,marital-status, Never-married
+128,occupation, Other-service
+128,relationship, Not-in-family
+128,race, White
+128,sex, Female
+128,hours-per-week,25
+128,native-country, United-States
+128,income, <=50K
+129,age,25
+129,workclass, Private
+129,education, Bachelors
+129,marital-status, Never-married
+129,occupation, Exec-managerial
+129,relationship, Not-in-family
+129,race, White
+129,sex, Male
+129,hours-per-week,50
+129,native-country, United-States
+129,income, <=50K
+130,age,31
+130,workclass, Private
+130,education, Some-college
+130,marital-status, Never-married
+130,occupation, Adm-clerical
+130,relationship, Not-in-family
+130,race, White
+130,sex, Male
+130,hours-per-week,40
+130,native-country, Germany
+130,income, <=50K
+131,age,19
+131,workclass, Private
+131,education, HS-grad
+131,marital-status, Married-AF-spouse
+131,occupation, Adm-clerical
+131,relationship, Wife
+131,race, White
+131,sex, Female
+131,hours-per-week,25
+131,native-country, United-States
+131,income, <=50K
+132,age,27
+132,workclass, Private
+132,education, 9th
+132,marital-status, Married-civ-spouse
+132,occupation, Craft-repair
+132,relationship, Husband
+132,race, White
+132,sex, Male
+132,hours-per-week,32
+132,native-country, United-States
+132,income, <=50K
+133,age,63
+133,workclass, Private
+133,education, Bachelors
+133,marital-status, Married-civ-spouse
+133,occupation, Craft-repair
+133,relationship, Husband
+133,race, White
+133,sex, Male
+133,hours-per-week,49
+133,native-country, ?
+133,income, <=50K
+134,age,49
+134,workclass, Private
+134,education, Bachelors
+134,marital-status, Widowed
+134,occupation, Prof-specialty
+134,relationship, Unmarried
+134,race, White
+134,sex, Female
+134,hours-per-week,35
+134,native-country, United-States
+134,income, <=50K
+135,age,49
+135,workclass, Self-emp-not-inc
+135,education, Bachelors
+135,marital-status, Married-civ-spouse
+135,occupation, Prof-specialty
+135,relationship, Husband
+135,race, White
+135,sex, Male
+135,hours-per-week,40
+135,native-country, United-States
+135,income, >50K
+136,age,27
+136,workclass, Self-emp-not-inc
+136,education, Bachelors
+136,marital-status, Never-married
+136,occupation, Sales
+136,relationship, Not-in-family
+136,race, White
+136,sex, Male
+136,hours-per-week,50
+136,native-country, United-States
+136,income, <=50K
+137,age,23
+137,workclass, Private
+137,education, Masters
+137,marital-status, Never-married
+137,occupation, Sales
+137,relationship, Not-in-family
+137,race, White
+137,sex, Female
+137,hours-per-week,20
+137,native-country, United-States
+137,income, <=50K
+138,age,27
+138,workclass, Private
+138,education, Assoc-acdm
+138,marital-status, Married-civ-spouse
+138,occupation, Tech-support
+138,relationship, Husband
+138,race, White
+138,sex, Male
+138,hours-per-week,40
+138,native-country, United-States
+138,income, <=50K
+139,age,40
+139,workclass, Private
+139,education, HS-grad
+139,marital-status, Married-spouse-absent
+139,occupation, Other-service
+139,relationship, Own-child
+139,race, White
+139,sex, Female
+139,hours-per-week,40
+139,native-country, United-States
+139,income, <=50K
+140,age,36
+140,workclass, Private
+140,education, HS-grad
+140,marital-status, Married-civ-spouse
+140,occupation, Craft-repair
+140,relationship, Husband
+140,race, White
+140,sex, Male
+140,hours-per-week,55
+140,native-country, United-States
+140,income, <=50K
+141,age,45
+141,workclass, Private
+141,education, 11th
+141,marital-status, Married-civ-spouse
+141,occupation, Craft-repair
+141,relationship, Husband
+141,race, White
+141,sex, Male
+141,hours-per-week,42
+141,native-country, United-States
+141,income, <=50K
+142,age,69
+142,workclass, ?
+142,education, Prof-school
+142,marital-status, Married-civ-spouse
+142,occupation, ?
+142,relationship, Wife
+142,race, White
+142,sex, Female
+142,hours-per-week,25
+142,native-country, ?
+142,income, <=50K
+143,age,38
+143,workclass, Private
+143,education, Bachelors
+143,marital-status, Married-civ-spouse
+143,occupation, Sales
+143,relationship, Husband
+143,race, White
+143,sex, Male
+143,hours-per-week,52
+143,native-country, United-States
+143,income, >50K
+144,age,65
+144,workclass, ?
+144,education, HS-grad
+144,marital-status, Married-civ-spouse
+144,occupation, ?
+144,relationship, Husband
+144,race, White
+144,sex, Male
+144,hours-per-week,40
+144,native-country, United-States
+144,income, <=50K
+145,age,53
+145,workclass, Self-emp-not-inc
+145,education, Masters
+145,marital-status, Married-civ-spouse
+145,occupation, Prof-specialty
+145,relationship, Husband
+145,race, White
+145,sex, Male
+145,hours-per-week,50
+145,native-country, United-States
+145,income, >50K
+146,age,24
+146,workclass, Private
+146,education, HS-grad
+146,marital-status, Never-married
+146,occupation, Transport-moving
+146,relationship, Unmarried
+146,race, White
+146,sex, Male
+146,hours-per-week,40
+146,native-country, Mexico
+146,income, <=50K
+147,age,45
+147,workclass, Federal-gov
+147,education, Masters
+147,marital-status, Married-civ-spouse
+147,occupation, Sales
+147,relationship, Husband
+147,race, White
+147,sex, Male
+147,hours-per-week,50
+147,native-country, United-States
+147,income, >50K
+148,age,30
+148,workclass, Self-emp-not-inc
+148,education, HS-grad
+148,marital-status, Never-married
+148,occupation, Craft-repair
+148,relationship, Not-in-family
+148,race, White
+148,sex, Male
+148,hours-per-week,50
+148,native-country, United-States
+148,income, >50K
+149,age,46
+149,workclass, Local-gov
+149,education, Bachelors
+149,marital-status, Married-civ-spouse
+149,occupation, Protective-serv
+149,relationship, Husband
+149,race, White
+149,sex, Male
+149,hours-per-week,40
+149,native-country, United-States
+149,income, >50K
+150,age,46
+150,workclass, Private
+150,education, Some-college
+150,marital-status, Divorced
+150,occupation, Sales
+150,relationship, Unmarried
+150,race, White
+150,sex, Female
+150,hours-per-week,40
+150,native-country, United-States
+150,income, <=50K
+151,age,51
+151,workclass, ?
+151,education, Doctorate
+151,marital-status, Never-married
+151,occupation, ?
+151,relationship, Not-in-family
+151,race, White
+151,sex, Male
+151,hours-per-week,40
+151,native-country, United-States
+151,income, >50K
+152,age,21
+152,workclass, ?
+152,education, Some-college
+152,marital-status, Never-married
+152,occupation, ?
+152,relationship, Own-child
+152,race, White
+152,sex, Male
+152,hours-per-week,75
+152,native-country, United-States
+152,income, <=50K
+153,age,42
+153,workclass, State-gov
+153,education, Some-college
+153,marital-status, Divorced
+153,occupation, Adm-clerical
+153,relationship, Own-child
+153,race, White
+153,sex, Female
+153,hours-per-week,38
+153,native-country, United-States
+153,income, <=50K
+154,age,21
+154,workclass, Self-emp-not-inc
+154,education, Some-college
+154,marital-status, Never-married
+154,occupation, Adm-clerical
+154,relationship, Own-child
+154,race, White
+154,sex, Female
+154,hours-per-week,15
+154,native-country, United-States
+154,income, <=50K
+155,age,51
+155,workclass, Self-emp-inc
+155,education, HS-grad
+155,marital-status, Divorced
+155,occupation, Exec-managerial
+155,relationship, Not-in-family
+155,race, White
+155,sex, Male
+155,hours-per-week,40
+155,native-country, United-States
+155,income, >50K
+156,age,25
+156,workclass, Private
+156,education, Bachelors
+156,marital-status, Never-married
+156,occupation, Other-service
+156,relationship, Own-child
+156,race, White
+156,sex, Male
+156,hours-per-week,40
+156,native-country, United-States
+156,income, <=50K
+157,age,44
+157,workclass, Private
+157,education, Masters
+157,marital-status, Separated
+157,occupation, Sales
+157,relationship, Unmarried
+157,race, White
+157,sex, Female
+157,hours-per-week,48
+157,native-country, United-States
+157,income, <=50K
+158,age,33
+158,workclass, Self-emp-not-inc
+158,education, Some-college
+158,marital-status, Married-civ-spouse
+158,occupation, Craft-repair
+158,relationship, Husband
+158,race, White
+158,sex, Male
+158,hours-per-week,50
+158,native-country, United-States
+158,income, <=50K
+159,age,34
+159,workclass, Local-gov
+159,education, Some-college
+159,marital-status, Married-civ-spouse
+159,occupation, Craft-repair
+159,relationship, Husband
+159,race, White
+159,sex, Male
+159,hours-per-week,40
+159,native-country, United-States
+159,income, <=50K
+160,age,43
+160,workclass, Local-gov
+160,education, Bachelors
+160,marital-status, Married-civ-spouse
+160,occupation, Protective-serv
+160,relationship, Husband
+160,race, White
+160,sex, Male
+160,hours-per-week,55
+160,native-country, United-States
+160,income, >50K
+161,age,43
+161,workclass, Private
+161,education, Assoc-acdm
+161,marital-status, Never-married
+161,occupation, Adm-clerical
+161,relationship, Not-in-family
+161,race, Black
+161,sex, Female
+161,hours-per-week,45
+161,native-country, United-States
+161,income, <=50K
+162,age,45
+162,workclass, Private
+162,education, Some-college
+162,marital-status, Married-civ-spouse
+162,occupation, Craft-repair
+162,relationship, Husband
+162,race, White
+162,sex, Male
+162,hours-per-week,40
+162,native-country, United-States
+162,income, <=50K
+163,age,52
+163,workclass, Private
+163,education, HS-grad
+163,marital-status, Married-civ-spouse
+163,occupation, Machine-op-inspct
+163,relationship, Husband
+163,race, White
+163,sex, Male
+163,hours-per-week,38
+163,native-country, United-States
+163,income, <=50K
+164,age,80
+164,workclass, ?
+164,education, HS-grad
+164,marital-status, Married-civ-spouse
+164,occupation, ?
+164,relationship, Husband
+164,race, White
+164,sex, Male
+164,hours-per-week,8
+164,native-country, Canada
+164,income, <=50K
+165,age,31
+165,workclass, Private
+165,education, Assoc-voc
+165,marital-status, Married-civ-spouse
+165,occupation, Exec-managerial
+165,relationship, Wife
+165,race, Black
+165,sex, Female
+165,hours-per-week,43
+165,native-country, United-States
+165,income, <=50K
+166,age,31
+166,workclass, Private
+166,education, Some-college
+166,marital-status, Married-civ-spouse
+166,occupation, Prof-specialty
+166,relationship, Wife
+166,race, White
+166,sex, Female
+166,hours-per-week,40
+166,native-country, United-States
+166,income, <=50K
+167,age,56
+167,workclass, Private
+167,education, Bachelors
+167,marital-status, Married-civ-spouse
+167,occupation, Machine-op-inspct
+167,relationship, Husband
+167,race, White
+167,sex, Male
+167,hours-per-week,40
+167,native-country, United-States
+167,income, <=50K
+168,age,54
+168,workclass, Local-gov
+168,education, Masters
+168,marital-status, Divorced
+168,occupation, Prof-specialty
+168,relationship, Not-in-family
+168,race, White
+168,sex, Female
+168,hours-per-week,40
+168,native-country, United-States
+168,income, <=50K
+169,age,30
+169,workclass, State-gov
+169,education, 10th
+169,marital-status, Married-civ-spouse
+169,occupation, Adm-clerical
+169,relationship, Husband
+169,race, White
+169,sex, Male
+169,hours-per-week,40
+169,native-country, United-States
+169,income, <=50K
+170,age,53
+170,workclass, Private
+170,education, HS-grad
+170,marital-status, Married-civ-spouse
+170,occupation, Exec-managerial
+170,relationship, Husband
+170,race, White
+170,sex, Male
+170,hours-per-week,40
+170,native-country, United-States
+170,income, >50K
+171,age,28
+171,workclass, Local-gov
+171,education, Bachelors
+171,marital-status, Married-civ-spouse
+171,occupation, Protective-serv
+171,relationship, Husband
+171,race, Black
+171,sex, Male
+171,hours-per-week,42
+171,native-country, United-States
+171,income, >50K
+172,age,50
+172,workclass, Private
+172,education, Bachelors
+172,marital-status, Divorced
+172,occupation, Exec-managerial
+172,relationship, Not-in-family
+172,race, White
+172,sex, Male
+172,hours-per-week,55
+172,native-country, United-States
+172,income, >50K
+173,age,52
+173,workclass, Private
+173,education, HS-grad
+173,marital-status, Widowed
+173,occupation, Transport-moving
+173,relationship, Not-in-family
+173,race, White
+173,sex, Male
+173,hours-per-week,40
+173,native-country, United-States
+173,income, <=50K
+174,age,54
+174,workclass, Self-emp-not-inc
+174,education, 10th
+174,marital-status, Divorced
+174,occupation, Other-service
+174,relationship, Not-in-family
+174,race, Black
+174,sex, Female
+174,hours-per-week,10
+174,native-country, United-States
+174,income, <=50K
+175,age,20
+175,workclass, Private
+175,education, Some-college
+175,marital-status, Never-married
+175,occupation, Machine-op-inspct
+175,relationship, Not-in-family
+175,race, White
+175,sex, Female
+175,hours-per-week,40
+175,native-country, United-States
+175,income, <=50K
+176,age,26
+176,workclass, Self-emp-not-inc
+176,education, HS-grad
+176,marital-status, Married-civ-spouse
+176,occupation, Craft-repair
+176,relationship, Husband
+176,race, White
+176,sex, Male
+176,hours-per-week,40
+176,native-country, United-States
+176,income, <=50K
+177,age,48
+177,workclass, Private
+177,education, Bachelors
+177,marital-status, Divorced
+177,occupation, Sales
+177,relationship, Unmarried
+177,race, White
+177,sex, Male
+177,hours-per-week,40
+177,native-country, United-States
+177,income, >50K
+178,age,37
+178,workclass, Self-emp-inc
+178,education, Masters
+178,marital-status, Divorced
+178,occupation, Exec-managerial
+178,relationship, Not-in-family
+178,race, White
+178,sex, Female
+178,hours-per-week,70
+178,native-country, United-States
+178,income, <=50K
+179,age,36
+179,workclass, Private
+179,education, Some-college
+179,marital-status, Married-civ-spouse
+179,occupation, Exec-managerial
+179,relationship, Husband
+179,race, White
+179,sex, Male
+179,hours-per-week,40
+179,native-country, United-States
+179,income, <=50K
+180,age,18
+180,workclass, Local-gov
+180,education, 11th
+180,marital-status, Never-married
+180,occupation, Protective-serv
+180,relationship, Own-child
+180,race, White
+180,sex, Male
+180,hours-per-week,10
+180,native-country, United-States
+180,income, <=50K
+181,age,47
+181,workclass, Private
+181,education, HS-grad
+181,marital-status, Married-civ-spouse
+181,occupation, Transport-moving
+181,relationship, Husband
+181,race, White
+181,sex, Male
+181,hours-per-week,40
+181,native-country, United-States
+181,income, <=50K
+182,age,34
+182,workclass, Private
+182,education, Masters
+182,marital-status, Never-married
+182,occupation, Prof-specialty
+182,relationship, Not-in-family
+182,race, White
+182,sex, Male
+182,hours-per-week,60
+182,native-country, United-States
+182,income, <=50K
+183,age,47
+183,workclass, Self-emp-not-inc
+183,education, HS-grad
+183,marital-status, Married-civ-spouse
+183,occupation, Transport-moving
+183,relationship, Husband
+183,race, White
+183,sex, Male
+183,hours-per-week,45
+183,native-country, United-States
+183,income, >50K
+184,age,43
+184,workclass, Local-gov
+184,education, HS-grad
+184,marital-status, Married-civ-spouse
+184,occupation, Craft-repair
+184,relationship, Husband
+184,race, White
+184,sex, Male
+184,hours-per-week,40
+184,native-country, United-States
+184,income, >50K
+185,age,35
+185,workclass, Private
+185,education, Bachelors
+185,marital-status, Never-married
+185,occupation, Sales
+185,relationship, Not-in-family
+185,race, White
+185,sex, Male
+185,hours-per-week,50
+185,native-country, United-States
+185,income, <=50K
+186,age,31
+186,workclass, Private
+186,education, 11th
+186,marital-status, Divorced
+186,occupation, Farming-fishing
+186,relationship, Not-in-family
+186,race, White
+186,sex, Male
+186,hours-per-week,50
+186,native-country, United-States
+186,income, <=50K
+187,age,35
+187,workclass, State-gov
+187,education, HS-grad
+187,marital-status, Married-civ-spouse
+187,occupation, Protective-serv
+187,relationship, Husband
+187,race, White
+187,sex, Male
+187,hours-per-week,40
+187,native-country, United-States
+187,income, <=50K
+188,age,21
+188,workclass, Private
+188,education, HS-grad
+188,marital-status, Never-married
+188,occupation, Other-service
+188,relationship, Other-relative
+188,race, White
+188,sex, Female
+188,hours-per-week,30
+188,native-country, United-States
+188,income, <=50K
+189,age,63
+189,workclass, Private
+189,education, HS-grad
+189,marital-status, Divorced
+189,occupation, Sales
+189,relationship, Not-in-family
+189,race, White
+189,sex, Female
+189,hours-per-week,40
+189,native-country, United-States
+189,income, <=50K
+190,age,35
+190,workclass, Private
+190,education, Masters
+190,marital-status, Married-civ-spouse
+190,occupation, Exec-managerial
+190,relationship, Husband
+190,race, Asian-Pac-Islander
+190,sex, Male
+190,hours-per-week,50
+190,native-country, United-States
+190,income, >50K
+191,age,30
+191,workclass, State-gov
+191,education, HS-grad
+191,marital-status, Never-married
+191,occupation, Other-service
+191,relationship, Not-in-family
+191,race, Black
+191,sex, Female
+191,hours-per-week,40
+191,native-country, United-States
+191,income, <=50K
+192,age,38
+192,workclass, Private
+192,education, Assoc-voc
+192,marital-status, Married-civ-spouse
+192,occupation, Exec-managerial
+192,relationship, Husband
+192,race, White
+192,sex, Male
+192,hours-per-week,50
+192,native-country, United-States
+192,income, >50K
+193,age,46
+193,workclass, Self-emp-inc
+193,education, Assoc-voc
+193,marital-status, Married-civ-spouse
+193,occupation, Exec-managerial
+193,relationship, Husband
+193,race, White
+193,sex, Male
+193,hours-per-week,60
+193,native-country, United-States
+193,income, >50K
+194,age,29
+194,workclass, Private
+194,education, HS-grad
+194,marital-status, Married-civ-spouse
+194,occupation, Craft-repair
+194,relationship, Husband
+194,race, White
+194,sex, Male
+194,hours-per-week,40
+194,native-country, United-States
+194,income, <=50K
+195,age,21
+195,workclass, Private
+195,education, HS-grad
+195,marital-status, Married-civ-spouse
+195,occupation, Handlers-cleaners
+195,relationship, Husband
+195,race, White
+195,sex, Male
+195,hours-per-week,32
+195,native-country, United-States
+195,income, <=50K
+196,age,21
+196,workclass, ?
+196,education, Some-college
+196,marital-status, Never-married
+196,occupation, ?
+196,relationship, Own-child
+196,race, White
+196,sex, Male
+196,hours-per-week,50
+196,native-country, United-States
+196,income, <=50K
+197,age,24
+197,workclass, Private
+197,education, Some-college
+197,marital-status, Married-civ-spouse
+197,occupation, Machine-op-inspct
+197,relationship, Wife
+197,race, Other
+197,sex, Female
+197,hours-per-week,40
+197,native-country, Puerto-Rico
+197,income, <=50K
+198,age,47
+198,workclass, Self-emp-not-inc
+198,education, Doctorate
+198,marital-status, Married-civ-spouse
+198,occupation, Transport-moving
+198,relationship, Husband
+198,race, White
+198,sex, Male
+198,hours-per-week,45
+198,native-country, United-States
+198,income, <=50K
+199,age,19
+199,workclass, Private
+199,education, 11th
+199,marital-status, Married-civ-spouse
+199,occupation, Craft-repair
+199,relationship, Husband
+199,race, White
+199,sex, Male
+199,hours-per-week,60
+199,native-country, United-States
+199,income, <=50K
+200,age,55
+200,workclass, State-gov
+200,education, Doctorate
+200,marital-status, Married-civ-spouse
+200,occupation, Prof-specialty
+200,relationship, Husband
+200,race, Asian-Pac-Islander
+200,sex, Male
+200,hours-per-week,40
+200,native-country, India
+200,income, >50K
+201,age,20
+201,workclass, ?
+201,education, Some-college
+201,marital-status, Never-married
+201,occupation, ?
+201,relationship, Own-child
+201,race, White
+201,sex, Female
+201,hours-per-week,40
+201,native-country, United-States
+201,income, <=50K
+202,age,33
+202,workclass, Private
+202,education, Bachelors
+202,marital-status, Never-married
+202,occupation, Exec-managerial
+202,relationship, Not-in-family
+202,race, Asian-Pac-Islander
+202,sex, Male
+202,hours-per-week,40
+202,native-country, ?
+202,income, <=50K
+203,age,70
+203,workclass, Local-gov
+203,education, Masters
+203,marital-status, Never-married
+203,occupation, Prof-specialty
+203,relationship, Unmarried
+203,race, White
+203,sex, Female
+203,hours-per-week,50
+203,native-country, United-States
+203,income, >50K
+204,age,43
+204,workclass, Local-gov
+204,education, Bachelors
+204,marital-status, Divorced
+204,occupation, Prof-specialty
+204,relationship, Unmarried
+204,race, White
+204,sex, Female
+204,hours-per-week,55
+204,native-country, United-States
+204,income, <=50K
+205,age,64
+205,workclass, Private
+205,education, 10th
+205,marital-status, Married-civ-spouse
+205,occupation, Adm-clerical
+205,relationship, Husband
+205,race, White
+205,sex, Male
+205,hours-per-week,40
+205,native-country, United-States
+205,income, <=50K
+206,age,22
+206,workclass, Self-emp-inc
+206,education, Some-college
+206,marital-status, Never-married
+206,occupation, Craft-repair
+206,relationship, Own-child
+206,race, White
+206,sex, Male
+206,hours-per-week,35
+206,native-country, United-States
+206,income, <=50K
+207,age,56
+207,workclass, Private
+207,education, 7th-8th
+207,marital-status, Married-civ-spouse
+207,occupation, Machine-op-inspct
+207,relationship, Husband
+207,race, White
+207,sex, Male
+207,hours-per-week,48
+207,native-country, United-States
+207,income, <=50K
+208,age,62
+208,workclass, Private
+208,education, HS-grad
+208,marital-status, Married-civ-spouse
+208,occupation, Adm-clerical
+208,relationship, Husband
+208,race, White
+208,sex, Male
+208,hours-per-week,40
+208,native-country, United-States
+208,income, >50K
+209,age,31
+209,workclass, Private
+209,education, Bachelors
+209,marital-status, Married-civ-spouse
+209,occupation, Prof-specialty
+209,relationship, Wife
+209,race, White
+209,sex, Female
+209,hours-per-week,35
+209,native-country, United-States
+209,income, <=50K
+210,age,26
+210,workclass, Federal-gov
+210,education, Some-college
+210,marital-status, Never-married
+210,occupation, Adm-clerical
+210,relationship, Unmarried
+210,race, White
+210,sex, Female
+210,hours-per-week,15
+210,native-country, United-States
+210,income, <=50K
+211,age,44
+211,workclass, Federal-gov
+211,education, HS-grad
+211,marital-status, Divorced
+211,occupation, Craft-repair
+211,relationship, Not-in-family
+211,race, White
+211,sex, Male
+211,hours-per-week,40
+211,native-country, United-States
+211,income, <=50K
+212,age,45
+212,workclass, Private
+212,education, Bachelors
+212,marital-status, Divorced
+212,occupation, Prof-specialty
+212,relationship, Not-in-family
+212,race, White
+212,sex, Male
+212,hours-per-week,50
+212,native-country, United-States
+212,income, >50K
+213,age,55
+213,workclass, Self-emp-not-inc
+213,education, HS-grad
+213,marital-status, Married-civ-spouse
+213,occupation, Sales
+213,relationship, Husband
+213,race, White
+213,sex, Male
+213,hours-per-week,40
+213,native-country, United-States
+213,income, <=50K
+214,age,31
+214,workclass, Private
+214,education, Some-college
+214,marital-status, Never-married
+214,occupation, Sales
+214,relationship, Other-relative
+214,race, White
+214,sex, Female
+214,hours-per-week,40
+214,native-country, ?
+214,income, <=50K
+215,age,27
+215,workclass, Private
+215,education, Prof-school
+215,marital-status, Married-civ-spouse
+215,occupation, Adm-clerical
+215,relationship, Husband
+215,race, White
+215,sex, Male
+215,hours-per-week,40
+215,native-country, United-States
+215,income, <=50K
+216,age,39
+216,workclass, Private
+216,education, 12th
+216,marital-status, Married-civ-spouse
+216,occupation, Transport-moving
+216,relationship, Husband
+216,race, White
+216,sex, Male
+216,hours-per-week,70
+216,native-country, United-States
+216,income, >50K
+217,age,18
+217,workclass, ?
+217,education, 11th
+217,marital-status, Never-married
+217,occupation, ?
+217,relationship, Own-child
+217,race, White
+217,sex, Male
+217,hours-per-week,25
+217,native-country, United-States
+217,income, <=50K
+218,age,55
+218,workclass, Private
+218,education, 11th
+218,marital-status, Widowed
+218,occupation, Handlers-cleaners
+218,relationship, Unmarried
+218,race, White
+218,sex, Female
+218,hours-per-week,40
+218,native-country, United-States
+218,income, <=50K
+219,age,42
+219,workclass, Private
+219,education, Some-college
+219,marital-status, Married-civ-spouse
+219,occupation, Other-service
+219,relationship, Wife
+219,race, Black
+219,sex, Female
+219,hours-per-week,30
+219,native-country, United-States
+219,income, <=50K
+220,age,58
+220,workclass, Self-emp-not-inc
+220,education, HS-grad
+220,marital-status, Married-civ-spouse
+220,occupation, Sales
+220,relationship, Husband
+220,race, White
+220,sex, Male
+220,hours-per-week,72
+220,native-country, United-States
+220,income, >50K
+221,age,47
+221,workclass, Private
+221,education, Some-college
+221,marital-status, Married-civ-spouse
+221,occupation, Machine-op-inspct
+221,relationship, Husband
+221,race, Asian-Pac-Islander
+221,sex, Male
+221,hours-per-week,40
+221,native-country, Philippines
+221,income, >50K
+222,age,27
+222,workclass, Private
+222,education, Some-college
+222,marital-status, Never-married
+222,occupation, Adm-clerical
+222,relationship, Unmarried
+222,race, White
+222,sex, Female
+222,hours-per-week,50
+222,native-country, United-States
+222,income, <=50K
+223,age,26
+223,workclass, Private
+223,education, Bachelors
+223,marital-status, Never-married
+223,occupation, Prof-specialty
+223,relationship, Own-child
+223,race, White
+223,sex, Male
+223,hours-per-week,40
+223,native-country, United-States
+223,income, <=50K
+224,age,37
+224,workclass, Private
+224,education, HS-grad
+224,marital-status, Married-civ-spouse
+224,occupation, Machine-op-inspct
+224,relationship, Husband
+224,race, White
+224,sex, Male
+224,hours-per-week,40
+224,native-country, United-States
+224,income, <=50K
+225,age,27
+225,workclass, Private
+225,education, HS-grad
+225,marital-status, Married-civ-spouse
+225,occupation, Transport-moving
+225,relationship, Husband
+225,race, White
+225,sex, Male
+225,hours-per-week,40
+225,native-country, United-States
+225,income, <=50K
+226,age,51
+226,workclass, Private
+226,education, Masters
+226,marital-status, Married-civ-spouse
+226,occupation, Craft-repair
+226,relationship, Husband
+226,race, White
+226,sex, Male
+226,hours-per-week,40
+226,native-country, United-States
+226,income, >50K
+227,age,56
+227,workclass, Self-emp-inc
+227,education, Prof-school
+227,marital-status, Married-civ-spouse
+227,occupation, Prof-specialty
+227,relationship, Husband
+227,race, White
+227,sex, Male
+227,hours-per-week,32
+227,native-country, United-States
+227,income, >50K
+228,age,52
+228,workclass, Private
+228,education, HS-grad
+228,marital-status, Married-civ-spouse
+228,occupation, Sales
+228,relationship, Husband
+228,race, White
+228,sex, Male
+228,hours-per-week,40
+228,native-country, United-States
+228,income, <=50K
+229,age,51
+229,workclass, Private
+229,education, 5th-6th
+229,marital-status, Married-civ-spouse
+229,occupation, Craft-repair
+229,relationship, Other-relative
+229,race, White
+229,sex, Female
+229,hours-per-week,40
+229,native-country, United-States
+229,income, <=50K
+230,age,39
+230,workclass, Private
+230,education, Some-college
+230,marital-status, Never-married
+230,occupation, Craft-repair
+230,relationship, Own-child
+230,race, Black
+230,sex, Male
+230,hours-per-week,40
+230,native-country, United-States
+230,income, <=50K
+231,age,23
+231,workclass, Private
+231,education, Assoc-acdm
+231,marital-status, Never-married
+231,occupation, Other-service
+231,relationship, Own-child
+231,race, White
+231,sex, Female
+231,hours-per-week,20
+231,native-country, United-States
+231,income, <=50K
+232,age,37
+232,workclass, Private
+232,education, HS-grad
+232,marital-status, Married-civ-spouse
+232,occupation, Machine-op-inspct
+232,relationship, Husband
+232,race, White
+232,sex, Male
+232,hours-per-week,48
+232,native-country, United-States
+232,income, >50K
+233,age,48
+233,workclass, Private
+233,education, Some-college
+233,marital-status, Married-civ-spouse
+233,occupation, Craft-repair
+233,relationship, Husband
+233,race, White
+233,sex, Male
+233,hours-per-week,60
+233,native-country, United-States
+233,income, >50K
+234,age,42
+234,workclass, Federal-gov
+234,education, Bachelors
+234,marital-status, Married-civ-spouse
+234,occupation, Prof-specialty
+234,relationship, Husband
+234,race, White
+234,sex, Male
+234,hours-per-week,40
+234,native-country, United-States
+234,income, <=50K
+235,age,38
+235,workclass, Private
+235,education, Some-college
+235,marital-status, Married-civ-spouse
+235,occupation, Prof-specialty
+235,relationship, Husband
+235,race, White
+235,sex, Male
+235,hours-per-week,50
+235,native-country, ?
+235,income, >50K
+236,age,32
+236,workclass, Private
+236,education, Bachelors
+236,marital-status, Married-civ-spouse
+236,occupation, Prof-specialty
+236,relationship, Husband
+236,race, Asian-Pac-Islander
+236,sex, Male
+236,hours-per-week,40
+236,native-country, United-States
+236,income, >50K
+237,age,57
+237,workclass, Self-emp-not-inc
+237,education, Masters
+237,marital-status, Married-civ-spouse
+237,occupation, Tech-support
+237,relationship, Husband
+237,race, White
+237,sex, Male
+237,hours-per-week,38
+237,native-country, United-States
+237,income, >50K
+238,age,36
+238,workclass, Private
+238,education, Bachelors
+238,marital-status, Married-civ-spouse
+238,occupation, Exec-managerial
+238,relationship, Husband
+238,race, White
+238,sex, Male
+238,hours-per-week,40
+238,native-country, United-States
+238,income, >50K
+239,age,31
+239,workclass, Private
+239,education, Bachelors
+239,marital-status, Never-married
+239,occupation, Exec-managerial
+239,relationship, Not-in-family
+239,race, White
+239,sex, Female
+239,hours-per-week,50
+239,native-country, United-States
+239,income, >50K
+240,age,21
+240,workclass, Private
+240,education, 5th-6th
+240,marital-status, Never-married
+240,occupation, Priv-house-serv
+240,relationship, Not-in-family
+240,race, White
+240,sex, Female
+240,hours-per-week,40
+240,native-country, Mexico
+240,income, <=50K
+241,age,21
+241,workclass, ?
+241,education, Some-college
+241,marital-status, Never-married
+241,occupation, ?
+241,relationship, Not-in-family
+241,race, White
+241,sex, Female
+241,hours-per-week,28
+241,native-country, United-States
+241,income, <=50K
+242,age,42
+242,workclass, Federal-gov
+242,education, HS-grad
+242,marital-status, Divorced
+242,occupation, Adm-clerical
+242,relationship, Not-in-family
+242,race, White
+242,sex, Female
+242,hours-per-week,40
+242,native-country, United-States
+242,income, <=50K
+243,age,46
+243,workclass, Private
+243,education, Some-college
+243,marital-status, Married-civ-spouse
+243,occupation, Exec-managerial
+243,relationship, Husband
+243,race, White
+243,sex, Male
+243,hours-per-week,40
+243,native-country, United-States
+243,income, >50K
+244,age,51
+244,workclass, Private
+244,education, HS-grad
+244,marital-status, Married-civ-spouse
+244,occupation, Protective-serv
+244,relationship, Husband
+244,race, White
+244,sex, Male
+244,hours-per-week,40
+244,native-country, United-States
+244,income, >50K
+245,age,51
+245,workclass, Private
+245,education, HS-grad
+245,marital-status, Widowed
+245,occupation, Machine-op-inspct
+245,relationship, Not-in-family
+245,race, Black
+245,sex, Female
+245,hours-per-week,40
+245,native-country, United-States
+245,income, <=50K
+246,age,61
+246,workclass, Private
+246,education, 7th-8th
+246,marital-status, Divorced
+246,occupation, Other-service
+246,relationship, Unmarried
+246,race, White
+246,sex, Female
+246,hours-per-week,40
+246,native-country, United-States
+246,income, <=50K
+247,age,75
+247,workclass, Self-emp-inc
+247,education, Some-college
+247,marital-status, Widowed
+247,occupation, Sales
+247,relationship, Not-in-family
+247,race, White
+247,sex, Male
+247,hours-per-week,40
+247,native-country, United-States
+247,income, >50K
+248,age,30
+248,workclass, Private
+248,education, Preschool
+248,marital-status, Never-married
+248,occupation, Farming-fishing
+248,relationship, Not-in-family
+248,race, White
+248,sex, Male
+248,hours-per-week,40
+248,native-country, Mexico
+248,income, <=50K
+249,age,51
+249,workclass, Private
+249,education, HS-grad
+249,marital-status, Married-civ-spouse
+249,occupation, Machine-op-inspct
+249,relationship, Husband
+249,race, White
+249,sex, Male
+249,hours-per-week,45
+249,native-country, United-States
+249,income, >50K
+250,age,18
+250,workclass, ?
+250,education, Some-college
+250,marital-status, Never-married
+250,occupation, ?
+250,relationship, Own-child
+250,race, White
+250,sex, Female
+250,hours-per-week,15
+250,native-country, United-States
+250,income, <=50K
+251,age,29
+251,workclass, Private
+251,education, 10th
+251,marital-status, Never-married
+251,occupation, Craft-repair
+251,relationship, Not-in-family
+251,race, Black
+251,sex, Male
+251,hours-per-week,40
+251,native-country, ?
+251,income, <=50K
+252,age,39
+252,workclass, Private
+252,education, HS-grad
+252,marital-status, Married-civ-spouse
+252,occupation, Adm-clerical
+252,relationship, Wife
+252,race, Black
+252,sex, Female
+252,hours-per-week,50
+252,native-country, United-States
+252,income, <=50K
+253,age,44
+253,workclass, Private
+253,education, Masters
+253,marital-status, Married-civ-spouse
+253,occupation, Exec-managerial
+253,relationship, Wife
+253,race, White
+253,sex, Female
+253,hours-per-week,24
+253,native-country, United-States
+253,income, >50K
+254,age,19
+254,workclass, ?
+254,education, Some-college
+254,marital-status, Never-married
+254,occupation, ?
+254,relationship, Own-child
+254,race, White
+254,sex, Male
+254,hours-per-week,10
+254,native-country, United-States
+254,income, <=50K
+255,age,30
+255,workclass, Private
+255,education, HS-grad
+255,marital-status, Married-civ-spouse
+255,occupation, Other-service
+255,relationship, Husband
+255,race, Black
+255,sex, Male
+255,hours-per-week,25
+255,native-country, United-States
+255,income, <=50K
+256,age,50
+256,workclass, Self-emp-not-inc
+256,education, Doctorate
+256,marital-status, Married-civ-spouse
+256,occupation, Prof-specialty
+256,relationship, Husband
+256,race, White
+256,sex, Male
+256,hours-per-week,60
+256,native-country, United-States
+256,income, >50K
+257,age,34
+257,workclass, Private
+257,education, Bachelors
+257,marital-status, Never-married
+257,occupation, Prof-specialty
+257,relationship, Not-in-family
+257,race, White
+257,sex, Female
+257,hours-per-week,40
+257,native-country, United-States
+257,income, <=50K
+258,age,32
+258,workclass, Private
+258,education, Some-college
+258,marital-status, Never-married
+258,occupation, Adm-clerical
+258,relationship, Own-child
+258,race, White
+258,sex, Female
+258,hours-per-week,40
+258,native-country, United-States
+258,income, <=50K
+259,age,32
+259,workclass, Private
+259,education, Bachelors
+259,marital-status, Married-civ-spouse
+259,occupation, Prof-specialty
+259,relationship, Husband
+259,race, Other
+259,sex, Male
+259,hours-per-week,40
+259,native-country, Ecuador
+259,income, <=50K
+260,age,25
+260,workclass, Private
+260,education, HS-grad
+260,marital-status, Never-married
+260,occupation, Other-service
+260,relationship, Not-in-family
+260,race, White
+260,sex, Female
+260,hours-per-week,38
+260,native-country, United-States
+260,income, <=50K
+261,age,35
+261,workclass, Private
+261,education, HS-grad
+261,marital-status, Married-civ-spouse
+261,occupation, Adm-clerical
+261,relationship, Husband
+261,race, White
+261,sex, Male
+261,hours-per-week,45
+261,native-country, United-States
+261,income, <=50K
+262,age,34
+262,workclass, Private
+262,education, HS-grad
+262,marital-status, Never-married
+262,occupation, Adm-clerical
+262,relationship, Not-in-family
+262,race, White
+262,sex, Female
+262,hours-per-week,36
+262,native-country, United-States
+262,income, <=50K
+263,age,31
+263,workclass, Self-emp-inc
+263,education, Doctorate
+263,marital-status, Never-married
+263,occupation, Prof-specialty
+263,relationship, Own-child
+263,race, White
+263,sex, Male
+263,hours-per-week,40
+263,native-country, United-States
+263,income, <=50K
+264,age,34
+264,workclass, Private
+264,education, HS-grad
+264,marital-status, Married-civ-spouse
+264,occupation, Craft-repair
+264,relationship, Husband
+264,race, White
+264,sex, Male
+264,hours-per-week,40
+264,native-country, Germany
+264,income, >50K
+265,age,50
+265,workclass, Private
+265,education, HS-grad
+265,marital-status, Married-civ-spouse
+265,occupation, Sales
+265,relationship, Husband
+265,race, White
+265,sex, Male
+265,hours-per-week,55
+265,native-country, United-States
+265,income, >50K
+266,age,22
+266,workclass, Private
+266,education, HS-grad
+266,marital-status, Never-married
+266,occupation, Craft-repair
+266,relationship, Own-child
+266,race, White
+266,sex, Male
+266,hours-per-week,55
+266,native-country, United-States
+266,income, <=50K
+267,age,40
+267,workclass, Private
+267,education, Some-college
+267,marital-status, Married-civ-spouse
+267,occupation, Tech-support
+267,relationship, Husband
+267,race, White
+267,sex, Male
+267,hours-per-week,48
+267,native-country, United-States
+267,income, >50K
+268,age,25
+268,workclass, Private
+268,education, 9th
+268,marital-status, Never-married
+268,occupation, Craft-repair
+268,relationship, Unmarried
+268,race, White
+268,sex, Male
+268,hours-per-week,40
+268,native-country, United-States
+268,income, <=50K
+269,age,45
+269,workclass, Private
+269,education, Some-college
+269,marital-status, Divorced
+269,occupation, Sales
+269,relationship, Not-in-family
+269,race, White
+269,sex, Male
+269,hours-per-week,40
+269,native-country, United-States
+269,income, <=50K
+270,age,32
+270,workclass, Private
+270,education, 9th
+270,marital-status, Separated
+270,occupation, Machine-op-inspct
+270,relationship, Unmarried
+270,race, White
+270,sex, Female
+270,hours-per-week,40
+270,native-country, Columbia
+270,income, <=50K
+271,age,30
+271,workclass, Private
+271,education, Bachelors
+271,marital-status, Never-married
+271,occupation, Prof-specialty
+271,relationship, Not-in-family
+271,race, Black
+271,sex, Male
+271,hours-per-week,45
+271,native-country, ?
+271,income, <=50K
+272,age,28
+272,workclass, Self-emp-inc
+272,education, Assoc-voc
+272,marital-status, Never-married
+272,occupation, Sales
+272,relationship, Not-in-family
+272,race, White
+272,sex, Male
+272,hours-per-week,60
+272,native-country, United-States
+272,income, <=50K
+273,age,51
+273,workclass, Private
+273,education, 9th
+273,marital-status, Married-civ-spouse
+273,occupation, Craft-repair
+273,relationship, Husband
+273,race, White
+273,sex, Male
+273,hours-per-week,50
+273,native-country, United-States
+273,income, >50K
+274,age,40
+274,workclass, Private
+274,education, HS-grad
+274,marital-status, Married-civ-spouse
+274,occupation, Exec-managerial
+274,relationship, Husband
+274,race, White
+274,sex, Male
+274,hours-per-week,40
+274,native-country, United-States
+274,income, >50K
+275,age,34
+275,workclass, Private
+275,education, Some-college
+275,marital-status, Married-civ-spouse
+275,occupation, Craft-repair
+275,relationship, Husband
+275,race, White
+275,sex, Male
+275,hours-per-week,40
+275,native-country, United-States
+275,income, >50K
+276,age,22
+276,workclass, Private
+276,education, HS-grad
+276,marital-status, Married-civ-spouse
+276,occupation, Machine-op-inspct
+276,relationship, Husband
+276,race, White
+276,sex, Male
+276,hours-per-week,40
+276,native-country, United-States
+276,income, <=50K
+277,age,32
+277,workclass, Private
+277,education, 10th
+277,marital-status, Divorced
+277,occupation, Machine-op-inspct
+277,relationship, Not-in-family
+277,race, White
+277,sex, Male
+277,hours-per-week,40
+277,native-country, United-States
+277,income, <=50K
+278,age,19
+278,workclass, Private
+278,education, HS-grad
+278,marital-status, Never-married
+278,occupation, Sales
+278,relationship, Own-child
+278,race, White
+278,sex, Male
+278,hours-per-week,20
+278,native-country, United-States
+278,income, <=50K
+279,age,19
+279,workclass, Private
+279,education, Some-college
+279,marital-status, Never-married
+279,occupation, Adm-clerical
+279,relationship, Own-child
+279,race, White
+279,sex, Female
+279,hours-per-week,20
+279,native-country, United-States
+279,income, <=50K
+280,age,45
+280,workclass, Private
+280,education, Bachelors
+280,marital-status, Married-civ-spouse
+280,occupation, Exec-managerial
+280,relationship, Husband
+280,race, Asian-Pac-Islander
+280,sex, Male
+280,hours-per-week,60
+280,native-country, China
+280,income, >50K
+281,age,46
+281,workclass, Private
+281,education, HS-grad
+281,marital-status, Married-civ-spouse
+281,occupation, Machine-op-inspct
+281,relationship, Husband
+281,race, Asian-Pac-Islander
+281,sex, Male
+281,hours-per-week,40
+281,native-country, Cambodia
+281,income, >50K
+282,age,51
+282,workclass, Private
+282,education, Some-college
+282,marital-status, Married-civ-spouse
+282,occupation, Craft-repair
+282,relationship, Husband
+282,race, White
+282,sex, Male
+282,hours-per-week,48
+282,native-country, United-States
+282,income, >50K
+283,age,72
+283,workclass, Private
+283,education, HS-grad
+283,marital-status, Married-civ-spouse
+283,occupation, Sales
+283,relationship, Husband
+283,race, White
+283,sex, Male
+283,hours-per-week,12
+283,native-country, United-States
+283,income, <=50K
+284,age,44
+284,workclass, Self-emp-not-inc
+284,education, Some-college
+284,marital-status, Married-civ-spouse
+284,occupation, Sales
+284,relationship, Husband
+284,race, Asian-Pac-Islander
+284,sex, Male
+284,hours-per-week,80
+284,native-country, Philippines
+284,income, >50K
+285,age,19
+285,workclass, Private
+285,education, HS-grad
+285,marital-status, Never-married
+285,occupation, Handlers-cleaners
+285,relationship, Other-relative
+285,race, White
+285,sex, Male
+285,hours-per-week,40
+285,native-country, United-States
+285,income, <=50K
+286,age,34
+286,workclass, Private
+286,education, Masters
+286,marital-status, Never-married
+286,occupation, Prof-specialty
+286,relationship, Not-in-family
+286,race, White
+286,sex, Male
+286,hours-per-week,50
+286,native-country, United-States
+286,income, <=50K
+287,age,54
+287,workclass, Private
+287,education, Some-college
+287,marital-status, Married-civ-spouse
+287,occupation, Tech-support
+287,relationship, Husband
+287,race, White
+287,sex, Male
+287,hours-per-week,40
+287,native-country, United-States
+287,income, >50K
+288,age,32
+288,workclass, Private
+288,education, 11th
+288,marital-status, Divorced
+288,occupation, Other-service
+288,relationship, Unmarried
+288,race, White
+288,sex, Female
+288,hours-per-week,15
+288,native-country, United-States
+288,income, <=50K
+289,age,33
+289,workclass, Local-gov
+289,education, HS-grad
+289,marital-status, Divorced
+289,occupation, Tech-support
+289,relationship, Not-in-family
+289,race, White
+289,sex, Female
+289,hours-per-week,55
+289,native-country, United-States
+289,income, <=50K
+290,age,47
+290,workclass, Local-gov
+290,education, Some-college
+290,marital-status, Married-civ-spouse
+290,occupation, Other-service
+290,relationship, Husband
+290,race, White
+290,sex, Male
+290,hours-per-week,40
+290,native-country, United-States
+290,income, >50K
+291,age,17
+291,workclass, ?
+291,education, 11th
+291,marital-status, Never-married
+291,occupation, ?
+291,relationship, Own-child
+291,race, White
+291,sex, Female
+291,hours-per-week,8
+291,native-country, United-States
+291,income, <=50K
+292,age,59
+292,workclass, Local-gov
+292,education, Masters
+292,marital-status, Divorced
+292,occupation, Prof-specialty
+292,relationship, Not-in-family
+292,race, White
+292,sex, Male
+292,hours-per-week,40
+292,native-country, United-States
+292,income, >50K
+293,age,39
+293,workclass, Private
+293,education, Bachelors
+293,marital-status, Married-civ-spouse
+293,occupation, Sales
+293,relationship, Husband
+293,race, White
+293,sex, Male
+293,hours-per-week,40
+293,native-country, Canada
+293,income, >50K
+294,age,30
+294,workclass, Private
+294,education, HS-grad
+294,marital-status, Never-married
+294,occupation, Transport-moving
+294,relationship, Not-in-family
+294,race, White
+294,sex, Male
+294,hours-per-week,45
+294,native-country, United-States
+294,income, >50K
+295,age,19
+295,workclass, Federal-gov
+295,education, 12th
+295,marital-status, Never-married
+295,occupation, Other-service
+295,relationship, Own-child
+295,race, White
+295,sex, Female
+295,hours-per-week,30
+295,native-country, United-States
+295,income, <=50K
+296,age,35
+296,workclass, Private
+296,education, 11th
+296,marital-status, Never-married
+296,occupation, Craft-repair
+296,relationship, Own-child
+296,race, White
+296,sex, Male
+296,hours-per-week,40
+296,native-country, United-States
+296,income, <=50K
+297,age,76
+297,workclass, Self-emp-not-inc
+297,education, 7th-8th
+297,marital-status, Never-married
+297,occupation, Farming-fishing
+297,relationship, Not-in-family
+297,race, White
+297,sex, Male
+297,hours-per-week,30
+297,native-country, United-States
+297,income, <=50K
+298,age,22
+298,workclass, Private
+298,education, Some-college
+298,marital-status, Never-married
+298,occupation, Adm-clerical
+298,relationship, Own-child
+298,race, White
+298,sex, Male
+298,hours-per-week,30
+298,native-country, United-States
+298,income, <=50K
+299,age,25
+299,workclass, Private
+299,education, HS-grad
+299,marital-status, Married-civ-spouse
+299,occupation, Transport-moving
+299,relationship, Husband
+299,race, White
+299,sex, Male
+299,hours-per-week,40
+299,native-country, United-States
+299,income, <=50K
+300,age,59
+300,workclass, Private
+300,education, HS-grad
+300,marital-status, Widowed
+300,occupation, Other-service
+300,relationship, Not-in-family
+300,race, White
+300,sex, Female
+300,hours-per-week,35
+300,native-country, United-States
+300,income, <=50K
+301,age,42
+301,workclass, Private
+301,education, HS-grad
+301,marital-status, Married-civ-spouse
+301,occupation, Transport-moving
+301,relationship, Husband
+301,race, White
+301,sex, Male
+301,hours-per-week,30
+301,native-country, United-States
+301,income, <=50K
+302,age,71
+302,workclass, Federal-gov
+302,education, HS-grad
+302,marital-status, Widowed
+302,occupation, Exec-managerial
+302,relationship, Not-in-family
+302,race, White
+302,sex, Male
+302,hours-per-week,9
+302,native-country, United-States
+302,income, <=50K
+303,age,30
+303,workclass, Private
+303,education, Bachelors
+303,marital-status, Never-married
+303,occupation, Sales
+303,relationship, Not-in-family
+303,race, White
+303,sex, Female
+303,hours-per-week,40
+303,native-country, Mexico
+303,income, <=50K
+304,age,54
+304,workclass, Private
+304,education, HS-grad
+304,marital-status, Married-civ-spouse
+304,occupation, Transport-moving
+304,relationship, Husband
+304,race, White
+304,sex, Male
+304,hours-per-week,50
+304,native-country, United-States
+304,income, >50K
+305,age,52
+305,workclass, Local-gov
+305,education, 12th
+305,marital-status, Married-civ-spouse
+305,occupation, Craft-repair
+305,relationship, Husband
+305,race, White
+305,sex, Male
+305,hours-per-week,40
+305,native-country, United-States
+305,income, <=50K
+306,age,34
+306,workclass, Private
+306,education, HS-grad
+306,marital-status, Never-married
+306,occupation, Adm-clerical
+306,relationship, Not-in-family
+306,race, White
+306,sex, Female
+306,hours-per-week,40
+306,native-country, United-States
+306,income, <=50K
+307,age,43
+307,workclass, Self-emp-not-inc
+307,education, Some-college
+307,marital-status, Married-civ-spouse
+307,occupation, Farming-fishing
+307,relationship, Husband
+307,race, White
+307,sex, Male
+307,hours-per-week,84
+307,native-country, United-States
+307,income, <=50K
+308,age,37
+308,workclass, Private
+308,education, Masters
+308,marital-status, Divorced
+308,occupation, Exec-managerial
+308,relationship, Not-in-family
+308,race, White
+308,sex, Male
+308,hours-per-week,45
+308,native-country, United-States
+308,income, >50K
+309,age,29
+309,workclass, Private
+309,education, HS-grad
+309,marital-status, Never-married
+309,occupation, Craft-repair
+309,relationship, Other-relative
+309,race, White
+309,sex, Male
+309,hours-per-week,40
+309,native-country, United-States
+309,income, <=50K
+310,age,36
+310,workclass, Local-gov
+310,education, HS-grad
+310,marital-status, Married-civ-spouse
+310,occupation, Adm-clerical
+310,relationship, Wife
+310,race, White
+310,sex, Female
+310,hours-per-week,40
+310,native-country, United-States
+310,income, >50K
+311,age,25
+311,workclass, Private
+311,education, HS-grad
+311,marital-status, Never-married
+311,occupation, Other-service
+311,relationship, Own-child
+311,race, White
+311,sex, Female
+311,hours-per-week,40
+311,native-country, United-States
+311,income, <=50K
+312,age,26
+312,workclass, Private
+312,education, Some-college
+312,marital-status, Never-married
+312,occupation, Craft-repair
+312,relationship, Own-child
+312,race, Amer-Indian-Eskimo
+312,sex, Male
+312,hours-per-week,40
+312,native-country, United-States
+312,income, <=50K
+313,age,70
+313,workclass, Local-gov
+313,education, HS-grad
+313,marital-status, Widowed
+313,occupation, Adm-clerical
+313,relationship, Not-in-family
+313,race, White
+313,sex, Female
+313,hours-per-week,12
+313,native-country, United-States
+313,income, <=50K
+314,age,23
+314,workclass, Private
+314,education, HS-grad
+314,marital-status, Married-civ-spouse
+314,occupation, Machine-op-inspct
+314,relationship, Husband
+314,race, White
+314,sex, Male
+314,hours-per-week,50
+314,native-country, United-States
+314,income, <=50K
+315,age,62
+315,workclass, ?
+315,education, HS-grad
+315,marital-status, Married-civ-spouse
+315,occupation, ?
+315,relationship, Husband
+315,race, White
+315,sex, Male
+315,hours-per-week,40
+315,native-country, United-States
+315,income, <=50K
+316,age,19
+316,workclass, Private
+316,education, 11th
+316,marital-status, Never-married
+316,occupation, Farming-fishing
+316,relationship, Own-child
+316,race, White
+316,sex, Male
+316,hours-per-week,24
+316,native-country, United-States
+316,income, <=50K
+317,age,23
+317,workclass, ?
+317,education, Some-college
+317,marital-status, Never-married
+317,occupation, ?
+317,relationship, Own-child
+317,race, White
+317,sex, Male
+317,hours-per-week,30
+317,native-country, United-States
+317,income, <=50K
+318,age,38
+318,workclass, Private
+318,education, Bachelors
+318,marital-status, Married-civ-spouse
+318,occupation, Sales
+318,relationship, Husband
+318,race, White
+318,sex, Male
+318,hours-per-week,50
+318,native-country, Poland
+318,income, <=50K
+319,age,73
+319,workclass, Local-gov
+319,education, Some-college
+319,marital-status, Never-married
+319,occupation, Prof-specialty
+319,relationship, Other-relative
+319,race, White
+319,sex, Female
+319,hours-per-week,11
+319,native-country, United-States
+319,income, <=50K
+320,age,49
+320,workclass, Private
+320,education, HS-grad
+320,marital-status, Married-civ-spouse
+320,occupation, Transport-moving
+320,relationship, Husband
+320,race, White
+320,sex, Male
+320,hours-per-week,52
+320,native-country, United-States
+320,income, >50K
+321,age,32
+321,workclass, Self-emp-not-inc
+321,education, Masters
+321,marital-status, Never-married
+321,occupation, Prof-specialty
+321,relationship, Not-in-family
+321,race, White
+321,sex, Male
+321,hours-per-week,40
+321,native-country, United-States
+321,income, <=50K
+322,age,61
+322,workclass, Private
+322,education, 7th-8th
+322,marital-status, Widowed
+322,occupation, Farming-fishing
+322,relationship, Not-in-family
+322,race, Black
+322,sex, Male
+322,hours-per-week,40
+322,native-country, United-States
+322,income, <=50K
+323,age,41
+323,workclass, Private
+323,education, Bachelors
+323,marital-status, Separated
+323,occupation, Sales
+323,relationship, Unmarried
+323,race, White
+323,sex, Female
+323,hours-per-week,30
+323,native-country, United-States
+323,income, <=50K
+324,age,57
+324,workclass, State-gov
+324,education, Some-college
+324,marital-status, Divorced
+324,occupation, Craft-repair
+324,relationship, Not-in-family
+324,race, White
+324,sex, Female
+324,hours-per-week,40
+324,native-country, United-States
+324,income, <=50K
+325,age,46
+325,workclass, Private
+325,education, HS-grad
+325,marital-status, Separated
+325,occupation, Handlers-cleaners
+325,relationship, Unmarried
+325,race, White
+325,sex, Female
+325,hours-per-week,50
+325,native-country, Peru
+325,income, <=50K
+326,age,64
+326,workclass, ?
+326,education, Some-college
+326,marital-status, Married-civ-spouse
+326,occupation, ?
+326,relationship, Husband
+326,race, White
+326,sex, Male
+326,hours-per-week,40
+326,native-country, United-States
+326,income, <=50K
+327,age,25
+327,workclass, Private
+327,education, HS-grad
+327,marital-status, Married-civ-spouse
+327,occupation, Craft-repair
+327,relationship, Husband
+327,race, White
+327,sex, Male
+327,hours-per-week,35
+327,native-country, United-States
+327,income, <=50K
+328,age,62
+328,workclass, Private
+328,education, Some-college
+328,marital-status, Never-married
+328,occupation, Craft-repair
+328,relationship, Not-in-family
+328,race, White
+328,sex, Female
+328,hours-per-week,39
+328,native-country, United-States
+328,income, >50K
+329,age,81
+329,workclass, State-gov
+329,education, 1st-4th
+329,marital-status, Widowed
+329,occupation, Other-service
+329,relationship, Not-in-family
+329,race, White
+329,sex, Female
+329,hours-per-week,20
+329,native-country, United-States
+329,income, <=50K
+330,age,57
+330,workclass, Self-emp-not-inc
+330,education, HS-grad
+330,marital-status, Married-civ-spouse
+330,occupation, Craft-repair
+330,relationship, Husband
+330,race, White
+330,sex, Male
+330,hours-per-week,50
+330,native-country, United-States
+330,income, >50K
+331,age,42
+331,workclass, Private
+331,education, Assoc-voc
+331,marital-status, Married-civ-spouse
+331,occupation, Other-service
+331,relationship, Husband
+331,race, White
+331,sex, Male
+331,hours-per-week,30
+331,native-country, United-States
+331,income, <=50K
+332,age,24
+332,workclass, Private
+332,education, Bachelors
+332,marital-status, Never-married
+332,occupation, Sales
+332,relationship, Not-in-family
+332,race, White
+332,sex, Female
+332,hours-per-week,40
+332,native-country, United-States
+332,income, <=50K
+333,age,39
+333,workclass, Private
+333,education, 10th
+333,marital-status, Divorced
+333,occupation, Transport-moving
+333,relationship, Not-in-family
+333,race, White
+333,sex, Male
+333,hours-per-week,40
+333,native-country, United-States
+333,income, <=50K
+334,age,32
+334,workclass, Private
+334,education, Assoc-voc
+334,marital-status, Married-civ-spouse
+334,occupation, Craft-repair
+334,relationship, Husband
+334,race, White
+334,sex, Male
+334,hours-per-week,50
+334,native-country, United-States
+334,income, <=50K
+335,age,36
+335,workclass, Private
+335,education, Bachelors
+335,marital-status, Married-civ-spouse
+335,occupation, Exec-managerial
+335,relationship, Husband
+335,race, White
+335,sex, Male
+335,hours-per-week,50
+335,native-country, United-States
+335,income, <=50K
+336,age,65
+336,workclass, Private
+336,education, Bachelors
+336,marital-status, Married-civ-spouse
+336,occupation, Other-service
+336,relationship, Husband
+336,race, White
+336,sex, Male
+336,hours-per-week,20
+336,native-country, United-States
+336,income, <=50K
+337,age,50
+337,workclass, Private
+337,education, Assoc-voc
+337,marital-status, Married-civ-spouse
+337,occupation, Tech-support
+337,relationship, Husband
+337,race, White
+337,sex, Male
+337,hours-per-week,38
+337,native-country, United-States
+337,income, >50K
+338,age,26
+338,workclass, Private
+338,education, Some-college
+338,marital-status, Never-married
+338,occupation, Handlers-cleaners
+338,relationship, Own-child
+338,race, White
+338,sex, Male
+338,hours-per-week,40
+338,native-country, United-States
+338,income, <=50K
+339,age,34
+339,workclass, Private
+339,education, Bachelors
+339,marital-status, Married-civ-spouse
+339,occupation, Tech-support
+339,relationship, Husband
+339,race, White
+339,sex, Male
+339,hours-per-week,40
+339,native-country, United-States
+339,income, >50K
+340,age,37
+340,workclass, Private
+340,education, 9th
+340,marital-status, Married-civ-spouse
+340,occupation, Handlers-cleaners
+340,relationship, Husband
+340,race, White
+340,sex, Male
+340,hours-per-week,50
+340,native-country, Mexico
+340,income, <=50K
+341,age,41
+341,workclass, ?
+341,education, 5th-6th
+341,marital-status, Married-civ-spouse
+341,occupation, ?
+341,relationship, Husband
+341,race, White
+341,sex, Male
+341,hours-per-week,40
+341,native-country, Mexico
+341,income, <=50K
+342,age,32
+342,workclass, Local-gov
+342,education, Some-college
+342,marital-status, Married-civ-spouse
+342,occupation, Craft-repair
+342,relationship, Husband
+342,race, White
+342,sex, Male
+342,hours-per-week,60
+342,native-country, United-States
+342,income, >50K
+343,age,43
+343,workclass, Private
+343,education, 7th-8th
+343,marital-status, Married-civ-spouse
+343,occupation, Machine-op-inspct
+343,relationship, Husband
+343,race, White
+343,sex, Male
+343,hours-per-week,40
+343,native-country, United-States
+343,income, <=50K
+344,age,48
+344,workclass, Private
+344,education, HS-grad
+344,marital-status, Married-civ-spouse
+344,occupation, Other-service
+344,relationship, Husband
+344,race, White
+344,sex, Male
+344,hours-per-week,40
+344,native-country, Mexico
+344,income, >50K
+345,age,32
+345,workclass, Private
+345,education, HS-grad
+345,marital-status, Married-civ-spouse
+345,occupation, Craft-repair
+345,relationship, Husband
+345,race, White
+345,sex, Male
+345,hours-per-week,40
+345,native-country, United-States
+345,income, <=50K
+346,age,32
+346,workclass, Private
+346,education, Some-college
+346,marital-status, Separated
+346,occupation, Tech-support
+346,relationship, Unmarried
+346,race, Black
+346,sex, Female
+346,hours-per-week,40
+346,native-country, United-States
+346,income, <=50K
+347,age,45
+347,workclass, Private
+347,education, Some-college
+347,marital-status, Married-civ-spouse
+347,occupation, Craft-repair
+347,relationship, Husband
+347,race, White
+347,sex, Male
+347,hours-per-week,40
+347,native-country, United-States
+347,income, >50K
+348,age,20
+348,workclass, Private
+348,education, 12th
+348,marital-status, Never-married
+348,occupation, Other-service
+348,relationship, Own-child
+348,race, White
+348,sex, Male
+348,hours-per-week,35
+348,native-country, United-States
+348,income, <=50K
+349,age,47
+349,workclass, Self-emp-inc
+349,education, Some-college
+349,marital-status, Married-civ-spouse
+349,occupation, Sales
+349,relationship, Husband
+349,race, White
+349,sex, Male
+349,hours-per-week,80
+349,native-country, United-States
+349,income, <=50K
+350,age,26
+350,workclass, Private
+350,education, Some-college
+350,marital-status, Married-civ-spouse
+350,occupation, Craft-repair
+350,relationship, Husband
+350,race, Black
+350,sex, Male
+350,hours-per-week,40
+350,native-country, United-States
+350,income, <=50K
+351,age,54
+351,workclass, Private
+351,education, Masters
+351,marital-status, Widowed
+351,occupation, Adm-clerical
+351,relationship, Unmarried
+351,race, White
+351,sex, Female
+351,hours-per-week,38
+351,native-country, United-States
+351,income, <=50K
+352,age,62
+352,workclass, Private
+352,education, Some-college
+352,marital-status, Married-civ-spouse
+352,occupation, Sales
+352,relationship, Husband
+352,race, White
+352,sex, Male
+352,hours-per-week,40
+352,native-country, United-States
+352,income, <=50K
+353,age,43
+353,workclass, Private
+353,education, HS-grad
+353,marital-status, Married-civ-spouse
+353,occupation, Machine-op-inspct
+353,relationship, Wife
+353,race, Black
+353,sex, Female
+353,hours-per-week,21
+353,native-country, Trinadad&Tobago
+353,income, <=50K
+354,age,22
+354,workclass, ?
+354,education, Some-college
+354,marital-status, Never-married
+354,occupation, ?
+354,relationship, Own-child
+354,race, White
+354,sex, Female
+354,hours-per-week,40
+354,native-country, United-States
+354,income, <=50K
+355,age,30
+355,workclass, Private
+355,education, HS-grad
+355,marital-status, Married-civ-spouse
+355,occupation, Transport-moving
+355,relationship, Husband
+355,race, White
+355,sex, Male
+355,hours-per-week,40
+355,native-country, United-States
+355,income, >50K
+356,age,26
+356,workclass, Private
+356,education, Some-college
+356,marital-status, Divorced
+356,occupation, Craft-repair
+356,relationship, Not-in-family
+356,race, White
+356,sex, Male
+356,hours-per-week,43
+356,native-country, United-States
+356,income, <=50K
+357,age,40
+357,workclass, Private
+357,education, Some-college
+357,marital-status, Never-married
+357,occupation, Adm-clerical
+357,relationship, Not-in-family
+357,race, White
+357,sex, Female
+357,hours-per-week,40
+357,native-country, United-States
+357,income, <=50K
+358,age,52
+358,workclass, Federal-gov
+358,education, Bachelors
+358,marital-status, Married-civ-spouse
+358,occupation, Prof-specialty
+358,relationship, Husband
+358,race, White
+358,sex, Male
+358,hours-per-week,40
+358,native-country, United-States
+358,income, >50K
+359,age,57
+359,workclass, Self-emp-not-inc
+359,education, Prof-school
+359,marital-status, Married-civ-spouse
+359,occupation, Sales
+359,relationship, Wife
+359,race, White
+359,sex, Female
+359,hours-per-week,35
+359,native-country, United-States
+359,income, >50K
+360,age,46
+360,workclass, Private
+360,education, HS-grad
+360,marital-status, Married-spouse-absent
+360,occupation, Machine-op-inspct
+360,relationship, Not-in-family
+360,race, White
+360,sex, Female
+360,hours-per-week,40
+360,native-country, Columbia
+360,income, <=50K
+361,age,27
+361,workclass, Local-gov
+361,education, Bachelors
+361,marital-status, Never-married
+361,occupation, Prof-specialty
+361,relationship, Not-in-family
+361,race, White
+361,sex, Female
+361,hours-per-week,40
+361,native-country, United-States
+361,income, <=50K
+362,age,26
+362,workclass, Self-emp-inc
+362,education, Bachelors
+362,marital-status, Never-married
+362,occupation, Exec-managerial
+362,relationship, Not-in-family
+362,race, White
+362,sex, Male
+362,hours-per-week,50
+362,native-country, United-States
+362,income, <=50K
+363,age,44
+363,workclass, Private
+363,education, Some-college
+363,marital-status, Married-civ-spouse
+363,occupation, Sales
+363,relationship, Husband
+363,race, White
+363,sex, Male
+363,hours-per-week,60
+363,native-country, United-States
+363,income, >50K
+364,age,37
+364,workclass, Self-emp-not-inc
+364,education, Prof-school
+364,marital-status, Married-civ-spouse
+364,occupation, Prof-specialty
+364,relationship, Husband
+364,race, White
+364,sex, Male
+364,hours-per-week,50
+364,native-country, United-States
+364,income, >50K
+365,age,50
+365,workclass, Private
+365,education, 7th-8th
+365,marital-status, Married-civ-spouse
+365,occupation, Craft-repair
+365,relationship, Husband
+365,race, White
+365,sex, Male
+365,hours-per-week,40
+365,native-country, Ecuador
+365,income, <=50K
+366,age,30
+366,workclass, Private
+366,education, HS-grad
+366,marital-status, Never-married
+366,occupation, Craft-repair
+366,relationship, Not-in-family
+366,race, Black
+366,sex, Female
+366,hours-per-week,45
+366,native-country, United-States
+366,income, <=50K
+367,age,34
+367,workclass, Private
+367,education, HS-grad
+367,marital-status, Married-civ-spouse
+367,occupation, Transport-moving
+367,relationship, Husband
+367,race, White
+367,sex, Male
+367,hours-per-week,55
+367,native-country, United-States
+367,income, <=50K
+368,age,37
+368,workclass, Private
+368,education, Bachelors
+368,marital-status, Never-married
+368,occupation, Prof-specialty
+368,relationship, Not-in-family
+368,race, White
+368,sex, Female
+368,hours-per-week,45
+368,native-country, United-States
+368,income, <=50K
+369,age,37
+369,workclass, Private
+369,education, HS-grad
+369,marital-status, Married-civ-spouse
+369,occupation, Other-service
+369,relationship, Wife
+369,race, Asian-Pac-Islander
+369,sex, Female
+369,hours-per-week,60
+369,native-country, Philippines
+369,income, <=50K
+370,age,36
+370,workclass, Self-emp-inc
+370,education, Some-college
+370,marital-status, Married-civ-spouse
+370,occupation, Exec-managerial
+370,relationship, Husband
+370,race, White
+370,sex, Male
+370,hours-per-week,50
+370,native-country, United-States
+370,income, >50K
+371,age,44
+371,workclass, Private
+371,education, Bachelors
+371,marital-status, Married-civ-spouse
+371,occupation, Exec-managerial
+371,relationship, Husband
+371,race, White
+371,sex, Male
+371,hours-per-week,45
+371,native-country, United-States
+371,income, <=50K
+372,age,67
+372,workclass, Local-gov
+372,education, Doctorate
+372,marital-status, Never-married
+372,occupation, Prof-specialty
+372,relationship, Not-in-family
+372,race, White
+372,sex, Female
+372,hours-per-week,50
+372,native-country, United-States
+372,income, >50K
+373,age,46
+373,workclass, Private
+373,education, Bachelors
+373,marital-status, Married-civ-spouse
+373,occupation, Transport-moving
+373,relationship, Husband
+373,race, White
+373,sex, Male
+373,hours-per-week,40
+373,native-country, United-States
+373,income, >50K
+374,age,49
+374,workclass, Private
+374,education, HS-grad
+374,marital-status, Married-civ-spouse
+374,occupation, Exec-managerial
+374,relationship, Husband
+374,race, White
+374,sex, Male
+374,hours-per-week,40
+374,native-country, United-States
+374,income, <=50K
+375,age,31
+375,workclass, Private
+375,education, HS-grad
+375,marital-status, Married-civ-spouse
+375,occupation, Handlers-cleaners
+375,relationship, Husband
+375,race, White
+375,sex, Male
+375,hours-per-week,40
+375,native-country, United-States
+375,income, <=50K
+376,age,23
+376,workclass, State-gov
+376,education, Assoc-voc
+376,marital-status, Never-married
+376,occupation, Tech-support
+376,relationship, Not-in-family
+376,race, White
+376,sex, Female
+376,hours-per-week,40
+376,native-country, United-States
+376,income, <=50K
+377,age,42
+377,workclass, Private
+377,education, Bachelors
+377,marital-status, Married-civ-spouse
+377,occupation, Exec-managerial
+377,relationship, Husband
+377,race, White
+377,sex, Male
+377,hours-per-week,45
+377,native-country, United-States
+377,income, >50K
+378,age,32
+378,workclass, Private
+378,education, Bachelors
+378,marital-status, Married-civ-spouse
+378,occupation, Prof-specialty
+378,relationship, Other-relative
+378,race, White
+378,sex, Male
+378,hours-per-week,40
+378,native-country, United-States
+378,income, <=50K
+379,age,31
+379,workclass, Private
+379,education, Some-college
+379,marital-status, Divorced
+379,occupation, Craft-repair
+379,relationship, Own-child
+379,race, White
+379,sex, Male
+379,hours-per-week,40
+379,native-country, United-States
+379,income, <=50K
+380,age,49
+380,workclass, Self-emp-not-inc
+380,education, HS-grad
+380,marital-status, Married-civ-spouse
+380,occupation, Craft-repair
+380,relationship, Husband
+380,race, White
+380,sex, Male
+380,hours-per-week,50
+380,native-country, Mexico
+380,income, <=50K
+381,age,59
+381,workclass, Private
+381,education, HS-grad
+381,marital-status, Married-civ-spouse
+381,occupation, Craft-repair
+381,relationship, Husband
+381,race, White
+381,sex, Male
+381,hours-per-week,40
+381,native-country, United-States
+381,income, >50K
+382,age,47
+382,workclass, Private
+382,education, HS-grad
+382,marital-status, Married-civ-spouse
+382,occupation, Exec-managerial
+382,relationship, Wife
+382,race, White
+382,sex, Female
+382,hours-per-week,40
+382,native-country, United-States
+382,income, >50K
+383,age,32
+383,workclass, Local-gov
+383,education, HS-grad
+383,marital-status, Married-civ-spouse
+383,occupation, Transport-moving
+383,relationship, Husband
+383,race, White
+383,sex, Male
+383,hours-per-week,40
+383,native-country, United-States
+383,income, <=50K
+384,age,67
+384,workclass, Private
+384,education, HS-grad
+384,marital-status, Separated
+384,occupation, Machine-op-inspct
+384,relationship, Other-relative
+384,race, White
+384,sex, Female
+384,hours-per-week,40
+384,native-country, United-States
+384,income, <=50K
+385,age,42
+385,workclass, Private
+385,education, Assoc-acdm
+385,marital-status, Married-civ-spouse
+385,occupation, Prof-specialty
+385,relationship, Husband
+385,race, White
+385,sex, Male
+385,hours-per-week,40
+385,native-country, United-States
+385,income, >50K
+386,age,37
+386,workclass, Private
+386,education, HS-grad
+386,marital-status, Married-civ-spouse
+386,occupation, Farming-fishing
+386,relationship, Husband
+386,race, White
+386,sex, Male
+386,hours-per-week,15
+386,native-country, United-States
+386,income, <=50K
+387,age,37
+387,workclass, Private
+387,education, Bachelors
+387,marital-status, Never-married
+387,occupation, Sales
+387,relationship, Not-in-family
+387,race, Black
+387,sex, Female
+387,hours-per-week,40
+387,native-country, United-States
+387,income, <=50K
+388,age,37
+388,workclass, Private
+388,education, HS-grad
+388,marital-status, Married-civ-spouse
+388,occupation, Craft-repair
+388,relationship, Husband
+388,race, White
+388,sex, Male
+388,hours-per-week,45
+388,native-country, United-States
+388,income, <=50K
+389,age,30
+389,workclass, Private
+389,education, Some-college
+389,marital-status, Married-civ-spouse
+389,occupation, Machine-op-inspct
+389,relationship, Husband
+389,race, White
+389,sex, Male
+389,hours-per-week,30
+389,native-country, United-States
+389,income, <=50K
+390,age,41
+390,workclass, Self-emp-not-inc
+390,education, Doctorate
+390,marital-status, Married-civ-spouse
+390,occupation, Prof-specialty
+390,relationship, Husband
+390,race, White
+390,sex, Male
+390,hours-per-week,55
+390,native-country, United-States
+390,income, >50K
+391,age,39
+391,workclass, Private
+391,education, 5th-6th
+391,marital-status, Separated
+391,occupation, Sales
+391,relationship, Unmarried
+391,race, Black
+391,sex, Female
+391,hours-per-week,30
+391,native-country, Puerto-Rico
+391,income, <=50K
+392,age,41
+392,workclass, Private
+392,education, Some-college
+392,marital-status, Married-civ-spouse
+392,occupation, Sales
+392,relationship, Husband
+392,race, White
+392,sex, Male
+392,hours-per-week,35
+392,native-country, United-States
+392,income, >50K
+393,age,42
+393,workclass, Private
+393,education, Assoc-voc
+393,marital-status, Married-civ-spouse
+393,occupation, Prof-specialty
+393,relationship, Husband
+393,race, Black
+393,sex, Male
+393,hours-per-week,40
+393,native-country, United-States
+393,income, >50K
+394,age,58
+394,workclass, Federal-gov
+394,education, Some-college
+394,marital-status, Married-civ-spouse
+394,occupation, Exec-managerial
+394,relationship, Husband
+394,race, White
+394,sex, Male
+394,hours-per-week,40
+394,native-country, United-States
+394,income, >50K
+395,age,49
+395,workclass, Local-gov
+395,education, Masters
+395,marital-status, Married-civ-spouse
+395,occupation, Prof-specialty
+395,relationship, Husband
+395,race, White
+395,sex, Male
+395,hours-per-week,40
+395,native-country, United-States
+395,income, >50K
+396,age,22
+396,workclass, Private
+396,education, Assoc-voc
+396,marital-status, Married-civ-spouse
+396,occupation, Machine-op-inspct
+396,relationship, Husband
+396,race, White
+396,sex, Male
+396,hours-per-week,40
+396,native-country, United-States
+396,income, <=50K
+397,age,24
+397,workclass, ?
+397,education, HS-grad
+397,marital-status, Married-civ-spouse
+397,occupation, ?
+397,relationship, Wife
+397,race, White
+397,sex, Female
+397,hours-per-week,40
+397,native-country, Mexico
+397,income, <=50K
+398,age,53
+398,workclass, Private
+398,education, Some-college
+398,marital-status, Never-married
+398,occupation, Exec-managerial
+398,relationship, Not-in-family
+398,race, Black
+398,sex, Female
+398,hours-per-week,40
+398,native-country, United-States
+398,income, <=50K
+399,age,36
+399,workclass, Private
+399,education, HS-grad
+399,marital-status, Married-civ-spouse
+399,occupation, Transport-moving
+399,relationship, Husband
+399,race, Amer-Indian-Eskimo
+399,sex, Male
+399,hours-per-week,40
+399,native-country, United-States
+399,income, <=50K
+400,age,37
+400,workclass, Private
+400,education, Bachelors
+400,marital-status, Married-civ-spouse
+400,occupation, Adm-clerical
+400,relationship, Husband
+400,race, White
+400,sex, Male
+400,hours-per-week,40
+400,native-country, United-States
+400,income, <=50K
+401,age,56
+401,workclass, Private
+401,education, HS-grad
+401,marital-status, Married-civ-spouse
+401,occupation, Prof-specialty
+401,relationship, Husband
+401,race, White
+401,sex, Male
+401,hours-per-week,40
+401,native-country, United-States
+401,income, <=50K
+402,age,39
+402,workclass, Federal-gov
+402,education, HS-grad
+402,marital-status, Married-civ-spouse
+402,occupation, Adm-clerical
+402,relationship, Wife
+402,race, White
+402,sex, Female
+402,hours-per-week,40
+402,native-country, United-States
+402,income, >50K
+403,age,30
+403,workclass, ?
+403,education, 5th-6th
+403,marital-status, Married-civ-spouse
+403,occupation, ?
+403,relationship, Husband
+403,race, White
+403,sex, Male
+403,hours-per-week,40
+403,native-country, Mexico
+403,income, <=50K
+404,age,20
+404,workclass, Private
+404,education, 12th
+404,marital-status, Never-married
+404,occupation, Other-service
+404,relationship, Own-child
+404,race, White
+404,sex, Male
+404,hours-per-week,35
+404,native-country, United-States
+404,income, <=50K
+405,age,37
+405,workclass, Local-gov
+405,education, HS-grad
+405,marital-status, Never-married
+405,occupation, Craft-repair
+405,relationship, Not-in-family
+405,race, White
+405,sex, Male
+405,hours-per-week,40
+405,native-country, United-States
+405,income, <=50K
+406,age,34
+406,workclass, Private
+406,education, Bachelors
+406,marital-status, Never-married
+406,occupation, Sales
+406,relationship, Not-in-family
+406,race, White
+406,sex, Male
+406,hours-per-week,40
+406,native-country, United-States
+406,income, <=50K
+407,age,44
+407,workclass, Private
+407,education, Some-college
+407,marital-status, Married-civ-spouse
+407,occupation, Exec-managerial
+407,relationship, Husband
+407,race, White
+407,sex, Male
+407,hours-per-week,40
+407,native-country, United-States
+407,income, >50K
+408,age,40
+408,workclass, Private
+408,education, Some-college
+408,marital-status, Separated
+408,occupation, Other-service
+408,relationship, Unmarried
+408,race, White
+408,sex, Female
+408,hours-per-week,8
+408,native-country, United-States
+408,income, <=50K
+409,age,56
+409,workclass, Private
+409,education, Masters
+409,marital-status, Married-civ-spouse
+409,occupation, Exec-managerial
+409,relationship, Husband
+409,race, White
+409,sex, Male
+409,hours-per-week,40
+409,native-country, United-States
+409,income, <=50K
+410,age,71
+410,workclass, Private
+410,education, Bachelors
+410,marital-status, Divorced
+410,occupation, Tech-support
+410,relationship, Own-child
+410,race, White
+410,sex, Female
+410,hours-per-week,16
+410,native-country, United-States
+410,income, <=50K
+411,age,26
+411,workclass, Private
+411,education, Assoc-voc
+411,marital-status, Never-married
+411,occupation, Sales
+411,relationship, Own-child
+411,race, White
+411,sex, Female
+411,hours-per-week,35
+411,native-country, United-States
+411,income, <=50K
+412,age,31
+412,workclass, Private
+412,education, 11th
+412,marital-status, Married-spouse-absent
+412,occupation, Sales
+412,relationship, Own-child
+412,race, Asian-Pac-Islander
+412,sex, Female
+412,hours-per-week,40
+412,native-country, India
+412,income, <=50K
+413,age,25
+413,workclass, Private
+413,education, Some-college
+413,marital-status, Never-married
+413,occupation, Adm-clerical
+413,relationship, Own-child
+413,race, White
+413,sex, Female
+413,hours-per-week,40
+413,native-country, United-States
+413,income, <=50K
+414,age,44
+414,workclass, Self-emp-inc
+414,education, Some-college
+414,marital-status, Married-civ-spouse
+414,occupation, Craft-repair
+414,relationship, Husband
+414,race, White
+414,sex, Male
+414,hours-per-week,58
+414,native-country, United-States
+414,income, >50K
+415,age,49
+415,workclass, Private
+415,education, Bachelors
+415,marital-status, Married-civ-spouse
+415,occupation, Prof-specialty
+415,relationship, Husband
+415,race, White
+415,sex, Male
+415,hours-per-week,40
+415,native-country, United-States
+415,income, >50K
+416,age,59
+416,workclass, Private
+416,education, HS-grad
+416,marital-status, Married-civ-spouse
+416,occupation, Transport-moving
+416,relationship, Husband
+416,race, White
+416,sex, Male
+416,hours-per-week,40
+416,native-country, United-States
+416,income, >50K
+417,age,21
+417,workclass, Private
+417,education, Some-college
+417,marital-status, Never-married
+417,occupation, Other-service
+417,relationship, Not-in-family
+417,race, White
+417,sex, Female
+417,hours-per-week,40
+417,native-country, United-States
+417,income, <=50K
+418,age,50
+418,workclass, Private
+418,education, HS-grad
+418,marital-status, Never-married
+418,occupation, Adm-clerical
+418,relationship, Own-child
+418,race, White
+418,sex, Female
+418,hours-per-week,40
+418,native-country, United-States
+418,income, <=50K
+419,age,31
+419,workclass, Private
+419,education, 1st-4th
+419,marital-status, Married-civ-spouse
+419,occupation, Handlers-cleaners
+419,relationship, Husband
+419,race, White
+419,sex, Male
+419,hours-per-week,40
+419,native-country, Mexico
+419,income, <=50K
+420,age,33
+420,workclass, Private
+420,education, Some-college
+420,marital-status, Divorced
+420,occupation, Exec-managerial
+420,relationship, Unmarried
+420,race, White
+420,sex, Female
+420,hours-per-week,40
+420,native-country, United-States
+420,income, <=50K
+421,age,31
+421,workclass, Private
+421,education, HS-grad
+421,marital-status, Married-civ-spouse
+421,occupation, Craft-repair
+421,relationship, Husband
+421,race, White
+421,sex, Male
+421,hours-per-week,40
+421,native-country, United-States
+421,income, <=50K
+422,age,25
+422,workclass, Private
+422,education, 11th
+422,marital-status, Never-married
+422,occupation, Craft-repair
+422,relationship, Own-child
+422,race, White
+422,sex, Male
+422,hours-per-week,40
+422,native-country, United-States
+422,income, <=50K
+423,age,63
+423,workclass, Self-emp-not-inc
+423,education, 7th-8th
+423,marital-status, Married-civ-spouse
+423,occupation, Farming-fishing
+423,relationship, Husband
+423,race, White
+423,sex, Male
+423,hours-per-week,60
+423,native-country, United-States
+423,income, >50K
+424,age,19
+424,workclass, Private
+424,education, Some-college
+424,marital-status, Never-married
+424,occupation, Exec-managerial
+424,relationship, Own-child
+424,race, White
+424,sex, Female
+424,hours-per-week,40
+424,native-country, United-States
+424,income, <=50K
+425,age,90
+425,workclass, Local-gov
+425,education, HS-grad
+425,marital-status, Married-civ-spouse
+425,occupation, Other-service
+425,relationship, Husband
+425,race, White
+425,sex, Male
+425,hours-per-week,40
+425,native-country, United-States
+425,income, <=50K
+426,age,36
+426,workclass, Private
+426,education, Masters
+426,marital-status, Married-civ-spouse
+426,occupation, Prof-specialty
+426,relationship, Husband
+426,race, White
+426,sex, Male
+426,hours-per-week,40
+426,native-country, United-States
+426,income, >50K
+427,age,27
+427,workclass, Private
+427,education, Some-college
+427,marital-status, Never-married
+427,occupation, Adm-clerical
+427,relationship, Not-in-family
+427,race, White
+427,sex, Female
+427,hours-per-week,56
+427,native-country, United-States
+427,income, <=50K
+428,age,18
+428,workclass, Private
+428,education, HS-grad
+428,marital-status, Married-civ-spouse
+428,occupation, Craft-repair
+428,relationship, Husband
+428,race, White
+428,sex, Male
+428,hours-per-week,25
+428,native-country, United-States
+428,income, <=50K
+429,age,46
+429,workclass, Private
+429,education, Bachelors
+429,marital-status, Married-civ-spouse
+429,occupation, Exec-managerial
+429,relationship, Husband
+429,race, White
+429,sex, Male
+429,hours-per-week,40
+429,native-country, United-States
+429,income, >50K
+430,age,43
+430,workclass, Private
+430,education, Assoc-voc
+430,marital-status, Married-civ-spouse
+430,occupation, Craft-repair
+430,relationship, Husband
+430,race, White
+430,sex, Male
+430,hours-per-week,40
+430,native-country, United-States
+430,income, <=50K
+431,age,44
+431,workclass, State-gov
+431,education, HS-grad
+431,marital-status, Divorced
+431,occupation, Adm-clerical
+431,relationship, Not-in-family
+431,race, White
+431,sex, Female
+431,hours-per-week,40
+431,native-country, United-States
+431,income, <=50K
+432,age,38
+432,workclass, Private
+432,education, Some-college
+432,marital-status, Married-civ-spouse
+432,occupation, Craft-repair
+432,relationship, Husband
+432,race, White
+432,sex, Male
+432,hours-per-week,40
+432,native-country, United-States
+432,income, <=50K
+433,age,17
+433,workclass, ?
+433,education, 10th
+433,marital-status, Never-married
+433,occupation, ?
+433,relationship, Other-relative
+433,race, White
+433,sex, Male
+433,hours-per-week,6
+433,native-country, United-States
+433,income, <=50K
+434,age,55
+434,workclass, Private
+434,education, HS-grad
+434,marital-status, Married-civ-spouse
+434,occupation, Other-service
+434,relationship, Husband
+434,race, White
+434,sex, Male
+434,hours-per-week,60
+434,native-country, United-States
+434,income, <=50K
+435,age,26
+435,workclass, Private
+435,education, Bachelors
+435,marital-status, Never-married
+435,occupation, Adm-clerical
+435,relationship, Own-child
+435,race, Black
+435,sex, Female
+435,hours-per-week,40
+435,native-country, United-States
+435,income, <=50K
+436,age,44
+436,workclass, State-gov
+436,education, Some-college
+436,marital-status, Divorced
+436,occupation, Adm-clerical
+436,relationship, Not-in-family
+436,race, Black
+436,sex, Female
+436,hours-per-week,40
+436,native-country, United-States
+436,income, <=50K
+437,age,62
+437,workclass, Private
+437,education, HS-grad
+437,marital-status, Divorced
+437,occupation, Machine-op-inspct
+437,relationship, Not-in-family
+437,race, White
+437,sex, Female
+437,hours-per-week,40
+437,native-country, United-States
+437,income, <=50K
+438,age,28
+438,workclass, Private
+438,education, Bachelors
+438,marital-status, Never-married
+438,occupation, Tech-support
+438,relationship, Not-in-family
+438,race, Black
+438,sex, Male
+438,hours-per-week,30
+438,native-country, Jamaica
+438,income, <=50K
+439,age,26
+439,workclass, Federal-gov
+439,education, Bachelors
+439,marital-status, Never-married
+439,occupation, Tech-support
+439,relationship, Not-in-family
+439,race, Other
+439,sex, Male
+439,hours-per-week,60
+439,native-country, United-States
+439,income, <=50K
+440,age,25
+440,workclass, Private
+440,education, Some-college
+440,marital-status, Married-civ-spouse
+440,occupation, Transport-moving
+440,relationship, Husband
+440,race, White
+440,sex, Male
+440,hours-per-week,35
+440,native-country, United-States
+440,income, <=50K
+441,age,44
+441,workclass, Private
+441,education, Prof-school
+441,marital-status, Divorced
+441,occupation, Prof-specialty
+441,relationship, Not-in-family
+441,race, White
+441,sex, Female
+441,hours-per-week,99
+441,native-country, United-States
+441,income, <=50K
+442,age,39
+442,workclass, Local-gov
+442,education, HS-grad
+442,marital-status, Married-civ-spouse
+442,occupation, Machine-op-inspct
+442,relationship, Husband
+442,race, White
+442,sex, Male
+442,hours-per-week,38
+442,native-country, United-States
+442,income, >50K
+443,age,54
+443,workclass, Private
+443,education, HS-grad
+443,marital-status, Widowed
+443,occupation, Exec-managerial
+443,relationship, Unmarried
+443,race, White
+443,sex, Female
+443,hours-per-week,45
+443,native-country, United-States
+443,income, <=50K
+444,age,36
+444,workclass, Private
+444,education, 11th
+444,marital-status, Married-civ-spouse
+444,occupation, Transport-moving
+444,relationship, Husband
+444,race, White
+444,sex, Male
+444,hours-per-week,47
+444,native-country, United-States
+444,income, <=50K
+445,age,28
+445,workclass, Private
+445,education, Some-college
+445,marital-status, Married-civ-spouse
+445,occupation, Other-service
+445,relationship, Husband
+445,race, White
+445,sex, Male
+445,hours-per-week,35
+445,native-country, United-States
+445,income, >50K
+446,age,23
+446,workclass, Private
+446,education, HS-grad
+446,marital-status, Never-married
+446,occupation, Sales
+446,relationship, Own-child
+446,race, White
+446,sex, Male
+446,hours-per-week,40
+446,native-country, United-States
+446,income, <=50K
+447,age,29
+447,workclass, Private
+447,education, Masters
+447,marital-status, Married-civ-spouse
+447,occupation, Exec-managerial
+447,relationship, Husband
+447,race, Asian-Pac-Islander
+447,sex, Male
+447,hours-per-week,40
+447,native-country, Japan
+447,income, <=50K
+448,age,39
+448,workclass, Private
+448,education, 10th
+448,marital-status, Married-civ-spouse
+448,occupation, Craft-repair
+448,relationship, Husband
+448,race, White
+448,sex, Male
+448,hours-per-week,60
+448,native-country, United-States
+448,income, >50K
+449,age,52
+449,workclass, Private
+449,education, Assoc-voc
+449,marital-status, Married-civ-spouse
+449,occupation, Craft-repair
+449,relationship, Husband
+449,race, White
+449,sex, Male
+449,hours-per-week,40
+449,native-country, United-States
+449,income, <=50K
+450,age,39
+450,workclass, Private
+450,education, Bachelors
+450,marital-status, Never-married
+450,occupation, Exec-managerial
+450,relationship, Not-in-family
+450,race, White
+450,sex, Female
+450,hours-per-week,40
+450,native-country, United-States
+450,income, <=50K
+451,age,34
+451,workclass, Private
+451,education, HS-grad
+451,marital-status, Never-married
+451,occupation, Machine-op-inspct
+451,relationship, Not-in-family
+451,race, Black
+451,sex, Male
+451,hours-per-week,40
+451,native-country, United-States
+451,income, <=50K
+452,age,21
+452,workclass, ?
+452,education, HS-grad
+452,marital-status, Never-married
+452,occupation, ?
+452,relationship, Own-child
+452,race, Black
+452,sex, Female
+452,hours-per-week,30
+452,native-country, United-States
+452,income, <=50K
+453,age,18
+453,workclass, Private
+453,education, 11th
+453,marital-status, Never-married
+453,occupation, Adm-clerical
+453,relationship, Own-child
+453,race, Black
+453,sex, Male
+453,hours-per-week,20
+453,native-country, United-States
+453,income, <=50K
+454,age,49
+454,workclass, Local-gov
+454,education, Doctorate
+454,marital-status, Married-civ-spouse
+454,occupation, Prof-specialty
+454,relationship, Husband
+454,race, White
+454,sex, Male
+454,hours-per-week,45
+454,native-country, United-States
+454,income, >50K
+455,age,38
+455,workclass, Private
+455,education, 11th
+455,marital-status, Divorced
+455,occupation, Machine-op-inspct
+455,relationship, Unmarried
+455,race, Black
+455,sex, Female
+455,hours-per-week,52
+455,native-country, United-States
+455,income, <=50K
+456,age,36
+456,workclass, State-gov
+456,education, Bachelors
+456,marital-status, Married-civ-spouse
+456,occupation, Adm-clerical
+456,relationship, Wife
+456,race, White
+456,sex, Female
+456,hours-per-week,20
+456,native-country, United-States
+456,income, >50K
+457,age,35
+457,workclass, Private
+457,education, Bachelors
+457,marital-status, Married-civ-spouse
+457,occupation, Sales
+457,relationship, Husband
+457,race, White
+457,sex, Male
+457,hours-per-week,50
+457,native-country, United-States
+457,income, >50K
+458,age,38
+458,workclass, Private
+458,education, Some-college
+458,marital-status, Divorced
+458,occupation, Craft-repair
+458,relationship, Not-in-family
+458,race, White
+458,sex, Male
+458,hours-per-week,40
+458,native-country, United-States
+458,income, <=50K
+459,age,58
+459,workclass, Private
+459,education, Doctorate
+459,marital-status, Married-civ-spouse
+459,occupation, Prof-specialty
+459,relationship, Husband
+459,race, White
+459,sex, Male
+459,hours-per-week,50
+459,native-country, United-States
+459,income, >50K
+460,age,37
+460,workclass, Local-gov
+460,education, Bachelors
+460,marital-status, Divorced
+460,occupation, Prof-specialty
+460,relationship, Unmarried
+460,race, White
+460,sex, Female
+460,hours-per-week,55
+460,native-country, United-States
+460,income, <=50K
+461,age,42
+461,workclass, Private
+461,education, HS-grad
+461,marital-status, Divorced
+461,occupation, Craft-repair
+461,relationship, Not-in-family
+461,race, White
+461,sex, Male
+461,hours-per-week,75
+461,native-country, United-States
+461,income, >50K
+462,age,33
+462,workclass, Private
+462,education, Bachelors
+462,marital-status, Never-married
+462,occupation, Tech-support
+462,relationship, Not-in-family
+462,race, White
+462,sex, Female
+462,hours-per-week,45
+462,native-country, United-States
+462,income, >50K
+463,age,21
+463,workclass, Private
+463,education, Assoc-voc
+463,marital-status, Never-married
+463,occupation, Craft-repair
+463,relationship, Unmarried
+463,race, White
+463,sex, Male
+463,hours-per-week,40
+463,native-country, United-States
+463,income, <=50K
+464,age,32
+464,workclass, Private
+464,education, 10th
+464,marital-status, Married-civ-spouse
+464,occupation, Exec-managerial
+464,relationship, Wife
+464,race, White
+464,sex, Female
+464,hours-per-week,35
+464,native-country, United-States
+464,income, <=50K
+465,age,37
+465,workclass, Private
+465,education, HS-grad
+465,marital-status, Divorced
+465,occupation, Other-service
+465,relationship, Unmarried
+465,race, Black
+465,sex, Female
+465,hours-per-week,40
+465,native-country, ?
+465,income, <=50K
+466,age,54
+466,workclass, Local-gov
+466,education, Some-college
+466,marital-status, Married-civ-spouse
+466,occupation, Transport-moving
+466,relationship, Husband
+466,race, Black
+466,sex, Male
+466,hours-per-week,30
+466,native-country, United-States
+466,income, <=50K
+467,age,21
+467,workclass, Private
+467,education, Some-college
+467,marital-status, Never-married
+467,occupation, Transport-moving
+467,relationship, Own-child
+467,race, Black
+467,sex, Male
+467,hours-per-week,40
+467,native-country, United-States
+467,income, <=50K
+468,age,19
+468,workclass, Private
+468,education, HS-grad
+468,marital-status, Never-married
+468,occupation, Sales
+468,relationship, Own-child
+468,race, White
+468,sex, Female
+468,hours-per-week,35
+468,native-country, United-States
+468,income, <=50K
+469,age,37
+469,workclass, Private
+469,education, Some-college
+469,marital-status, Widowed
+469,occupation, Machine-op-inspct
+469,relationship, Unmarried
+469,race, Black
+469,sex, Female
+469,hours-per-week,48
+469,native-country, United-States
+469,income, <=50K
+470,age,54
+470,workclass, Private
+470,education, Masters
+470,marital-status, Married-civ-spouse
+470,occupation, Sales
+470,relationship, Husband
+470,race, White
+470,sex, Male
+470,hours-per-week,68
+470,native-country, United-States
+470,income, >50K
+471,age,26
+471,workclass, Local-gov
+471,education, Bachelors
+471,marital-status, Never-married
+471,occupation, Prof-specialty
+471,relationship, Own-child
+471,race, Black
+471,sex, Female
+471,hours-per-week,40
+471,native-country, United-States
+471,income, <=50K
+472,age,47
+472,workclass, Private
+472,education, Bachelors
+472,marital-status, Widowed
+472,occupation, Priv-house-serv
+472,relationship, Unmarried
+472,race, White
+472,sex, Female
+472,hours-per-week,35
+472,native-country, United-States
+472,income, >50K
+473,age,30
+473,workclass, Private
+473,education, Masters
+473,marital-status, Never-married
+473,occupation, Prof-specialty
+473,relationship, Not-in-family
+473,race, White
+473,sex, Male
+473,hours-per-week,45
+473,native-country, United-States
+473,income, >50K
+474,age,50
+474,workclass, Local-gov
+474,education, Bachelors
+474,marital-status, Married-civ-spouse
+474,occupation, Prof-specialty
+474,relationship, Wife
+474,race, White
+474,sex, Female
+474,hours-per-week,40
+474,native-country, United-States
+474,income, >50K
+475,age,25
+475,workclass, Self-emp-inc
+475,education, Bachelors
+475,marital-status, Never-married
+475,occupation, Sales
+475,relationship, Not-in-family
+475,race, White
+475,sex, Male
+475,hours-per-week,45
+475,native-country, United-States
+475,income, >50K
+476,age,42
+476,workclass, Federal-gov
+476,education, Bachelors
+476,marital-status, Married-civ-spouse
+476,occupation, Exec-managerial
+476,relationship, Husband
+476,race, White
+476,sex, Male
+476,hours-per-week,52
+476,native-country, United-States
+476,income, >50K
+477,age,32
+477,workclass, Private
+477,education, Some-college
+477,marital-status, Separated
+477,occupation, Machine-op-inspct
+477,relationship, Unmarried
+477,race, Black
+477,sex, Female
+477,hours-per-week,70
+477,native-country, United-States
+477,income, <=50K
+478,age,33
+478,workclass, Private
+478,education, Assoc-voc
+478,marital-status, Never-married
+478,occupation, Craft-repair
+478,relationship, Not-in-family
+478,race, White
+478,sex, Male
+478,hours-per-week,40
+478,native-country, United-States
+478,income, <=50K
+479,age,56
+479,workclass, Private
+479,education, 5th-6th
+479,marital-status, Married-civ-spouse
+479,occupation, Other-service
+479,relationship, Husband
+479,race, White
+479,sex, Male
+479,hours-per-week,40
+479,native-country, ?
+479,income, <=50K
+480,age,25
+480,workclass, Private
+480,education, Assoc-voc
+480,marital-status, Married-civ-spouse
+480,occupation, Prof-specialty
+480,relationship, Wife
+480,race, White
+480,sex, Female
+480,hours-per-week,40
+480,native-country, United-States
+480,income, >50K
+481,age,50
+481,workclass, Private
+481,education, Assoc-acdm
+481,marital-status, Married-civ-spouse
+481,occupation, Adm-clerical
+481,relationship, Husband
+481,race, White
+481,sex, Male
+481,hours-per-week,60
+481,native-country, Columbia
+481,income, <=50K
+482,age,27
+482,workclass, Private
+482,education, Bachelors
+482,marital-status, Never-married
+482,occupation, Tech-support
+482,relationship, Unmarried
+482,race, Black
+482,sex, Female
+482,hours-per-week,40
+482,native-country, United-States
+482,income, <=50K
+483,age,38
+483,workclass, Private
+483,education, Some-college
+483,marital-status, Married-civ-spouse
+483,occupation, Protective-serv
+483,relationship, Husband
+483,race, Black
+483,sex, Male
+483,hours-per-week,40
+483,native-country, United-States
+483,income, >50K
+484,age,63
+484,workclass, ?
+484,education, 9th
+484,marital-status, Separated
+484,occupation, ?
+484,relationship, Not-in-family
+484,race, Black
+484,sex, Male
+484,hours-per-week,40
+484,native-country, United-States
+484,income, <=50K
+485,age,19
+485,workclass, Private
+485,education, HS-grad
+485,marital-status, Never-married
+485,occupation, Handlers-cleaners
+485,relationship, Own-child
+485,race, White
+485,sex, Male
+485,hours-per-week,20
+485,native-country, United-States
+485,income, <=50K
+486,age,32
+486,workclass, Private
+486,education, Some-college
+486,marital-status, Married-civ-spouse
+486,occupation, Sales
+486,relationship, Other-relative
+486,race, Asian-Pac-Islander
+486,sex, Female
+486,hours-per-week,40
+486,native-country, Greece
+486,income, <=50K
+487,age,34
+487,workclass, Private
+487,education, Bachelors
+487,marital-status, Married-civ-spouse
+487,occupation, Prof-specialty
+487,relationship, Husband
+487,race, White
+487,sex, Male
+487,hours-per-week,42
+487,native-country, United-States
+487,income, >50K
+488,age,50
+488,workclass, Private
+488,education, HS-grad
+488,marital-status, Married-civ-spouse
+488,occupation, Transport-moving
+488,relationship, Husband
+488,race, White
+488,sex, Male
+488,hours-per-week,40
+488,native-country, United-States
+488,income, <=50K
+489,age,49
+489,workclass, Self-emp-not-inc
+489,education, Bachelors
+489,marital-status, Widowed
+489,occupation, Sales
+489,relationship, Unmarried
+489,race, White
+489,sex, Female
+489,hours-per-week,40
+489,native-country, United-States
+489,income, <=50K
+490,age,45
+490,workclass, Private
+490,education, Assoc-voc
+490,marital-status, Married-civ-spouse
+490,occupation, Exec-managerial
+490,relationship, Husband
+490,race, White
+490,sex, Male
+490,hours-per-week,50
+490,native-country, United-States
+490,income, >50K
+491,age,52
+491,workclass, Federal-gov
+491,education, Assoc-voc
+491,marital-status, Divorced
+491,occupation, Farming-fishing
+491,relationship, Not-in-family
+491,race, White
+491,sex, Female
+491,hours-per-week,40
+491,native-country, United-States
+491,income, <=50K
+492,age,55
+492,workclass, Private
+492,education, HS-grad
+492,marital-status, Married-civ-spouse
+492,occupation, Machine-op-inspct
+492,relationship, Husband
+492,race, White
+492,sex, Male
+492,hours-per-week,40
+492,native-country, United-States
+492,income, >50K
+493,age,37
+493,workclass, Private
+493,education, HS-grad
+493,marital-status, Widowed
+493,occupation, Adm-clerical
+493,relationship, Unmarried
+493,race, White
+493,sex, Female
+493,hours-per-week,68
+493,native-country, United-States
+493,income, <=50K
+494,age,65
+494,workclass, Private
+494,education, HS-grad
+494,marital-status, Married-civ-spouse
+494,occupation, Farming-fishing
+494,relationship, Husband
+494,race, White
+494,sex, Male
+494,hours-per-week,24
+494,native-country, United-States
+494,income, <=50K
+495,age,77
+495,workclass, Local-gov
+495,education, HS-grad
+495,marital-status, Married-civ-spouse
+495,occupation, Exec-managerial
+495,relationship, Husband
+495,race, White
+495,sex, Male
+495,hours-per-week,6
+495,native-country, United-States
+495,income, <=50K
+496,age,21
+496,workclass, Private
+496,education, Bachelors
+496,marital-status, Never-married
+496,occupation, Other-service
+496,relationship, Other-relative
+496,race, White
+496,sex, Male
+496,hours-per-week,20
+496,native-country, United-States
+496,income, <=50K
+497,age,51
+497,workclass, Private
+497,education, HS-grad
+497,marital-status, Married-civ-spouse
+497,occupation, Adm-clerical
+497,relationship, Wife
+497,race, White
+497,sex, Female
+497,hours-per-week,40
+497,native-country, United-States
+497,income, >50K
+498,age,42
+498,workclass, Private
+498,education, HS-grad
+498,marital-status, Married-civ-spouse
+498,occupation, Craft-repair
+498,relationship, Husband
+498,race, White
+498,sex, Male
+498,hours-per-week,40
+498,native-country, United-States
+498,income, <=50K
+499,age,36
+499,workclass, State-gov
+499,education, Some-college
+499,marital-status, Married-civ-spouse
+499,occupation, Protective-serv
+499,relationship, Husband
+499,race, White
+499,sex, Male
+499,hours-per-week,40
+499,native-country, United-States
+499,income, <=50K

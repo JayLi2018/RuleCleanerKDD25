@@ -1,0 +1,18 @@
+TIME MEASUREMENTS:
+****************************************
+retrain                                 #calls: 2                   total-time: 25.09329176
+
+COUNTERS:
+****************************************
+number of count_retrains      2                   
+number of lookup_count        0                   
+
+PARAMS:
+****************************************
+featurize: 4.152752205729485
+fit_repair_model: 12.199381679296494
+get_inferred_values: 0.4645128920674324
+query: 0.8142481967806816
+setup_repair_model: 0.0009000226855278015
+
+{'t1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&EQ(t1.race,t2.race)\n': [-1], 't1&t2&EQ(t1.occupation,t2.occupation)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&IQ(t1.workclass,t2.workclass)\n': [-1]}

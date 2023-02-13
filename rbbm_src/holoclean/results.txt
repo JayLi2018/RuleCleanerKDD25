@@ -1,0 +1,36 @@
+3: 
+model_results:{frozenset({'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)'}): True,
+ frozenset({'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n', 't1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n', 't1&t2&EQ(t1.Stateavg,t2.Stateavg)'}): True,
+ frozenset({'t1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n', 't1&t2&EQ(t1.Stateavg,t2.Stateavg)'}): True}
+
+
+result:{'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n': [-1], 't1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n': [-1], 't1&t2&EQ(t1.Stateavg,t2.Stateavg)': [1], 'time': 56.72,
+'num_retrains':6}
+
+
+10: 
+
+model_results:{frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner)\n'}): False,
+ frozenset({'t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Score,t2.Score)\n'}): False, 
+ frozenset({'t1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.Address1,t2.Address1)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.Sample,t2.Sample)\n'}): False,
+ frozenset({'t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&IQ(t1.HospitalType,t2.HospitalType)\n'}): False,
+ frozenset({'t1&t2&IQ(t1.State,t2.State)&EQ(t1.Score,t2.Score)'}): False,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n','t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Score,t2.Score)\n'}): True,
+  frozenset({'t1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)\n', 't1&t2&EQ(t1.Stateavg,t2.Stateavg)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.Address1,t2.Address1)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.Sample,t2.Sample)\n'}): True, 
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&IQ(t1.HospitalType,t2.HospitalType)\n'}): True,
+ frozenset({'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n', 't1&t2&IQ(t1.State,t2.State)&EQ(t1.Score,t2.Score)'}): True}
+
+result: {'t1&t2&EQ(t1.Stateavg,t2.Stateavg)\n': [1], 't1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)\n': [-1], 't1&t2&EQ(t1.MeasureCode,t2.MeasureCode)\n': [-1], 't1&t2&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner)\n': [-1], 't1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Score,t2.Score)\n': [-1], 't1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)\n': [-1], 't1&t2&EQ(t1.Address1,t2.Address1)\n': [-1], 't1&t2&EQ(t1.Sample,t2.Sample)\n': [-1], 't1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&IQ(t1.HospitalType,t2.HospitalType)\n': [-1], 't1&t2&IQ(t1.State,t2.State)&EQ(t1.Score,t2.Score)': [-1], 'time': 361.99, 'num_retrains':19}

@@ -1,0 +1,2 @@
+complaint:
+{'type': 'before_clean', '_tid_': 361.0, 'age': '50', 'workclass': 'private', 'education': 'masters', 'marital-status': 'married-spouse-absent', 'occupation': 'prof-specialty', 'relationship': 'other-relative', 'race': 'white', 'sex': 'male', 'hours-per-week': '60', 'native-country': '?', 'income': '<=50k', 'income\n': nan, 'wrong_attr': 'native-country'}

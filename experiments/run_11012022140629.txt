@@ -1,0 +1,2 @@
+complaint:
+{'type': 'before_clean', '_tid_': 436.0, 'age': '32', 'workclass': 'self-emp-not-inc', 'education': 'assoc-voc', 'marital-status': 'never-married', 'occupation': 'craft-repair', 'relationship': 'not-in-family', 'race': 'white', 'sex': 'male', 'hours-per-week': '40', 'native-country': 'united-states', 'income': '<=50k', 'income\n': nan, 'wrong_attr': 'workclass'}

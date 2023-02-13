@@ -1,0 +1,3 @@
+t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)
+t1&t2&EQ(t1.MeasureCode,t2.MeasureCode)
+t1&t2&EQ(t1.Stateavg,t2.Stateavg)

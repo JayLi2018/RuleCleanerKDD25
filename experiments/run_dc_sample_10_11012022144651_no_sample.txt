@@ -1,0 +1,18 @@
+TIME MEASUREMENTS:
+****************************************
+retrain                                 #calls: 14                  total-time: 247.17125869
+
+COUNTERS:
+****************************************
+number of count_retrains      14                  
+number of lookup_count        17                  
+
+PARAMS:
+****************************************
+featurize: 46.965491101145744
+fit_repair_model: 113.94297696650028
+get_inferred_values: 5.731769800186157
+query: 11.643110863864422
+setup_repair_model: 0.0057725608348846436
+
+{'t1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)\n': [-1], 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)\n': [0.3333333333333333], 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)\n': [0.3333333333333333], 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)\n': [0.3333333333333333]}

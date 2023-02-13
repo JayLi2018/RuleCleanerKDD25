@@ -1,0 +1,2 @@
+complaint:
+{'type': 'before_clean', '_tid_': 268.0, 'age': '33', 'workclass': 'federal-gov', 'education': 'masters', 'marital-status': 'married-civ-spouse', 'occupation': 'transport-moving', 'relationship': 'husband', 'race': 'black', 'sex': 'male', 'hours-per-week': '40', 'native-country': 'nicaragua', 'income': '<=50k', 'income\n': nan, 'wrong_attr': 'workclass'}

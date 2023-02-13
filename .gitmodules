@@ -1,0 +1,3 @@
+[submodule "holoclean"]
+	path = holoclean
+	url = https://github.com/JayLi2018/holoclean.git

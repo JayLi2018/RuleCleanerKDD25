@@ -1,0 +1,501 @@
+age,workclass,education,marital-status,occupation,relationship,race,sex,hours-per-week,native-country,income
+29, Private, HS-grad, Married-civ-spouse, Priv-house-serv, Wife, White, Female,40, United-States, >50K
+40, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, Black, Male,11, United-States, <=50K
+45, Private, Masters, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+53, Self-emp-not-inc, Some-college, Married-civ-spouse, Transport-moving, Husband, White, Male,45, Greece, >50K
+27, Self-emp-not-inc, HS-grad, Married-civ-spouse, Protective-serv, Wife, White, Female,40, United-States, <=50K
+18, Self-emp-not-inc, 11th, Widowed, Other-service, Own-child, White,bckjild,4, United-States, <=50K
+54, Private, Bachelors, Divorced, Exec-managerial, Not-in-family, Black, Male,45, Germany, >50K
+67, Local-gov, Bachelors, Widowed, Adm-clerical, Not-in-family, White, Female,40, United-States, <=50K
+30, Private, Bachelors, Never-married, Exec-managerial, Not-in-family, White, Male,42, United-States, <=50K
+33, Private, Some-college, Divorced, Tech-support, Unmarried, White, Female,40, United-States, <=50K
+28, Private, 11th, Never-married, Handlers-cleaners, Unmarried, Asian-Pac-Islander, Male,40, United-States, <=50K
+49, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, >50K
+63, Private, 7th-8th, Married-civ-spouse, Prof-specialty,okekdjle, White,qewaa,30, Mexico, <=50K
+48, Self-emp-inc, Some-college, Married-civ-spouse, Sales, Husband, White, Male,60, United-States, >50K
+54, Local-gov, Masters, Married-civ-spouse, Prof-specialty, Husband, White, Male,40, United-States, >50K
+64, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+38, Private, Some-college, Separated, Handlers-cleaners, Unmarried, White, Female,40, Germany, <=50K
+29, Private, Bachelors, Divorced, Craft-repair, Not-in-family, White, Male,40, United-States, <=50K
+54, Private, Masters, Never-married, Prof-specialty, Not-in-family, White, Male,40, United-States, >50K
+27, Private, Bachelors, Never-married, Farming-fishing, Own-child, Asian-Pac-Islander, Male,40, United-States, <=50K
+34, Private, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,36, United-States, >50K
+51, Private, 9th, Married-civ-spouse, Sales, Wife, White, Male,40, United-States, <=50K
+49, Self-emp-inc, Bachelors, Married-civ-spouse,yqtbxcgdsogefxgf, Husband, White, Male,50, United-States, >50K
+36, Private, HS-grad, Divorced,ecdgwcuwtpwnzbtnpy, Unmarried, White, Male,47, United-States, <=50K
+42, Private, HS-grad, Divorced, Machine-op-inspct, Not-in-family, Black, Male,40, United-States, <=50K
+47, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, Black, Male,40, United-States, >50K
+30, State-gov, 1st-4th, Never-married, Prof-specialty, Not-in-family, White, Male,40, United-States, <=50K
+44, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,50, United-States, >50K
+29, Private, Some-college, Married-civ-spouse, Adm-clerical, Husband,xfwqeialjanzhhslumn, Male,40, United-States, <=50K
+23, Private, Some-college, Separated, Sales, Own-child, White, Female,16, United-States, <=50K
+39, Private, 10th, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+51, Private, Some-college, Divorced, Adm-clerical, Unmarried, White, Female,40, United-States, <=50K
+53, Private, Bachelors, Married-civ-spouse, ?, Husband, White, Male,30, United-States, >50K
+43, Private, 9th, Never-married, Machine-op-inspct, Not-in-family, White, Male,20, Philippines, <=50K
+51, Private, HS-grad, Never-married, Farming-fishing, Not-in-family, White, Male,60, ?, <=50K
+60, Private, 7th-8th, Married-civ-spouse, Craft-repair, Husband, White, Male,75, United-States, <=50K
+54, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,70, United-States, <=50K
+21, ?, Assoc-acdm, Never-married, Exec-managerial, Not-in-family, White, Male,55,yiedbychddmtow, <=50K
+22, Private, HS-grad, Never-married,cquxdsxtekoyfgswu, Not-in-family, White, Male,70, United-States, <=50K
+43, State-gov, Masters, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+21, Private, HS-grad, Never-married, Craft-repair, Own-child, White, Male,40, United-States, <=50K
+35, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, Black, Male,40, United-States,wuazjc
+mf, Self-emp-not-inc, Some-college, Divorced, Other-service,jckqwtrknvdvxw, White, Male,45, United-States, <=50K
+23, Local-gov, HS-grad, Never-married, Prof-specialty, Not-in-family, White, Female,40, United-States, <=50K
+30, Private, HS-grad, Never-married, Adm-clerical, Own-child, Other, Female,40, Philippines, <=50K
+43, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,50, United-States, <=50K
+60, State-gov, Bachelors, Divorced, Prof-specialty, Not-in-family, White, Male,40, United-States, <=50K
+35, Private, HS-grad, Never-married, Sales, Own-child, Other, Male,40, United-States, <=50K
+52, Local-gov, Some-college, Never-married, Protective-serv, Own-child, White, Male,40, United-States, <=50K
+29, Self-emp-not-inc, 5th-6th, Married-civ-spouse, Farming-fishing, Husband, White, Male,40, United-States, <=50K
+39, Private, 9th, Married-civ-spouse, Other-service, Wife, White, Male,28, United-States, <=50K
+31, Self-emp-not-inc, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+53, Private, Bachelors, Never-married, Exec-managerial, Unmarried, White, Male,52, United-States, <=50K
+56, Private, Some-college, Married-civ-spouse,fvbzcbvgzwjih, Husband, White, Male,40, ?, <=50K
+18, ?, Some-college, Never-married, Priv-house-serv, Own-child, White, Male,40, United-States, <=50K
+51, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States, >50K
+49, Private, Some-college, Divorced, Other-service, Not-in-family, White, Female,40, Jamaica, <=50K
+50, Private, HS-grad, Separated, Tech-support, Unmarried, White, Male,38, United-States, <=50K
+38, Private, Some-college, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, <=50K
+20, Private, HS-grad, Never-married, Craft-repair, Not-in-family, White, Male,58, United-States, <=50K
+35, Self-emp-not-inc, HS-grad, Married-civ-spouse, Craft-repair, Not-in-family, White, Male,40, United-States, <=50K
+42, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,9, United-States, >50K
+35, Private, Bachelors, Never-married, Other-service, Not-in-family, White,smivqun,45, United-States, <=50K
+50, Self-emp-inc, 7th-8th, Married-civ-spouse, Craft-repair, Husband, White, Male,63, ?, >50K
+45, Self-emp-inc, Bachelors, Divorced, Exec-managerial, Unmarried, White, Male,49, United-States, >50K
+47, Federal-gov, Bachelors, Married-civ-spouse, Adm-clerical, Husband, Black, Male,45, Germany, >50K
+31, Private, Assoc-acdm, Divorced, Craft-repair, Not-in-family, White, Male,50, United-States, >50K
+38, ?, 7th-8th, Married-civ-spouse, ?, Husband, White, Male,45, United-States, <=50K
+61, Private, Some-college, Married-civ-spouse, Sales, Husband, White, Male,40, United-States, <=50K
+18, Private, 12th, Never-married, Handlers-cleaners, Own-child, White, Male,75, United-States, >50K
+70, Private, HS-grad, Never-married, Other-service, Own-child, White, Female,30, United-States, <=50K
+46, Private, Assoc-voc, Never-married, Exec-managerial, Own-child, White, Female,58, United-States, <=50K
+26, Private, 11th, Never-married, Sales, Not-in-family, Black, Male,40, United-States, <=50K
+34, Private, Assoc-acdm, Married-civ-spouse, Adm-clerical, Wife, White, Female,40, United-States, >50K
+70, Private, Bachelors, Married-civ-spouse, Handlers-cleaners, Unmarried, White, Male,40, United-States, <=50K
+28, Private, Some-college, Married-civ-spouse,dvermdnqsckju, Husband, White, Male,40, United-States, >50K
+51, State-gov, Assoc-voc, Divorced, Tech-support, Not-in-family, White, Male,39, United-States, >50K
+68, State-gov, Some-college, Married-spouse-absent, Farming-fishing, Unmarried, White, Female,25, United-States, <=50K
+20, Private, Some-college, Never-married, Adm-clerical, Not-in-family, Other, Female,35, United-States, <=50K
+38, Private, Bachelors, Married-civ-spouse, Sales, Husband, White, Male,40, United-States, >50K
+27, Private, 12th, Never-married, Transport-moving, Not-in-family, White, Male,40, United-States,qeyzgn
+44, Private, Some-college, Married-civ-spouse, Sales, Husband, Asian-Pac-Islander, Male,40, United-States,zckna
+41, Private, HS-grad, Never-married, Craft-repair, Not-in-family, White, Male,54, United-States, <=50K
+68, Private, HS-grad, Married-AF-spouse, Adm-clerical, Husband, White, Male,24, United-States, <=50K
+40, State-gov, Prof-school, Married-civ-spouse, Prof-specialty, Husband, White, Male,38, United-States, >50K
+27, Federal-gov, Some-college, Never-married, Exec-managerial, Own-child, White, Female,32, United-States, <=50K
+52, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+44, State-gov, Some-college, Divorced, Transport-moving, Own-child, White, Male,40, United-States, <=50K
+36, Private, Masters, Married-civ-spouse, Exec-managerial, Husband, Black, Male,40, Taiwan, >50K
+45, Private, Some-college, Married-civ-spouse, Adm-clerical, Husband, White, Female,35, United-States, >50K
+25, Private, HS-grad, Never-married, Adm-clerical, Not-in-family, Other, Male,40, United-States, >50K
+35, Private, HS-grad, Married-civ-spouse, Other-service, Wife, White, Female,38, United-States, <=50K
+50, Local-gov, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,35, United-States, >50K
+43, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, Amer-Indian-Eskimo, Male,40, United-States, <=50K
+25, Private, HS-grad, Never-married, Machine-op-inspct, Own-child, White, Male,36, United-States, <=50K
+70, Federal-gov, HS-grad, Married-civ-spouse, Adm-clerical, Husband, Black, Female,40, United-States, <=50K
+23, Private, Some-college, Married-spouse-absent, Handlers-cleaners, Unmarried, White, Male,40, United-States, <=50K
+29, Private, 9th, Never-married, Other-service, Own-child, White, Male,30, Canada, <=50K
+43, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,55, United-States, <=50K
+47, Private, 11th, Never-married, Handlers-cleaners, Own-child, Asian-Pac-Islander, Male,20, United-States, <=50K
+51, Self-emp-not-inc,uodgxdbl, Never-married, Prof-specialty, Unmarried, White, Male,45, United-States, <=50K
+68, ?, HS-grad, Married-civ-spouse, ?, Wife, White, Female,25, United-States, <=50K
+30, Private, Some-college, Divorced, Adm-clerical, Wife, White, Female,40, United-States, <=50K
+41, Private, 11th, Never-married, Handlers-cleaners, Other-relative, Black, Female,40, United-States, <=50K
+54, Local-gov, HS-grad, Widowed, Adm-clerical, Not-in-family, White, Female,30, United-States, <=50K
+61, Private, HS-grad, Married-civ-spouse, Other-service, Husband, Black, Male,40, United-States, <=50K
+18, Private, 12th, Never-married, Sales, Husband, Black, Female,15, United-States, <=50K
+33, State-gov, Some-college, Divorced, Adm-clerical, Unmarried, White, Female,45, United-States, <=50K
+28,oxghxckxpdum, Some-college,mknmwclbzsjcyl, Adm-clerical, Unmarried, Black, Female,40, United-States, <=50K
+52, Private, HS-grad, Divorced, Sales, Not-in-family, Asian-Pac-Islander, Female,15, United-States, <=50K
+38, Private, HS-grad, Widowed, Other-service, Unmarried,tegszw, Female,20, United-States, <=50K
+31, Private, Bachelors, Divorced, Exec-managerial, Not-in-family, White,pgokz,50, United-States,yomlk
+25, Private, Some-college, Married-civ-spouse, Adm-clerical, Husband, Asian-Pac-Islander, Male,45, United-States, <=50K
+19, Private, 11th, Never-married, Handlers-cleaners, Not-in-family, White, Male,40, United-States, <=50K
+31, Local-gov, Bachelors, Married-civ-spouse, Machine-op-inspct, Own-child, White,lebxk,40, ?, <=50K
+30, Private, HS-grad, Never-married, ?, Own-child, White, Male,pm, United-States, <=50K
+44, Federal-gov, Assoc-acdm, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, >50K
+38, ?, Assoc-voc, Separated, ?, Unmarried, Other, Female,25, United-States, >50K
+54, Self-emp-inc, Doctorate, Married-civ-spouse, Prof-specialty, Other-relative, White, Male,50, Peru, >50K
+58, Self-emp-not-inc, Prof-school, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, >50K
+44, Self-emp-not-inc, HS-grad,romaupybzjegzipfijg, Farming-fishing, Husband, White, Male,50, United-States, <=50K
+43, Self-emp-not-inc, HS-grad, Never-married, Machine-op-inspct, Own-child, White, Male,40, United-States, <=50K
+54, Local-gov, Bachelors, Married-civ-spouse, Exec-managerial,elotorpz, Asian-Pac-Islander, Male,40, Philippines, >50K
+53, Federal-gov, Some-college, Widowed, Adm-clerical, Not-in-family, Black, Female,40, United-States, <=50K
+42, Private, 9th, Married-civ-spouse, Transport-moving, Other-relative, Asian-Pac-Islander, Male,40, United-States, <=50K
+46, Private, 10th, Married-civ-spouse, Adm-clerical, Wife, White, Female,52, United-States, >50K
+34, Self-emp-inc, Masters, Never-married, ?, Not-in-family, White, Male,30, United-States, <=50K
+81, Private, HS-grad, Never-married, Tech-support, Own-child, White, Male,40, United-States, <=50K
+20,nexsftex, Some-college, Never-married, Other-service, Not-in-family, White,inpwrso,48, United-States, <=50K
+25, Private, Bachelors, Never-married, Exec-managerial, Not-in-family, White, Male,50, United-States, <=50K
+31, Private, Some-college, Never-married, Adm-clerical, Own-child, White, Male,40, Germany, <=50K
+19, Private, HS-grad, Married-AF-spouse, Adm-clerical, Wife, White, Female,25, United-States, <=50K
+27, Private, 9th, Married-civ-spouse, Craft-repair, Husband, White, Male,32, United-States, <=50K
+51, Private, Bachelors, Married-civ-spouse, Craft-repair, Other-relative, White, Male,49, ?, <=50K
+17, Private, Bachelors, Widowed, Prof-specialty, Unmarried, White, Female,35, Philippines, <=50K
+49, Self-emp-not-inc, Bachelors, Married-civ-spouse, Prof-specialty, Husband, Amer-Indian-Eskimo, Male,40, United-States, >50K
+27, State-gov, Bachelors, Never-married, Sales, Not-in-family, White, Male,50, United-States, <=50K
+23, Private, Masters, Never-married, Sales, Not-in-family, White, Female,20, United-States, <=50K
+27, Private, Assoc-acdm, Married-civ-spouse, Tech-support, Husband, Asian-Pac-Islander, Male,40, United-States, <=50K
+80, Private, HS-grad, Married-spouse-absent, Other-service, Own-child, White, Female,40, United-States, <=50K
+36, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,55, United-States, <=50K
+45, Private, 11th, Married-AF-spouse, Craft-repair, Husband, White, Male,42, United-States, <=50K
+69, ?, Prof-school, Married-civ-spouse, ?, Wife, White, Female,25, ?, <=50K
+38, Private, Bachelors, Married-civ-spouse, Sales, Husband, Black, Male,52, United-States, >50K
+65, ?, HS-grad, Married-civ-spouse, ?, Husband, Other, Male,35, United-States, <=50K
+53, Self-emp-not-inc, Masters, Married-civ-spouse, Prof-specialty, Unmarried, White, Male,50, United-States, >50K
+24, Private, HS-grad, Never-married, Transport-moving, Unmarried, White, Male,40, United-States, <=50K
+45, Federal-gov, Masters, Married-civ-spouse, Sales, Husband, White, Male,50, United-States, >50K
+30, Self-emp-not-inc, HS-grad, Never-married, Craft-repair, Not-in-family, White, Male,50, United-States, >50K
+46, Local-gov, Bachelors, Married-civ-spouse, Protective-serv, Husband, White, Male,40, United-States, >50K
+46, Private, Some-college, Divorced, Sales, Unmarried, White, Female,40, United-States, <=50K
+55, Local-gov, Doctorate, Never-married, ?, Not-in-family, White, Male,40, United-States, >50K
+21,gh, Some-college, Never-married, ?, Own-child, White, Male,75, United-States, <=50K
+42, State-gov, Some-college, Divorced, Adm-clerical, Own-child, White, Female,38, United-States, <=50K
+21, Without-pay, Some-college, Never-married, Adm-clerical, Own-child, White, Female,15, United-States, <=50K
+ja, Self-emp-inc, HS-grad, Divorced, Exec-managerial, Not-in-family, White, Male,sm, Ecuador, >50K
+25, Private, Bachelors, Never-married, Other-service, Own-child, White, Male,40,ifsgafanquacdr, <=50K
+44, Private, Masters, Separated, Sales, Unmarried, White, Female,48,jbebwmmpbdwffe, <=50K
+33, Self-emp-not-inc, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,50, United-States, >50K
+34, Local-gov, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+43, Local-gov, Bachelors, Married-civ-spouse, Protective-serv, Husband, White,wrnui,55, United-States, >50K
+43, Private, Assoc-acdm, Never-married, Adm-clerical, Not-in-family, Black, Female,45, United-States, <=50K
+45, Private, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+52, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,38, United-States, <=50K
+80, Self-emp-inc, HS-grad, Married-civ-spouse, ?, Husband, White, Male,8, Canada, <=50K
+31, Private, Assoc-voc, Married-civ-spouse, Exec-managerial, Wife, Black,jfowzfa,43, United-States, <=50K
+31, Private, Some-college, Married-civ-spouse, Prof-specialty, Wife, Amer-Indian-Eskimo, Female,40, Cambodia, <=50K
+56, Private, Bachelors, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+54, Local-gov, Masters, Divorced, Prof-specialty, Not-in-family, Asian-Pac-Islander, Female,40, United-States, <=50K
+30, State-gov, 10th, Married-civ-spouse, Protective-serv, Husband, White, Female,40, United-States, <=50K
+53, Private, HS-grad, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+28, Local-gov, Bachelors, Married-civ-spouse, Protective-serv, Husband, Black, Male,42, United-States, >50K
+41, Private, Bachelors, Divorced, Exec-managerial, Not-in-family, Asian-Pac-Islander, Male,55, United-States, >50K
+52, Private, HS-grad, Widowed, Transport-moving, Not-in-family, White, Male,40,wwmoqkjor, <=50K
+54, Self-emp-not-inc, 10th, Divorced, Other-service, Not-in-family, Black,unzwqvn,10, United-States, <=50K
+20, Private, Some-college, Never-married, Machine-op-inspct, Not-in-family, White, Female,40,jxlzsokpdygocf, <=50K
+26, Self-emp-not-inc, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+48, Private, Bachelors, Divorced, Sales, Wife, White, Male,40, United-States, >50K
+37, Self-emp-inc, Masters, Divorced, Exec-managerial, Not-in-family, White, Female,70, United-States, <=50K
+36, Private, Some-college, Married-civ-spouse, Exec-managerial, Wife, White, Male,16, United-States, <=50K
+18, Local-gov, 11th, Never-married, Protective-serv, Own-child, White, Male,10, United-States, <=50K
+47, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States, <=50K
+34, Private, HS-grad, Never-married, Prof-specialty, Not-in-family, White, Male,60, United-States, <=50K
+47, Self-emp-not-inc, HS-grad, Married-civ-spouse, Priv-house-serv, Husband, White,ktbsb,45, United-States, >50K
+43, Local-gov, HS-grad, Married-civ-spouse, Craft-repair, Own-child, White, Male,40, United-States, >50K
+35, Private, Bachelors, Never-married, Sales, Not-in-family, White, Male,50, United-States, <=50K
+31, Private, 11th, Divorced, Craft-repair, Not-in-family, White, Male,50, United-States, >50K
+35, State-gov, HS-grad, Married-civ-spouse, Protective-serv, Husband, White, Male,40, United-States, <=50K
+21, Private, HS-grad, Never-married, Other-service, Wife, White, Female,30, United-States, <=50K
+63, Private, HS-grad, Married-AF-spouse, Sales, Not-in-family, White,fhanmew,40, United-States, <=50K
+35, Private, Masters, Married-civ-spouse, Protective-serv, Husband, Asian-Pac-Islander, Male,50, United-States, >50K
+30, State-gov, HS-grad, Never-married, ?, Not-in-family, Black, Female,40, United-States, <=50K
+38, Private, Assoc-voc, Married-civ-spouse, Exec-managerial, Husband, Other, Male,32, United-States, >50K
+46, Self-emp-inc, Bachelors, Married-civ-spouse, Prof-specialty, Husband, Black, Male,60, United-States, >50K
+29, Private, HS-grad, Married-civ-spouse, ?, Husband, White, Male,40, United-States, <=50K
+21, Private, HS-grad, Married-civ-spouse, Handlers-cleaners, Other-relative, White, Male,32, United-States, <=50K
+21, ?, Some-college, Never-married, ?, Own-child, White, Male,50, United-States, <=50K
+24, Private, Some-college, Married-civ-spouse, Machine-op-inspct, Wife, Other, Female,40, Puerto-Rico, <=50K
+47, Self-emp-not-inc, Doctorate, Married-civ-spouse, Transport-moving, Husband, Black, Male,45, United-States, <=50K
+19, Private, 11th, Married-civ-spouse, Craft-repair, Husband, White, Male,60, United-States, <=50K
+55, State-gov, 12th, Married-civ-spouse,swpsczlwjflbchx, Husband, Asian-Pac-Islander, Male,40, India, >50K
+20, ?, 7th-8th,ytevjgybgcsbwr, ?, Own-child, White, Female,40, United-States, <=50K
+33, Private, Bachelors, Never-married, Exec-managerial, Not-in-family, Asian-Pac-Islander, Male,40, ?, <=50K
+70, Local-gov, Masters, Never-married, Prof-specialty, Unmarried,zcbvwk, Female,9, United-States, >50K
+43, Local-gov, Bachelors, Divorced, Prof-specialty, Unmarried, White, Female,55, United-States, <=50K
+64, Private, 10th, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, <=50K
+22, Self-emp-inc, Some-college, Never-married, Craft-repair, Own-child, White, Male,35, United-States, <=50K
+56, Private, 7th-8th, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,48, United-States, <=50K
+39, Self-emp-inc, HS-grad, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, >50K
+31, Private,ewzhdyepwz, Married-civ-spouse, Prof-specialty, Wife, White, Female,35, United-States, <=50K
+17, Federal-gov, Some-college, Never-married, Adm-clerical, Unmarried, White, Female,15, United-States, <=50K
+44, Federal-gov, HS-grad, Widowed, Craft-repair, Not-in-family, White, Male,40, United-States, <=50K
+70, Private, Bachelors, Divorced, Prof-specialty, Not-in-family, White, Male,50, United-States, >50K
+55, Self-emp-not-inc, HS-grad, Married-civ-spouse, Sales, Husband, White, Male,40, United-States, <=50K
+31, Private, Some-college, Never-married, Sales, Other-relative, White, Female,40, ?, <=50K
+27, Private, Prof-school, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, <=50K
+39, Private, 12th, Married-civ-spouse, Transport-moving, Husband, White, Male,70, United-States, >50K
+18, ?, 11th, Never-married, ?, Own-child, Asian-Pac-Islander, Male,25, United-States, <=50K
+28, Private, 11th, Widowed,usalbnzlcsgrodheud, Unmarried, White, Male,40, United-States, <=50K
+42, Private, Some-college, Married-civ-spouse, Other-service, Wife, Black, Female,30, United-States, <=50K
+58, Self-emp-not-inc, Masters, Married-civ-spouse, Sales, Husband, White, Male,72, United-States, >50K
+47, Private, Some-college, Married-civ-spouse, Machine-op-inspct,wlqsgyth, Asian-Pac-Islander, Male,40, Philippines, >50K
+27, Private, Some-college, Never-married, ?, Unmarried, White, Female,50, United-States, <=50K
+39, Private, Bachelors, Never-married, Prof-specialty, Own-child, White, Female,40, United-States, <=50K
+37, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,42, United-States, <=50K
+21, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States, <=50K
+51, Private, Masters, Married-civ-spouse, Craft-repair, Husband, White,rxhkp,40, United-States, >50K
+67, Self-emp-inc, Prof-school, Married-civ-spouse, Prof-specialty, Husband, White, Female,32, United-States, >50K
+52, Private, HS-grad, Married-civ-spouse, Sales, Unmarried, White, Male,40, United-States, <=50K
+51,zhwzjjow, 5th-6th, Married-civ-spouse, Craft-repair, Other-relative, White, Female,40, United-States, <=50K
+39, Private, Some-college, Never-married, Prof-specialty, Own-child, Black, Male,40, United-States, <=50K
+23, Private, Assoc-acdm, Never-married, Other-service, Own-child, White, Female,20, United-States, <=50K
+37, Private, HS-grad, Married-civ-spouse, Machine-op-inspct,ehbkdfts, White, Male,48, United-States, >50K
+48, Private, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,60, United-States, >50K
+42, Federal-gov, Bachelors, Never-married, Prof-specialty, Husband, White, Male,40, United-States, <=50K
+38, Private, Some-college, Married-civ-spouse, Prof-specialty, Husband, White, Male,50, ?, >50K
+32, Private, Bachelors, Separated, Prof-specialty, Husband, Asian-Pac-Islander, Male,40, United-States, >50K
+57, Self-emp-not-inc, Masters, Married-civ-spouse, Tech-support, Husband, White, Male,6, United-States, >50K
+36, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+31, Private, Bachelors, Never-married, Exec-managerial, Not-in-family,oqxupd, Female,50, United-States, >50K
+21, Private, 5th-6th, Married-spouse-absent, Priv-house-serv, Not-in-family, White, Female,40, Mexico, >50K
+21, ?, Some-college, Never-married, ?, Wife, White, Female,28, Puerto-Rico, <=50K
+42, Federal-gov, HS-grad, Divorced, Adm-clerical, Not-in-family, White, Female,40, United-States, <=50K
+46, Private, Some-college, Married-civ-spouse,vg, Husband, White, Male,40, United-States, >50K
+51, Private, HS-grad, Married-civ-spouse, Protective-serv, Husband, White, Male,16, United-States, >50K
+51, Private, HS-grad, Widowed, Machine-op-inspct, Not-in-family, Black, Female,40, United-States, <=50K
+61, Private, 7th-8th, Divorced, Other-service, Unmarried, White, Female,40, United-States, <=50K
+75, Self-emp-inc, Some-college, Widowed, Sales, Not-in-family, White,admgp,40, United-States, >50K
+30, Private, Preschool, Never-married, Farming-fishing, Not-in-family, White, Male,40, Mexico, <=50K
+51, Private, HS-grad, Married-civ-spouse,dbvsevrcabfefptsfb, Husband, White, Male,45, United-States, >50K
+18, ?, Some-college, Never-married, ?, Own-child, White, Female,15, United-States, <=50K
+29, Self-emp-inc, 10th, Never-married, Craft-repair, Not-in-family, Black, Male,40, ?, <=50K
+mg, Private, HS-grad, Married-civ-spouse, Transport-moving, Wife, Black, Female,50, United-States, <=50K
+54, Private, Masters, Married-civ-spouse, Exec-managerial, Wife, Other, Female,24, United-States, >50K
+19, ?, Some-college, Never-married, ?, Own-child, White, Male,63, United-States, <=50K
+30, Private, HS-grad, Married-civ-spouse, Other-service, Husband, Black, Male,25, United-States, <=50K
+50, Self-emp-not-inc, Doctorate, Married-civ-spouse, Prof-specialty, Husband, White, Male,60, United-States, >50K
+34, Private, Bachelors, Never-married, Prof-specialty, Not-in-family, White,ltlbwbq,40,etyrijzuojmtrq, <=50K
+32, Private, Some-college, Never-married, Adm-clerical, Own-child, White, Female,40, United-States, <=50K
+32, ?, Bachelors, Married-civ-spouse, Prof-specialty, Husband, Other, Male,60, Ecuador, <=50K
+25, Private, HS-grad, Never-married, Other-service, Not-in-family, White, Female,38, Jamaica, <=50K
+35, Private, HS-grad, Married-civ-spouse, Adm-clerical, Husband, Amer-Indian-Eskimo, Male,45, United-States, >50K
+34, Private, HS-grad, Never-married, Adm-clerical, Not-in-family, White, Female,36, United-States, <=50K
+31, Self-emp-inc, Doctorate, Never-married, Prof-specialty, Own-child, White, Male,40, United-States, <=50K
+34, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, Germany, >50K
+50, Without-pay, HS-grad, Married-civ-spouse, Sales, Wife, White,eavvl,55, United-States, >50K
+22, Private, HS-grad, Never-married, Craft-repair, Own-child, White, Male,ww, United-States, <=50K
+40, Private, Some-college, Married-civ-spouse, Tech-support, Husband, White, Male,48, United-States, >50K
+25, Private, 9th, Never-married, Craft-repair, Own-child, White, Male,40, United-States, <=50K
+45, Private, Some-college, Divorced, Sales, Not-in-family, White, Male,40, United-States, <=50K
+32, Private, 9th, Married-spouse-absent,pywlflaqthvcbdcmxy, Unmarried, White, Male,40, Columbia, <=50K
+30, Private, Bachelors, Never-married, Prof-specialty, Not-in-family, Black, Male,45, India, <=50K
+28, Self-emp-inc, 1st-4th, Never-married, Sales, Not-in-family, White, Male,60, United-States, <=50K
+51, Private, 9th, Married-civ-spouse, Craft-repair, Husband, White, Male,50, United-States, >50K
+40, Local-gov, HS-grad, Married-civ-spouse, Exec-managerial, Husband, Black, Male,40, United-States, >50K
+34, Private,gcjumadrgbtjk, Married-civ-spouse, Craft-repair, Husband,zkrfli, Male,40, United-States, >50K
+22, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+32, Private,vjlhb,cuntntntt, Machine-op-inspct, Not-in-family, White, Male,40, United-States, <=50K
+19, Private, 12th, Never-married, Sales,olpvcxdjbq, White, Male,20, United-States, <=50K
+19, Private, Some-college, Never-married, Adm-clerical, Own-child, White, Female,20, United-States, <=50K
+45, Self-emp-not-inc, Bachelors, Married-civ-spouse, Exec-managerial, Husband, Asian-Pac-Islander, Male,60, China, >50K
+46, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, Asian-Pac-Islander, Male,40, Cambodia, >50K
+51, Private, Some-college, Married-civ-spouse, Craft-repair, Other-relative, White, Male,48, United-States,prson
+72, Self-emp-not-inc, HS-grad, Married-civ-spouse, Sales, Husband, White, Male,12, United-States, <=50K
+44, Self-emp-not-inc, Some-college, Married-civ-spouse, Sales, Husband, Asian-Pac-Islander, Male,80, Philippines, >50K
+19, Private, HS-grad, Never-married, Handlers-cleaners, Other-relative, White, Male,40, United-States, <=50K
+34, Private, Masters, Never-married, Prof-specialty, Not-in-family, White, Male,50, United-States, <=50K
+54, Private, Some-college, Married-civ-spouse, Tech-support, Husband, White,bnnjg,40, United-States, >50K
+32, ?, 11th, Divorced, Other-service, Unmarried, White, Female,15, United-States, <=50K
+33, Local-gov, HS-grad, Divorced, Tech-support, Not-in-family, White, Female,55, United-States, <=50K
+42, Local-gov, Some-college, Married-civ-spouse, Other-service, Husband, White, Male,40, United-States, >50K
+17, Local-gov, 11th, Never-married, ?, Own-child, White, Female,8, United-States, <=50K
+59, Local-gov, Masters, Never-married,lapoegjrohmlabq, Not-in-family, White, Male,40, United-States, >50K
+39, Private, Bachelors, Married-civ-spouse, Sales, Husband, Amer-Indian-Eskimo, Male,40, Canada, >50K
+30, Private, HS-grad, Never-married, Transport-moving, Not-in-family, White, Male,45, United-States, >50K
+31, Federal-gov, 12th, Never-married, Other-service, Own-child, White, Female,30, United-States, <=50K
+35, Private, 11th, Never-married, Sales, Own-child, White, Male,40, United-States, <=50K
+76, Self-emp-not-inc, 7th-8th, Never-married, Farming-fishing, Other-relative, White, Male,30, United-States, <=50K
+22, Private, Some-college, Never-married, Adm-clerical, Own-child, White, Male,30, United-States, <=50K
+25, Private, HS-grad, Married-civ-spouse, Transport-moving, Wife, White, Male,58, United-States,lwnzvs
+59, Private, HS-grad, Never-married, Other-service, Not-in-family, White, Female,20, United-States, <=50K
+42, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, Black, Male,30, United-States, <=50K
+71, Federal-gov, HS-grad, Widowed, Exec-managerial, Not-in-family, White, Male,9, United-States, <=50K
+30, Private, Bachelors, Never-married, Sales, Not-in-family, White, Female,40, Mexico, <=50K
+54, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,50, United-States, >50K
+52, Local-gov, 12th, Never-married, Craft-repair, Husband, White, Male,48, United-States, <=50K
+34, Private, HS-grad, Never-married, Adm-clerical, Not-in-family, White, Female,40, United-States, <=50K
+43, Self-emp-not-inc, Doctorate, Married-civ-spouse, Farming-fishing, Husband, White, Male,84, United-States, <=50K
+37, Private, 1st-4th, Divorced, Exec-managerial, Not-in-family, White, Male,45, United-States, >50K
+29, Private,qmxpgnxt, Separated, Craft-repair, Other-relative, White, Male,40, United-States, <=50K
+36, Local-gov, HS-grad, Married-civ-spouse, Adm-clerical, Unmarried, White, Female,40, United-States, >50K
+25, ?,mxmrhshq, Never-married, Other-service, Husband, White, Female,40, United-States, <=50K
+44, Private, Some-college, Never-married, Craft-repair, Own-child, Amer-Indian-Eskimo, Male,6, United-States, <=50K
+70, Local-gov, HS-grad, Widowed, Adm-clerical, Not-in-family, White, Female,12, United-States, <=50K
+23, Private, HS-grad, Married-spouse-absent, Machine-op-inspct, Husband, White, Male,50, United-States, <=50K
+62, ?, HS-grad, Married-civ-spouse, ?, Husband, White, Male,40, United-States, <=50K
+19, Federal-gov, 11th, Never-married, Farming-fishing, Own-child, White, Male,24, United-States, <=50K
+23, ?, Some-college, Never-married, ?, Own-child, White, Male,30, Japan,rkmind
+38,vdwfjrnwhpwt, Bachelors, Married-civ-spouse, Sales, Husband, White, Male,50, Poland, <=50K
+73, Local-gov, Some-college, Never-married, Prof-specialty, Other-relative, White, Female,11, United-States, <=50K
+49, Federal-gov, HS-grad, Widowed, Transport-moving, Husband, White, Male,52, United-States, >50K
+32, Self-emp-not-inc, Masters, Never-married, Prof-specialty, Not-in-family, Asian-Pac-Islander, Male,40, United-States, >50K
+61, Private, 7th-8th, Widowed, Farming-fishing, Not-in-family, Black, Male,40, United-States, <=50K
+41, Private, 7th-8th, Separated, Sales, Unmarried, White, Female,60, United-States, <=50K
+57, State-gov, Some-college,dbeyatgew, Craft-repair, Not-in-family, White, Female,40, United-States, <=50K
+46, Private, HS-grad, Separated, Handlers-cleaners, Unmarried, White, Female,50, Peru, <=50K
+64, ?, Some-college, Married-civ-spouse, ?, Husband, White, Male,40, United-States, <=50K
+25, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,35, United-States, <=50K
+62, Private, Some-college, Never-married, Exec-managerial, Not-in-family, White, Female,39, Germany, >50K
+81, State-gov, 1st-4th, Widowed, Other-service, Not-in-family,tkoqbf, Female,20, United-States, <=50K
+57, Self-emp-not-inc, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,50, United-States, >50K
+42, Private, Assoc-voc, Married-civ-spouse, Transport-moving, Husband, White, Male,30, United-States, >50K
+24, Private, Bachelors, Never-married, Sales, Not-in-family,thlink, Female,40, United-States, <=50K
+39, Private, 10th, Divorced, Transport-moving, Not-in-family, White, Male,40, United-States, <=50K
+32, Private, Assoc-voc, Married-civ-spouse, Craft-repair, Unmarried, White, Male,50, United-States, <=50K
+36, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,50, United-States, <=50K
+65, Private, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,20, United-States, <=50K
+50, Private, 1st-4th, Married-civ-spouse, Tech-support, Husband, White, Male,38, United-States, >50K
+26, Private, Some-college, Never-married, Handlers-cleaners, Own-child, White, Male,40, United-States, <=50K
+34, Private, 11th, Married-civ-spouse, Tech-support, Husband, White, Male,40, Columbia, >50K
+37, Private, 9th, Married-civ-spouse, Handlers-cleaners, Husband, White,xezoa,50, Mexico, <=50K
+41, ?, 5th-6th, Married-civ-spouse, ?, Husband, White, Male,40, Mexico, <=50K
+32, Local-gov, Preschool, Married-civ-spouse, Craft-repair, Husband, White, Male,60, United-States, >50K
+43, Private, 7th-8th, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+48, Private, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,40, Mexico, >50K
+32, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+48, Private, Some-college, Separated, Tech-support, Unmarried, Black, Female,40, United-States, <=50K
+45, Private, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, >50K
+20, Private, 12th, Never-married, Other-service, Own-child, White, Female,35, United-States, >50K
+47, Federal-gov, Some-college, Married-civ-spouse, Sales, Husband, White, Male,80, United-States, >50K
+26, Private, Some-college, Married-civ-spouse, Transport-moving, Husband,euknbl, Male,40, United-States, <=50K
+54, Private, Masters, Widowed, Adm-clerical, Unmarried, White, Female,12, Canada, <=50K
+62, Private, Some-college, Married-civ-spouse, Sales, Husband, White, Male,40, United-States, <=50K
+43, Private, HS-grad, Married-civ-spouse, Farming-fishing, Wife, Black, Female,21, Trinadad&Tobago, <=50K
+22, ?, Some-college, Never-married, ?, Own-child, White,ryqmloc,40, United-States, >50K
+30, Self-emp-inc, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,40, United-States, >50K
+37, Private, Some-college, Divorced, Craft-repair, Not-in-family, White, Male,43, United-States, <=50K
+40, Private, Some-college, Never-married, Adm-clerical, Not-in-family, White, Female,40, United-States, <=50K
+52, Federal-gov, Bachelors, Married-civ-spouse, Prof-specialty, Husband, White, Male,40, United-States, >50K
+57, Self-emp-not-inc, Prof-school, Married-civ-spouse, Sales, Wife, White, Female,35, United-States, >50K
+46, Private, HS-grad, Married-spouse-absent, Machine-op-inspct, Not-in-family, White, Female,40, Columbia, <=50K
+27,oanoqzwykp, Bachelors, Never-married, Prof-specialty, Not-in-family, White, Female,40, United-States, <=50K
+26, Self-emp-inc, Bachelors, Never-married, Exec-managerial, Not-in-family, White, Male,50, United-States, <=50K
+44, Private, Some-college, Married-civ-spouse, Sales, Husband, White, Male,60, Cambodia, >50K
+37, Self-emp-not-inc, Prof-school, Married-civ-spouse, Prof-specialty, Husband, White, Male,50, United-States, >50K
+50, Private, 7th-8th, Married-civ-spouse, Craft-repair, Husband, Asian-Pac-Islander, Male,40, Ecuador, <=50K
+30, Private, HS-grad, Never-married, Craft-repair, Not-in-family, Black, Female,45, United-States, <=50K
+34, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,55, United-States, <=50K
+37, Private, Bachelors, Never-married, Other-service, Not-in-family,qgznwl, Female,45, United-States, <=50K
+37, Private, HS-grad, Married-civ-spouse, Other-service, Wife, Asian-Pac-Islander, Female,60, Philippines, <=50K
+36, Self-emp-inc, Some-college, Married-civ-spouse, Exec-managerial, Husband, White, Male,50, United-States, >50K
+44, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,45, United-States, <=50K
+67, Local-gov, Doctorate, Never-married, Prof-specialty, Not-in-family, White, Female,45, United-States, >50K
+46, Private, Bachelors, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States, >50K
+49, Private, HS-grad, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, <=50K
+31, Private, 12th, Married-civ-spouse, Handlers-cleaners,vjajsobd, White, Female,40, United-States, <=50K
+23, State-gov, Assoc-voc, Never-married, Tech-support, Not-in-family, White, Male,40, United-States, <=50K
+42, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband,bgzpcu, Male,45, United-States, >50K
+32, State-gov, Bachelors, Married-civ-spouse, Prof-specialty, Other-relative, White, Male,40, United-States, <=50K
+31, Private, Some-college, Divorced, Craft-repair,zylxexqisk, White,xnepl,40, Japan, <=50K
+49, Self-emp-not-inc, HS-grad,lnznxqknbzqodfzozgh, Craft-repair, Husband, White, Male,36, Taiwan, <=50K
+59, Private, Prof-school, Separated, Craft-repair, Husband, White, Male,40, United-States, >50K
+47, Private, HS-grad, Married-civ-spouse, ?, Wife, White, Female,40, United-States, >50K
+32, Local-gov, HS-grad,uwwaskewxullybjgpdf, Transport-moving, Husband, White, Female,36, United-States, <=50K
+67, Private, HS-grad, Separated, Machine-op-inspct, Other-relative, White, Female,40, United-States, <=50K
+42, Private, Assoc-acdm, Married-civ-spouse, ?, Husband, White, Male,40, United-States, >50K
+37, Private, HS-grad, Married-civ-spouse, Farming-fishing, Husband, White, Male,15, United-States, <=50K
+37, Private, Bachelors, Never-married, Sales, Not-in-family, Black, Female,40, United-States, <=50K
+37, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,45, United-States, <=50K
+30, Private,xkayffmszgvpr, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,30, United-States, <=50K
+41, Self-emp-not-inc, Doctorate, Married-civ-spouse, Prof-specialty, Husband, White, Male,55, United-States, >50K
+39, Private, 5th-6th, Separated, Sales, Unmarried, Black, Female,30, Puerto-Rico, <=50K
+41, Private, Some-college, Married-civ-spouse, Sales, Husband,xnskur, Male,35, United-States, >50K
+42, Private, Assoc-voc, Married-civ-spouse, Prof-specialty, Husband, Black, Male,40, United-States, >50K
+58, Federal-gov, Some-college, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+49, Local-gov, Masters, Married-civ-spouse, Prof-specialty, Husband, White, Male,40, United-States, >50K
+68, Private, 10th, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, <=50K
+24, ?, HS-grad, Married-civ-spouse, ?, Wife, White, Female,40, Mexico, <=50K
+53, Private, Some-college, Never-married, Exec-managerial, Not-in-family, Black, Female,40, United-States, <=50K
+36, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, Amer-Indian-Eskimo, Male,40, United-States, <=50K
+37, Private, Bachelors, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, <=50K
+56, Private, HS-grad, Married-civ-spouse, Prof-specialty, Husband, White, Male,40, United-States, <=50K
+uv, Federal-gov, HS-grad, Married-civ-spouse, Adm-clerical, Wife, White, Female,40, United-States, >50K
+30, ?, 5th-6th, Married-civ-spouse, ?, Husband, Other, Male,40, Mexico, >50K
+34, Private, 12th, Never-married, Other-service, Own-child, White,cftgt,35, United-States, <=50K
+37, Local-gov, HS-grad, Never-married, Craft-repair, Not-in-family, White, Male,40,qngagsfcyoisbl, <=50K
+32, Private, Bachelors, Never-married, Sales, Not-in-family, White, Male,40, United-States, <=50K
+44, Private, Some-college, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+40, Private, Some-college, Separated, Other-service, Unmarried, White, Female,8, United-States, <=50K
+56, Private, Masters, Married-civ-spouse, Exec-managerial, Husband, Other, Male,40, United-States, <=50K
+71, Private, Bachelors, Divorced, Tech-support, Own-child, White, Female,16, United-States, <=50K
+bt, Private, Assoc-voc, Never-married, Sales, Own-child, White, Female,35, United-States, <=50K
+31, Private, 11th, Married-spouse-absent, Sales, Own-child, Asian-Pac-Islander, Female,40, India, <=50K
+25, Private, Some-college, Never-married, Adm-clerical, Own-child, White, Female,40, United-States, <=50K
+44, Self-emp-inc, Some-college, Married-civ-spouse, Craft-repair, Husband, Asian-Pac-Islander, Male,58, United-States, >50K
+49, Private, Some-college, Married-civ-spouse, Prof-specialty, Husband, White, Male,40, United-States, >50K
+59, Private, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States, >50K
+49, Private, Some-college, Never-married, Other-service, Wife, Asian-Pac-Islander, Female,40, United-States, <=50K
+50, Private, HS-grad, Widowed, Adm-clerical, Own-child, White, Female,54, United-States, <=50K
+31, Private, 1st-4th, Married-civ-spouse, Handlers-cleaners, Husband, White,chhyl,40, Mexico, <=50K
+33, Private, Some-college, Divorced, Exec-managerial, Unmarried, White, Female,40, United-States, <=50K
+31, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+25, Private, 11th, Never-married, Craft-repair, Wife, White, Male,40, United-States, <=50K
+63, Self-emp-not-inc, 7th-8th, Married-civ-spouse, Farming-fishing, Wife, White, Female,60, United-States, >50K
+46, Private, Preschool, Never-married, Exec-managerial, Own-child, White, Female,40, United-States, <=50K
+90, Local-gov, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,40, United-States, <=50K
+36, Private, Doctorate, Married-civ-spouse, Other-service, Husband, White, Male,40, United-States, >50K
+27, Private, Some-college, Never-married, Adm-clerical, Not-in-family, White, Female,56, United-States, <=50K
+18, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,25, United-States, <=50K
+46, Private, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,40, United-States, >50K
+43, Private, Assoc-voc, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+fb, ?, 9th, Divorced,lftncdljnjnia, Husband, White, Female,40, United-States, <=50K
+38, Self-emp-not-inc, Some-college, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+17, ?, 10th, Never-married, Tech-support,todtkcxoylzrqaa, White, Male,6, United-States, <=50K
+55, Private, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,60, United-States,wyiail
+26, Private, Doctorate, Never-married, Adm-clerical, Own-child, Black,kntnzdf,39, United-States, <=50K
+44, State-gov, Some-college, Divorced, Adm-clerical, Not-in-family, Black, Female,40, United-States, <=50K
+62, Private, HS-grad, Divorced, Machine-op-inspct, Not-in-family, White, Female,uc, United-States, <=50K
+28, Private, Bachelors, Never-married, Tech-support, Not-in-family, Black, Male,30, Jamaica, <=50K
+26, Federal-gov, Bachelors, Never-married, Tech-support, Not-in-family, Other, Male,60, United-States, <=50K
+25, State-gov, Some-college, Married-spouse-absent, Transport-moving, Husband, White, Male,35, United-States, <=50K
+44, Private, Prof-school, Divorced, Prof-specialty, Not-in-family, White, Female,99, United-States, <=50K
+39,wzbakblooh, Doctorate, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,38, United-States, >50K
+54, Private, HS-grad,qwiainsb, Exec-managerial, Wife, White, Female,45, United-States, <=50K
+36, Private, 11th, Married-civ-spouse, Transport-moving, Own-child, White, Male,47, United-States, <=50K
+28, Self-emp-inc, Some-college, Married-civ-spouse, Other-service, Husband, White, Male,35, United-States, >50K
+23, Private, HS-grad, Widowed, Sales, Own-child, White, Male,40, United-States, <=50K
+29, ?, Masters, Married-civ-spouse, Exec-managerial, Husband, Asian-Pac-Islander, Male,40, Japan, <=50K
+39, Without-pay, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,60, United-States, >50K
+52, Private, Assoc-voc, Married-civ-spouse, Craft-repair,mzzlayyn, White, Male,40, United-States, <=50K
+39, ?, Bachelors, Never-married, Exec-managerial, Not-in-family, White, Female,40, Poland, <=50K
+34, Private, HS-grad, Never-married, Machine-op-inspct, Not-in-family, Black, Male,40, United-States, <=50K
+21, ?, 5th-6th, Never-married, ?, Own-child, Black, Female,30, United-States, <=50K
+18, Private, 11th, Never-married, Adm-clerical, Own-child, Black, Male,20, United-States, <=50K
+49, Local-gov, Doctorate, Married-civ-spouse, Prof-specialty, Husband, White, Male,45, United-States, >50K
+38, Private, 11th, Divorced, Machine-op-inspct, Unmarried, Black, Female,52, United-States, <=50K
+36, State-gov, Bachelors, Married-civ-spouse, Adm-clerical, Wife, Other, Female,20, United-States, >50K
+35, Private, Bachelors, Married-civ-spouse, Sales, Husband, White, Male,50, United-States, >50K
+38, Private, Some-college, Married-spouse-absent, Craft-repair,kopyfcuklxvlja, White, Male,40, United-States, <=50K
+58, Private, Doctorate, Married-civ-spouse, Prof-specialty, Husband, White, Male,50, United-States, >50K
+37, Local-gov, Bachelors, Divorced, Prof-specialty, Unmarried, White, Female,55, Poland, <=50K
+42, Private, HS-grad, Divorced, Craft-repair, Not-in-family, White, Male,75, United-States, >50K
+33, Private, Bachelors, Never-married, Tech-support, Not-in-family, White, Female,45, United-States, >50K
+21, Private, Assoc-voc, Never-married, Craft-repair, Unmarried, White, Male,40, United-States, <=50K
+32, Private, 10th, Married-civ-spouse, Exec-managerial, Wife, White, Female,35, United-States, <=50K
+37, Private, HS-grad, Divorced, Other-service, Unmarried, Black, Female,40, ?, <=50K
+54, Local-gov, Some-college, Married-civ-spouse, Transport-moving, Husband, Black, Male,12, Greece, >50K
+42, Private, Some-college, Never-married, Transport-moving, Own-child, Black, Male,40, United-States, <=50K
+19, Private, HS-grad, Married-spouse-absent, Sales, Own-child, White, Female,35, United-States, <=50K
+37, Private, Some-college, Widowed, Machine-op-inspct, Unmarried, Black, Female,48, United-States, <=50K
+54, Private, 9th, Married-civ-spouse, Sales, Husband, White, Female,68, United-States, >50K
+26, Local-gov, Bachelors, Never-married, Prof-specialty, Own-child, Black, Female,40, United-States, <=50K
+47, Private, Bachelors, Widowed, Priv-house-serv, Unmarried, White, Female,35, United-States, >50K
+30, Private, Masters, Never-married, Prof-specialty, Not-in-family, White, Male,45, United-States, >50K
+50, Local-gov, Bachelors, Married-civ-spouse, Prof-specialty, Wife, White, Female,40, United-States, >50K
+25, Self-emp-inc, Bachelors, Never-married, Sales, Not-in-family, White, Male,45, United-States, >50K
+42, Federal-gov, Bachelors, Married-civ-spouse, Exec-managerial, Husband, White, Male,52, United-States, >50K
+32, Private, Some-college, Separated, ?, Unmarried, Black, Female,6, United-States, <=50K
+33, Private, 12th, Never-married, Craft-repair, Wife, White, Male,40, United-States, <=50K
+56, Private, 7th-8th, Married-civ-spouse, Other-service, Husband, White, Male,40, ?, <=50K
+25, Private, Assoc-voc, Married-civ-spouse, Prof-specialty, Wife, White, Male,40, United-States, >50K
+50, Private, Assoc-acdm, Married-civ-spouse, Adm-clerical, Husband, White, Male,60, Columbia, <=50K
+27, Private, Bachelors, Never-married, Tech-support, Unmarried,pdxqzm, Female,40, United-States, <=50K
+38, Private, Some-college, Married-civ-spouse, Protective-serv, Unmarried, Black, Male,40, United-States, >50K
+63, Self-emp-not-inc, 9th, Separated, ?, Own-child, Black, Male,40, United-States, <=50K
+19, Private, HS-grad, Never-married, Handlers-cleaners, Own-child, White, Male,20, United-States, <=50K
+32, Private, Some-college, Married-civ-spouse, Sales, Unmarried, Asian-Pac-Islander, Female,40, Greece, <=50K
+34, Private, Bachelors, Married-civ-spouse, Prof-specialty, Husband, White, Male,42, United-States, >50K
+50, State-gov, HS-grad, Married-civ-spouse, Transport-moving, Husband, White, Male,40, United-States,mazbmq
+49, Self-emp-not-inc, Bachelors, Widowed, Sales, Unmarried, White, Female,40, United-States, <=50K
+45, Private, Assoc-voc,ufsuluncejsxahcljwf, Exec-managerial, Husband, White, Male,50, United-States, >50K
+52, Federal-gov, Assoc-voc, Married-civ-spouse, Farming-fishing, Not-in-family, White, Female,40, United-States, <=50K
+55, Private, HS-grad, Married-civ-spouse, Machine-op-inspct, Husband, White, Male,40, United-States, >50K
+37, Private, HS-grad, Widowed, Adm-clerical, Unmarried, White, Female,63, United-States, <=50K
+65, Private, HS-grad, Married-civ-spouse, Other-service, Husband, White, Male,24, United-States, <=50K
+77, Local-gov, HS-grad, Married-civ-spouse, Exec-managerial, Husband, White, Female,6, United-States, <=50K
+21,hoxgncmn, Bachelors, Never-married, Other-service,vvudmkfmhkpjgoc, White, Female,20, United-States, <=50K
+51, Private, HS-grad, Married-civ-spouse, Adm-clerical, Wife, White, Female,40, United-States, >50K
+42, Private, HS-grad, Married-civ-spouse, Craft-repair, Husband, White, Male,40, United-States, <=50K
+71, State-gov, Some-college, Married-civ-spouse, Adm-clerical, Husband, White, Male,40, United-States, <=50K
