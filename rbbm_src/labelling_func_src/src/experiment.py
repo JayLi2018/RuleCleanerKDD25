@@ -13,7 +13,7 @@ from snorkel.labeling.model import MajorityLabelVoter, LabelModel
 import os
 import logging
 import argparse
-import rbbm_src.logconfig
+from rbbm_src import logconfig
 from rbbm_src.labelling_func_src.src.bottom_up import sentence_filter, delete_words
 from itertools import chain
 from rbbm_src.labelling_func_src.src.lfs import (
@@ -57,8 +57,8 @@ def lf_main(lf_input, LFs=lattice_lfs):
 	sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
 	logger.critical(sentences_df.head())
 	# sentences_df = pd.concat([pd.read_csv(f) for f in all_filenames ])
-	sentences_df = sentences_df.rename(columns={"content": "text"})
-	# sentences_df = sentences_df.rename(columns={"CLASS": "label", "CONTENT": "text"})
+	# sentences_df = sentences_df.rename(columns={"content": "text"})
+	sentences_df = sentences_df.rename(columns={"class": "label", "content": "text"})
 	sentences_df['text'] = sentences_df['text'].apply(lambda s: clean_text(s))
 
 	lexp = LabelExpaliner()
@@ -93,7 +93,7 @@ def lf_main(lf_input, LFs=lattice_lfs):
 	if(lf_input.training_model_type=='majority'):
 		model = MajorityLabelVoter()
 	else:
-		model = LabelModel(cardinality=2, verbose=True)
+		model = LabelModel(cardinality=2, verbose=True, device='cpu')
 		model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
 		# snorkel needs to get an estimator using fit function first
 		# training model with all labelling functions
@@ -134,7 +134,7 @@ def lf_main(lf_input, LFs=lattice_lfs):
 		""")
 
 	if(lf_input.user_provide):
-		for index, row in wrong_preds.iterrows():
+		for index, row in wrong_preds.head(10).iterrows():
 			logger.critical("--------------------------------------------------------------------------------------------")  
 			logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
 		choices = input('please input sentence # of sentence, multiple sentences should be seperated using space')

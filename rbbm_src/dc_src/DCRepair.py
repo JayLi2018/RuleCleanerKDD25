@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import *
 from collections import deque
 from itertools import product
+import copy
 import time
 
 
@@ -83,28 +84,33 @@ def parse_dc_to_tree_rule(dc_text):
     #  2.label node: a left child of the predicate node from 1 that says CLEAN
     #  3.set right node of node from 1 to the next predicate. if no predicate is left
     #    then set the right node to DIRTY
+    cur_number=0
     predicates = dc_text.split('&')
     root_predicate = predicates[2]
-    sign=get_operator(predicates[2])
-    root_node= PredicateNode(pred=DCAttrPredicate(pred=root_predicate, operator=sign))
-    root_left_child= LabelNode(label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    sign=get_operator(root_predicate)
+    root_node= PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=root_predicate, operator=sign))
+    cur_number+=1
+    root_left_child= LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
     tree_size=2
     root_node.left=root_left_child
     parent=root_node
-    
+    cur_number+=1
     for pred in predicates[3:]:
         sign=get_operator(pred)
         if(not const_detect.search(pred)):
-            cur_node = PredicateNode(pred=DCAttrPredicate(pred=pred, operator=sign))
+            cur_node = PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=pred, operator=sign))
         else:
-            cur_node = PredicateNode(pred=DCConstPredicate(pred=pred, operator=sign))
-
-        cur_node.left=LabelNode(label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+            cur_node = PredicateNode(number=cur_number, pred=DCConstPredicate(pred=pred, operator=sign))
+        cur_number+=1
+        cur_node.left=LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
         parent.right=cur_node
         parent=cur_node
         tree_size+=2
-    parent.right=LabelNode(label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+        cur_number+=1
+
+    parent.right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
     tree_size+=1
+    print(f"tree size: {tree_size}, cur_number={cur_number}")
     return TreeRule(rtype='dc', root=root_node, size=tree_size)
 
 def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=True):
@@ -155,9 +161,12 @@ def gen_repaired_tree_rule(t_interest, desired_label, t_in_violation, target_att
     # Step #2, add a new branch based on the target_attribute and its value in t_interest
     # It is possible the value between t_interest and t_in_violation has the same value in 
     # target_attribute, which wouldnt help
-    new_branch = PredicateNode(pred=DCConstPredicate(f"EQ({role}.{target_attribute},'{t_interest[target_attribute]}')"))
-    new_branch.right=LabelNode(label=desired_label, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
-    new_branch.left=LabelNode(label=cur_label, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    cur_number=treerule.tree_size
+    new_branch = PredicateNode(number=cur_number, pred=DCConstPredicate(f"EQ({role}.{target_attribute},'{t_interest[target_attribute]}')"))
+    cur_number+=1
+    new_branch.left=LabelNode(number=cur_number, label=cur_label, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    cur_number+=1
+    new_branch.right=LabelNode(number=cur_number, label=desired_label, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
     # Holoclean constant assignment example EQ(t1.HospitalOwner,'proprietary')
     if(parent.right is end_node):
         parent.right=new_branch
@@ -490,22 +499,26 @@ def calculate_gini(node, the_fix):
     
     return gini_impurity, reverse_condition
 
-def redistribute_after_fix(node, the_fix, reverse=False):
+def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
     # there are some possible "side effects" after repair for a pair of violations
     # which is solving one pair can simutaneously fix some other pairs so we need 
     # to redistribute the pairs in newly added nodes if possible
     sign=None
+    cur_number=treerule.tree_size
     if(len(the_fix)==4):
         _, _, _, sign = the_fix
     elif(len(the_fix)==5):
         _, _, _, _, sign = the_fix
     new_pred, modified_fix = convert_tuple_fix_to_pred(the_fix, reverse)
     if(len(the_fix)==4):
-        new_predicate_node = PredicateNode(pred=DCConstPredicate(pred=new_pred, operator=sign))
+        new_predicate_node = PredicateNode(number=cur_number, pred=DCConstPredicate(pred=new_pred, operator=sign))
     elif(len(the_fix)==5):
-        new_predicate_node = PredicateNode(pred=DCAttrPredicate(pred=new_pred, operator=sign))    
-    new_predicate_node.left= LabelNode(label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
-    new_predicate_node.right=LabelNode(label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+        new_predicate_node = PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=new_pred, operator=sign))
+    
+    cur_number+=1
+    new_predicate_node.left= LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    cur_number+=1
+    new_predicate_node.right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
     new_predicate_node.left.parent= new_predicate_node
     new_predicate_node.right.parent= new_predicate_node
 
@@ -556,18 +569,27 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                  node.pairs[DIRTY][0], domain_value_dict, node.used_predicates)
                 # print("the fix")
                 # print(the_fix)
-                new_parent_node=redistribute_after_fix(node, the_fix)
+                new_parent_node=redistribute_after_fix(treerule, node, the_fix)
             # handle the left and right child after redistribution
             if(new_parent_node):
+                still_inpure=False
                 for k in [CLEAN,DIRTY]:
+                    if(still_inpure):
+                        break
                     for p in new_parent_node.left.pairs[k]:
                         if(p['expected_label']!=new_parent_node.left.label):
                             queue.append(new_parent_node.left)
+                            still_inpure=True
                             break
-                for p in new_parent_node.right.pairs[k]:
-                        if(p['expected_label']!=new_parent_node.right.label):
-                            queue.append(new_parent_node.left)
-                            break
+                still_inpure=False          
+                for k in [CLEAN,DIRTY]:
+                    if(still_inpure):
+                        break
+                    for p in new_parent_node.right.pairs[k]:
+                            if(p['expected_label']!=new_parent_node.right.label):
+                                queue.append(new_parent_node.right)
+                                still_inpure=True
+                                break
                 treerule.setsize(treerule.size+2)
                 # print(f"after fix, treerule size is {treerule.size}")
 
@@ -615,25 +637,107 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                     new_parent_node=redistribute_after_fix(node, best_fix, reverse_condition)
             # handle the left and right child after redistribution
             if(new_parent_node):
+                still_inpure=False
                 for k in [CLEAN,DIRTY]:
+                    if(still_inpure):
+                        break
                     for p in new_parent_node.left.pairs[k]:
                         if(p['expected_label']!=new_parent_node.left.label):
                             queue.append(new_parent_node.left)
+                            still_inpure=True
                             break
-                for p in new_parent_node.right.pairs[k]:
-                        if(p['expected_label']!=new_parent_node.right.label):
-                            queue.append(new_parent_node.left)
-                            break
+                still_inpure=False          
+                for k in [CLEAN,DIRTY]:
+                    if(still_inpure):
+                        break
+                    for p in new_parent_node.right.pairs[k]:
+                            if(p['expected_label']!=new_parent_node.right.label):
+                                queue.append(new_parent_node.right)
+                                still_inpure=True
+                                break
                 treerule.setsize(treerule.size+2)
                 # print(f"after fix, treerule size is {treerule.size}")
 
         return treerule
 
     elif(repair_config.strategy=='optimal'):
-        pass 
+        # 1. create a queue with tree nodes
+        # 2. need to deepcopy the tree in order to enumerate all possible trees
+
+        queue = deque([])
+        for ln in leaf_nodes:
+            queue.append((treerule,ln))
+        # print(queue)
+        list_of_repaired_trees = []
+
+        while(queue):
+            prev_tree, node = queue.popleft()
+            new_tree = copy.deepcopy(prev_tree)
+
+            if(node.pairs[CLEAN] and node.pairs[DIRTY]):
+                # need to examine all possible pair combinations
+                considered_fixes = set()
+                for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
+                    the_fixes = find_available_repair(node.pairs[CLEAN][0],
+                     node.pairs[DIRTY][0], domain_value_dict, node.used_predicates,
+                     all_possible=True)
+                    for f in the_fixes:
+                        new_parent_node=None
+                        if(f in considered_fixes):
+                            continue
+                        considered_fixes.add(f)
+                        new_tree = copy.deepcopy(prev_tree)
+                        node = locate_node(new_tree, node.number)
+                        new_parent_node=redistribute_after_fix(node, f)
+                        # handle the left and right child after redistribution
+                        if(new_parent_node):
+                            new_tree.setsize(treerule.size+2)
+                            still_inpure=False
+                            for k in [CLEAN,DIRTY]:
+                                if(still_inpure):
+                                    break
+                                for p in new_parent_node.left.pairs[k]:
+                                    if(p['expected_label']!=new_parent_node.left.label):
+                                        new_tree = copy.deepcopy(new_tree)
+                                        list_of_repaired_trees.append(new_tree)
+                                        new_node = locate_node(new_tree, new_parent_node.number)
+                                        queue.append((new_tree, new_node.left))
+                                        still_inpure=True
+                                        break
+                            still_inpure=False          
+                            for k in [CLEAN,DIRTY]:
+                                if(still_inpure):
+                                    break
+                                for p in new_parent_node.right.pairs[k]:
+                                    if(p['expected_label']!=new_parent_node.right.label):
+                                        new_tree = copy.deepcopy(new_tree)
+                                        list_of_repaired_trees.append(new_tree)
+                                        new_node = locate_node(new_tree, new_parent_node.number)
+                                        new_parent_node=redistribute_after_fix(node, f)
+                                        queue.append((new_tree, new_node.right))
+                                        still_inpure=True
+                                        break
+
+        list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
+        return list_of_repaired_trees[0] 
+
+
     else:
         print("not a valid repair option")
         exit()
+
+def locate_node(tree, number):
+    queue = deque([tree.root])
+    while(queue):
+        cur_node = queue.popleft()
+        if(cur_node.number==number):
+            return cur_node
+        if(cur_node.left):
+            queue.append(cur_node.left)
+        if(cur_node.right):
+            queue.append(cur_node.right)
+    print('cant find the node!')
+    exit()
 
 def populate_violations(tree_rule, conn, rule_text, complaint):
     # given a tree rule and a complaint, populate the complaint and violation tuple pairs
@@ -704,7 +808,7 @@ if __name__ == '__main__':
         't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
         't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
         ]
-        rc = RepairConfig(strategy='naive', complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        rc = RepairConfig(strategy='optimal', complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
         start = time.time()
         bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn)
         end = time.time()

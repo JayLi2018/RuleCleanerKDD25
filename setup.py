@@ -27,9 +27,9 @@ setup(
                     "scipy==1.9.1",
                     "setuptools==41.2.0",
                     "SQLAlchemy==1.4.41",
-                    "tensorflow==2.10.0",
+                    "tensorflow",
                     "textblob==0.17.1",
-                    "torch==1.12.1",
+                    "torch",
                     "tqdm==4.64.1",
                     "transformers==4.24.0"],
     entry_points={

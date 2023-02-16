@@ -17,7 +17,7 @@ from typing import *
 from classes import lfunc, SPAM, HAM, ABSTAIN
 import pandas as pd
 import logging
-import logconfig
+# import logconfig
 import argparse
 
 
@@ -161,7 +161,7 @@ if __name__ == '__main__':
 	keyword_shakira,
 	keyword_my,
 	keyword_subscribe,
-	keyword_link,
+	regex_link,
 	keyword_song,
 	# has_person_nlp,
 	# textblob_polarity,

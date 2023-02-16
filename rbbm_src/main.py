@@ -51,7 +51,7 @@ def main():
 	parser.add_argument('-d', '--dbname', metavar= '\b', type=str, default='holo',
 	help='dbname used during application (default: %(default)s)')
 
-	parser.add_argument('-u', '--dbuser', metavar= '\b', type=str, default='holocleanuser',
+	parser.add_argument('-u', '--dbuser', metavar= '\b', type=str, default='postgres',
 	help='dbuser used during application (default: %(default)s)')
 
 	parser.add_argument('-P', '--dbpaswd', metavar= '\b', type=str, default='abcd1234',

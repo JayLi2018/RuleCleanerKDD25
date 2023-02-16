@@ -21,6 +21,7 @@ class Node:
 	"""
 	node structure used in the tree rule
 	"""
+	number: int=0
 	left: 'Node'=None
 	right: 'Node'=None
 	parent: 'Node'=None

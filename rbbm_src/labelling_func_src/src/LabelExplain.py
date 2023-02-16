@@ -378,7 +378,6 @@ class LabelExpaliner:
 		train_inputs_filtered = applier.apply(df=sentences_df, progress_bar=False)
 		sentences_df['pred'] = pd.Series(model.predict(L=train_inputs_filtered))
 		norm_values = sentences_df.groupby(['pred'])['pred'].count().to_dict()
-		prob_expected = norm_values[expected_label]/len(sentences_df)
 		# adjust the expectation difference here by considering the 
 		# overall distribution difference between different classes
 		norm_sum = sum(v for (k,v) in norm_values.items())
@@ -415,11 +414,6 @@ class LabelExpaliner:
 					# corpus_results = model.predict(L=corpus_inputs)
 					# TODO: memorize labels by f so we dont repeat!
 					model_pred_dict = sentences_match_cur_words.groupby(['pred']).size().to_dict()
-					if(len(pw)==1 and pw[0]=='hot'):
-						logger.critical('hot!!!!!!!!!!')
-						logger.critical(model_funcs)
-						sentences_match_cur_words['scores'] = sentences_match_cur_words.apply(lambda x: subj(x), axis=1)
-						logger.critical(sentences_match_cur_words[['text','pred','label', 'scores']])
 					logger.critical(model_pred_dict)
 					logger.critical(expected_label)
 					logger.critical(len_match)
@@ -441,18 +435,29 @@ class LabelExpaliner:
 
 				# hypothesis testing:
 				comb_term = len(list(combinations(range(1,len(sentences_match_cur_words)+1),2)))
-				p_expected = norm_values[expected_label]/norm_sum
-				p_other = 1-p_expected
-				pvalue = comb_term * p_expected ** model_pred_dict[expected_label] * p_other**(len(sentences_match_cur_words)-model_pred_dict[expected_label])
+				logger.critical("model_pred_dict:")
+				logger.critical(model_pred_dict)
+				if(expected_label in norm_values and expected_label in model_pred_dict):
+					p_expected = norm_values[expected_label]/norm_sum
+					pvalue = comb_term * p_expected ** model_pred_dict[expected_label] * (1-p_expected)**(len(sentences_match_cur_words)-model_pred_dict[expected_label])
+				else:
+					p_expected = 0
+					pvalue = 0
 				if(pvalue<htest_level):
 					significant=True 
 				else:
 					significant=False
 
 				if(second_norm!=0):
-					expect_diff = first_term_value * norm_sum/norm_values[expected_label] - second_term_value * norm_sum/second_norm
+					if(expected_label in norm_values):
+						expect_diff = first_term_value * norm_sum/norm_values[expected_label] - second_term_value * norm_sum/second_norm
+					else:
+						expect_diff = -(second_term_value * norm_sum/second_norm)
 				else:
-					expect_diff = first_term_value * norm_sum/norm_values[expected_label]
+					if(expected_label in norm_values):
+						expect_diff = first_term_value * norm_sum/norm_values[expected_label]
+					else:
+						expect_diff =0
 				words_res_dict = {'words': cur_words,
 				'expect_diff': expect_diff,
 				# 'expect_diff_after_deletion': first_term_value_with_wordset_deleted * norm_sum/norm_values[expected_label]
@@ -565,7 +570,7 @@ class LabelExpaliner:
 		# 	global_ham_cnt = global_cnts[HAM]
 		# else:
 		# 	global_ham_cnt = 1
-
+		words_influences = None
 		if(lf_input.eval_mode=='new_model'):
 			# _, model = self.retrain(topk_funcs, func_vectors, model_type, sdf, filtered_sentences_df)
 			# _, model = self.retrain(lf_input,lf_internal_args)
@@ -604,6 +609,10 @@ class LabelExpaliner:
 			# 	greedy=greedy, 
 			# 	cardinality_thresh=cardinality_thresh
 			# 	)
+		logger.critical("function influences:")
+		logger.critical(responsibilities)
+		logger.critical("words_influences")
+		logger.critical(words_influences)
 
 		return responsibilities, words_influences
 
