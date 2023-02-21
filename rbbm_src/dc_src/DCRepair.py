@@ -13,7 +13,7 @@ from collections import deque
 from itertools import product
 import copy
 import time
-
+from rbbm_src.holoclean.examples.holoclean_repair import main
 
 dc_tuple_violation_template_targeted_t1=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc;")
 dc_tuple_violation_template_targeted_t2=Template("SELECT DISTINCT t1.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc;")
@@ -93,6 +93,7 @@ def parse_dc_to_tree_rule(dc_text):
     root_left_child= LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
     tree_size=2
     root_node.left=root_left_child
+    root_left_child.parent=root_node
     parent=root_node
     cur_number+=1
     for pred in predicates[3:]:
@@ -102,15 +103,22 @@ def parse_dc_to_tree_rule(dc_text):
         else:
             cur_node = PredicateNode(number=cur_number, pred=DCConstPredicate(pred=pred, operator=sign))
         cur_number+=1
-        cur_node.left=LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+        
+        left_child=LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+        cur_node.left=left_child
+        left_child.parent=cur_node
+
         parent.right=cur_node
+        cur_node.parent=parent
         parent=cur_node
         tree_size+=2
         cur_number+=1
 
-    parent.right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    last_right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    parent.right=last_right
+    last_right.parent=parent
     tree_size+=1
-    print(f"tree size: {tree_size}, cur_number={cur_number}")
+    # print(f"tree size: {tree_size}, cur_number={cur_number}")
     return TreeRule(rtype='dc', root=root_node, size=tree_size)
 
 def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=True):
@@ -279,15 +287,23 @@ def fix_rules(repair_config, original_rules, conn):
                     # if node is already in leaf nodes, dont
                     # need to add it again
                     leaf_nodes.append(ln)
-        # for l in leaf_nodes:
-        #     print(l)
-        #     print('\n')
-        # available_attrs=list(set(set(list(t_interest)).difference(set(unusable_attrs))))
-# treerule, repair_config, leaf_nodes, domain_value_dict
-        fixed_treerule = fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict)
-        fix_book_keeping_dict[r]['after_fix_size']=fixed_treerule.size
-        fixed_treerule_text = treerule.serialize()[0]
-        fix_book_keeping_dict[r]['fixed_treerule_text']=fixed_treerule_text
+        # print(leaf_nodes)
+        if(leaf_nodes):
+            # its possible for certain rule we dont have any violations
+            # print("the TreeRule we wanted to fix")
+            # print(treerule)
+            # print("the leaf nodes")
+            # print(leaf_nodes)
+            fixed_treerule = fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict)
+            # print(fixed_treerule)
+            fix_book_keeping_dict[r]['after_fix_size']=fixed_treerule.size
+            fixed_treerule_text = treerule.serialize()
+            fix_book_keeping_dict[r]['fixed_treerule_text']=fixed_treerule_text
+        else:
+            fix_book_keeping_dict[r]['after_fix_size']=treerule.size
+            fixed_treerule_text = treerule.serialize()
+            fix_book_keeping_dict[r]['fixed_treerule_text']=fixed_treerule_text
+
         # print(fixed_treerule)
         # print(fixed_treerule_text)
         # print("fixed result leaf nodes")
@@ -304,6 +320,7 @@ def fix_rules(repair_config, original_rules, conn):
     #         if(accuracy>=repair_config.acc_threshold):
     #             break
     # all_fixed_rules.extend(original_rules[repair_config.monitor.overall_fixed_count:])
+    # print(fix_book_keeping_dict)
     return fix_book_keeping_dict
 
 def print_fix_book_keeping_stats(config, bkeepdict):
@@ -311,14 +328,13 @@ def print_fix_book_keeping_stats(config, bkeepdict):
     # print(bkeepdict)
     for k,v in bkeepdict.items():
         sizes_diff.append(v['after_fix_size']-v['pre_fix_size'])
-
     print('**************************\n')
     print(f"strategy: {config.strategy}, complaint_size={len(config.complaints)}, runtime: {config.runtime}")
     print(sizes_diff)
     print(f"average size increase: {sum(sizes_diff)/len(sizes_diff)}")
     print('**************************\n')
 
-    return sizes_diff
+    return {'strategy':config.strategy, 'complaint_size': len(config.complaints), 'runtime': config.runtime, 'avg_size_increase': {sum(sizes_diff)/len(sizes_diff)}}
 
 def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predicates, all_possible=False):
     """
@@ -359,6 +375,7 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
                     return cand
                 else:
                     res.append(cand)
+                    # print(len(res))
 
         for k in domain_value_dict:
             for v in domain_value_dict[k]:
@@ -371,6 +388,7 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
                         return cand
                     else:
                         res.append(cand)
+                        # print(len(res))
                 if((clean_pair['t2'][k]==v) and (dirty_pair['t2'][k]!=v)):
                     cand = ('t2', k, v, equal_assign_sign)
 
@@ -382,6 +400,7 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
                         return cand
                     else:
                         res.append(cand)
+                        # print(len(res))
         return res
 
 def convert_tuple_fix_to_pred(the_fix, reverse=False):
@@ -460,10 +479,6 @@ def calculate_gini(node, the_fix):
                     else:
                         left_leaf_clean_cnt+=1
 
-                #     new_predicate_node.right.pairs[p['expected_label']].append(p)
-                # else:
-                #     new_predicate_node.left.pairs[p['expected_label']].append(p)
-
     elif(len(the_fix)==5):
         role1, attr1, role2, attr2, sign = the_fix
         for k in [CLEAN, DIRTY]:
@@ -504,7 +519,7 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
     # which is solving one pair can simutaneously fix some other pairs so we need 
     # to redistribute the pairs in newly added nodes if possible
     sign=None
-    cur_number=treerule.tree_size
+    cur_number=tree_rule.size
     if(len(the_fix)==4):
         _, _, _, sign = the_fix
     elif(len(the_fix)==5):
@@ -527,6 +542,8 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
         node.parent.left=new_predicate_node
     else:
         node.parent.right=new_predicate_node
+
+    new_predicate_node.parent = node.parent
 
     if(len(modified_fix)==4):
         role, attr, const, sign = modified_fix
@@ -552,6 +569,43 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 
     return new_predicate_node
 
+def check_tree_purity(tree_rule):
+    # print("checking purity...")
+    # print(tree_rule)
+    queue = deque([tree_rule.root])
+    leaf_nodes = []
+    while(queue):
+        # print(queue)
+        cur_node = queue.popleft()
+        if(isinstance(cur_node,LabelNode)):
+            leaf_nodes.append(cur_node)
+        if(cur_node.left):
+            queue.append(cur_node.left)
+        if(cur_node.right):
+            queue.append(cur_node.right)
+        # print(cur_node.number)
+
+    for n in leaf_nodes:
+        for k in [CLEAN,DIRTY]:
+            for p in n.pairs[k]:
+                if(p['expected_label']!=n.label):
+                    return False
+    return True
+
+def reverse_node_parent_condition(node):
+    if(node.parent.pred.operator=='!='):
+        node.parent.pred.operator='=='
+        node.parent.pred.pred = node.parent.pred.pred.replace('IQ', 'EQ')
+    else:
+        node.parent.pred.operator='!='
+        node.parent.pred.pred = node.parent.pred.pred.replace('EQ', 'IQ')
+
+    old_left, old_right = node.parent.left, node.parent.right
+    old_right.label=CLEAN 
+    old_left.label=DIRTY
+    node.parent.left=old_right
+    node.parent.right=old_left
+
 def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
     if(repair_config.strategy=='naive'):
         # initialize the queue to work with
@@ -561,6 +615,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
         # print(queue)
         while(queue):
             node = queue.popleft()
+            # print(node.pairs)
             new_parent_node=None
             # need to find a pair of violations that get the different label
             # in order to differentiate them
@@ -571,6 +626,15 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                 # print(the_fix)
                 new_parent_node=redistribute_after_fix(treerule, node, the_fix)
             # handle the left and right child after redistribution
+            else:
+                if(check_tree_purity(treerule)):
+                    # print('its pure already!')
+                    return treerule
+                else:
+                    reverse_node_parent_condition(node)
+                    # print('its not pure?')
+                    continue
+
             if(new_parent_node):
                 still_inpure=False
                 for k in [CLEAN,DIRTY]:
@@ -590,9 +654,12 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 queue.append(new_parent_node.right)
                                 still_inpure=True
                                 break
+                # print(queue)
                 treerule.setsize(treerule.size+2)
+                # print("adding new predicate, size+2")
+                # print('\n')
                 # print(f"after fix, treerule size is {treerule.size}")
-
+            # print(f"queue size: {len(queue)}")
         return treerule
 
     elif(repair_config.strategy=='information gain'):
@@ -621,8 +688,8 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                 # need to examine all possible pair combinations
                 considered_fixes = set()
                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
-                    the_fixes = find_available_repair(node.pairs[CLEAN][0],
-                     node.pairs[DIRTY][0], domain_value_dict, node.used_predicates,
+                    the_fixes = find_available_repair(pair[0],
+                     pair[1], domain_value_dict, node.used_predicates,
                      all_possible=True)
                     for f in the_fixes:
                         if(f in considered_fixes):
@@ -634,7 +701,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                             best_fix=f
                             reverse_condition=reverse_cond
                 if(best_fix):
-                    new_parent_node=redistribute_after_fix(node, best_fix, reverse_condition)
+                    new_parent_node=redistribute_after_fix(treerule, node, best_fix, reverse_condition)
             # handle the left and right child after redistribution
             if(new_parent_node):
                 still_inpure=False
@@ -667,20 +734,31 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
         queue = deque([])
         for ln in leaf_nodes:
             queue.append((treerule,ln))
+
+        # print("queue")
         # print(queue)
-        list_of_repaired_trees = []
-
         while(queue):
+            # print(f'len of queue: {len(queue)}')
             prev_tree, node = queue.popleft()
-            new_tree = copy.deepcopy(prev_tree)
-
+            # new_tree = copy.deepcopy(prev_tree)
+            # print("node pairs")
+            # print(node.pairs)
+            # print(f'clean: {len(node.pairs[CLEAN])}')
+            # print(f'dirty: {len(node.pairs[DIRTY])}')
+            # print(node.label)
+            # print(bool(node.pairs[CLEAN] and node.pairs[DIRTY]))
             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
+                # print("we need to fix it!")
                 # need to examine all possible pair combinations
                 considered_fixes = set()
+                # print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
-                    the_fixes = find_available_repair(node.pairs[CLEAN][0],
-                     node.pairs[DIRTY][0], domain_value_dict, node.used_predicates,
+                    the_fixes = find_available_repair(pair[0],
+                     pair[1], domain_value_dict, node.used_predicates,
                      all_possible=True)
+                    # print("the_fixes")
+                    # print(the_fixes)
+                    # print(f"fixes: len = {len(the_fixes)}")
                     for f in the_fixes:
                         new_parent_node=None
                         if(f in considered_fixes):
@@ -688,10 +766,21 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                         considered_fixes.add(f)
                         new_tree = copy.deepcopy(prev_tree)
                         node = locate_node(new_tree, node.number)
-                        new_parent_node=redistribute_after_fix(node, f)
+                        new_parent_node = redistribute_after_fix(new_tree, node, f)
+                        new_tree.setsize(new_tree.size+2)
+                        # print("new_parent_node")
+                        # print(new_parent_node)
+                        # print("new_tree")
+                        # print(new_tree)
+                        if(check_tree_purity(new_tree)):
+                            # print("its pure we are done!")
+                            # print("new_tree")
+                            # print(new_tree)
+                            return new_tree
                         # handle the left and right child after redistribution
                         if(new_parent_node):
-                            new_tree.setsize(treerule.size+2)
+                            # print(new_parent_node)
+                            # new_tree.setsize(new_tree.size+2)
                             still_inpure=False
                             for k in [CLEAN,DIRTY]:
                                 if(still_inpure):
@@ -699,9 +788,9 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 for p in new_parent_node.left.pairs[k]:
                                     if(p['expected_label']!=new_parent_node.left.label):
                                         new_tree = copy.deepcopy(new_tree)
-                                        list_of_repaired_trees.append(new_tree)
-                                        new_node = locate_node(new_tree, new_parent_node.number)
-                                        queue.append((new_tree, new_node.left))
+                                        parent_node = locate_node(new_tree, new_parent_node.number)
+                                        # new_parent_node=redistribute_after_fix(new_tree, new_node, f)
+                                        queue.append((new_tree, parent_node.left))
                                         still_inpure=True
                                         break
                             still_inpure=False          
@@ -711,15 +800,24 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 for p in new_parent_node.right.pairs[k]:
                                     if(p['expected_label']!=new_parent_node.right.label):
                                         new_tree = copy.deepcopy(new_tree)
-                                        list_of_repaired_trees.append(new_tree)
-                                        new_node = locate_node(new_tree, new_parent_node.number)
-                                        new_parent_node=redistribute_after_fix(node, f)
-                                        queue.append((new_tree, new_node.right))
+                                        parent_node = locate_node(new_tree, new_parent_node.number)
+                                        # new_parent_node=redistribute_after_fix(new_tree, new_node, f)
+                                        queue.append((new_tree, parent_node.right))
                                         still_inpure=True
                                         break
-
-        list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
-        return list_of_repaired_trees[0] 
+            else:
+                if(check_tree_purity(prev_tree)):
+                    print('its pure already!')
+                    return prev_tree
+                else:
+                    # print("its not pure reverse parent condition")
+                    reverse_node_parent_condition(node)
+                    if(check_tree_purity(prev_tree)):
+                        return prev_tree
+                    continue
+        return None 
+        # list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
+        # return list_of_repaired_trees[0] 
 
 
     else:
@@ -744,7 +842,7 @@ def populate_violations(tree_rule, conn, rule_text, complaint):
     # to the leaf nodes
     tuples_inviolation=find_tuples_in_violation(complaint['tuple'], conn, rule_text, 'adult500', targeted=True)
     # print(f"tuples_inviolation with {complaint} on rule {rule_text}")
-    # print(tuples_inviolation)
+    # print(len(tuples_inviolation))
     pairs = []
 
     if('t1' in tuples_inviolation):
@@ -755,7 +853,8 @@ def populate_violations(tree_rule, conn, rule_text, complaint):
         for v in tuples_inviolation['t2']:
             pair = {'t1':v, 't2':complaint['tuple'], 'expected_label':complaint['expected_label']}
             pairs.append(pair)
-
+    # print("total_pairs")
+    # print(len(pairs))
     leaf_nodes = []
 
     for p in pairs:
@@ -769,148 +868,160 @@ def populate_violations(tree_rule, conn, rule_text, complaint):
     return leaf_nodes
 
 
+def get_holoclean_results(table_name, conn, cols):
+
+    union_sql = f"""
+    SELECT 'before_clean' AS type, * from  {table_name}
+    union all 
+    SELECT 'after_clean' AS type, * from {table_name}_repaired
+    order by _tid_
+    """
+    df_union_before_and_after = pd.read_sql(union_sql, conn) 
+
+    j = 0
+    for i in range(0,num_lines-1):
+        if(j%100==0):
+            print(j)
+        j+=1
+        df_row = pd.DataFrame(columns=['type']+cols)
+        df_row.loc[0,'type'] = 'ground_truth'
+        df_row.loc[0,'_tid_'] = i
+        q = f"""
+        SELECT * FROM {table_name}_clean WHERE _tid_={i} 
+        """
+        df_for_one_row = pd.read_sql(q,conn)
+        for index, row in df_for_one_row.iterrows():
+            df_row.loc[0, f"{row['_attribute_']}"] = row['_value_']
+        df_union_before_and_after = pd.concat([df_union_before_and_after, df_row])
+
+    # iterate this dataframe to find all wrong predictions and list them to choose
+    grouped = df_union_before_and_after.groupby('_tid_')
+
+
+    # for d,v in repaired_dict.items():
+    #     print(f"{d}: {len(repaired_dict[d])}")
+
+    wrong_repairs = set([])
+    correct_repairs = set([])
+    repairs = set([])
+    clean_tuples = set([])
+    still_dirty_tuples = set([])
+    # iterate this dataframe to find all wrong predictions and list them to choose
+    grouped = df_union_before_and_after.groupby('_tid_')
+    for name, group in grouped:
+        tid = pd.to_numeric(group.iloc[0]['_tid_'], downcast="integer")
+        # if(k%100==0):
+        #     print(k)
+        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True))):
+            repairs.add(tid)
+        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
+           not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
+            wrong_repairs.add(tid)
+        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
+            group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
+            correct_repairs.add(tid)
+        if(group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
+            group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
+            clean_tuples.add(tid)
+        if(group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
+            not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
+            still_dirty_tuples.add(tid)
+
+    print(f"wrongs: {len(wrong_repairs)}, corrects: {len(correct_repairs)}, total_repairs: {len(repairs)}, clean_tuples: {len(clean_tuples)}, still_dirty_tuples: {len(still_dirty_tuples)}")
+
+
 if __name__ == '__main__':
     conn=psycopg2.connect('dbname=holo user=postgres')
     cur = conn.cursor()
 
-    complaint_size_for_each_label = [2,5,10, 20, 50, 100]
+    input_csv_dir = '/home/opc/chenjie/labelling_explanation/experiments/dc/'
+    input_csv_file = 'adult500.csv'
+    input_csv_dir = '/home/opc/chenjie/labelling_explanation/experiments/dc/'
+    input_dc_dir = '/home/opc/chenjie/labelling_explanation/experiments/dc/'
+    input_dc_file = 'dc_sample_20'
+    ground_truth_dir = '/home/opc/chenjie/labelling_explanation/experiments/dc/'
+    ground_truth_file = 'adult500_clean.csv'
+    table_name = 'adult500'
 
-    for c in complaint_size_for_each_label:
-        print(f"on complaint size {c}")
-        complaints_df = pd.read_sql(f'select * from adult500 limit {c*2}', conn)
-        expected_dirty_tuples = complaints_df.iloc[:c].to_dict('records')
-        expected_clean_tuples = complaints_df.iloc[c:].to_dict('records')
-        expected_dirty_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in expected_dirty_tuples]
-        expected_clean_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in expected_clean_tuples]
-        complaints = []
-        complaints.extend(expected_dirty_dicts)
-        complaints.extend(expected_clean_dicts)
-        # print(complaints)
-        test_rules=[
-        't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
-        't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
-        't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.marital-status,t2.marital-status)',
-        't1&t2&EQ(t1.education,t2.education)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)',
-        't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-        't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)',
-        't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)',
-        't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-        't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&EQ(t1.age,t2.age)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-        't1&t2&IQ(t1.age,t2.age)&IQ(t1.race,t2.race)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-        't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
-        't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
-        ]
-        rc = RepairConfig(strategy='optimal', complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
-        start = time.time()
-        bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn)
-        end = time.time()
-        rc.runtime=end-start
-        print_fix_book_keeping_stats(rc, bkeepdict)
-    # expected_clean = pd.read_sql('select * from adult500 where _tid_=438 or _tid_=436', conn)
-    # --------------------------------------------------------------------------------------------
-    #              type  _tid_ age     workclass education      marital-status    occupation relationship   race   sex hours-per-week native-country income income\n wrong_attr
-    # 876   after_clean  438.0  27       private   hs-grad  married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
-    # 877  before_clean  438.0  27  self-emp-inc   hs-grad  married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
-    # 0    ground_truth  438.0  27  self-emp-inc   hs-grad  married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
+    conn.autocommit=True
+    cur=conn.cursor()
+    input_file=input_csv_dir+input_csv_file
+    table_name=input_csv_file.split('.')[0]
+    cols=None
+    num_lines=0
+    try:
+        with open(input_file) as f:
+            first_line = f.readline()
+            num_lines = sum(1 for line in f)
+    except Exception as e:
+        print(f'cant read file {input_file}')
+        exit()
+    else:
+        cols=first_line.split(',')
+
+    # drop preexisted repaired records 
+    select_old_repairs_q = f"""
+    SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES 
+    WHERE TABLE_NAME LIKE '{table_name}_repaired_%' AND TABLE_TYPE = 'BASE TABLE'
+    """
+    cur.execute(select_old_repairs_q)
+
+    for records in cur.fetchall():
+        drop_q = f"drop table if exists {records[0]}"
+        cur.execute(drop_q)
+
+    main(table_name=table_name, csv_dir=input_csv_dir, 
+        csv_file=input_csv_file, dc_dir=input_dc_dir, dc_file=input_dc_file, gt_dir=ground_truth_dir, 
+        gt_file=ground_truth_file, initial_training=True)
 
 
-    #              type  _tid_ age workclass education      marital-status       occupation relationship   race     sex hours-per-week native-country income income\n wrong_attr
-    # 962  before_clean  481.0  53   private   masters  married-civ-spouse  exec-managerial      husband  white  female             55  united-states   >50k      NaN        sex
-    # 963   after_clean  481.0  53   private   masters  married-civ-spouse  exec-managerial      husband  white  female             55  united-states   >50k      NaN        sex
-    # 0    ground_truth  481.0  53   private   masters  married-civ-spouse  exec-managerial      husband  white    male             55  united-states   >50k      NaN        sex
-
-    # specify the desired label
-
-    # responsibilities = {
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)': [0.25], 
-    #  # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)': [0.25], 
-    #  # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)': [-1], 
-    #  # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)': [0.25], 
-    #  # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)': [0.2], 
-    #  # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)': [0.25],
-    #  # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)': [0.2] 
-    #  }
-
-    # original_rules= [
-    # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
-    # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
-    # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.marital-status,t2.marital-status)',
-    # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)',
-    # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-    # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)',
-    # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)',
-    # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-    # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&EQ(t1.age,t2.age)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-    # 't1&t2&IQ(t1.age,t2.age)&IQ(t1.race,t2.race)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-    # 't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
-    # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
-    # ]
-
-    # # fix_rules(original_rules=original_rules, complaint_tuples=complaint_tuples, conn=conn)
-
-    # # test non symetric pairs
+    get_holoclean_results(table_name, conn, cols)
 
 
-#     SELECT DISTINCT t2.* FROM adult500 t1, adult500 t2 WHERE t1."education"=t2."education" AND t1."marital-status"=t2."marital-status" 
-#     AND t1."relationship"!=t2."relationship" AND t1."sex"=t2."sex" AND t1."workclass"!=t2."workclass" AND t1."education"='hs-grad' 
-#     AND t1."marital-status"='married-civ-spouse' AND t1."relationship"='husband' AND t1."sex"='male' AND t1."workclass"='self-emp-inc';
-
-#     SELECT DISTINCT t2.* FROM adult500 t1, adult500 t2 WHERE t1."education"=t2."education" AND t1."marital-status"=t2."marital-status" 
-#     AND t1."relationship"!=t2."relationship" AND t1."sex"=t2."sex" AND t1."workclass"!=t2."workclass" AND t1."race"!='white' 
-#     AND t1."_tid_" = 438;
-
-#     SELECT DISTINCT t1.* FROM adult500 t1, adult500 t2 WHERE t1."education"=t2."education" AND t1."marital-status"=t2."marital-status" 
-#     AND t1."relationship"!=t2."relationship" AND t1."sex"=t2."sex" AND t1."workclass"!=t2."workclass" AND t1."race"!='white' 
-#     AND t2."_tid_" = 438;
-
-#     dc-attr-pred-==EQ(t1.education,t2.education)
-#             0
-#             dc-attr-pred-==EQ(t1.marital-status,t2.marital-status)
-#                     0
-#                     dc-attr-pred-!=IQ(t1.relationship,t2.relationship)
-#                             0
-#                             dc-attr-pred-==EQ(t1.sex,t2.sex)
-#                                     0
-#                                     dc-attr-pred-!=IQ(t1.workclass,t2.workclass)
-#                                             0
-#                                             dc-const-pred-EQ(t1.race,'white')
-#                                                     0
-#                                                     dc-const-pred-EQ(t2.race,'white')
-#                                                     1
-#                                                     0
-#     dc-attr-pred-==EQ(t1.education,t2.education)
-#             0
-#             dc-attr-pred-==EQ(t1.marital-status,t2.marital-status)
-#                     0
-#                     dc-attr-pred-!=IQ(t1.relationship,t2.relationship)
-#                             0
-#                             dc-attr-pred-==EQ(t1.sex,t2.sex)
-#                                     0
-#                                     dc-attr-pred-!=IQ(t1.workclass,t2.workclass)
-#                                             0
-#                                             dc-const-pred-EQ(t1.race,'white')
-#                                             1
-#                                             0
-
-# type          _tid_  age workclass      education marital-status      occupation relationship   race   sex hours-per-week native-country income income wrong_attr
-# after_clean   438.0  27  private        hs-grad   married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
-# before_clean  438.0  27  self-emp-inc   hs-grad   married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
-# ground_truth  438.0  27  self-emp-inc   hs-grad   married-civ-spouse  craft-repair      husband  white  male             40  united-states  <=50k      NaN  workclass
-
-
+    # complaint_size_for_each_label = [1,2,3,4,5]
+    # versions = ['optimal', 'naive', 'information gain']
+    # results = []
+    # for c in complaint_size_for_each_label:
+    #     for v in versions:
+    #         print(f" running complaint: size: {c*2}, version: {v}....")
+    #         # print(f"on complaint size {c}")
+    #         complaints_df = pd.read_sql(f'select * from adult500 order by _tid_ limit {c*2}', conn)
+    #         expected_dirty_tuples = complaints_df.iloc[:c].to_dict('records')
+    #         expected_clean_tuples = complaints_df.iloc[c:].to_dict('records')
+    #         expected_dirty_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in expected_dirty_tuples]
+    #         expected_clean_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in expected_clean_tuples]
+    #         complaints = []
+    #         complaints.extend(expected_dirty_dicts)
+    #         complaints.extend(expected_clean_dicts)
+    #         # print(complaints)
+    #         test_rules=[
+    #         't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
+    #         't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
+    #         't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.marital-status,t2.marital-status)',
+    #         't1&t2&EQ(t1.education,t2.education)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)',
+    #         't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+    #         't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)',
+    #         't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)',
+    #         't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+    #         't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&EQ(t1.age,t2.age)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
+    #         't1&t2&IQ(t1.age,t2.age)&IQ(t1.race,t2.race)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+    #         't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
+    #         't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
+    #         ]
+    #         rc = RepairConfig(strategy=v, complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+    #         start = time.time()
+    #         bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn)
+    #         end = time.time()
+    #         rc.runtime=end-start
+    #         result_dict = print_fix_book_keeping_stats(rc, bkeepdict)
+    #         results.append(result_dict)
+    # results_df = pd.DataFrame.from_dict(results)
+    # results_df.to_csv('results.csv', index=False)

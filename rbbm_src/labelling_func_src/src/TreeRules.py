@@ -178,30 +178,41 @@ class TreeRule:
 		# LF for Snorkel, Holoclean text format for DC
 		res=[]
 		if(self.rtype=='dc'):
-			def dfs(cur_str: List[str], cur_node:Node, isleft:bool=False, parent_node:Node=None):
+			
+			queue = deque([self.root])
+
+			while(queue):
+				cur_node = queue.popleft()
 				if(isinstance(cur_node, LabelNode)):
 					if(cur_node.label==DIRTY):
-						if(isleft):
-							if(parent_node.pred.operator=='!='):
-								ori_op='IQ'
-								replace_op='EQ'
-							else:
-								ori_op='EQ'
-								replace_op='IQ'
-							cur_str[-1]=cur_str[-1].replace(ori_op, replace_op)
-						res.append(''.join(cur_str))
-					# print(f"pairs on this leaf node {''.join(cur_str)} with label: {cur_node.label}")
-					# print(cur_node.pairs)
-					# print('\n')
-				else:
-					cur_str.append('&'+cur_node.pred.pred)
-					if(cur_node.left):
-						# print(cur_node.pred)
-						dfs(cur_str, cur_node.left, True,cur_node)
-					if(cur_node.right):
-						dfs(cur_str, cur_node.right,False, cur_node)
-			dfs(['t1&t2'], self.root)
+						# print("cur_node is dirty. converting the path from root to this dirty label")
+						res.append(self.construct_dc_from_dirty(cur_node))
+				if(cur_node.left):
+					queue.append(cur_node.left)
+				if(cur_node.right):
+					queue.append(cur_node.right)
 		return res
+
+	def construct_dc_from_dirty(self, dirty_node):
+		res = ['t1&t2']
+		negate_cond=False
+		cur_node = dirty_node
+
+		while(cur_node.parent):
+			# print(f"cur_node: {cur_node}, cur_node.parent: {cur_node.parent.parent}")
+			if(cur_node.parent.left is cur_node):
+				if(cur_node.parent.pred.operator=='!='):
+					ori_op='IQ'
+					replace_op='EQ'
+				else:
+					ori_op='EQ'
+					replace_op='IQ'
+				res.append(cur_node.parent.pred.pred.replace(ori_op, replace_op))
+			else:
+				res.append(cur_node.parent.pred.pred)
+			cur_node = cur_node.parent
+		# print(f"res: {res}")
+		return '&'.join(res)
 
 
 if __name__ == '__main__':

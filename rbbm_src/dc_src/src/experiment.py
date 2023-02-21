@@ -53,7 +53,7 @@ def dc_main(dc_input):
     cur=conn.cursor()
     input_file=dc_input.input_csv_dir+dc_input.input_csv_file
     table_name=dc_input.input_csv_file.split('.')[0]
-    cols=0
+    cols=None
     num_lines=0
     try:
         with open(input_file) as f:
@@ -136,8 +136,8 @@ def dc_main(dc_input):
     k = 0
     for name, group in grouped:
         tid = pd.to_numeric(group.iloc[0]['_tid_'], downcast="integer")
-        if(k%100==0):
-            print(k)
+        # if(k%100==0):
+        #     print(k)
         for c in cols:
             if((group[group['type']=='after_clean'][c].to_string(index=False)!= group[group['type']=='ground_truth'][c].to_string(index=False))):
                 wrong_dict[c].append(tid)
