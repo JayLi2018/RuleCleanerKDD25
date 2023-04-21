@@ -14,7 +14,7 @@ DIRTY=SPAM
 
 def textblob_sentiment(x) -> float:
     scores = TextBlob(x.text)
-    print(scores.sentiment.subjectivity)
+    # print(scores.sentiment.subjectivity)
     return scores.sentiment.subjectivity
 
 

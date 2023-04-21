@@ -182,8 +182,8 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 	return res
 
 def locate_node(tree, number):
-	# print(tree)
-	# print(f"locating node {number}")
+	print(tree)
+	print(f"locating node {number}")
 	queue = deque([tree.root])
 	while(queue):
 		cur_node = queue.popleft()
@@ -643,7 +643,7 @@ def fix_rules(repair_config, original_rules, conn):
 if __name__ == '__main__':
 
 	# create a file to store the results:
-	for i in range(0, 5):
+	for i in range(0, 1):
 		timestamp = datetime.now()
 		timestamp_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
 		with open('more_lf_'+timestamp_str, 'w') as file:
@@ -674,46 +674,47 @@ if __name__ == '__main__':
 		conn = psycopg2.connect(dbname='label', user='postgres', password='123')
 		for sample_size in [1,2,4,8,16,32,64,128]:
 		# for sample_size in [1]:
-			for strat in ['information gain', 'naive']:
-				print(f"size: {sample_size*2}, strat:{strat}")
-				f1 = keyword_labelling_func_builder(['songs', 'song'], HAM)
-				f2 = keyword_labelling_func_builder(['check'], SPAM)
-				f3 = keyword_labelling_func_builder(['love'], HAM)
-				f4 = keyword_labelling_func_builder(['shakira'], SPAM)
-				f5 = keyword_labelling_func_builder(['checking'], SPAM)
-				f6 = regex_func_builder(['http'],SPAM)
-				
-				tree_rules = [f1, f2, f3, f4, f5, f6, f_sent, f_tag, f_length]
-				labelling_funcs=[f.gen_label_rule() for f in tree_rules]
+			random_seed = random.randint(0, 1000)
+			print(f"size: {sample_size*2}, strat:{strat}")
+			f1 = keyword_labelling_func_builder(['songs', 'song'], HAM)
+			f2 = keyword_labelling_func_builder(['check'], SPAM)
+			f3 = keyword_labelling_func_builder(['love'], HAM)
+			f4 = keyword_labelling_func_builder(['shakira'], SPAM)
+			f5 = keyword_labelling_func_builder(['checking'], SPAM)
+			f6 = regex_func_builder(['http'],SPAM)
+			
+			tree_rules = [f1, f2, f3, f4, f5, f6, f_sent, f_tag, f_length]
+			labelling_funcs=[f.gen_label_rule() for f in tree_rules]
 
-				li =lf_input(
-					connection=conn,
-					contingency_size_threshold=1,
-					contingency_sample_times=1,
-					clustering_responsibility=False,
-					sample_contingency=False,
-					log_level='DEBUG',
-					user_provide=True,
-					training_model_type='snorkel',
-					word_threshold=3,
-					greedy=True,
-					cardinality_thresh=2,
-					using_lattice=True,
-					eval_mode='single_func',
-					# lattice: bool
-					invoke_type='terminal', # is it from 'terminal' or 'notebook'
-					arg_str=None, # only used if invoke_type='notebook'
-					# lattice_dict:dict
-					# lfs:List[lfunc]
-					# sentences_df:pd.core.frame.DataFrame
-					topk=3, # topk value for number of lfs when doing responsibility generation
-					random_number_for_complaint=5,
-					dataset_name='youtube',
-					stats=StatsTracker(),
-					prune_only=True,
-					return_complaint_and_results=True
-					)
-				global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
+			li =lf_input(
+				connection=conn,
+				contingency_size_threshold=1,
+				contingency_sample_times=1,
+				clustering_responsibility=False,
+				sample_contingency=False,
+				log_level='DEBUG',
+				user_provide=True,
+				training_model_type='snorkel',
+				word_threshold=3,
+				greedy=True,
+				cardinality_thresh=2,
+				using_lattice=True,
+				eval_mode='single_func',
+				# lattice: bool
+				invoke_type='terminal', # is it from 'terminal' or 'notebook'
+				arg_str=None, # only used if invoke_type='notebook'
+				# lattice_dict:dict
+				# lfs:List[lfunc]
+				# sentences_df:pd.core.frame.DataFrame
+				topk=3, # topk value for number of lfs when doing responsibility generation
+				random_number_for_complaint=5,
+				dataset_name='youtube',
+				stats=StatsTracker(),
+				prune_only=True,
+				return_complaint_and_results=True
+				)
+			global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
+			for strat in ['information gain', 'naive']:
 				old_signaled_cnt=len(all_sentences_df)
 				all_sentences_df.to_csv('initial_results.csv', index=False)
 				wrongs_df.to_csv('initial_wrongs.csv', index=False)
@@ -728,7 +729,6 @@ if __name__ == '__main__':
 				# 	logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['expected_label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
 				print(f"wrong_hams count: {len(wrong_hams)}")
 				print(f"wrong_spams count: {len(wrong_spams)}")
-				random_seed = random.randint(0, 1000)
 				rng = pd.np.random.default_rng(random_seed)
 				sampled_complaints = pd.concat([all_sentences_df[all_sentences_df['expected_label']==HAM].sample(n=sample_size,random_state=rng), \
 					all_sentences_df[all_sentences_df['expected_label']==SPAM].sample(n=sample_size, random_state=rng)])
@@ -768,15 +768,10 @@ if __name__ == '__main__':
 				new_signaled_cnt=len(new_all_sentences_df)
 				new_wrongs_df.to_csv('new_wrongs.csv', index=False)
 				fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df)
-				with open('lf_'+timestamp_str, 'a') as file:
+				with open('more_lf_'+timestamp_str, 'a') as file:
 					# Write the row to the file
 					file.write(f'{strat},{runtime},{avg_tree_size_increase},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt}\n')
 					# file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt\n')
-
-		new_rules = []
-
-		wrongs_df.to_csv('wrongs.csv', index=False)
-
 
 
 

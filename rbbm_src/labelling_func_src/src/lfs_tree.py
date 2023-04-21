@@ -82,9 +82,11 @@ def regex_func_builder(patterns: List[str], expected_label: int):
 	return TreeRule(rtype='lf', root=r1, size=tree_size)
 
 ##  subjectivity rule
-cur_number=0
-tree_size=0
+cur_number=1
+tree_size=1
 r_senti = PredicateNode(number=cur_number, pred=SentimentPredicate(thresh=0.5, sent_func=textblob_sentiment))
+cur_number+=1
+tree_size+=1
 r_senti_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
 cur_number+=1
 tree_size+=1
@@ -99,9 +101,11 @@ f_sent = TreeRule(rtype='lf', root=r_senti, size=tree_size)
 
 
 ##  subjectivity rule
-cur_number=0
-tree_size=0
+cur_number=1
+tree_size=1
 r_tag = PredicateNode(number=cur_number, pred=POSPredicate(tags=['VBPRP$']))
+cur_number+=1
+tree_size+=1
 r_tag_l = LabelNode(number=cur_number, label=SPAM,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
 cur_number+=1
 tree_size+=1
@@ -117,9 +121,11 @@ f_tag = TreeRule(rtype='lf', root=r_tag, size=tree_size)
 
 
 ##  sentence length
-cur_number=0
-tree_size=0
+cur_number=1
+tree_size=1
 r_length = PredicateNode(number=cur_number, pred=SLengthPredicate(thresh=10))
+cur_number+=1
+tree_size+=1
 r_length_l = LabelNode(number=cur_number, label=HAM,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
 cur_number+=1
 tree_size+=1
