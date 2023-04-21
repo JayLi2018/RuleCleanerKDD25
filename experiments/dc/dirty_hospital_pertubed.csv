@@ -1,0 +1,1001 @@
+City,ZipCode,State,PhoneNumber,MeasureCode,MeasureName,Stateavg,ProviderNumber,HospitalName,Condition
+BIRMINGHAM,35233,AL,2053258100,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Failure
+SHEFFIELD,35660,AL,2563864556,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Failure
+SHEFFIELD,35660,AL,2563864556,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Failure
+SHEFFIELD,35660,AL,2563864556,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10019,HELEN KELLER MEMORIAL HOSPITAL,Heart Failure
+DOTHAN,36302,AL,3347938701,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Attack
+DOTHAN,36302,AL,3347938701,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Failure
+DOTHAN,36302,AL,3347938701,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Failure
+DOTHAN,36302,AL,3347938701,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Failure
+DOTHAN,36302,AL,3347938701,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Heart Failure
+DOTHAN,36302,AL,3347938701,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Pneumonia
+DOTHAN,36302,AL,3347938701,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+DOTHAN,36302,AL,3347938701,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10001,SOUTHEAST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Attack
+BOAZ,35957,AL,2565938310,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Failure
+BOAZ,35957,AL,2565938310,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Failure
+BOAZ,35957,AL,2565938310,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Failure
+BOAZ,35957,AL,2565938310,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10005,MARSHALL MEDICAL CENTER SOUTH,Heart Failure
+BOAZ,35957,AL,2565938310,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10005,MARSHALL MEDICAL CENTER SOUTH,Pneumonia
+BOAZ,35957,AL,2565938310,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+BOAZ,35957,AL,2565938310,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10005,MARSHALL MEDICAL CENTER SOUTH,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Attack
+FLORENCE,35631,AL,2567688400,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Failure
+FLORENCE,35631,AL,2567688400,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Failure
+FLORENCE,35631,AL,2567688400,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Failure
+FLORENCE,35631,AL,2567688400,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Heart Failure
+FLORENCE,35631,AL,2567688400,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Pneumonia
+FLORENCE,35631,AL,2567688400,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+FLORENCE,35631,AL,2567688400,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10006,ELIZA COFFEE MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10007,MIZELL MEMORIAL HOSPITAL,Heart Attack
+OPP,36467,AL,3344933541,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10007,MIZELL MEMORIAL HOSPITAL,Heart Failure
+OPP,36467,AL,3344933541,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10007,MIZELL MEMORIAL HOSPITAL,Heart Failure
+OPP,36467,AL,3344933541,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10007,MIZELL MEMORIAL HOSPITAL,Heart Failure
+OPP,36467,AL,3344933541,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10007,MIZELL MEMORIAL HOSPITAL,Heart Failure
+OPP,36467,AL,3344933541,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10007,MIZELL MEMORIAL HOSPITAL,Pneumonia
+OPP,36467,AL,3344933541,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+OPP,36467,AL,3344933541,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10007,MIZELL MEMORIAL HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Attack
+LUVERNE,36049,AL,3343353374,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Failure
+LUVERNE,36049,AL,3343353374,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Failure
+LUVERNE,36049,AL,3343353374,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Failure
+LUVERNE,36049,AL,3343353374,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10008,CRENSHAW COMMUNITY HOSPITAL,Heart Failure
+LUVERNE,36049,AL,3343353374,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10008,CRENSHAW COMMUNITY HOSPITAL,Pneumonia
+LUVERNE,36049,AL,3343353374,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+LUVERNE,36049,AL,3343353374,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10008,CRENSHAW COMMUNITY HOSPITAL,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10009,HARTSELLE MEDICAL CENTER,Heart Attack
+HARTSELLE,35640,AL,2567736511,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10009,HARTSELLE MEDICAL CENTER,Heart Failure
+HARTSELLE,35640,AL,2567736511,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10009,HARTSELLE MEDICAL CENTER,Heart Failure
+HARTSELLE,35640,AL,2567736511,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10009,HARTSELLE MEDICAL CENTER,Heart Failure
+HARTSELLE,35640,AL,2567736511,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10009,HARTSELLE MEDICAL CENTER,Heart Failure
+HARTSELLE,35640,AL,2567736511,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10009,HARTSELLE MEDICAL CENTER,Pneumonia
+HARTSELLE,35640,AL,2567736511,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+HARTSELLE,35640,AL,2567736511,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10009,HARTSELLE MEDICAL CENTER,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10010,MARSHALL MEDICAL CENTER NORTH,Heart Attack
+GUNTERSVILLE,35976,AL,2565718000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10010,MARSHALL MEDICAL CENTER NORTH,Heart Failure
+GUNTERSVILLE,35976,AL,2565718000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10010,MARSHALL MEDICAL CENTER NORTH,Heart Failure
+GUNTERSVILLE,35976,AL,2565718000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10010,MARSHALL MEDICAL CENTER NORTH,Heart Failure
+GUNTERSVILLE,35976,AL,2565718000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10010,MARSHALL MEDICAL CENTER NORTH,Heart Failure
+GUNTERSVILLE,35976,AL,2565718000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10010,MARSHALL MEDICAL CENTER NORTH,Pneumonia
+GUNTERSVILLE,35976,AL,2565718000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+GUNTERSVILLE,35976,AL,2565718000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10010,MARSHALL MEDICAL CENTER NORTH,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10011,ST VINCENT'S EAST,Heart Attack
+BIRMINGHAM,35235,AL,2058383122,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10011,ST VINCENT'S EAST,Heart Failure
+BIRMINGHAM,35235,AL,2058383122,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10011,ST VINCENT'S EAST,Heart Failure
+BIRMINGHAM,35235,AL,2058383122,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10011,ST VINCENT'S EAST,Heart Failure
+BIRMINGHAM,35235,AL,2058383122,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10011,ST VINCENT'S EAST,Heart Failure
+BIRMINGHAM,35235,AL,2058383122,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10011,ST VINCENT'S EAST,Pneumonia
+BIRMINGHAM,35235,AL,2058383122,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+BIRMINGHAM,35235,AL,2058383122,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10011,ST VINCENT'S EAST,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Attack
+FORT PAYNE,35968,AL,2568453150,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Failure
+FORT PAYNE,35968,AL,2568453150,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Failure
+FORT PAYNE,35968,AL,2568453150,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Failure
+FORT PAYNE,35968,AL,2568453150,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10012,DEKALB REGIONAL MEDICAL CENTER,Heart Failure
+FORT PAYNE,35968,AL,2568453150,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10012,DEKALB REGIONAL MEDICAL CENTER,Pneumonia
+FORT PAYNE,35968,AL,2568453150,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FORT PAYNE,35968,AL,2568453150,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10012,DEKALB REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Attack
+THOMASVILLE,36784,AL,3346366221,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Failure
+THOMASVILLE,36784,AL,3346366221,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Failure
+THOMASVILLE,36784,AL,3346366221,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Failure
+THOMASVILLE,36784,AL,3346366221,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Heart Failure
+THOMASVILLE,36784,AL,3346366221,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Pneumonia
+THOMASVILLE,36784,AL,3346366221,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+THOMASVILLE,36784,AL,3346366221,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10015,SOUTHWEST ALABAMA MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Attack
+ALABASTER,35007,AL,2056208100,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Failure
+ALABASTER,35007,AL,2056208100,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Failure
+ALABASTER,35007,AL,2056208100,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Failure
+ALABASTER,35007,AL,2056208100,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10016,SHELBY BAPTIST MEDICAL CENTER,Heart Failure
+ALABASTER,35007,AL,2056208100,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10016,SHELBY BAPTIST MEDICAL CENTER,Pneumonia
+ALABASTER,35007,AL,2056208100,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+ALABASTER,35007,AL,2056208100,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10016,SHELBY BAPTIST MEDICAL CENTER,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2053258100,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2053258100,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2053258100,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2053258100,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2053258100,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2053258100,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2053258100,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2053258100,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2053258100,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2053258100,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2053258100,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10018,CALLAHAN EYE FOUNDATION HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,CAC-2,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_CAC-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Children&#8217;s Asthma Care
+ANNISTON,36201,AL,2562358900,CAC-3,Children and their Caregivers Who Received a Home Management Plan of Care Document While Hospitalized for Asthma,AL_CAC-3,10038,STRINGFELLOW MEMORIAL HOSPITAL,Children&#8217;s Asthma Care
+ANNISTON,36201,AL,2562358900,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Attack
+ANNISTON,36201,AL,2562358900,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Failure
+ANNISTON,36201,AL,2562358900,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Failure
+ANNISTON,36201,AL,2562358900,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Failure
+ANNISTON,36201,AL,2562358900,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10038,STRINGFELLOW MEMORIAL HOSPITAL,Heart Failure
+ANNISTON,36201,AL,2562358900,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10038,STRINGFELLOW MEMORIAL HOSPITAL,Pneumonia
+ANNISTON,36201,AL,2562358900,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10055,FLOWERS HOSPITAL,Heart Failure
+DOTHAN,36305,AL,3347935000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10055,FLOWERS HOSPITAL,Heart Failure
+DOTHAN,36305,AL,3347935000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10055,FLOWERS HOSPITAL,Heart Failure
+DOTHAN,36305,AL,3347935000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10055,FLOWERS HOSPITAL,Pneumonia
+DOTHAN,36305,AL,3347935000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+DOTHAN,36305,AL,3347935000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10055,FLOWERS HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35205,AL,2059397000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10056,ST VINCENTS HOSPITAL,Heart Attack
+BIRMINGHAM,35205,AL,2059397000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10056,ST VINCENTS HOSPITAL,Heart Attack
+BIRMINGHAM,35205,AL,2059397000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10056,ST VINCENTS HOSPITAL,Heart Attack
+BIRMINGHAM,35205,AL,2059397000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10056,ST VINCENTS HOSPITAL,Heart Attack
+BIRMINGHAM,35205,AL,2059397000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10056,ST VINCENTS HOSPITAL,Heart Attack
+DECATUR,35609,AL,2563412000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10085,DECATUR GENERAL HOSPITAL,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10086,NORTHWEST MEDICAL CENTER,Heart Attack
+WINFIELD,35594,AL,2054877736,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10086,NORTHWEST MEDICAL CENTER,Heart Failure
+WINFIELD,35594,AL,2054877736,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10086,NORTHWEST MEDICAL CENTER,Heart Failure
+WINFIELD,35594,AL,2054877736,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10086,NORTHWEST MEDICAL CENTER,Heart Failure
+WINFIELD,35594,AL,2054877736,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10086,NORTHWEST MEDICAL CENTER,Heart Failure
+WINFIELD,35594,AL,2054877736,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10086,NORTHWEST MEDICAL CENTER,Pneumonia
+WINFIELD,35594,AL,2054877736,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+WINFIELD,35594,AL,2054877736,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10086,NORTHWEST MEDICAL CENTER,Surgical Infection Prevention
+MOBILE,36617,AL,2514717110,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Attack
+MOBILE,36617,AL,2514717110,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Failure
+MOBILE,36617,AL,2514717110,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Failure
+MOBILE,36617,AL,2514717110,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Failure
+MOBILE,36617,AL,2514717110,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Heart Failure
+MOBILE,36617,AL,2514717110,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Pneumonia
+MOBILE,36617,AL,2514717110,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10087,UNIV OF SOUTH ALABAMA MEDICAL CENTER,Pneumonia
+PRATTVILLE,36067,AL,3343614267,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Attack
+PRATTVILLE,36067,AL,3343614267,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Failure
+PRATTVILLE,36067,AL,3343614267,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Failure
+PRATTVILLE,36067,AL,3343614267,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Failure
+PRATTVILLE,36067,AL,3343614267,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10108,PRATTVILLE BAPTIST HOSPITAL,Heart Failure
+PRATTVILLE,36067,AL,3343614267,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10108,PRATTVILLE BAPTIST HOSPITAL,Pneumonia
+PRATTVILLE,36067,AL,3343614267,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10108,PRATTVILLE BAPTIST HOSPITAL,Surgical Infection Prevention
+PRATTVILLE,36067,AL,3343614267,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10108,PRATTVILLE BAPTIST HOSPITAL,Surgical Infection Prevention
+PRATTVILLE,36067,AL,3343614267,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10108,PRATTVILLE BAPTIST HOSPITAL,Surgical Infection Prevention
+PRATTVILLE,36067,AL,3343614267,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10108,PRATTVILLE BAPTIST HOSPITAL,Surgical Infection Prevention
+RUSSELLVILLE,35653,AL,2563321611,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10158,RUSSELLVILLE HOSPITAL,Surgical Infection Prevention
+RUSSELLVILLE,35653,AL,2563321611,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10158,RUSSELLVILLE HOSPITAL,Surgical Infection Prevention
+SYLACAUGA,35150,AL,2562495000,PN-7,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-INF-6,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_SCIP-INF-2,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,AMI-4,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AK_PN-5C,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-CARD-2,Children and their Caregivers Who Received a Home Management Plan of Care Document While Hospitalized for Asthma,AL_PN-2,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,PN-4,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AK_SCIP-VTE-2,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,HF-4,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AK_HF-4,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-INF-3,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_HF-2,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,HF-2,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_CAC-1,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,PN-2,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-1,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-INF-4,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_HF-3,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-VTE-1,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AK_PN-5C,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,PN-3B,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_AMI-4,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,AMI-4,Heart Attack Patients Given Aspirin at Arrival,AL_HF-4,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,PN-3B,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AK_SCIP-INF-1,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,AMI-4,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AK_SCIP-INF-6,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,PN-2,Children Who Received Reliever Medication While Hospitalized for Asthma,AK_SCIP-INF-1,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,SCIP-INF-4,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_CAC-2,10164,COOSA VALLEY MEDICAL CENTER,Heart Attack
+SYLACAUGA,35150,AL,2562495000,AMI-7A,Heart Attack Patients Given Aspirin at Arrival,AK_PN-3B,10164,COOSA VALLEY MEDICAL CENTER,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,HF-1,Heart Failure Patients Given Discharge Instructions,AK_HF-1,20017,ALASKA REGIONAL HOSPITAL,Heart Failure
+ANCHORAGE,99508,AK,9072761131,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AK_HF-2,20017,ALASKA REGIONAL HOSPITAL,Heart Failure
+ANCHORAGE,99508,AK,9072761131,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AK_HF-3,20017,ALASKA REGIONAL HOSPITAL,Heart Failure
+ANCHORAGE,99508,AK,9072761131,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AK_HF-4,20017,ALASKA REGIONAL HOSPITAL,Heart Failure
+ANCHORAGE,99508,AK,9072761131,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AK_PN-2,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AK_PN-3B,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AK_PN-4,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AK_PN-5C,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AK_PN-6,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AK_PN-7,20017,ALASKA REGIONAL HOSPITAL,Pneumonia
+ANCHORAGE,99508,AK,9072761131,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AK_SCIP-CARD-2,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AK_SCIP-INF-1,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AK_SCIP-INF-2,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AK_SCIP-INF-3,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AK_SCIP-INF-4,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AK_SCIP-INF-6,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AK_SCIP-VTE-1,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANCHORAGE,99508,AK,9072761131,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AK_SCIP-VTE-2,20017,ALASKA REGIONAL HOSPITAL,Surgical Infection Prevention
+BETHEL,99559,AK,9075436300,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AK_AMI-1,20018,YUKON KUSKOKWIM DELTA REG HOSPITAL,Heart Attack
+BETHEL,99559,AK,9075436300,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AK_AMI-2,20018,YUKON KUSKOKWIM DELTA REG HOSPITAL,Heart Attack
+SHEFFIELD,35660,AL,2563864556,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10019,HELEN KELLER MEMORIAL HOSPITAL,Pneumonia
+SHEFFIELD,35660,AL,2563864556,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+SHEFFIELD,35660,AL,2563864556,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10019,HELEN KELLER MEMORIAL HOSPITAL,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10021,DALE MEDICAL CENTER,Heart Attack
+OZARK,36360,AL,3347742601,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10021,DALE MEDICAL CENTER,Heart Failure
+OZARK,36360,AL,3347742601,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10021,DALE MEDICAL CENTER,Heart Failure
+OZARK,36360,AL,3347742601,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10021,DALE MEDICAL CENTER,Heart Failure
+OZARK,36360,AL,3347742601,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10021,DALE MEDICAL CENTER,Heart Failure
+OZARK,36360,AL,3347742601,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10021,DALE MEDICAL CENTER,Pneumonia
+OZARK,36360,AL,3347742601,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+OZARK,36360,AL,3347742601,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10021,DALE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10022,CHEROKEE MEDICAL CENTER,Heart Attack
+CENTRE,35960,AL,2569275531,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10022,CHEROKEE MEDICAL CENTER,Heart Failure
+CENTRE,35960,AL,2569275531,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10022,CHEROKEE MEDICAL CENTER,Heart Failure
+CENTRE,35960,AL,2569275531,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10022,CHEROKEE MEDICAL CENTER,Heart Failure
+CENTRE,35960,AL,2569275531,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10022,CHEROKEE MEDICAL CENTER,Heart Failure
+CENTRE,35960,AL,2569275531,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10022,CHEROKEE MEDICAL CENTER,Pneumonia
+CENTRE,35960,AL,2569275531,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+CENTRE,35960,AL,2569275531,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10022,CHEROKEE MEDICAL CENTER,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Attack
+MONTGOMERY,36116,AL,3342882100,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Failure
+MONTGOMERY,36116,AL,3342882100,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Failure
+MONTGOMERY,36116,AL,3342882100,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Failure
+MONTGOMERY,36116,AL,3342882100,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10023,BAPTIST MEDICAL CENTER SOUTH,Heart Failure
+MONTGOMERY,36116,AL,3342882100,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10023,BAPTIST MEDICAL CENTER SOUTH,Pneumonia
+MONTGOMERY,36116,AL,3342882100,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36116,AL,3342882100,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10023,BAPTIST MEDICAL CENTER SOUTH,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10024,JACKSON HOSPITAL & CLINIC INC,Heart Attack
+MONTGOMERY,36106,AL,3342938000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10024,JACKSON HOSPITAL & CLINIC INC,Heart Failure
+MONTGOMERY,36106,AL,3342938000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10024,JACKSON HOSPITAL & CLINIC INC,Heart Failure
+MONTGOMERY,36106,AL,3342938000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10024,JACKSON HOSPITAL & CLINIC INC,Heart Failure
+MONTGOMERY,36106,AL,3342938000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10024,JACKSON HOSPITAL & CLINIC INC,Heart Failure
+MONTGOMERY,36106,AL,3342938000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10024,JACKSON HOSPITAL & CLINIC INC,Pneumonia
+MONTGOMERY,36106,AL,3342938000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+MONTGOMERY,36106,AL,3342938000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10024,JACKSON HOSPITAL & CLINIC INC,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10025,G H LANIER MEMORIAL HOSPITAL,Heart Attack
+VALLEY,36854,AL,3347561400,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10025,G H LANIER MEMORIAL HOSPITAL,Heart Failure
+VALLEY,36854,AL,3347561400,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10025,G H LANIER MEMORIAL HOSPITAL,Heart Failure
+VALLEY,36854,AL,3347561400,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10025,G H LANIER MEMORIAL HOSPITAL,Heart Failure
+VALLEY,36854,AL,3347561400,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10025,G H LANIER MEMORIAL HOSPITAL,Heart Failure
+VALLEY,36854,AL,3347561400,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10025,G H LANIER MEMORIAL HOSPITAL,Pneumonia
+VALLEY,36854,AL,3347561400,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+VALLEY,36854,AL,3347561400,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10025,G H LANIER MEMORIAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10027,ELBA GENERAL HOSPITAL,Heart Attack
+ELBA,36323,AL,3348972257,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10027,ELBA GENERAL HOSPITAL,Heart Failure
+ELBA,36323,AL,3348972257,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10027,ELBA GENERAL HOSPITAL,Heart Failure
+ELBA,36323,AL,3348972257,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10027,ELBA GENERAL HOSPITAL,Heart Failure
+ELBA,36323,AL,3348972257,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10027,ELBA GENERAL HOSPITAL,Heart Failure
+ELBA,36323,AL,3348972257,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10027,ELBA GENERAL HOSPITAL,Pneumonia
+ELBA,36323,AL,3348972257,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+ELBA,36323,AL,3348972257,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10027,ELBA GENERAL HOSPITAL,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Attack
+OPELIKA,36801,AL,3347493411,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Failure
+OPELIKA,36801,AL,3347493411,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Failure
+OPELIKA,36801,AL,3347493411,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Failure
+OPELIKA,36801,AL,3347493411,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Heart Failure
+OPELIKA,36801,AL,3347493411,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Pneumonia
+OPELIKA,36801,AL,3347493411,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+OPELIKA,36801,AL,3347493411,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10029,EAST ALABAMA MEDICAL CENTER AND SNF,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10032,WEDOWEE HOSPITAL,Heart Attack
+WEDOWEE,36278,AL,2563572111,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10032,WEDOWEE HOSPITAL,Heart Failure
+WEDOWEE,36278,AL,2563572111,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10032,WEDOWEE HOSPITAL,Heart Failure
+WEDOWEE,36278,AL,2563572111,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10032,WEDOWEE HOSPITAL,Heart Failure
+WEDOWEE,36278,AL,2563572111,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10032,WEDOWEE HOSPITAL,Heart Failure
+WEDOWEE,36278,AL,2563572111,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10032,WEDOWEE HOSPITAL,Pneumonia
+WEDOWEE,36278,AL,2563572111,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+WEDOWEE,36278,AL,2563572111,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10032,WEDOWEE HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Attack
+BIRMINGHAM,35233,AL,2059344011,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2059344011,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2059344011,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2059344011,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10033,UNIVERSITY OF ALABAMA HOSPITAL,Heart Failure
+BIRMINGHAM,35233,AL,2059344011,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10033,UNIVERSITY OF ALABAMA HOSPITAL,Pneumonia
+BIRMINGHAM,35233,AL,2059344011,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+BIRMINGHAM,35233,AL,2059344011,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10033,UNIVERSITY OF ALABAMA HOSPITAL,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10034,COMMUNITY HOSPITAL INC,Heart Attack
+TALLASSEE,36078,AL,3342836541,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10034,COMMUNITY HOSPITAL INC,Heart Failure
+TALLASSEE,36078,AL,3342836541,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10034,COMMUNITY HOSPITAL INC,Heart Failure
+TALLASSEE,36078,AL,3342836541,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10034,COMMUNITY HOSPITAL INC,Heart Failure
+TALLASSEE,36078,AL,3342836541,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10034,COMMUNITY HOSPITAL INC,Heart Failure
+TALLASSEE,36078,AL,3342836541,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10034,COMMUNITY HOSPITAL INC,Pneumonia
+TALLASSEE,36078,AL,3342836541,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+TALLASSEE,36078,AL,3342836541,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10034,COMMUNITY HOSPITAL INC,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Attack
+CULLMAN,35058,AL,2567372000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Failure
+CULLMAN,35058,AL,2567372000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Failure
+CULLMAN,35058,AL,2567372000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Failure
+CULLMAN,35058,AL,2567372000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10035,CULLMAN REGIONAL MEDICAL CENTER,Heart Failure
+CULLMAN,35058,AL,2567372000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10035,CULLMAN REGIONAL MEDICAL CENTER,Pneumonia
+CULLMAN,35058,AL,2567372000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CULLMAN,35058,AL,2567372000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10035,CULLMAN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Attack
+ANDALUSIA,36420,AL,3342228466,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Failure
+ANDALUSIA,36420,AL,3342228466,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Failure
+ANDALUSIA,36420,AL,3342228466,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Failure
+ANDALUSIA,36420,AL,3342228466,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10036,ANDALUSIA REGIONAL HOSPITAL,Heart Failure
+ANDALUSIA,36420,AL,3342228466,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10036,ANDALUSIA REGIONAL HOSPITAL,Pneumonia
+ANDALUSIA,36420,AL,3342228466,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANDALUSIA,36420,AL,3342228466,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10036,ANDALUSIA REGIONAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,CAC-1,Children Who Received Reliever Medication While Hospitalized for Asthma,AL_CAC-1,10038,STRINGFELLOW MEMORIAL HOSPITAL,Children&#8217;s Asthma Care
+ANNISTON,36201,AL,2562358900,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+ANNISTON,36201,AL,2562358900,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10038,STRINGFELLOW MEMORIAL HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,CAC-1,Children Who Received Reliever Medication While Hospitalized for Asthma,AL_CAC-1,10039,HUNTSVILLE HOSPITAL,Children&#8217;s Asthma Care
+HUNTSVILLE,35801,AL,2562651000,CAC-2,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_CAC-2,10039,HUNTSVILLE HOSPITAL,Children&#8217;s Asthma Care
+HUNTSVILLE,35801,AL,2562651000,CAC-3,Children and their Caregivers Who Received a Home Management Plan of Care Document While Hospitalized for Asthma,AL_CAC-3,10039,HUNTSVILLE HOSPITAL,Children&#8217;s Asthma Care
+HUNTSVILLE,35801,AL,2562651000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10039,HUNTSVILLE HOSPITAL,Heart Attack
+HUNTSVILLE,35801,AL,2562651000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10039,HUNTSVILLE HOSPITAL,Heart Failure
+HUNTSVILLE,35801,AL,2562651000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10039,HUNTSVILLE HOSPITAL,Heart Failure
+HUNTSVILLE,35801,AL,2562651000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10039,HUNTSVILLE HOSPITAL,Heart Failure
+HUNTSVILLE,35801,AL,2562651000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10039,HUNTSVILLE HOSPITAL,Heart Failure
+HUNTSVILLE,35801,AL,2562651000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10039,HUNTSVILLE HOSPITAL,Pneumonia
+HUNTSVILLE,35801,AL,2562651000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+HUNTSVILLE,35801,AL,2562651000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10039,HUNTSVILLE HOSPITAL,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35903,AL,2564944000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35903,AL,2564944000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35903,AL,2564944000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35903,AL,2564944000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10040,GADSDEN REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35903,AL,2564944000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10040,GADSDEN REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35903,AL,2564944000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35903,AL,2564944000,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10040,GADSDEN REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10043,CHILTON MEDICAL CENTER,Heart Attack
+CLANTON,35045,AL,2057552500,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10043,CHILTON MEDICAL CENTER,Heart Failure
+CLANTON,35045,AL,2057552500,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10043,CHILTON MEDICAL CENTER,Heart Failure
+CLANTON,35045,AL,2057552500,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10043,CHILTON MEDICAL CENTER,Heart Failure
+CLANTON,35045,AL,2057552500,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10043,CHILTON MEDICAL CENTER,Heart Failure
+CLANTON,35045,AL,2057552500,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10043,CHILTON MEDICAL CENTER,Pneumonia
+CLANTON,35045,AL,2057552500,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+CLANTON,35045,AL,2057552500,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10043,CHILTON MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10044,MARION REGIONAL MEDICAL CENTER,Heart Attack
+HAMILTON,35570,AL,2059216200,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10044,MARION REGIONAL MEDICAL CENTER,Heart Failure
+HAMILTON,35570,AL,2059216200,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10044,MARION REGIONAL MEDICAL CENTER,Heart Failure
+HAMILTON,35570,AL,2059216200,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10044,MARION REGIONAL MEDICAL CENTER,Heart Failure
+HAMILTON,35570,AL,2059216200,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10044,MARION REGIONAL MEDICAL CENTER,Heart Failure
+HAMILTON,35570,AL,2059216200,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10044,MARION REGIONAL MEDICAL CENTER,Pneumonia
+HAMILTON,35570,AL,2059216200,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+HAMILTON,35570,AL,2059216200,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10044,MARION REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10045,FAYETTE MEDICAL CENTER,Heart Attack
+FAYETTE,35555,AL,2059325966,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10045,FAYETTE MEDICAL CENTER,Heart Failure
+FAYETTE,35555,AL,2059325966,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10045,FAYETTE MEDICAL CENTER,Heart Failure
+FAYETTE,35555,AL,2059325966,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10045,FAYETTE MEDICAL CENTER,Heart Failure
+FAYETTE,35555,AL,2059325966,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10045,FAYETTE MEDICAL CENTER,Heart Failure
+FAYETTE,35555,AL,2059325966,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10045,FAYETTE MEDICAL CENTER,Pneumonia
+TEMPLE,76504,TX,2547784811,AMI-7A,Heart Attack Patients Given Aspirin at Arrival,TX_AMI-7A,45086F,TEMPLE VA MEDICAL CENTER (VA CENTRAL TEXAS H,Heart Attack
+FAYETTE,35555,AL,2059325966,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10045,FAYETTE MEDICAL CENTER,Pneumonia
+FAYETTE,35555,AL,2059325966,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10045,FAYETTE MEDICAL CENTER,Pneumonia
+FAYETTE,35555,AL,2059325966,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10045,FAYETTE MEDICAL CENTER,Pneumonia
+FAYETTE,35555,AL,2059325966,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10045,FAYETTE MEDICAL CENTER,Pneumonia
+FAYETTE,35555,AL,2059325966,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+FAYETTE,35555,AL,2059325966,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10045,FAYETTE MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,CAC-1,Children Who Received Reliever Medication While Hospitalized for Asthma,AL_CAC-1,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Children&#8217;s Asthma Care
+GADSDEN,35901,AL,2565435200,CAC-2,Children Who Received Systemic Corticosteroid Medication (oral and IV Medication That Reduces Inflammation and Controls Symptoms) While Hospitalized for Asthma,AL_CAC-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Children&#8217;s Asthma Care
+GADSDEN,35901,AL,2565435200,CAC-3,Children and their Caregivers Who Received a Home Management Plan of Care Document While Hospitalized for Asthma,AL_CAC-3,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Children&#8217;s Asthma Care
+GADSDEN,35901,AL,2565435200,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Attack
+GADSDEN,35901,AL,2565435200,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35901,AL,2565435200,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35901,AL,2565435200,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35901,AL,2565435200,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Heart Failure
+GADSDEN,35901,AL,2565435200,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Pneumonia
+GADSDEN,35901,AL,2565435200,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GADSDEN,35901,AL,2565435200,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10046,RIVERVIEW REGIONAL MEDICAL CENTER,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10047,GEORGIANA HOSPITAL,Heart Attack
+GEORGIANA,36033,AL,3343762205,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10047,GEORGIANA HOSPITAL,Heart Failure
+GEORGIANA,36033,AL,3343762205,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10047,GEORGIANA HOSPITAL,Heart Failure
+GEORGIANA,36033,AL,3343762205,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10047,GEORGIANA HOSPITAL,Heart Failure
+GEORGIANA,36033,AL,3343762205,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10047,GEORGIANA HOSPITAL,Heart Failure
+GEORGIANA,36033,AL,3343762205,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10047,GEORGIANA HOSPITAL,Pneumonia
+GEORGIANA,36033,AL,3343762205,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+GEORGIANA,36033,AL,3343762205,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10047,GEORGIANA HOSPITAL,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10049,MEDICAL CENTER ENTERPRISE,Heart Attack
+ENTERPRISE,36330,AL,3343470584,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10049,MEDICAL CENTER ENTERPRISE,Heart Failure
+ENTERPRISE,36330,AL,3343470584,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10049,MEDICAL CENTER ENTERPRISE,Heart Failure
+ENTERPRISE,36330,AL,3343470584,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10049,MEDICAL CENTER ENTERPRISE,Heart Failure
+ENTERPRISE,36330,AL,3343470584,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10049,MEDICAL CENTER ENTERPRISE,Heart Failure
+ENTERPRISE,36330,AL,3343470584,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10049,MEDICAL CENTER ENTERPRISE,Pneumonia
+ENTERPRISE,36330,AL,3343470584,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-INF-3,surgery patients whose preventive antibiotics were stopped at the right time (within 24 hours after surgery),AL_SCIP-INF-3,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-INF-4,all heart surgery patients whose blood sugar (blood glucose) is kept under good control in the days right after surgery,AL_SCIP-INF-4,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-INF-6,surgery patients needing hair removed from the surgical area before surgery&#54; who had hair removed using a safer method (electric clippers or hair removal cream �C not a razor),AL_SCIP-INF-6,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-VTE-1,surgery patients whose doctors ordered treatments to prevent blood clots after certain types of surgeries,AL_SCIP-VTE-1,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ENTERPRISE,36330,AL,3343470584,SCIP-VTE-2,patients who got treatment  at the right time (within 24 hours before or after their surgery) to help prevent blood clots after certain types of surgery,AL_SCIP-VTE-2,10049,MEDICAL CENTER ENTERPRISE,Surgical Infection Prevention
+ONEONTA,35121,AL,2052743000,AMI-1,Heart Attack Patients Given Aspirin at Arrival,AL_AMI-1,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-2,Heart Attack Patients Given Aspirin at Discharge,AL_AMI-2,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-3,Heart Attack Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_AMI-3,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-4,Heart Attack Patients Given Smoking Cessation Advice/Counseling,AL_AMI-4,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-5,Heart Attack Patients Given Beta Blocker at Discharge,AL_AMI-5,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-7A,Heart Attack Patients Given Fibrinolytic Medication Within 30 Minutes Of Arrival,AL_AMI-7A,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,AMI-8A,Heart Attack Patients Given PCI Within 90 Minutes Of Arrival,AL_AMI-8A,10050,ST VINCENTS BLOUNT,Heart Attack
+ONEONTA,35121,AL,2052743000,HF-1,Heart Failure Patients Given Discharge Instructions,AL_HF-1,10050,ST VINCENTS BLOUNT,Heart Failure
+ONEONTA,35121,AL,2052743000,HF-2,Heart Failure Patients Given an Evaluation of Left Ventricular Systolic (LVS) Function,AL_HF-2,10050,ST VINCENTS BLOUNT,Heart Failure
+ONEONTA,35121,AL,2052743000,HF-3,Heart Failure Patients Given ACE Inhibitor or ARB for Left Ventricular Systolic Dysfunction (LVSD),AL_HF-3,10050,ST VINCENTS BLOUNT,Heart Failure
+ONEONTA,35121,AL,2052743000,HF-4,Heart Failure Patients Given Smoking Cessation Advice/Counseling,AL_HF-4,10050,ST VINCENTS BLOUNT,Heart Failure
+ONEONTA,35121,AL,2052743000,PN-2,Pneumonia Patients Assessed and Given Pneumococcal Vaccination,AL_PN-2,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,PN-3B,Pneumonia Patients Whose Initial Emergency Room Blood Culture Was Performed Prior To The Administration Of The First Hospital Dose Of Antibiotics,AL_PN-3B,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,PN-4,Pneumonia Patients Given Smoking Cessation Advice/Counseling,AL_PN-4,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,PN-5C,Pneumonia Patients Given Initial Antibiotic(s) within 6 Hours After Arrival,AL_PN-5C,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,PN-6,Pneumonia Patients Given the Most Appropriate Initial Antibiotic(s),AL_PN-6,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,PN-7,Pneumonia Patients Assessed and Given Influenza Vaccination,AL_PN-7,10050,ST VINCENTS BLOUNT,Pneumonia
+ONEONTA,35121,AL,2052743000,SCIP-CARD-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,AL_SCIP-CARD-2,10050,ST VINCENTS BLOUNT,Surgical Infection Prevention
+ONEONTA,35121,AL,2052743000,SCIP-INF-1,surgery patients who were given an antibiotic at the right time (within one hour before surgery) to help prevent infection,AL_SCIP-INF-1,10050,ST VINCENTS BLOUNT,Surgical Infection Prevention
+ONEONTA,35121,AL,2052743000,SCIP-INF-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,AL_SCIP-INF-2,10050,ST VINCENTS BLOUNT,Surgical Infection Prevention

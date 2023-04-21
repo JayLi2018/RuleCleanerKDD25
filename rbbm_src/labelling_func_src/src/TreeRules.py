@@ -3,6 +3,8 @@ from collections import deque
 from typing import *
 from dataclasses import dataclass
 import re 
+from snorkel.labeling import LabelingFunction
+import nltk
 
 SPAM=1
 HAM=0
@@ -10,8 +12,8 @@ ABSTAIN=-1
 CLEAN=HAM
 DIRTY=SPAM
 
-def textblob_sentiment(x: str) -> float:
-    scores = TextBlob(x)
+def textblob_sentiment(x) -> float:
+    scores = TextBlob(x.text)
     print(scores.sentiment.subjectivity)
     return scores.sentiment.subjectivity
 
@@ -35,18 +37,71 @@ class Predicate:
 
 class KeywordPredicate(Predicate):
 
-	def __init__(self, keyword:str):
-		self.keyword=keyword
+	def __init__(self, keywords:List[str]):
+		self.keywords=keywords
+		self.pred_identifier= f"keyword_predicate-word-({','.join(self.keywords)})"
 
 	def __repr__(self):
-		return f"keyword_predicate-word-{self.keyword}"
+		return f"keyword_predicate-word-({','.join(self.keywords)})"
 
 	def __str__(self):
-		return f"keyword_predicate-word-{self.keyword}"
+		return f"keyword_predicate-word-({','.join(self.keywords)})"
 
 	def evaluate(self,instance: str):
-		print(f"{self.keyword} in instance? {self.keyword in instance}")
-		return self.keyword in instance
+		# print(f"instance: {instance}")
+		# print(f'evaluating {self.keywords} in {instance.text}')
+		# print(f"{self.keywords} in instance? {self.keywords in instance}")
+		return any(x in instance.text.split() for x in self.keywords)
+
+class SLengthPredicate(Predicate):
+
+	def __init__(self, thresh):
+		self.thresh=thresh
+		self.pred_identifier=f"SLengthPredicate-thresh-{self.thresh}"
+		
+	def __repr__(self):
+		return f"SLengthPredicate-thresh-{self.thresh}"
+
+	def __str__(self):
+		return f"SLengthPredicate-thresh-{self.thresh}"
+
+	def evaluate(self, instance: str):
+		"""VB with PRP$(subscribe my channel)"""
+		return True if(len(instance.text.split()) < self.thresh) else False
+
+class RegexPredicate(Predicate):
+
+	def __init__(self, patterns):
+		self.patterns=patterns
+		self.pred_identifier=f"RegexPredicate-tag-({','.join(self.patterns)})"
+
+	def __repr__(self):
+		return f"RegexPredicate-tag-({','.join(self.patterns)})"
+
+	def __str__(self):
+		return f"RegexPredicate-tag-({','.join(self.patterns)})"
+
+	def evaluate(self, instance: str):
+		"""VB with PRP$(subscribe my channel)"""
+		return any(re.search(t, instance.text, flags=re.I) for t in self.patterns)
+
+class POSPredicate(Predicate):
+
+	def __init__(self, tags: str):
+		self.tags=tags
+		self.pred_identifier= f"POSPredicate-tag-({','.join(self.tags)})"
+
+	def __repr__(self):
+		return f"POSPredicate-tag-({','.join(self.tags)})"
+
+	def __str__(self):
+		return f"POSPredicate-tag-({','.join(self.tags)})"
+
+	def evaluate(self,instance: str):
+		"""VB with PRP$(subscribe my channel)"""
+		text_str = nltk.word_tokenize(instance.text)
+		posstr = ''.join([t[1] for t in nltk.pos_tag(text_str)])
+		return any(x in posstr for x in self.tags)
 
 class DCAttrPredicate(Predicate):
 	def __init__(self, pred:str, operator:str):
@@ -89,6 +144,7 @@ class SentimentPredicate(Predicate):
 	def __init__(self, thresh:float=0.5, sent_func:Callable=textblob_sentiment):
 		self.thresh=thresh
 		self.sent_func=sent_func
+		self.pred_identifier= f"sentiment_predicate-thresh-{self.thresh}"
 
 	def __repr__(self):
 		return f"sentiment_predicate-thresh-{self.thresh}"
@@ -124,10 +180,18 @@ class TreeRule:
 # 		'dc': denial constraints (holoclean DC flavor)
 # 	2. __str__ / __repr__ string representation of the rules 
 # 	"""
+	rule_counter=0
+
+	@classmethod
+	def eval_rule(ls, rule, instance):
+		return rule.evaluate(instance)
+
 	def __init__(self, rtype: str, root: 'Node', size: int):
 		self.rtype = rtype
 		self.root = root
 		self.size = size
+		self.id=TreeRule.rule_counter
+		TreeRule.rule_counter+=1
 
 	def setsize(self, new_size:int):
 		self.size=new_size
@@ -141,10 +205,28 @@ class TreeRule:
 			cur_node, level = queue.popleft()
 			# print(cur_node)
 			if(isinstance(cur_node, PredicateNode)):
-				str_list.append(level*'	'+str(cur_node.pred))
+				str_list.append(level*'	'+'pred:'+str(cur_node.pred) + ", id:" + str(cur_node.number))
+				if(cur_node.parent):
+					str_list.append(f'parent_id: {cur_node.parent.number}')
+				else:
+					str_list.append(f'parent_id: NaN')
+
 			else:
-				str_list.append(level*'	'+str(cur_node.label))
+				str_list.append(level*'	'+'label:'+str(cur_node.label) + ", id: " + str(cur_node.number))
+				if(cur_node.parent):
+					str_list.append(f'parent_id: {cur_node.parent.number}')
+				else:
+					str_list.append(f'parent_id: NaN')
+
+				for k,v in cur_node.pairs.items():
+					if(self.rtype=='lf'):
+						str_list.append(f"{k}:{[(m.text, m.expected_label) for m in v]}")
+					else:
+						str_list.append(f"{k}:{v}")
+
 			level+=1
+			str_list.append('\n')
+
 			if(cur_node.left):
 				queue.append((cur_node.left, level))
 			if(cur_node.right):
@@ -154,24 +236,42 @@ class TreeRule:
 	def __repr__(self):
 		return self.__str__()
 
-	def evaluate(self, instance: Union[str, dict]):
+	def evaluate(self, instance: Union[str, dict], ret='label'):
 		"""
 		return the result given the sentence/ a pair of tuples
+
+		ret: 'label'. 'node'
 		"""
 		cur_node=self.root
+		# print(f"cur_node: {cur_node}")
 		used_predicates = []
 		while(cur_node):
+			# print(f"cur_node: {cur_node}")
 			if(isinstance(cur_node, LabelNode)):
 				for u in used_predicates:
 					cur_node.used_predicates.add(u)
+				if(ret=='label'):
+					return cur_node.label
+				elif(ret=='node'):
+					return cur_node
+				else:
+					print('invalid return type')
+					exit()
 				return cur_node
 			if(cur_node.pred.evaluate(instance)):
+				# print("evaualte to True")
 				used_predicates.append(cur_node.pred.pred_identifier)
 				cur_node.right.parent=cur_node
 				cur_node=cur_node.right
 			else:
 				cur_node.left.parent=cur_node
 				cur_node=cur_node.left
+
+
+	def gen_label_rule(self, pre=None):
+		t=self
+		return LabelingFunction(name=str(self.id), f=self.evaluate, resources={'rule':t}, use_resourece_as_self=True, pre=pre)
+
 
 	def serialize(self):
 		# return the rule as the acceptyed format for DC/LF Models 

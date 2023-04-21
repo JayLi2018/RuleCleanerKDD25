@@ -40,8 +40,13 @@ class ViolationDetector(Detector):
             queries.append(q)
             attrs.append(c.components)
             i+=1
+        with open('constraints_q.txt', 'a') as writer:
+            writer.write(q)
         # Execute Queries over the DBEngine of Dataset
         results = self.ds.engine.execute_queries(queries)
+        # for r in results:
+        #     print(r)
+        #     writer.write(r)
 
         # Generate final output
         errors = []
@@ -51,6 +56,7 @@ class ViolationDetector(Detector):
             tmp_df = self.gen_tid_attr_output(res, attr_list)
             errors.append(tmp_df)
         errors_df = pd.concat(errors, ignore_index=True).drop_duplicates().reset_index(drop=True)
+        errors_df.to_csv('violation_errors_df.csv', index=False)
         return errors_df
 
     def to_sql(self, tbl, c):

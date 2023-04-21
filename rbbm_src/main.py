@@ -85,7 +85,7 @@ def main():
 	# stuff needed for DCs
 	# conn = psycopg2.connect(dbname="holo", user="holocleanuser", password="abcd1234")
 
-	parser.add_argument('-c', '--dc_dir', metavar='\b', type=str, default='/home/opc/chenjie/labelling_explanation/experiments/dc/',
+	parser.add_argument('-c', '--dc_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
 	help='holoclean needs a input text file which contains the denial constraints, this will be the dir it finds the file (default: %(default)s)')
 
 	# parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='dc_finder_adult_rules.txt',
@@ -94,13 +94,13 @@ def main():
 	parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='dc_sample_30',
 	help='holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: %(default)s)')
 
-	parser.add_argument('-s', '--input_csv_dir', metavar='\b', type=str, default='/home/opc/chenjie/labelling_explanation/experiments/dc/',
+	parser.add_argument('-s', '--input_csv_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
 	help='holoclean needs a input csv file as the starting point, this will be the dir it finds the file (default: %(default)s)')
 
 	parser.add_argument('-S', '--input_csv_file', metavar='\b', type=str, default='adult500.csv',
 	help='holoclean needs a input csv file as the starting point, this will the file inside input_csv_dir (default: %(default)s)')
 
-	parser.add_argument('-t', '--ground_truth_dir', metavar='\b', type=str, default='/home/opc/chenjie/labelling_explanation/experiments/dc/',
+	parser.add_argument('-t', '--ground_truth_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
 	help='holoclean needs ground truth file to evaluate, this will be the dir it finds the file (default: %(default)s)')
 
 	parser.add_argument('-T', '--ground_truth_file', metavar='\b', type=str, default='adult500_clean.csv',
@@ -111,6 +111,7 @@ def main():
 
 	parser.add_argument('-O', '--prune_only', metavar='\b', type=str, default='False',
 	help='stop after pruning to see some properties (default: %(default)s)')
+
 
 	args=parser.parse_args()
 

@@ -31,7 +31,7 @@ setup(
                     "textblob==0.17.1",
                     "torch",
                     "tqdm==4.64.1",
-                    "transformers==4.24.0"],
+                    "transformers"],
     entry_points={
         'console_scripts': [
             'rbbm=rbbm_src.main:main',

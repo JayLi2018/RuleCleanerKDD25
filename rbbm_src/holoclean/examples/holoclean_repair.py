@@ -11,8 +11,8 @@ def main(table_name, csv_dir, csv_file, dc_dir, dc_file, gt_dir, gt_file, initia
 
     h=holoclean.HoloClean(
         db_name='holo',
-        domain_thresh_1=0.4,
-        domain_thresh_2=0.4,
+        domain_thresh_1=0,
+        domain_thresh_2=0,
         weak_label_thresh=0.99,
         max_domain=10000,
         cor_strength=0.6,

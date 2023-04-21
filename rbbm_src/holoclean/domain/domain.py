@@ -168,10 +168,10 @@ class DomainEngine:
                     tau = float(self.domain_thresh_1*denominator)
                     top_cands = [val2 for (val2, count) in pair_stats[attr1][attr2][val1].items() if count > tau]
                     out[attr1][attr2][val1] = top_cands
-                    if(attr1=='aid' and attr2=='name' and val1=='1156'):
-                        print("found our example")
-                        print(f"denominator = {denominator}, domain_thresh_1={self.domain_thresh_1}, tau={tau}")
-                        print(f"top_cands: {top_cands}")
+                    # if(attr1=='aid' and attr2=='name' and val1=='1156'):
+                    #     print("found our example")
+                    #     print(f"denominator = {denominator}, domain_thresh_1={self.domain_thresh_1}, tau={tau}")
+                    #     print(f"top_cands: {top_cands}")
         return out
 
     def get_active_attributes(self):
@@ -336,7 +336,8 @@ class DomainEngine:
                 continue
 
             # prune domain if any of the values are above our domain_thresh_2
-            preds = [[val, proba] for val, proba in preds if proba >= self.domain_thresh_2] or preds
+            preds = [[val, proba] for val, proba in preds if proba >= self.domain_thresh_2]
+            # print(f"preds: {preds}")
 
             # cap the maximum # of domain values to self.max_domain based on probabilities.
             domain_values = [val for val, proba in sorted(preds, key=lambda pred: pred[1], reverse=True)[:self.max_domain]]

@@ -1,0 +1,25 @@
+type,_tid_,City,ZipCode,State,PhoneNumber,MeasureCode,MeasureName,Stateavg,ProviderNumber,HospitalName,Condition
+after_clean,416.0,sylacauga,35150,al,2562495000,ami-3,heart attack patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_ami-3,10164,coosa valley medical center,children&#8217;s asthma care
+before_clean,416.0,sylacauga,35150,al,2562495000,ami-3,heart attack patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_ami-3,10164,coosa valley medical center,heart attack
+ground_truth,416.0,sylacauga,35150,al,2562495000,ami-3,heart attack patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_ami-3,10164,coosa valley medical center,heart attack
+before_clean,417.0,sylacauga,35150,al,2562495000,ami-4,heart attack patients given smoking cessation advice/counseling,al_ami-4,10164,coosa valley medical center,heart attack
+after_clean,417.0,sylacauga,35150,al,2562495000,ami-4,heart attack patients given smoking cessation advice/counseling,al_ami-4,10164,coosa valley medical center,children&#8217;s asthma care
+ground_truth,417.0,sylacauga,35150,al,2562495000,ami-4,heart attack patients given smoking cessation advice/counseling,al_ami-4,10164,coosa valley medical center,heart attack
+after_clean,418.0,sylacauga,35150,al,2562495000,ami-5,heart attack patients given beta blocker at discharge,al_ami-5,10164,coosa valley medical center,children&#8217;s asthma care
+before_clean,418.0,sylacauga,35150,al,2562495000,ami-5,heart attack patients given beta blocker at discharge,al_ami-5,10164,coosa valley medical center,heart attack
+ground_truth,418.0,sylacauga,35150,al,2562495000,ami-5,heart attack patients given beta blocker at discharge,al_ami-5,10164,coosa valley medical center,heart attack
+after_clean,419.0,sylacauga,35150,al,2562495000,ami-7a,heart attack patients given fibrinolytic medication within 30 minutes of arrival,al_ami-7a,10164,coosa valley medical center,children&#8217;s asthma care
+before_clean,419.0,sylacauga,35150,al,2562495000,ami-7a,heart attack patients given fibrinolytic medication within 30 minutes of arrival,al_ami-7a,10164,coosa valley medical center,heart attack
+ground_truth,419.0,sylacauga,35150,al,2562495000,ami-7a,heart attack patients given fibrinolytic medication within 30 minutes of arrival,al_ami-7a,10164,coosa valley medical center,heart attack
+before_clean,420.0,sylacauga,35150,al,2562495000,ami-8a,heart attack patients given pci within 90 minutes of arrival,al_ami-8a,10164,coosa valley medical center,heart attack
+after_clean,420.0,sylacauga,35150,al,2562495000,ami-8a,heart attack patients given pci within 90 minutes of arrival,al_ami-8a,10164,coosa valley medical center,children&#8217;s asthma care
+ground_truth,420.0,sylacauga,35150,al,2562495000,ami-8a,heart attack patients given pci within 90 minutes of arrival,al_ami-8a,10164,coosa valley medical center,heart attack
+after_clean,431.0,sylacauga,35150,al,2562495000,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10164,univ of south alabama medical center,surgical infection prevention
+before_clean,431.0,sylacauga,35150,al,2562495000,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10164,coosa valley medical center,surgical infection prevention
+ground_truth,431.0,sylacauga,35150,al,2562495000,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10164,coosa valley medical center,surgical infection prevention
+before_clean,414.0,sylacauga,35150,al,2562495000,ami-1,heart attack patients given aspirin at arrival,al_ami-1,10164,coosa valley medical center,heart attack
+after_clean,414.0,sylacauga,35150,al,2562495000,ami-1,heart attack patients given aspirin at arrival,al_ami-1,10164,coosa valley medical center,children&#8217;s asthma care
+ground_truth,414.0,sylacauga,35150,al,2562495000,ami-1,heart attack patients given aspirin at arrival,al_ami-1,10164,coosa valley medical center,heart attack
+before_clean,415.0,sylacauga,35150,al,2562495000,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10164,coosa valley medical center,heart attack
+after_clean,415.0,sylacauga,35150,al,2562495000,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10164,coosa valley medical center,children&#8217;s asthma care
+ground_truth,415.0,sylacauga,35150,al,2562495000,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10164,coosa valley medical center,heart attack

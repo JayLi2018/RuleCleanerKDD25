@@ -1,0 +1,31 @@
+type,_tid_,City,ZipCode,State,PhoneNumber,MeasureCode,MeasureName,Stateavg,ProviderNumber,HospitalName,Condition
+before_clean,421.0,sylacauga,35150,al,2562495000,hf-1,heart failure patients given discharge instructions,al_hf-1,10164,coosa valley medical center,heart attack
+after_clean,421.0,sylacauga,35150,al,2562495000,hf-1,heart failure patients given discharge instructions,al_hf-1,10164,huntsville hospital,heart attack
+ground_truth,421.0,sylacauga,35150,al,2562495000,hf-1,heart failure patients given discharge instructions,al_hf-1,10164,coosa valley medical center,heart failure
+before_clean,422.0,sylacauga,35150,al,2562495000,hf-2,heart failure patients given an evaluation of left ventricular systolic (lvs) function,al_hf-2,10164,coosa valley medical center,heart attack
+after_clean,422.0,sylacauga,35150,al,2562495000,hf-2,heart failure patients given an evaluation of left ventricular systolic (lvs) function,al_hf-2,10164,hartselle medical center,heart attack
+ground_truth,422.0,sylacauga,35150,al,2562495000,hf-2,heart failure patients given an evaluation of left ventricular systolic (lvs) function,al_hf-2,10164,coosa valley medical center,heart failure
+after_clean,423.0,sylacauga,35150,al,2562495000,hf-3,heart failure patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_hf-3,10164,hartselle medical center,heart attack
+before_clean,423.0,sylacauga,35150,al,2562495000,hf-3,heart failure patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_hf-3,10164,coosa valley medical center,heart attack
+ground_truth,423.0,sylacauga,35150,al,2562495000,hf-3,heart failure patients given ace inhibitor or arb for left ventricular systolic dysfunction (lvsd),al_hf-3,10164,coosa valley medical center,heart failure
+after_clean,424.0,sylacauga,35150,al,2562495000,hf-4,heart failure patients given smoking cessation advice/counseling,al_hf-4,10164,dale medical center,heart attack
+before_clean,424.0,sylacauga,35150,al,2562495000,hf-4,heart failure patients given smoking cessation advice/counseling,al_hf-4,10164,coosa valley medical center,heart attack
+ground_truth,424.0,sylacauga,35150,al,2562495000,hf-4,heart failure patients given smoking cessation advice/counseling,al_hf-4,10164,coosa valley medical center,heart failure
+after_clean,425.0,sylacauga,35150,al,2562495000,pn-2,pneumonia patients assessed and given pneumococcal vaccination,al_pn-2,10164,cherokee medical center,heart attack
+before_clean,425.0,sylacauga,35150,al,2562495000,pn-2,pneumonia patients assessed and given pneumococcal vaccination,al_pn-2,10164,coosa valley medical center,heart attack
+ground_truth,425.0,sylacauga,35150,al,2562495000,pn-2,pneumonia patients assessed and given pneumococcal vaccination,al_pn-2,10164,coosa valley medical center,pneumonia
+before_clean,426.0,sylacauga,35150,al,2562495000,pn-3b,pneumonia patients whose initial emergency room blood culture was performed prior to the administration of the first hospital dose of antibiotics,al_pn-3b,10164,coosa valley medical center,heart attack
+after_clean,426.0,sylacauga,35150,al,2562495000,pn-3b,pneumonia patients whose initial emergency room blood culture was performed prior to the administration of the first hospital dose of antibiotics,al_pn-3b,10164,gadsden regional medical center,heart attack
+ground_truth,426.0,sylacauga,35150,al,2562495000,pn-3b,pneumonia patients whose initial emergency room blood culture was performed prior to the administration of the first hospital dose of antibiotics,al_pn-3b,10164,coosa valley medical center,pneumonia
+before_clean,427.0,sylacauga,35150,al,2562495000,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10164,coosa valley medical center,heart attack
+after_clean,427.0,sylacauga,35150,al,2562495000,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10164,cherokee medical center,heart attack
+ground_truth,427.0,sylacauga,35150,al,2562495000,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10164,coosa valley medical center,pneumonia
+before_clean,428.0,sylacauga,35150,al,2562495000,pn-5c,pneumonia patients given initial antibiotic(s) within 6 hours after arrival,al_pn-5c,10164,coosa valley medical center,heart attack
+after_clean,428.0,sylacauga,35150,al,2562495000,pn-5c,pneumonia patients given initial antibiotic(s) within 6 hours after arrival,al_pn-5c,10164,baptist medical center south,heart attack
+ground_truth,428.0,sylacauga,35150,al,2562495000,pn-5c,pneumonia patients given initial antibiotic(s) within 6 hours after arrival,al_pn-5c,10164,coosa valley medical center,pneumonia
+after_clean,429.0,sylacauga,35150,al,2562495000,pn-6,pneumonia patients given the most appropriate initial antibiotic(s),al_pn-6,10164,riverview regional medical center,heart attack
+before_clean,429.0,sylacauga,35150,al,2562495000,pn-6,pneumonia patients given the most appropriate initial antibiotic(s),al_pn-6,10164,coosa valley medical center,heart attack
+ground_truth,429.0,sylacauga,35150,al,2562495000,pn-6,pneumonia patients given the most appropriate initial antibiotic(s),al_pn-6,10164,coosa valley medical center,pneumonia
+after_clean,430.0,sylacauga,35150,al,2562495000,pn-7,pneumonia patients assessed and given influenza vaccination,al_pn-7,10164,riverview regional medical center,heart attack
+before_clean,430.0,sylacauga,35150,al,2562495000,pn-7,pneumonia patients assessed and given influenza vaccination,al_pn-7,10164,coosa valley medical center,heart attack
+ground_truth,430.0,sylacauga,35150,al,2562495000,pn-7,pneumonia patients assessed and given influenza vaccination,al_pn-7,10164,coosa valley medical center,pneumonia

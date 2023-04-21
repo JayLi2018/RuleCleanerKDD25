@@ -1,0 +1,13 @@
+type,_tid_,City,ZipCode,State,PhoneNumber,MeasureCode,MeasureName,Stateavg,ProviderNumber,HospitalName,Condition
+before_clean,82.0,florence,35660,al,2567688400,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10006,eliza coffee memorial hospital,pneumonia
+after_clean,82.0,florence,36467,al,2567688400,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10006,eliza coffee memorial hospital,pneumonia
+ground_truth,82.0,florence,35631,al,2567688400,pn-4,pneumonia patients given smoking cessation advice/counseling,al_pn-4,10006,eliza coffee memorial hospital,pneumonia
+before_clean,45.0,boaz,35233,al,2565938310,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10005,marshall medical center south,heart attack
+after_clean,45.0,boaz,36467,al,2565938310,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10005,marshall medical center south,heart attack
+ground_truth,45.0,boaz,35957,al,2565938310,ami-2,heart attack patients given aspirin at discharge,al_ami-2,10005,marshall medical center south,heart attack
+after_clean,86.0,florence,36467,al,2567688400,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10006,eliza coffee memorial hospital,surgical infection prevention
+before_clean,86.0,florence,36302,al,2567688400,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10006,eliza coffee memorial hospital,surgical infection prevention
+ground_truth,86.0,florence,35631,al,2567688400,scip-card-2,surgery patients who were taking heart drugs called beta blockers before coming to the hospital&#54; who were kept on the beta blockers during the period just before and after their surgery,al_scip-card-2,10006,eliza coffee memorial hospital,surgical infection prevention
+after_clean,63.0,boaz,36467,al,2565938310,scip-inf-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,al_scip-inf-2,10005,marshall medical center south,surgical infection prevention
+before_clean,63.0,boaz,36302,al,2565938310,scip-inf-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,al_scip-inf-2,10005,marshall medical center south,surgical infection prevention
+ground_truth,63.0,boaz,35957,al,2565938310,scip-inf-2,surgery patients who were given the  right kind  of antibiotic to help prevent infection,al_scip-inf-2,10005,marshall medical center south,surgical infection prevention

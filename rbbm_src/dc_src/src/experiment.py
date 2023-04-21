@@ -163,49 +163,49 @@ def dc_main(dc_input):
     wrong_repairs_df.sort_values(by=['type','_tid_', 'wrong_attr']).to_csv('wrongs_after_fix.csv', index=False)
     correct_repairs_df.sort_values(by=['type','_tid_', 'corrected_attr']).to_csv('correct_after_fix.csv', index=False)
 
-    dfs = [x for _, x in wrong_repairs_df.groupby(['wrong_attr','_tid_'])]
-    print(f"wrong dfs len: {len(dfs)}")
-    now = datetime.now() # current date and time
-    date_time = now.strftime("%m%d%Y%H%M%S")
+    # dfs = [x for _, x in wrong_repairs_df.groupby(['wrong_attr','_tid_'])]
+    # print(f"wrong dfs len: {len(dfs)}")
+    # now = datetime.now() # current date and time
+    # date_time = now.strftime("%m%d%Y%H%M%S")
 
-    if(dc_input.prune_only):
-        for d in dfs:
-            print(d[:1]['wrong_attr'])
-            print(d[:1]['_tid_'])
-            attr_name, tid = list(d[:1]['wrong_attr'])[0], list(d[:1]['_tid_'])[0]
-            complaint=Complaint(complain_type='DC', attr_name=attr_name, tid=int(tid))
-            rule_responsibility(complaint, dc_input, f'prune_only_{dc_input.input_dc_file}_{date_time}.txt')
-    else:
-        if(dc_input.user_provide):
-            for d in dfs:
-                # wattr = d.iloc[0]['wrong_attr']
-                # print(wattr)
-                # if((d[d['type']=='after_clean'].iloc[0][wattr])==(d[d['type']=='before_clean'].iloc[0][wattr])):
-                print("--------------------------------------------------------------------------------------------")  
-                print(d)
-                print('\n')
-                # print(f"number of wrong repairs: {len(dfs)}")
-            choices = input('please input wrong_attr name and _tid_ to identify the errorous repaired result (<wrong_attr>:<_tid_>): (eg: Country:7)')
-            # conn.close()
-            # print("need to construct a complaint now")
-            attr_name, tid = choices.split(':')
-            complaint=Complaint(complain_type='DC', attr_name=attr_name, tid=int(tid))
-            rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}.txt')
-        else:
-            # print(f"complaint: {random.sample(dfs, 1)[0]}")
-            # complaint_dict=random.sample(dfs, 1)[0].to_dict('records')[0]
-            complaint_dict=dfs[dc_input.random_number_for_complaint % len(dfs)].to_dict('records')[0]
-            f=open(f'run_{date_time}.txt', 'a')
-            print("complaint:", file=f)
-            print(complaint_dict, file=f)
-            f.close()
-            complaint=Complaint(complain_type='DC', attr_name=complaint_dict['wrong_attr'], tid=int(complaint_dict['_tid_']))
-            print('the chosen complaint is:')
-            print(complaint_dict)
-            ## given an attribute and a tid (row id), find responsible rule(s)
-            rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}.txt')
+    # if(dc_input.prune_only):
+    #     for d in dfs:
+    #         print(d[:1]['wrong_attr'])
+    #         print(d[:1]['_tid_'])
+    #         attr_name, tid = list(d[:1]['wrong_attr'])[0], list(d[:1]['_tid_'])[0]
+    #         complaint=Complaint(complain_type='DC', attr_name=attr_name, tid=int(tid))
+    #         rule_responsibility(complaint, dc_input, f'prune_only_{dc_input.input_dc_file}_{date_time}.txt')
+    # else:
+    #     if(dc_input.user_provide):
+    #         for d in dfs:
+    #             # wattr = d.iloc[0]['wrong_attr']
+    #             # print(wattr)
+    #             # if((d[d['type']=='after_clean'].iloc[0][wattr])==(d[d['type']=='before_clean'].iloc[0][wattr])):
+    #             print("--------------------------------------------------------------------------------------------")  
+    #             print(d)
+    #             print('\n')
+    #             # print(f"number of wrong repairs: {len(dfs)}")
+    #         choices = input('please input wrong_attr name and _tid_ to identify the errorous repaired result (<wrong_attr>:<_tid_>): (eg: Country:7)')
+    #         # conn.close()
+    #         # print("need to construct a complaint now")
+    #         attr_name, tid = choices.split(':')
+    #         complaint=Complaint(complain_type='DC', attr_name=attr_name, tid=int(tid))
+    #         rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}.txt')
+    #     else:
+    #         # print(f"complaint: {random.sample(dfs, 1)[0]}")
+    #         # complaint_dict=random.sample(dfs, 1)[0].to_dict('records')[0]
+    #         complaint_dict=dfs[dc_input.random_number_for_complaint % len(dfs)].to_dict('records')[0]
+    #         f=open(f'run_{date_time}.txt', 'a')
+    #         print("complaint:", file=f)
+    #         print(complaint_dict, file=f)
+    #         f.close()
+    #         complaint=Complaint(complain_type='DC', attr_name=complaint_dict['wrong_attr'], tid=int(complaint_dict['_tid_']))
+    #         print('the chosen complaint is:')
+    #         print(complaint_dict)
+    #         ## given an attribute and a tid (row id), find responsible rule(s)
+    #         rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}.txt')
 
-            dc_input.sample_contingency=False
-            dc_input.stats=StatsTracker()
-            rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}_no_sample.txt')
-     
+    #         dc_input.sample_contingency=False
+    #         dc_input.stats=StatsTracker()
+    #         rule_responsibility(complaint, dc_input, f'run_{dc_input.input_dc_file}_{date_time}_no_sample.txt')
+    #  

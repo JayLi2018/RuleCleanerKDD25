@@ -33,5 +33,6 @@ class NullDetector(Detector):
             tmp_df.insert(1, "attribute", attr)
             errors.append(tmp_df)
         errors_df = pd.concat(errors, ignore_index=True)
+        errors_df.to_csv('null_errors_df.csv', index=False)
         return errors_df
 

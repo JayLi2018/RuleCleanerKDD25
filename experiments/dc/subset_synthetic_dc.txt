@@ -1,0 +1,2 @@
+t1&t2&EQ(t1.a,t2.a)&IQ(t1.b,t2.b)
+t1&t2&EQ(t1.c,t2.c)&IQ(t1.d,t2.d)

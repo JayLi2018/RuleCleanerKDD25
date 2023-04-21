@@ -24,6 +24,7 @@ from rbbm_src.labelling_func_src.src.lfs import (
 	lattice_lfs,
 	lattice_dict)
 from rbbm_src.labelling_func_src.src.classes import SPAM, HAM, ABSTAIN, lf_input_internal, clean_text
+
 from itertools import combinations
 import glob
 import numpy as np
@@ -58,7 +59,7 @@ def lf_main(lf_input, LFs=lattice_lfs):
 	logger.critical(sentences_df.head())
 	# sentences_df = pd.concat([pd.read_csv(f) for f in all_filenames ])
 	# sentences_df = sentences_df.rename(columns={"content": "text"})
-	sentences_df = sentences_df.rename(columns={"class": "label", "content": "text"})
+	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "text"})
 	sentences_df['text'] = sentences_df['text'].apply(lambda s: clean_text(s))
 
 	lexp = LabelExpaliner()
@@ -98,13 +99,13 @@ def lf_main(lf_input, LFs=lattice_lfs):
 		# snorkel needs to get an estimator using fit function first
 		# training model with all labelling functions
 
-	# probs_test= model.predict_proba(L=initial_vectors)
-	# df_sentences_filtered, probs_test_filtered = filter_unlabeled_dataframe(
-	# 		X=sentences_df, y=probs_test, L=initial_vectors
-	# )
-	# # reset df_train to those receive signals
-	# df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
-	df_sentences_filtered=sentences_df
+	probs_test= model.predict_proba(L=initial_vectors)
+	df_sentences_filtered, probs_test_filtered = filter_unlabeled_dataframe(
+			X=sentences_df, y=probs_test, L=initial_vectors
+	)
+	# reset df_train to those receive signals
+	df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
+	# df_sentences_filtered=sentences_df
 	filtered_vectors=initial_vectors
 	filtered_vectors = applier.apply(df=df_sentences_filtered, progress_bar=False)
 	cached_vectors = dict(zip(LFs, np.transpose(filtered_vectors)))
@@ -122,21 +123,25 @@ def lf_main(lf_input, LFs=lattice_lfs):
 
 	# df_test_filtered.to_csv('result.csv')
 	# the wrong labels we get
-	wrong_preds = df_sentences_filtered[(df_sentences_filtered['label']!=df_sentences_filtered['model_pred']) & (df_sentences_filtered['model_pred']!=ABSTAIN)]
+	wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
 	# df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)
 	wrong_preds['signal_strength'] = wrong_preds['vectors'].apply(lambda s: sum([1 for i in s.split(",") if int(i) == SPAM or int(i)==HAM]))
 	wrong_preds = wrong_preds.sort_values(['signal_strength'], ascending=False)
 	# logger.critical(wrong_preds)
+	accuracy=(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)
 	logger.critical(f"""
 		out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} actually got at least one signal to \n
 		make prediction. Out of all the valid predictions, we have {len(wrong_preds)} wrong predictions, \n
 		accuracy = {(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)} 
 		""")
 
+	if(lf_input.return_complaint_and_results):
+		return accuracy, df_sentences_filtered, wrong_preds
+
 	if(lf_input.user_provide):
 		for index, row in wrong_preds.head(10).iterrows():
 			logger.critical("--------------------------------------------------------------------------------------------")  
-			logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
+			logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['expected_label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
 		choices = input('please input sentence # of sentence, multiple sentences should be seperated using space')
 		logger.critical(f"choices: {choices}")
 		choice_indices = [int(x.strip()) for x in choices.split()]
@@ -146,13 +151,14 @@ def lf_main(lf_input, LFs=lattice_lfs):
 	else:
 		sentences_of_interest = wrong_preds
 
+
 	logger.critical(sentences_of_interest[['text','model_pred']])
 
 	rind=0
 	for i, r in sentences_of_interest.iterrows():
 		# soi_df = df_test_filtered[df_test_filtered['text']==s]
 		soi_label = r['model_pred']
-		soi_correct_label = r['label']
+		soi_correct_label = r['expected_label']
 		lf_internal_args.expected_label=soi_correct_label
 		lf_internal_args.predicted_label=soi_label
 		logger.debug(soi_label)

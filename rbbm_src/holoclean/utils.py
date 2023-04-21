@@ -1,7 +1,7 @@
 # Some constants.
 
 # How we represent nulls in holoclean.
-NULL_REPR = '_nan_'
+NULL_REPR = ''
 
 # A feature value to represent co-occurrence with NULLs, which is not applicable.
 NA_COOCCUR_FV = 0

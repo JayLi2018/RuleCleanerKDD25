@@ -106,6 +106,7 @@ class lf_input:
     dataset_name: str
     stats: StatsTracker
     prune_only: bool
+    return_complaint_and_results: bool
 
 
 @dataclass
@@ -130,3 +131,38 @@ class dc_input:
     random_number_for_complaint:int
     stats:StatsTracker
     prune_only: bool
+
+
+
+
+@dataclass
+class FixMonitor:
+    """
+    object that tracks the stats needed during the fix
+
+    """
+    counter:int=0 # count how many rules have been fixed 
+    lambda_val: float=0.2
+    # threshold predefined to retrain using the current fixes to see if it 
+    # has already met the requirement
+    rule_set_size: int=0 # total number of rules being used in the model
+    overall_fixed_count: int=0 # overall total number of rules fixed so far
+
+
+@dataclass
+class RepairConfig:
+    """
+    object that contains the information 
+    needed to do the repair
+    """
+
+    strategy:str # 'naive', 'information gain', 'optimal' 
+    # rtype: str # 'dc' or 'lf'
+    complaints:List[dict]
+    monitor: FixMonitor
+    acc_threshold: float 
+    runtime:float
+    # early stop threshold, i.e., if after fixing some rules the accuracy of 
+    # the complaint set is above this threshold, we stop
+
+    # tid:int=-1 # DC only

@@ -10,17 +10,6 @@ tid,attribute,correct_val
 0,hours-per-week,72
 0,native-country, Mexico
 0,income, <=50K
-1,age,61
-1,workclass, Private
-1,education, Some-college
-1,marital-status, Married-civ-spouse
-1,occupation, Exec-managerial
-1,relationship, Husband
-1,race, White
-1,sex, Male
-1,hours-per-week,45
-1,native-country, United-States
-1,income, >50K
 2,age,37
 2,workclass, Private
 2,education, HS-grad
@@ -32,28 +21,6 @@ tid,attribute,correct_val
 2,hours-per-week,40
 2,native-country, United-States
 2,income, <=50K
-3,age,41
-3,workclass, Private
-3,education, 5th-6th
-3,marital-status, Married-civ-spouse
-3,occupation, Adm-clerical
-3,relationship, Husband
-3,race, White
-3,sex, Male
-3,hours-per-week,40
-3,native-country, Mexico
-3,income, <=50K
-4,age,32
-4,workclass, Private
-4,education, Bachelors
-4,marital-status, Married-civ-spouse
-4,occupation, Prof-specialty
-4,relationship, Husband
-4,race, White
-4,sex, Male
-4,hours-per-week,60
-4,native-country, United-States
-4,income, >50K
 5,age,32
 5,workclass, State-gov
 5,education, HS-grad
@@ -76,17 +43,6 @@ tid,attribute,correct_val
 6,hours-per-week,20
 6,native-country, United-States
 6,income, <=50K
-7,age,29
-7,workclass, Private
-7,education, Assoc-voc
-7,marital-status, Married-civ-spouse
-7,occupation, Tech-support
-7,relationship, Husband
-7,race, White
-7,sex, Male
-7,hours-per-week,40
-7,native-country, United-States
-7,income, <=50K
 8,age,33
 8,workclass, Private
 8,education, HS-grad
@@ -98,50 +54,6 @@ tid,attribute,correct_val
 8,hours-per-week,40
 8,native-country, United-States
 8,income, <=50K
-9,age,26
-9,workclass, Private
-9,education, Bachelors
-9,marital-status, Never-married
-9,occupation, Sales
-9,relationship, Other-relative
-9,race, White
-9,sex, Male
-9,hours-per-week,40
-9,native-country, United-States
-9,income, <=50K
-10,age,30
-10,workclass, Private
-10,education, Assoc-acdm
-10,marital-status, Married-civ-spouse
-10,occupation, Other-service
-10,relationship, Wife
-10,race, White
-10,sex, Female
-10,hours-per-week,25
-10,native-country, United-States
-10,income, >50K
-11,age,28
-11,workclass, Private
-11,education, 10th
-11,marital-status, Never-married
-11,occupation, Handlers-cleaners
-11,relationship, Other-relative
-11,race, White
-11,sex, Male
-11,hours-per-week,40
-11,native-country, Mexico
-11,income, <=50K
-12,age,50
-12,workclass, Private
-12,education, HS-grad
-12,marital-status, Married-civ-spouse
-12,occupation, Craft-repair
-12,relationship, Husband
-12,race, White
-12,sex, Male
-12,hours-per-week,40
-12,native-country, United-States
-12,income, <=50K
 13,age,25
 13,workclass, Private
 13,education, Some-college
@@ -153,28 +65,6 @@ tid,attribute,correct_val
 13,hours-per-week,35
 13,native-country, United-States
 13,income, <=50K
-14,age,43
-14,workclass, Private
-14,education, 11th
-14,marital-status, Married-civ-spouse
-14,occupation, Sales
-14,relationship, Husband
-14,race, White
-14,sex, Male
-14,hours-per-week,60
-14,native-country, United-States
-14,income, <=50K
-15,age,48
-15,workclass, Private
-15,education, Some-college
-15,marital-status, Married-civ-spouse
-15,occupation, Exec-managerial
-15,relationship, Husband
-15,race, White
-15,sex, Male
-15,hours-per-week,65
-15,native-country, United-States
-15,income, >50K
 16,age,24
 16,workclass, Private
 16,education, Bachelors
@@ -197,17 +87,6 @@ tid,attribute,correct_val
 17,hours-per-week,40
 17,native-country, Cuba
 17,income, <=50K
-18,age,35
-18,workclass, Private
-18,education, Some-college
-18,marital-status, Married-civ-spouse
-18,occupation, Craft-repair
-18,relationship, Husband
-18,race, White
-18,sex, Male
-18,hours-per-week,40
-18,native-country, United-States
-18,income, >50K
 19,age,37
 19,workclass, Federal-gov
 19,education, Some-college
@@ -219,28 +98,6 @@ tid,attribute,correct_val
 19,hours-per-week,40
 19,native-country, United-States
 19,income, <=50K
-20,age,25
-20,workclass, Private
-20,education, Some-college
-20,marital-status, Married-civ-spouse
-20,occupation, Transport-moving
-20,relationship, Husband
-20,race, White
-20,sex, Male
-20,hours-per-week,35
-20,native-country, United-States
-20,income, <=50K
-21,age,42
-21,workclass, Private
-21,education, HS-grad
-21,marital-status, Married-civ-spouse
-21,occupation, Handlers-cleaners
-21,relationship, Husband
-21,race, Black
-21,sex, Male
-21,hours-per-week,40
-21,native-country, United-States
-21,income, <=50K
 22,age,33
 22,workclass, Private
 22,education, Some-college
@@ -252,17 +109,6 @@ tid,attribute,correct_val
 22,hours-per-week,80
 22,native-country, United-States
 22,income, <=50K
-23,age,42
-23,workclass, Private
-23,education, Some-college
-23,marital-status, Married-civ-spouse
-23,occupation, Machine-op-inspct
-23,relationship, Husband
-23,race, White
-23,sex, Male
-23,hours-per-week,40
-23,native-country, United-States
-23,income, <=50K
 24,age,35
 24,workclass, Private
 24,education, Assoc-voc
@@ -274,6 +120,17 @@ tid,attribute,correct_val
 24,hours-per-week,60
 24,native-country, United-States
 24,income, <=50K
+25,age,31
+25,workclass, Private
+25,education, Some-college
+25,marital-status, Divorced
+25,occupation, Sales
+25,relationship, Own-child
+25,race, White
+25,sex, Female
+25,hours-per-week,30
+25,native-country, United-States
+25,income, <=50K
 26,age,18
 26,workclass, Private
 26,education, 11th
@@ -285,17 +142,6 @@ tid,attribute,correct_val
 26,hours-per-week,20
 26,native-country, United-States
 26,income, <=50K
-27,age,61
-27,workclass, Private
-27,education, 10th
-27,marital-status, Married-civ-spouse
-27,occupation, Transport-moving
-27,relationship, Husband
-27,race, White
-27,sex, Male
-27,hours-per-week,40
-27,native-country, United-States
-27,income, <=50K
 28,age,18
 28,workclass, Private
 28,education, 10th
@@ -329,28 +175,6 @@ tid,attribute,correct_val
 30,hours-per-week,48
 30,native-country, United-States
 30,income, <=50K
-31,age,32
-31,workclass, Private
-31,education, HS-grad
-31,marital-status, Married-civ-spouse
-31,occupation, Sales
-31,relationship, Husband
-31,race, White
-31,sex, Male
-31,hours-per-week,49
-31,native-country, United-States
-31,income, <=50K
-32,age,43
-32,workclass, Private
-32,education, Bachelors
-32,marital-status, Married-civ-spouse
-32,occupation, Craft-repair
-32,relationship, Husband
-32,race, White
-32,sex, Male
-32,hours-per-week,40
-32,native-country, United-States
-32,income, >50K
 33,age,30
 33,workclass, Self-emp-not-inc
 33,education, Assoc-voc
@@ -362,17 +186,28 @@ tid,attribute,correct_val
 33,hours-per-week,60
 33,native-country, United-States
 33,income, <=50K
-34,age,55
-34,workclass, Private
-34,education, HS-grad
-34,marital-status, Married-civ-spouse
-34,occupation, Exec-managerial
-34,relationship, Husband
-34,race, White
-34,sex, Male
-34,hours-per-week,50
-34,native-country, United-States
-34,income, <=50K
+35,age,32
+35,workclass, ?
+35,education, HS-grad
+35,marital-status, Divorced
+35,occupation, ?
+35,relationship, Unmarried
+35,race, White
+35,sex, Female
+35,hours-per-week,28
+35,native-country, United-States
+35,income, <=50K
+36,age,21
+36,workclass, Private
+36,education, Some-college
+36,marital-status, Never-married
+36,occupation, Sales
+36,relationship, Own-child
+36,race, White
+36,sex, Male
+36,hours-per-week,12
+36,native-country, United-States
+36,income, <=50K
 37,age,50
 37,workclass, Private
 37,education, Some-college
@@ -395,17 +230,6 @@ tid,attribute,correct_val
 38,hours-per-week,40
 38,native-country, United-States
 38,income, <=50K
-39,age,39
-39,workclass, Private
-39,education, Bachelors
-39,marital-status, Married-civ-spouse
-39,occupation, Exec-managerial
-39,relationship, Husband
-39,race, White
-39,sex, Male
-39,hours-per-week,40
-39,native-country, United-States
-39,income, >50K
 40,age,40
 40,workclass, State-gov
 40,education, Masters
@@ -428,17 +252,17 @@ tid,attribute,correct_val
 41,hours-per-week,70
 41,native-country, United-States
 41,income, <=50K
-43,age,33
-43,workclass, Private
-43,education, HS-grad
-43,marital-status, Married-civ-spouse
-43,occupation, Other-service
-43,relationship, Husband
-43,race, Black
-43,sex, Male
-43,hours-per-week,40
-43,native-country, United-States
-43,income, <=50K
+42,age,44
+42,workclass, Self-emp-not-inc
+42,education, Some-college
+42,marital-status, Never-married
+42,occupation, Farming-fishing
+42,relationship, Own-child
+42,race, White
+42,sex, Male
+42,hours-per-week,60
+42,native-country, United-States
+42,income, <=50K
 44,age,22
 44,workclass, Private
 44,education, Bachelors
@@ -461,17 +285,6 @@ tid,attribute,correct_val
 45,hours-per-week,70
 45,native-country, United-States
 45,income, >50K
-46,age,30
-46,workclass, Private
-46,education, Assoc-voc
-46,marital-status, Married-civ-spouse
-46,occupation, Sales
-46,relationship, Husband
-46,race, White
-46,sex, Male
-46,hours-per-week,40
-46,native-country, United-States
-46,income, <=50K
 47,age,19
 47,workclass, Private
 47,education, Some-college
@@ -571,28 +384,17 @@ tid,attribute,correct_val
 55,hours-per-week,2
 55,native-country, United-States
 55,income, >50K
-57,age,48
-57,workclass, Local-gov
-57,education, HS-grad
-57,marital-status, Never-married
-57,occupation, Exec-managerial
-57,relationship, Own-child
-57,race, White
-57,sex, Female
-57,hours-per-week,40
-57,native-country, United-States
-57,income, <=50K
-58,age,71
-58,workclass, Private
-58,education, HS-grad
-58,marital-status, Married-civ-spouse
-58,occupation, Craft-repair
-58,relationship, Husband
-58,race, White
-58,sex, Male
-58,hours-per-week,15
-58,native-country, United-States
-58,income, <=50K
+56,age,20
+56,workclass, Private
+56,education, HS-grad
+56,marital-status, Never-married
+56,occupation, Handlers-cleaners
+56,relationship, Own-child
+56,race, White
+56,sex, Male
+56,hours-per-week,28
+56,native-country, United-States
+56,income, <=50K
 59,age,43
 59,workclass, Local-gov
 59,education, Bachelors
@@ -659,17 +461,6 @@ tid,attribute,correct_val
 64,hours-per-week,40
 64,native-country, United-States
 64,income, <=50K
-65,age,30
-65,workclass, Private
-65,education, Bachelors
-65,marital-status, Married-civ-spouse
-65,occupation, Prof-specialty
-65,relationship, Husband
-65,race, White
-65,sex, Male
-65,hours-per-week,50
-65,native-country, United-States
-65,income, >50K
 66,age,20
 66,workclass, Private
 66,education, 12th
@@ -725,17 +516,6 @@ tid,attribute,correct_val
 70,hours-per-week,40
 70,native-country, United-States
 70,income, <=50K
-71,age,48
-71,workclass, Private
-71,education, Assoc-acdm
-71,marital-status, Married-civ-spouse
-71,occupation, Transport-moving
-71,relationship, Husband
-71,race, White
-71,sex, Male
-71,hours-per-week,44
-71,native-country, United-States
-71,income, <=50K
 72,age,46
 72,workclass, Private
 72,education, Bachelors
@@ -747,17 +527,6 @@ tid,attribute,correct_val
 72,hours-per-week,40
 72,native-country, United-States
 72,income, <=50K
-73,age,51
-73,workclass, Private
-73,education, Masters
-73,marital-status, Married-civ-spouse
-73,occupation, Exec-managerial
-73,relationship, Husband
-73,race, White
-73,sex, Male
-73,hours-per-week,50
-73,native-country, United-States
-73,income, >50K
 74,age,26
 74,workclass, Private
 74,education, Assoc-acdm
@@ -769,17 +538,6 @@ tid,attribute,correct_val
 74,hours-per-week,40
 74,native-country, United-States
 74,income, <=50K
-75,age,43
-75,workclass, Private
-75,education, HS-grad
-75,marital-status, Married-civ-spouse
-75,occupation, Other-service
-75,relationship, Husband
-75,race, White
-75,sex, Male
-75,hours-per-week,60
-75,native-country, Nicaragua
-75,income, <=50K
 76,age,48
 76,workclass, Self-emp-not-inc
 76,education, HS-grad
@@ -802,17 +560,6 @@ tid,attribute,correct_val
 77,hours-per-week,40
 77,native-country, United-States
 77,income, <=50K
-78,age,41
-78,workclass, Private
-78,education, Prof-school
-78,marital-status, Married-civ-spouse
-78,occupation, Sales
-78,relationship, Husband
-78,race, White
-78,sex, Male
-78,hours-per-week,50
-78,native-country, United-States
-78,income, <=50K
 79,age,44
 79,workclass, Self-emp-not-inc
 79,education, HS-grad
@@ -868,17 +615,6 @@ tid,attribute,correct_val
 83,hours-per-week,40
 83,native-country, United-States
 83,income, <=50K
-84,age,25
-84,workclass, Private
-84,education, 11th
-84,marital-status, Married-civ-spouse
-84,occupation, Craft-repair
-84,relationship, Husband
-84,race, White
-84,sex, Male
-84,hours-per-week,50
-84,native-country, United-States
-84,income, <=50K
 85,age,45
 85,workclass, Private
 85,education, Bachelors
@@ -901,17 +637,6 @@ tid,attribute,correct_val
 86,hours-per-week,25
 86,native-country, United-States
 86,income, <=50K
-87,age,25
-87,workclass, Private
-87,education, HS-grad
-87,marital-status, Never-married
-87,occupation, Craft-repair
-87,relationship, Other-relative
-87,race, White
-87,sex, Male
-87,hours-per-week,40
-87,native-country, United-States
-87,income, <=50K
 88,age,44
 88,workclass, Private
 88,education, Bachelors
@@ -923,28 +648,17 @@ tid,attribute,correct_val
 88,hours-per-week,40
 88,native-country, United-States
 88,income, <=50K
-90,age,47
-90,workclass, Private
-90,education, Bachelors
-90,marital-status, Married-civ-spouse
-90,occupation, Exec-managerial
-90,relationship, Husband
-90,race, White
-90,sex, Male
-90,hours-per-week,50
-90,native-country, United-States
-90,income, >50K
-91,age,27
-91,workclass, Private
-91,education, Some-college
-91,marital-status, Married-civ-spouse
-91,occupation, Craft-repair
-91,relationship, Husband
-91,race, White
-91,sex, Male
-91,hours-per-week,55
-91,native-country, ?
-91,income, <=50K
+89,age,33
+89,workclass, ?
+89,education, 11th
+89,marital-status, Divorced
+89,occupation, ?
+89,relationship, Own-child
+89,race, White
+89,sex, Male
+89,hours-per-week,53
+89,native-country, United-States
+89,income, <=50K
 92,age,64
 92,workclass, Private
 92,education, Masters
@@ -956,17 +670,6 @@ tid,attribute,correct_val
 92,hours-per-week,35
 92,native-country, United-States
 92,income, <=50K
-93,age,52
-93,workclass, Private
-93,education, Bachelors
-93,marital-status, Married-civ-spouse
-93,occupation, Exec-managerial
-93,relationship, Husband
-93,race, White
-93,sex, Male
-93,hours-per-week,40
-93,native-country, United-States
-93,income, <=50K
 94,age,38
 94,workclass, State-gov
 94,education, Bachelors
@@ -978,39 +681,6 @@ tid,attribute,correct_val
 94,hours-per-week,52
 94,native-country, United-States
 94,income, <=50K
-95,age,62
-95,workclass, Private
-95,education, HS-grad
-95,marital-status, Married-civ-spouse
-95,occupation, Craft-repair
-95,relationship, Husband
-95,race, White
-95,sex, Male
-95,hours-per-week,45
-95,native-country, United-States
-95,income, >50K
-96,age,41
-96,workclass, Private
-96,education, HS-grad
-96,marital-status, Married-civ-spouse
-96,occupation, Transport-moving
-96,relationship, Husband
-96,race, White
-96,sex, Male
-96,hours-per-week,35
-96,native-country, United-States
-96,income, <=50K
-97,age,51
-97,workclass, Private
-97,education, Masters
-97,marital-status, Married-civ-spouse
-97,occupation, Exec-managerial
-97,relationship, Husband
-97,race, White
-97,sex, Male
-97,hours-per-week,60
-97,native-country, United-States
-97,income, >50K
 98,age,58
 98,workclass, Self-emp-not-inc
 98,education, 1st-4th
@@ -1022,39 +692,6 @@ tid,attribute,correct_val
 98,hours-per-week,18
 98,native-country, United-States
 98,income, <=50K
-99,age,25
-99,workclass, Private
-99,education, 1st-4th
-99,marital-status, Never-married
-99,occupation, Other-service
-99,relationship, Other-relative
-99,race, White
-99,sex, Male
-99,hours-per-week,25
-99,native-country, El-Salvador
-99,income, <=50K
-100,age,35
-100,workclass, Private
-100,education, 5th-6th
-100,marital-status, Married-civ-spouse
-100,occupation, Handlers-cleaners
-100,relationship, Husband
-100,race, White
-100,sex, Male
-100,hours-per-week,40
-100,native-country, Mexico
-100,income, <=50K
-101,age,40
-101,workclass, Private
-101,education, 12th
-101,marital-status, Married-civ-spouse
-101,occupation, Prof-specialty
-101,relationship, Husband
-101,race, White
-101,sex, Male
-101,hours-per-week,40
-101,native-country, Cuba
-101,income, >50K
 102,age,40
 102,workclass, State-gov
 102,education, Bachelors
@@ -1066,17 +703,6 @@ tid,attribute,correct_val
 102,hours-per-week,60
 102,native-country, United-States
 102,income, >50K
-103,age,44
-103,workclass, Private
-103,education, Some-college
-103,marital-status, Divorced
-103,occupation, Adm-clerical
-103,relationship, Other-relative
-103,race, White
-103,sex, Female
-103,hours-per-week,40
-103,native-country, United-States
-103,income, <=50K
 104,age,22
 104,workclass, Private
 104,education, 9th
@@ -1110,6 +736,17 @@ tid,attribute,correct_val
 106,hours-per-week,40
 106,native-country, United-States
 106,income, <=50K
+107,age,27
+107,workclass, Private
+107,education, 12th
+107,marital-status, Married-civ-spouse
+107,occupation, Farming-fishing
+107,relationship, Own-child
+107,race, White
+107,sex, Male
+107,hours-per-week,55
+107,native-country, United-States
+107,income, <=50K
 108,age,34
 108,workclass, State-gov
 108,education, Masters
@@ -1132,17 +769,6 @@ tid,attribute,correct_val
 109,hours-per-week,40
 109,native-country, United-States
 109,income, <=50K
-110,age,27
-110,workclass, Private
-110,education, Bachelors
-110,marital-status, Married-civ-spouse
-110,occupation, Craft-repair
-110,relationship, Other-relative
-110,race, White
-110,sex, Male
-110,hours-per-week,50
-110,native-country, United-States
-110,income, <=50K
 111,age,35
 111,workclass, Self-emp-not-inc
 111,education, Bachelors
@@ -1154,28 +780,6 @@ tid,attribute,correct_val
 111,hours-per-week,40
 111,native-country, United-States
 111,income, <=50K
-112,age,19
-112,workclass, Local-gov
-112,education, Some-college
-112,marital-status, Never-married
-112,occupation, Prof-specialty
-112,relationship, Own-child
-112,race, White
-112,sex, Female
-112,hours-per-week,20
-112,native-country, United-States
-112,income, <=50K
-113,age,24
-113,workclass, Private
-113,education, 11th
-113,marital-status, Married-civ-spouse
-113,occupation, Handlers-cleaners
-113,relationship, Husband
-113,race, Other
-113,sex, Male
-113,hours-per-week,40
-113,native-country, United-States
-113,income, <=50K
 114,age,23
 114,workclass, Private
 114,education, HS-grad
@@ -1275,17 +879,6 @@ tid,attribute,correct_val
 122,hours-per-week,50
 122,native-country, United-States
 122,income, <=50K
-123,age,41
-123,workclass, Private
-123,education, HS-grad
-123,marital-status, Married-civ-spouse
-123,occupation, Craft-repair
-123,relationship, Husband
-123,race, White
-123,sex, Male
-123,hours-per-week,60
-123,native-country, United-States
-123,income, <=50K
 124,age,43
 124,workclass, Private
 124,education, Some-college
@@ -1297,17 +890,17 @@ tid,attribute,correct_val
 124,hours-per-week,40
 124,native-country, United-States
 124,income, <=50K
-126,age,42
-126,workclass, Private
-126,education, HS-grad
-126,marital-status, Married-civ-spouse
-126,occupation, Other-service
-126,relationship, Husband
-126,race, White
-126,sex, Male
-126,hours-per-week,40
-126,native-country, United-States
-126,income, <=50K
+125,age,26
+125,workclass, Private
+125,education, Some-college
+125,marital-status, Separated
+125,occupation, Sales
+125,relationship, Unmarried
+125,race, White
+125,sex, Female
+125,hours-per-week,35
+125,native-country, United-States
+125,income, <=50K
 127,age,43
 127,workclass, Private
 127,education, Masters
@@ -1341,39 +934,17 @@ tid,attribute,correct_val
 129,hours-per-week,35
 129,native-country, United-States
 129,income, <=50K
-130,age,38
-130,workclass, Private
-130,education, HS-grad
-130,marital-status, Married-civ-spouse
-130,occupation, Craft-repair
-130,relationship, Husband
-130,race, White
-130,sex, Male
-130,hours-per-week,40
-130,native-country, United-States
-130,income, <=50K
-131,age,45
-131,workclass, Private
-131,education, Assoc-voc
-131,marital-status, Married-civ-spouse
-131,occupation, Craft-repair
-131,relationship, Husband
-131,race, White
-131,sex, Male
-131,hours-per-week,40
-131,native-country, Canada
-131,income, >50K
-133,age,30
-133,workclass, Private
-133,education, Bachelors
-133,marital-status, Never-married
-133,occupation, Adm-clerical
-133,relationship, Other-relative
-133,race, White
-133,sex, Male
-133,hours-per-week,40
-133,native-country, United-States
-133,income, <=50K
+132,age,20
+132,workclass, Private
+132,education, Assoc-acdm
+132,marital-status, Never-married
+132,occupation, Sales
+132,relationship, Own-child
+132,race, White
+132,sex, Female
+132,hours-per-week,25
+132,native-country, United-States
+132,income, <=50K
 134,age,19
 134,workclass, Private
 134,education, Some-college
@@ -1418,28 +989,6 @@ tid,attribute,correct_val
 137,hours-per-week,40
 137,native-country, United-States
 137,income, <=50K
-138,age,57
-138,workclass, Private
-138,education, 5th-6th
-138,marital-status, Married-civ-spouse
-138,occupation, Craft-repair
-138,relationship, Husband
-138,race, White
-138,sex, Male
-138,hours-per-week,40
-138,native-country, United-States
-138,income, <=50K
-139,age,57
-139,workclass, Private
-139,education, Masters
-139,marital-status, Married-civ-spouse
-139,occupation, Tech-support
-139,relationship, Husband
-139,race, White
-139,sex, Male
-139,hours-per-week,40
-139,native-country, United-States
-139,income, >50K
 140,age,38
 140,workclass, Self-emp-not-inc
 140,education, Some-college
@@ -1462,17 +1011,6 @@ tid,attribute,correct_val
 141,hours-per-week,40
 141,native-country, United-States
 141,income, <=50K
-142,age,38
-142,workclass, Private
-142,education, HS-grad
-142,marital-status, Married-civ-spouse
-142,occupation, Transport-moving
-142,relationship, Husband
-142,race, White
-142,sex, Male
-142,hours-per-week,50
-142,native-country, United-States
-142,income, <=50K
 143,age,19
 143,workclass, Private
 143,education, Some-college
@@ -1517,17 +1055,6 @@ tid,attribute,correct_val
 146,hours-per-week,32
 146,native-country, ?
 146,income, <=50K
-147,age,50
-147,workclass, Private
-147,education, HS-grad
-147,marital-status, Married-civ-spouse
-147,occupation, Farming-fishing
-147,relationship, Husband
-147,race, White
-147,sex, Male
-147,hours-per-week,50
-147,native-country, United-States
-147,income, <=50K
 148,age,18
 148,workclass, State-gov
 148,education, 11th
@@ -1550,17 +1077,6 @@ tid,attribute,correct_val
 149,hours-per-week,40
 149,native-country, United-States
 149,income, >50K
-150,age,44
-150,workclass, Private
-150,education, Bachelors
-150,marital-status, Married-civ-spouse
-150,occupation, Sales
-150,relationship, Husband
-150,race, White
-150,sex, Male
-150,hours-per-week,60
-150,native-country, United-States
-150,income, >50K
 151,age,80
 151,workclass, ?
 151,education, HS-grad
@@ -1572,17 +1088,6 @@ tid,attribute,correct_val
 151,hours-per-week,8
 151,native-country, Canada
 151,income, <=50K
-152,age,32
-152,workclass, Private
-152,education, HS-grad
-152,marital-status, Married-civ-spouse
-152,occupation, Prof-specialty
-152,relationship, Husband
-152,race, White
-152,sex, Male
-152,hours-per-week,50
-152,native-country, United-States
-152,income, <=50K
 153,age,45
 153,workclass, Private
 153,education, HS-grad
@@ -1594,17 +1099,6 @@ tid,attribute,correct_val
 153,hours-per-week,40
 153,native-country, United-States
 153,income, <=50K
-154,age,49
-154,workclass, Private
-154,education, HS-grad
-154,marital-status, Married-civ-spouse
-154,occupation, Sales
-154,relationship, Husband
-154,race, White
-154,sex, Male
-154,hours-per-week,65
-154,native-country, United-States
-154,income, >50K
 155,age,32
 155,workclass, Private
 155,education, HS-grad
@@ -1616,28 +1110,6 @@ tid,attribute,correct_val
 155,hours-per-week,20
 155,native-country, United-States
 155,income, <=50K
-156,age,28
-156,workclass, Private
-156,education, Assoc-voc
-156,marital-status, Married-civ-spouse
-156,occupation, Handlers-cleaners
-156,relationship, Wife
-156,race, White
-156,sex, Female
-156,hours-per-week,30
-156,native-country, Ecuador
-156,income, <=50K
-157,age,26
-157,workclass, Private
-157,education, Bachelors
-157,marital-status, Never-married
-157,occupation, Other-service
-157,relationship, Other-relative
-157,race, White
-157,sex, Female
-157,hours-per-week,40
-157,native-country, United-States
-157,income, <=50K
 158,age,36
 158,workclass, Private
 158,education, 10th
@@ -1649,17 +1121,6 @@ tid,attribute,correct_val
 158,hours-per-week,35
 158,native-country, ?
 158,income, <=50K
-159,age,32
-159,workclass, Private
-159,education, Bachelors
-159,marital-status, Married-civ-spouse
-159,occupation, Sales
-159,relationship, Husband
-159,race, White
-159,sex, Male
-159,hours-per-week,44
-159,native-country, United-States
-159,income, <=50K
 160,age,32
 160,workclass, ?
 160,education, Some-college
@@ -1682,17 +1143,6 @@ tid,attribute,correct_val
 161,hours-per-week,60
 161,native-country, United-States
 161,income, >50K
-162,age,36
-162,workclass, Private
-162,education, Masters
-162,marital-status, Married-civ-spouse
-162,occupation, Prof-specialty
-162,relationship, Husband
-162,race, White
-162,sex, Male
-162,hours-per-week,60
-162,native-country, United-States
-162,income, >50K
 163,age,26
 163,workclass, Self-emp-not-inc
 163,education, Some-college
@@ -1704,72 +1154,6 @@ tid,attribute,correct_val
 163,hours-per-week,55
 163,native-country, United-States
 163,income, <=50K
-164,age,46
-164,workclass, Private
-164,education, Some-college
-164,marital-status, Married-civ-spouse
-164,occupation, Prof-specialty
-164,relationship, Husband
-164,race, White
-164,sex, Male
-164,hours-per-week,38
-164,native-country, United-States
-164,income, >50K
-165,age,19
-165,workclass, Private
-165,education, 11th
-165,marital-status, Never-married
-165,occupation, Other-service
-165,relationship, Other-relative
-165,race, White
-165,sex, Male
-165,hours-per-week,20
-165,native-country, United-States
-165,income, <=50K
-166,age,40
-166,workclass, Private
-166,education, HS-grad
-166,marital-status, Married-civ-spouse
-166,occupation, Machine-op-inspct
-166,relationship, Husband
-166,race, White
-166,sex, Male
-166,hours-per-week,40
-166,native-country, United-States
-166,income, <=50K
-167,age,48
-167,workclass, Private
-167,education, Masters
-167,marital-status, Married-civ-spouse
-167,occupation, Prof-specialty
-167,relationship, Husband
-167,race, White
-167,sex, Male
-167,hours-per-week,40
-167,native-country, United-States
-167,income, >50K
-168,age,31
-168,workclass, Private
-168,education, Assoc-acdm
-168,marital-status, Married-civ-spouse
-168,occupation, Sales
-168,relationship, Husband
-168,race, White
-168,sex, Male
-168,hours-per-week,60
-168,native-country, United-States
-168,income, <=50K
-169,age,33
-169,workclass, Private
-169,education, 5th-6th
-169,marital-status, Married-civ-spouse
-169,occupation, Farming-fishing
-169,relationship, Husband
-169,race, Asian-Pac-Islander
-169,sex, Male
-169,hours-per-week,40
-169,native-country, Philippines
-169,income, <=50K
 170,age,47
 170,workclass, Self-emp-not-inc
 170,education, 7th-8th
@@ -1803,28 +1187,6 @@ tid,attribute,correct_val
 172,hours-per-week,40
 172,native-country, United-States
 172,income, <=50K
-173,age,36
-173,workclass, Private
-173,education, Bachelors
-173,marital-status, Married-civ-spouse
-173,occupation, Prof-specialty
-173,relationship, Husband
-173,race, White
-173,sex, Male
-173,hours-per-week,40
-173,native-country, United-States
-173,income, >50K
-174,age,54
-174,workclass, Private
-174,education, HS-grad
-174,marital-status, Married-civ-spouse
-174,occupation, Other-service
-174,relationship, Wife
-174,race, Black
-174,sex, Female
-174,hours-per-week,40
-174,native-country, United-States
-174,income, <=50K
 175,age,33
 175,workclass, Private
 175,education, HS-grad
@@ -1847,17 +1209,6 @@ tid,attribute,correct_val
 176,hours-per-week,37
 176,native-country, United-States
 176,income, <=50K
-177,age,34
-177,workclass, Private
-177,education, Bachelors
-177,marital-status, Married-civ-spouse
-177,occupation, Exec-managerial
-177,relationship, Husband
-177,race, White
-177,sex, Male
-177,hours-per-week,70
-177,native-country, United-States
-177,income, <=50K
 178,age,47
 178,workclass, Local-gov
 178,education, Some-college
@@ -1891,17 +1242,6 @@ tid,attribute,correct_val
 180,hours-per-week,40
 180,native-country, United-States
 180,income, <=50K
-181,age,38
-181,workclass, Private
-181,education, 10th
-181,marital-status, Married-civ-spouse
-181,occupation, Craft-repair
-181,relationship, Husband
-181,race, White
-181,sex, Male
-181,hours-per-week,40
-181,native-country, United-States
-181,income, >50K
 182,age,20
 182,workclass, Private
 182,education, HS-grad
@@ -2034,17 +1374,6 @@ tid,attribute,correct_val
 193,hours-per-week,40
 193,native-country, United-States
 193,income, <=50K
-194,age,43
-194,workclass, Private
-194,education, Bachelors
-194,marital-status, Married-civ-spouse
-194,occupation, Craft-repair
-194,relationship, Husband
-194,race, White
-194,sex, Male
-194,hours-per-week,48
-194,native-country, United-States
-194,income, <=50K
 195,age,54
 195,workclass, Private
 195,education, Assoc-voc
@@ -2067,39 +1396,17 @@ tid,attribute,correct_val
 196,hours-per-week,36
 196,native-country, United-States
 196,income, >50K
-197,age,65
-197,workclass, Private
-197,education, Some-college
-197,marital-status, Married-civ-spouse
-197,occupation, Protective-serv
-197,relationship, Husband
-197,race, White
-197,sex, Male
-197,hours-per-week,16
-197,native-country, United-States
-197,income, <=50K
-199,age,43
-199,workclass, Private
-199,education, Some-college
-199,marital-status, Married-civ-spouse
-199,occupation, Craft-repair
-199,relationship, Husband
-199,race, White
-199,sex, Male
-199,hours-per-week,40
-199,native-country, United-States
-199,income, <=50K
-200,age,27
-200,workclass, Private
-200,education, HS-grad
-200,marital-status, Married-civ-spouse
-200,occupation, Machine-op-inspct
-200,relationship, Husband
-200,race, White
-200,sex, Male
-200,hours-per-week,40
-200,native-country, United-States
-200,income, <=50K
+198,age,17
+198,workclass, Private
+198,education, 11th
+198,marital-status, Never-married
+198,occupation, Sales
+198,relationship, Own-child
+198,race, White
+198,sex, Male
+198,hours-per-week,5
+198,native-country, United-States
+198,income, <=50K
 201,age,50
 201,workclass, Self-emp-not-inc
 201,education, Doctorate
@@ -2188,17 +1495,6 @@ tid,attribute,correct_val
 208,hours-per-week,40
 208,native-country, United-States
 208,income, >50K
-209,age,37
-209,workclass, Private
-209,education, Bachelors
-209,marital-status, Married-civ-spouse
-209,occupation, Sales
-209,relationship, Husband
-209,race, White
-209,sex, Male
-209,hours-per-week,60
-209,native-country, United-States
-209,income, >50K
 211,age,26
 211,workclass, Private
 211,education, HS-grad
@@ -2221,17 +1517,6 @@ tid,attribute,correct_val
 212,hours-per-week,14
 212,native-country, United-States
 212,income, <=50K
-213,age,48
-213,workclass, Private
-213,education, Assoc-voc
-213,marital-status, Married-civ-spouse
-213,occupation, Other-service
-213,relationship, Husband
-213,race, Asian-Pac-Islander
-213,sex, Male
-213,hours-per-week,56
-213,native-country, Philippines
-213,income, >50K
 214,age,24
 214,workclass, Private
 214,education, HS-grad
@@ -2265,6 +1550,17 @@ tid,attribute,correct_val
 216,hours-per-week,40
 216,native-country, United-States
 216,income, <=50K
+217,age,17
+217,workclass, Private
+217,education, HS-grad
+217,marital-status, Never-married
+217,occupation, Sales
+217,relationship, Own-child
+217,race, White
+217,sex, Female
+217,hours-per-week,20
+217,native-country, United-States
+217,income, <=50K
 218,age,60
 218,workclass, Private
 218,education, HS-grad
@@ -2276,28 +1572,17 @@ tid,attribute,correct_val
 218,hours-per-week,33
 218,native-country, United-States
 218,income, <=50K
-219,age,54
-219,workclass, Self-emp-not-inc
-219,education, HS-grad
-219,marital-status, Married-civ-spouse
-219,occupation, Sales
-219,relationship, Wife
-219,race, White
-219,sex, Female
-219,hours-per-week,30
-219,native-country, United-States
-219,income, <=50K
-221,age,45
-221,workclass, Private
-221,education, Bachelors
-221,marital-status, Married-civ-spouse
-221,occupation, Sales
-221,relationship, Husband
-221,race, White
-221,sex, Male
-221,hours-per-week,55
-221,native-country, United-States
-221,income, <=50K
+220,age,17
+220,workclass, Private
+220,education, 11th
+220,marital-status, Never-married
+220,occupation, Handlers-cleaners
+220,relationship, Own-child
+220,race, White
+220,sex, Male
+220,hours-per-week,25
+220,native-country, United-States
+220,income, <=50K
 222,age,27
 222,workclass, Private
 222,education, Assoc-acdm
@@ -2364,17 +1649,6 @@ tid,attribute,correct_val
 227,hours-per-week,54
 227,native-country, ?
 227,income, >50K
-228,age,57
-228,workclass, Private
-228,education, HS-grad
-228,marital-status, Married-civ-spouse
-228,occupation, Adm-clerical
-228,relationship, Wife
-228,race, White
-228,sex, Female
-228,hours-per-week,40
-228,native-country, United-States
-228,income, <=50K
 229,age,53
 229,workclass, Private
 229,education, Bachelors
@@ -2386,17 +1660,6 @@ tid,attribute,correct_val
 229,hours-per-week,40
 229,native-country, United-States
 229,income, <=50K
-230,age,19
-230,workclass, Local-gov
-230,education, Some-college
-230,marital-status, Never-married
-230,occupation, Adm-clerical
-230,relationship, Own-child
-230,race, White
-230,sex, Male
-230,hours-per-week,15
-230,native-country, United-States
-230,income, <=50K
 231,age,24
 231,workclass, Private
 231,education, HS-grad
@@ -2408,17 +1671,6 @@ tid,attribute,correct_val
 231,hours-per-week,40
 231,native-country, United-States
 231,income, <=50K
-232,age,44
-232,workclass, Private
-232,education, Masters
-232,marital-status, Married-civ-spouse
-232,occupation, Adm-clerical
-232,relationship, Husband
-232,race, White
-232,sex, Male
-232,hours-per-week,50
-232,native-country, United-States
-232,income, <=50K
 233,age,29
 233,workclass, Self-emp-inc
 233,education, HS-grad
@@ -2430,39 +1682,17 @@ tid,attribute,correct_val
 233,hours-per-week,45
 233,native-country, United-States
 233,income, <=50K
-234,age,37
-234,workclass, Private
-234,education, Prof-school
-234,marital-status, Married-civ-spouse
-234,occupation, Exec-managerial
-234,relationship, Husband
-234,race, White
-234,sex, Male
-234,hours-per-week,40
-234,native-country, United-States
-234,income, <=50K
-235,age,49
-235,workclass, Private
-235,education, HS-grad
-235,marital-status, Married-civ-spouse
-235,occupation, Adm-clerical
-235,relationship, Wife
-235,race, White
-235,sex, Female
-235,hours-per-week,30
-235,native-country, United-States
-235,income, <=50K
-236,age,34
-236,workclass, Private
-236,education, Bachelors
-236,marital-status, Married-civ-spouse
-236,occupation, Farming-fishing
-236,relationship, Husband
-236,race, White
-236,sex, Male
-236,hours-per-week,50
-236,native-country, United-States
-236,income, >50K
+237,age,28
+237,workclass, Private
+237,education, HS-grad
+237,marital-status, Never-married
+237,occupation, Transport-moving
+237,relationship, Own-child
+237,race, White
+237,sex, Male
+237,hours-per-week,20
+237,native-country, United-States
+237,income, <=50K
 238,age,36
 238,workclass, Private
 238,education, HS-grad
@@ -2474,17 +1704,6 @@ tid,attribute,correct_val
 238,hours-per-week,40
 238,native-country, United-States
 238,income, <=50K
-239,age,47
-239,workclass, Private
-239,education, HS-grad
-239,marital-status, Married-civ-spouse
-239,occupation, Sales
-239,relationship, Husband
-239,race, White
-239,sex, Male
-239,hours-per-week,40
-239,native-country, United-States
-239,income, >50K
 240,age,46
 240,workclass, Local-gov
 240,education, Bachelors
@@ -2529,39 +1748,6 @@ tid,attribute,correct_val
 243,hours-per-week,40
 243,native-country, United-States
 243,income, <=50K
-244,age,46
-244,workclass, Private
-244,education, HS-grad
-244,marital-status, Married-civ-spouse
-244,occupation, Machine-op-inspct
-244,relationship, Husband
-244,race, Black
-244,sex, Male
-244,hours-per-week,40
-244,native-country, United-States
-244,income, <=50K
-245,age,59
-245,workclass, Private
-245,education, HS-grad
-245,marital-status, Married-civ-spouse
-245,occupation, Craft-repair
-245,relationship, Husband
-245,race, White
-245,sex, Male
-245,hours-per-week,45
-245,native-country, United-States
-245,income, >50K
-246,age,42
-246,workclass, Private
-246,education, Some-college
-246,marital-status, Married-civ-spouse
-246,occupation, Tech-support
-246,relationship, Husband
-246,race, White
-246,sex, Male
-246,hours-per-week,20
-246,native-country, United-States
-246,income, >50K
 247,age,53
 247,workclass, Local-gov
 247,education, Masters
@@ -2595,6 +1781,17 @@ tid,attribute,correct_val
 249,hours-per-week,80
 249,native-country, United-States
 249,income, <=50K
+250,age,47
+250,workclass, Private
+250,education, HS-grad
+250,marital-status, Never-married
+250,occupation, Exec-managerial
+250,relationship, Own-child
+250,race, White
+250,sex, Female
+250,hours-per-week,50
+250,native-country, Cuba
+250,income, <=50K
 251,age,50
 251,workclass, Private
 251,education, HS-grad
@@ -2650,6 +1847,17 @@ tid,attribute,correct_val
 255,hours-per-week,52
 255,native-country, United-States
 255,income, <=50K
+256,age,29
+256,workclass, ?
+256,education, HS-grad
+256,marital-status, Never-married
+256,occupation, ?
+256,relationship, Own-child
+256,race, White
+256,sex, Male
+256,hours-per-week,50
+256,native-country, United-States
+256,income, <=50K
 257,age,60
 257,workclass, Federal-gov
 257,education, Some-college
@@ -2683,39 +1891,17 @@ tid,attribute,correct_val
 259,hours-per-week,40
 259,native-country, United-States
 259,income, <=50K
-260,age,37
-260,workclass, Private
-260,education, Bachelors
-260,marital-status, Married-civ-spouse
-260,occupation, Exec-managerial
-260,relationship, Husband
-260,race, White
-260,sex, Male
-260,hours-per-week,60
-260,native-country, United-States
-260,income, >50K
-261,age,50
-261,workclass, Private
-261,education, HS-grad
-261,marital-status, Married-civ-spouse
-261,occupation, Craft-repair
-261,relationship, Husband
-261,race, White
-261,sex, Male
-261,hours-per-week,50
-261,native-country, United-States
-261,income, <=50K
-263,age,42
-263,workclass, Private
-263,education, Bachelors
-263,marital-status, Married-civ-spouse
-263,occupation, Exec-managerial
-263,relationship, Husband
-263,race, White
-263,sex, Male
-263,hours-per-week,45
-263,native-country, United-States
-263,income, >50K
+262,age,46
+262,workclass, Private
+262,education, Some-college
+262,marital-status, Divorced
+262,occupation, Machine-op-inspct
+262,relationship, Own-child
+262,race, White
+262,sex, Female
+262,hours-per-week,17
+262,native-country, United-States
+262,income, <=50K
 264,age,43
 264,workclass, Private
 264,education, Masters
@@ -2771,17 +1957,6 @@ tid,attribute,correct_val
 268,hours-per-week,40
 268,native-country, Nicaragua
 268,income, <=50K
-269,age,26
-269,workclass, Private
-269,education, Some-college
-269,marital-status, Married-civ-spouse
-269,occupation, Transport-moving
-269,relationship, Husband
-269,race, White
-269,sex, Male
-269,hours-per-week,55
-269,native-country, United-States
-269,income, >50K
 270,age,60
 270,workclass, Self-emp-not-inc
 270,education, Some-college
@@ -2793,17 +1968,6 @@ tid,attribute,correct_val
 270,hours-per-week,24
 270,native-country, United-States
 270,income, <=50K
-271,age,25
-271,workclass, Private
-271,education, Some-college
-271,marital-status, Married-civ-spouse
-271,occupation, Sales
-271,relationship, Husband
-271,race, White
-271,sex, Male
-271,hours-per-week,44
-271,native-country, United-States
-271,income, >50K
 272,age,29
 272,workclass, Private
 272,education, Assoc-voc
@@ -2815,17 +1979,6 @@ tid,attribute,correct_val
 272,hours-per-week,40
 272,native-country, United-States
 272,income, <=50K
-273,age,43
-273,workclass, Private
-273,education, Some-college
-273,marital-status, Married-civ-spouse
-273,occupation, Craft-repair
-273,relationship, Husband
-273,race, White
-273,sex, Male
-273,hours-per-week,60
-273,native-country, United-States
-273,income, >50K
 274,age,44
 274,workclass, Private
 274,education, 7th-8th
@@ -2837,17 +1990,6 @@ tid,attribute,correct_val
 274,hours-per-week,48
 274,native-country, United-States
 274,income, <=50K
-275,age,40
-275,workclass, Private
-275,education, Doctorate
-275,marital-status, Married-civ-spouse
-275,occupation, Prof-specialty
-275,relationship, Husband
-275,race, White
-275,sex, Male
-275,hours-per-week,40
-275,native-country, United-States
-275,income, >50K
 276,age,31
 276,workclass, Private
 276,education, HS-grad
@@ -2859,17 +2001,17 @@ tid,attribute,correct_val
 276,hours-per-week,38
 276,native-country, United-States
 276,income, <=50K
-277,age,30
-277,workclass, Private
-277,education, Bachelors
-277,marital-status, Married-civ-spouse
-277,occupation, Adm-clerical
-277,relationship, Husband
-277,race, White
-277,sex, Male
-277,hours-per-week,40
-277,native-country, United-States
-277,income, >50K
+278,age,39
+278,workclass, Private
+278,education, Some-college
+278,marital-status, Separated
+278,occupation, Other-service
+278,relationship, Unmarried
+278,race, White
+278,sex, Female
+278,hours-per-week,75
+278,native-country, United-States
+278,income, <=50K
 279,age,27
 279,workclass, Private
 279,education, 1st-4th
@@ -2881,39 +2023,6 @@ tid,attribute,correct_val
 279,hours-per-week,35
 279,native-country, Dominican-Republic
 279,income, <=50K
-281,age,23
-281,workclass, Private
-281,education, Some-college
-281,marital-status, Married-civ-spouse
-281,occupation, Exec-managerial
-281,relationship, Wife
-281,race, Black
-281,sex, Female
-281,hours-per-week,40
-281,native-country, United-States
-281,income, <=50K
-282,age,45
-282,workclass, Local-gov
-282,education, Masters
-282,marital-status, Married-civ-spouse
-282,occupation, Prof-specialty
-282,relationship, Wife
-282,race, White
-282,sex, Female
-282,hours-per-week,35
-282,native-country, United-States
-282,income, >50K
-283,age,38
-283,workclass, Private
-283,education, HS-grad
-283,marital-status, Married-civ-spouse
-283,occupation, Machine-op-inspct
-283,relationship, Husband
-283,race, White
-283,sex, Male
-283,hours-per-week,40
-283,native-country, United-States
-283,income, <=50K
 284,age,21
 284,workclass, Private
 284,education, 5th-6th
@@ -2947,17 +2056,6 @@ tid,attribute,correct_val
 286,hours-per-week,40
 286,native-country, United-States
 286,income, <=50K
-287,age,29
-287,workclass, Private
-287,education, HS-grad
-287,marital-status, Married-civ-spouse
-287,occupation, Transport-moving
-287,relationship, Husband
-287,race, Black
-287,sex, Male
-287,hours-per-week,40
-287,native-country, United-States
-287,income, <=50K
 288,age,24
 288,workclass, Private
 288,education, Bachelors
@@ -2980,17 +2078,6 @@ tid,attribute,correct_val
 289,hours-per-week,47
 289,native-country, United-States
 289,income, <=50K
-290,age,37
-290,workclass, Private
-290,education, HS-grad
-290,marital-status, Married-civ-spouse
-290,occupation, Exec-managerial
-290,relationship, Husband
-290,race, White
-290,sex, Male
-290,hours-per-week,40
-290,native-country, United-States
-290,income, <=50K
 291,age,22
 291,workclass, ?
 291,education, Some-college
@@ -3013,17 +2100,6 @@ tid,attribute,correct_val
 292,hours-per-week,40
 292,native-country, United-States
 292,income, >50K
-293,age,55
-293,workclass, Private
-293,education, Some-college
-293,marital-status, Married-civ-spouse
-293,occupation, Transport-moving
-293,relationship, Husband
-293,race, White
-293,sex, Male
-293,hours-per-week,6
-293,native-country, United-States
-293,income, >50K
 294,age,21
 294,workclass, Private
 294,education, Some-college
@@ -3046,17 +2122,6 @@ tid,attribute,correct_val
 295,hours-per-week,45
 295,native-country, United-States
 295,income, <=50K
-296,age,32
-296,workclass, Private
-296,education, 11th
-296,marital-status, Married-civ-spouse
-296,occupation, Handlers-cleaners
-296,relationship, Husband
-296,race, White
-296,sex, Male
-296,hours-per-week,40
-296,native-country, Columbia
-296,income, <=50K
 297,age,43
 297,workclass, Private
 297,education, HS-grad
@@ -3156,28 +2221,6 @@ tid,attribute,correct_val
 305,hours-per-week,40
 305,native-country, United-States
 305,income, <=50K
-306,age,32
-306,workclass, Private
-306,education, HS-grad
-306,marital-status, Married-civ-spouse
-306,occupation, Transport-moving
-306,relationship, Husband
-306,race, White
-306,sex, Male
-306,hours-per-week,40
-306,native-country, United-States
-306,income, <=50K
-307,age,49
-307,workclass, Private
-307,education, 12th
-307,marital-status, Married-civ-spouse
-307,occupation, Craft-repair
-307,relationship, Husband
-307,race, White
-307,sex, Male
-307,hours-per-week,40
-307,native-country, United-States
-307,income, >50K
 308,age,50
 308,workclass, Self-emp-not-inc
 308,education, Bachelors
@@ -3266,28 +2309,6 @@ tid,attribute,correct_val
 315,hours-per-week,60
 315,native-country, United-States
 315,income, >50K
-316,age,50
-316,workclass, Private
-316,education, Assoc-acdm
-316,marital-status, Married-civ-spouse
-316,occupation, Machine-op-inspct
-316,relationship, Husband
-316,race, White
-316,sex, Male
-316,hours-per-week,50
-316,native-country, United-States
-316,income, >50K
-317,age,32
-317,workclass, Private
-317,education, HS-grad
-317,marital-status, Married-civ-spouse
-317,occupation, Prof-specialty
-317,relationship, Husband
-317,race, White
-317,sex, Male
-317,hours-per-week,40
-317,native-country, United-States
-317,income, <=50K
 318,age,23
 318,workclass, Private
 318,education, 12th
@@ -3299,17 +2320,6 @@ tid,attribute,correct_val
 318,hours-per-week,30
 318,native-country, United-States
 318,income, <=50K
-319,age,44
-319,workclass, Private
-319,education, Bachelors
-319,marital-status, Married-civ-spouse
-319,occupation, Exec-managerial
-319,relationship, Husband
-319,race, White
-319,sex, Male
-319,hours-per-week,50
-319,native-country, United-States
-319,income, >50K
 320,age,36
 320,workclass, Private
 320,education, Bachelors
@@ -3343,17 +2353,6 @@ tid,attribute,correct_val
 323,hours-per-week,16
 323,native-country, United-States
 323,income, <=50K
-324,age,25
-324,workclass, Private
-324,education, HS-grad
-324,marital-status, Never-married
-324,occupation, Handlers-cleaners
-324,relationship, Other-relative
-324,race, White
-324,sex, Male
-324,hours-per-week,40
-324,native-country, United-States
-324,income, <=50K
 325,age,19
 325,workclass, Private
 325,education, 11th
@@ -3365,39 +2364,6 @@ tid,attribute,correct_val
 325,hours-per-week,35
 325,native-country, United-States
 325,income, <=50K
-326,age,18
-326,workclass, Private
-326,education, 11th
-326,marital-status, Married-civ-spouse
-326,occupation, Craft-repair
-326,relationship, Husband
-326,race, White
-326,sex, Male
-326,hours-per-week,40
-326,native-country, United-States
-326,income, <=50K
-327,age,38
-327,workclass, Private
-327,education, Some-college
-327,marital-status, Married-civ-spouse
-327,occupation, Sales
-327,relationship, Husband
-327,race, White
-327,sex, Male
-327,hours-per-week,40
-327,native-country, United-States
-327,income, <=50K
-328,age,53
-328,workclass, Private
-328,education, HS-grad
-328,marital-status, Married-civ-spouse
-328,occupation, Machine-op-inspct
-328,relationship, Husband
-328,race, White
-328,sex, Male
-328,hours-per-week,40
-328,native-country, United-States
-328,income, >50K
 329,age,37
 329,workclass, Private
 329,education, HS-grad
@@ -3464,17 +2430,6 @@ tid,attribute,correct_val
 334,hours-per-week,50
 334,native-country, Philippines
 334,income, >50K
-335,age,42
-335,workclass, Private
-335,education, Bachelors
-335,marital-status, Married-civ-spouse
-335,occupation, Exec-managerial
-335,relationship, Husband
-335,race, White
-335,sex, Male
-335,hours-per-week,40
-335,native-country, United-States
-335,income, >50K
 336,age,19
 336,workclass, ?
 336,education, Some-college
@@ -3497,28 +2452,17 @@ tid,attribute,correct_val
 337,hours-per-week,20
 337,native-country, United-States
 337,income, <=50K
-338,age,29
-338,workclass, Private
-338,education, Some-college
-338,marital-status, Never-married
-338,occupation, Sales
-338,relationship, Other-relative
-338,race, White
-338,sex, Male
-338,hours-per-week,50
-338,native-country, United-States
-338,income, <=50K
-339,age,36
-339,workclass, Private
-339,education, HS-grad
-339,marital-status, Married-civ-spouse
-339,occupation, Machine-op-inspct
-339,relationship, Husband
-339,race, Black
-339,sex, Male
-339,hours-per-week,40
-339,native-country, Haiti
-339,income, <=50K
+340,age,30
+340,workclass, Private
+340,education, HS-grad
+340,marital-status, Never-married
+340,occupation, Handlers-cleaners
+340,relationship, Own-child
+340,race, White
+340,sex, Male
+340,hours-per-week,27
+340,native-country, United-States
+340,income, <=50K
 341,age,18
 341,workclass, Private
 341,education, HS-grad
@@ -3530,28 +2474,6 @@ tid,attribute,correct_val
 341,hours-per-week,30
 341,native-country, United-States
 341,income, <=50K
-342,age,51
-342,workclass, Private
-342,education, 7th-8th
-342,marital-status, Married-civ-spouse
-342,occupation, Transport-moving
-342,relationship, Husband
-342,race, White
-342,sex, Male
-342,hours-per-week,40
-342,native-country, Cuba
-342,income, <=50K
-343,age,47
-343,workclass, Private
-343,education, HS-grad
-343,marital-status, Married-civ-spouse
-343,occupation, Craft-repair
-343,relationship, Husband
-343,race, White
-343,sex, Male
-343,hours-per-week,40
-343,native-country, United-States
-343,income, >50K
 344,age,55
 344,workclass, State-gov
 344,education, Bachelors
@@ -3574,28 +2496,6 @@ tid,attribute,correct_val
 345,hours-per-week,40
 345,native-country, United-States
 345,income, >50K
-346,age,29
-346,workclass, Private
-346,education, HS-grad
-346,marital-status, Married-civ-spouse
-346,occupation, Adm-clerical
-346,relationship, Wife
-346,race, White
-346,sex, Female
-346,hours-per-week,20
-346,native-country, United-States
-346,income, <=50K
-347,age,54
-347,workclass, Private
-347,education, HS-grad
-347,marital-status, Married-civ-spouse
-347,occupation, Transport-moving
-347,relationship, Husband
-347,race, Black
-347,sex, Male
-347,hours-per-week,40
-347,native-country, United-States
-347,income, <=50K
 348,age,46
 348,workclass, Local-gov
 348,education, Some-college
@@ -3607,17 +2507,6 @@ tid,attribute,correct_val
 348,hours-per-week,40
 348,native-country, United-States
 348,income, <=50K
-349,age,38
-349,workclass, Private
-349,education, Bachelors
-349,marital-status, Married-civ-spouse
-349,occupation, Adm-clerical
-349,relationship, Husband
-349,race, White
-349,sex, Male
-349,hours-per-week,50
-349,native-country, United-States
-349,income, >50K
 350,age,41
 350,workclass, Private
 350,education, 12th
@@ -3673,17 +2562,6 @@ tid,attribute,correct_val
 354,hours-per-week,45
 354,native-country, United-States
 354,income, <=50K
-355,age,32
-355,workclass, Private
-355,education, HS-grad
-355,marital-status, Married-civ-spouse
-355,occupation, Craft-repair
-355,relationship, Husband
-355,race, White
-355,sex, Male
-355,hours-per-week,40
-355,native-country, United-States
-355,income, <=50K
 356,age,61
 356,workclass, Private
 356,education, 12th
@@ -3717,17 +2595,6 @@ tid,attribute,correct_val
 358,hours-per-week,40
 358,native-country, Columbia
 358,income, <=50K
-359,age,33
-359,workclass, Private
-359,education, Assoc-acdm
-359,marital-status, Married-civ-spouse
-359,occupation, Sales
-359,relationship, Husband
-359,race, White
-359,sex, Male
-359,hours-per-week,40
-359,native-country, Mexico
-359,income, <=50K
 360,age,23
 360,workclass, Private
 360,education, HS-grad
@@ -3739,17 +2606,6 @@ tid,attribute,correct_val
 360,hours-per-week,30
 360,native-country, United-States
 360,income, <=50K
-361,age,50
-361,workclass, Private
-361,education, Masters
-361,marital-status, Married-spouse-absent
-361,occupation, Prof-specialty
-361,relationship, Other-relative
-361,race, White
-361,sex, Male
-361,hours-per-week,60
-361,native-country, ?
-361,income, <=50K
 362,age,69
 362,workclass, ?
 362,education, HS-grad
@@ -3772,28 +2628,6 @@ tid,attribute,correct_val
 363,hours-per-week,40
 363,native-country, United-States
 363,income, <=50K
-364,age,44
-364,workclass, Private
-364,education, Bachelors
-364,marital-status, Married-civ-spouse
-364,occupation, Exec-managerial
-364,relationship, Husband
-364,race, White
-364,sex, Male
-364,hours-per-week,50
-364,native-country, United-States
-364,income, <=50K
-365,age,56
-365,workclass, Private
-365,education, HS-grad
-365,marital-status, Married-civ-spouse
-365,occupation, Sales
-365,relationship, Husband
-365,race, White
-365,sex, Male
-365,hours-per-week,55
-365,native-country, United-States
-365,income, >50K
 366,age,33
 366,workclass, Private
 366,education, Assoc-acdm
@@ -3805,17 +2639,6 @@ tid,attribute,correct_val
 366,hours-per-week,40
 366,native-country, United-States
 366,income, <=50K
-367,age,36
-367,workclass, Private
-367,education, Bachelors
-367,marital-status, Married-civ-spouse
-367,occupation, Prof-specialty
-367,relationship, Wife
-367,race, White
-367,sex, Female
-367,hours-per-week,32
-367,native-country, United-States
-367,income, >50K
 368,age,56
 368,workclass, Private
 368,education, Bachelors
@@ -3838,39 +2661,6 @@ tid,attribute,correct_val
 369,hours-per-week,40
 369,native-country, United-States
 369,income, <=50K
-370,age,62
-370,workclass, Private
-370,education, Some-college
-370,marital-status, Married-civ-spouse
-370,occupation, Craft-repair
-370,relationship, Husband
-370,race, White
-370,sex, Male
-370,hours-per-week,45
-370,native-country, United-States
-370,income, <=50K
-371,age,48
-371,workclass, Private
-371,education, 10th
-371,marital-status, Married-civ-spouse
-371,occupation, Craft-repair
-371,relationship, Husband
-371,race, White
-371,sex, Male
-371,hours-per-week,30
-371,native-country, United-States
-371,income, <=50K
-372,age,43
-372,workclass, Private
-372,education, Bachelors
-372,marital-status, Married-civ-spouse
-372,occupation, Handlers-cleaners
-372,relationship, Husband
-372,race, Black
-372,sex, Male
-372,hours-per-week,40
-372,native-country, Haiti
-372,income, >50K
 373,age,30
 373,workclass, Private
 373,education, Bachelors
@@ -3882,28 +2672,6 @@ tid,attribute,correct_val
 373,hours-per-week,40
 373,native-country, United-States
 373,income, <=50K
-374,age,38
-374,workclass, Private
-374,education, Bachelors
-374,marital-status, Married-civ-spouse
-374,occupation, Sales
-374,relationship, Husband
-374,race, White
-374,sex, Male
-374,hours-per-week,60
-374,native-country, United-States
-374,income, >50K
-375,age,46
-375,workclass, Private
-375,education, 7th-8th
-375,marital-status, Married-civ-spouse
-375,occupation, Transport-moving
-375,relationship, Husband
-375,race, White
-375,sex, Male
-375,hours-per-week,40
-375,native-country, United-States
-375,income, <=50K
 376,age,59
 376,workclass, Local-gov
 376,education, HS-grad
@@ -3915,17 +2683,6 @@ tid,attribute,correct_val
 376,hours-per-week,19
 376,native-country, United-States
 376,income, <=50K
-377,age,36
-377,workclass, ?
-377,education, Assoc-voc
-377,marital-status, Married-civ-spouse
-377,occupation, ?
-377,relationship, Wife
-377,race, White
-377,sex, Female
-377,hours-per-week,8
-377,native-country, United-States
-377,income, <=50K
 378,age,51
 378,workclass, Private
 378,education, HS-grad
@@ -4003,6 +2760,17 @@ tid,attribute,correct_val
 384,hours-per-week,40
 384,native-country, United-States
 384,income, <=50K
+385,age,21
+385,workclass, Private
+385,education, Some-college
+385,marital-status, Never-married
+385,occupation, Other-service
+385,relationship, Own-child
+385,race, White
+385,sex, Female
+385,hours-per-week,37
+385,native-country, United-States
+385,income, <=50K
 386,age,22
 386,workclass, Private
 386,education, 10th
@@ -4058,17 +2826,6 @@ tid,attribute,correct_val
 390,hours-per-week,50
 390,native-country, United-States
 390,income, <=50K
-391,age,55
-391,workclass, Private
-391,education, Some-college
-391,marital-status, Married-civ-spouse
-391,occupation, Exec-managerial
-391,relationship, Husband
-391,race, White
-391,sex, Male
-391,hours-per-week,70
-391,native-country, United-States
-391,income, >50K
 392,age,33
 392,workclass, Private
 392,education, 10th
@@ -4080,17 +2837,17 @@ tid,attribute,correct_val
 392,hours-per-week,20
 392,native-country, United-States
 392,income, <=50K
-394,age,22
-394,workclass, Private
-394,education, HS-grad
-394,marital-status, Married-civ-spouse
-394,occupation, Craft-repair
-394,relationship, Husband
-394,race, White
-394,sex, Male
-394,hours-per-week,40
-394,native-country, United-States
-394,income, <=50K
+393,age,17
+393,workclass, Private
+393,education, 12th
+393,marital-status, Never-married
+393,occupation, Other-service
+393,relationship, Own-child
+393,race, White
+393,sex, Female
+393,hours-per-week,8
+393,native-country, United-States
+393,income, <=50K
 395,age,54
 395,workclass, Private
 395,education, Bachelors
@@ -4124,17 +2881,6 @@ tid,attribute,correct_val
 397,hours-per-week,40
 397,native-country, United-States
 397,income, <=50K
-398,age,34
-398,workclass, Private
-398,education, Some-college
-398,marital-status, Married-civ-spouse
-398,occupation, Transport-moving
-398,relationship, Husband
-398,race, White
-398,sex, Male
-398,hours-per-week,40
-398,native-country, United-States
-398,income, <=50K
 399,age,60
 399,workclass, Private
 399,education, HS-grad
@@ -4190,17 +2936,17 @@ tid,attribute,correct_val
 403,hours-per-week,70
 403,native-country, United-States
 403,income, <=50K
-405,age,45
-405,workclass, Private
-405,education, Bachelors
-405,marital-status, Married-civ-spouse
-405,occupation, Sales
-405,relationship, Husband
-405,race, White
-405,sex, Male
-405,hours-per-week,50
-405,native-country, United-States
-405,income, <=50K
+404,age,20
+404,workclass, Private
+404,education, Some-college
+404,marital-status, Never-married
+404,occupation, Other-service
+404,relationship, Own-child
+404,race, White
+404,sex, Male
+404,hours-per-week,27
+404,native-country, United-States
+404,income, <=50K
 406,age,45
 406,workclass, Self-emp-inc
 406,education, Some-college
@@ -4212,28 +2958,6 @@ tid,attribute,correct_val
 406,hours-per-week,30
 406,native-country, United-States
 406,income, <=50K
-407,age,34
-407,workclass, Private
-407,education, Bachelors
-407,marital-status, Married-civ-spouse
-407,occupation, Sales
-407,relationship, Husband
-407,race, White
-407,sex, Male
-407,hours-per-week,50
-407,native-country, United-States
-407,income, <=50K
-408,age,34
-408,workclass, Private
-408,education, HS-grad
-408,marital-status, Married-civ-spouse
-408,occupation, Machine-op-inspct
-408,relationship, Husband
-408,race, White
-408,sex, Male
-408,hours-per-week,40
-408,native-country, United-States
-408,income, >50K
 409,age,73
 409,workclass, Private
 409,education, 10th
@@ -4245,17 +2969,6 @@ tid,attribute,correct_val
 409,hours-per-week,10
 409,native-country, United-States
 409,income, <=50K
-410,age,49
-410,workclass, Private
-410,education, Some-college
-410,marital-status, Married-civ-spouse
-410,occupation, Other-service
-410,relationship, Husband
-410,race, White
-410,sex, Male
-410,hours-per-week,32
-410,native-country, United-States
-410,income, <=50K
 411,age,60
 411,workclass, Local-gov
 411,education, Masters
@@ -4267,17 +2980,6 @@ tid,attribute,correct_val
 411,hours-per-week,25
 411,native-country, United-States
 411,income, <=50K
-412,age,41
-412,workclass, Private
-412,education, HS-grad
-412,marital-status, Married-civ-spouse
-412,occupation, Transport-moving
-412,relationship, Husband
-412,race, White
-412,sex, Male
-412,hours-per-week,40
-412,native-country, United-States
-412,income, <=50K
 413,age,35
 413,workclass, Self-emp-inc
 413,education, Bachelors
@@ -4289,17 +2991,6 @@ tid,attribute,correct_val
 413,hours-per-week,50
 413,native-country, United-States
 413,income, >50K
-414,age,42
-414,workclass, Private
-414,education, HS-grad
-414,marital-status, Married-civ-spouse
-414,occupation, Adm-clerical
-414,relationship, Husband
-414,race, White
-414,sex, Male
-414,hours-per-week,50
-414,native-country, United-States
-414,income, <=50K
 415,age,23
 415,workclass, Private
 415,education, Bachelors
@@ -4377,17 +3068,6 @@ tid,attribute,correct_val
 422,hours-per-week,50
 422,native-country, India
 422,income, <=50K
-423,age,53
-423,workclass, Private
-423,education, 11th
-423,marital-status, Married-civ-spouse
-423,occupation, Craft-repair
-423,relationship, Husband
-423,race, White
-423,sex, Male
-423,hours-per-week,40
-423,native-country, United-States
-423,income, <=50K
 424,age,23
 424,workclass, Private
 424,education, Bachelors
@@ -4399,17 +3079,6 @@ tid,attribute,correct_val
 424,hours-per-week,60
 424,native-country, United-States
 424,income, <=50K
-425,age,39
-425,workclass, Private
-425,education, 9th
-425,marital-status, Married-civ-spouse
-425,occupation, Handlers-cleaners
-425,relationship, Husband
-425,race, White
-425,sex, Male
-425,hours-per-week,43
-425,native-country, Mexico
-425,income, <=50K
 426,age,44
 426,workclass, Private
 426,education, Bachelors
@@ -4443,17 +3112,6 @@ tid,attribute,correct_val
 428,hours-per-week,40
 428,native-country, United-States
 428,income, <=50K
-429,age,45
-429,workclass, Private
-429,education, Some-college
-429,marital-status, Married-civ-spouse
-429,occupation, Sales
-429,relationship, Husband
-429,race, White
-429,sex, Male
-429,hours-per-week,45
-429,native-country, United-States
-429,income, <=50K
 430,age,37
 430,workclass, Self-emp-not-inc
 430,education, HS-grad
@@ -4476,17 +3134,6 @@ tid,attribute,correct_val
 431,hours-per-week,20
 431,native-country, United-States
 431,income, <=50K
-432,age,43
-432,workclass, Local-gov
-432,education, Masters
-432,marital-status, Married-civ-spouse
-432,occupation, Prof-specialty
-432,relationship, Wife
-432,race, White
-432,sex, Female
-432,hours-per-week,40
-432,native-country, United-States
-432,income, >50K
 433,age,59
 433,workclass, Self-emp-inc
 433,education, 5th-6th
@@ -4641,17 +3288,6 @@ tid,attribute,correct_val
 447,hours-per-week,8
 447,native-country, United-States
 447,income, <=50K
-448,age,38
-448,workclass, Private
-448,education, Bachelors
-448,marital-status, Married-civ-spouse
-448,occupation, Prof-specialty
-448,relationship, Husband
-448,race, White
-448,sex, Male
-448,hours-per-week,50
-448,native-country, United-States
-448,income, >50K
 449,age,25
 449,workclass, Self-emp-inc
 449,education, Some-college
@@ -4729,17 +3365,6 @@ tid,attribute,correct_val
 455,hours-per-week,50
 455,native-country, United-States
 455,income, <=50K
-456,age,47
-456,workclass, Private
-456,education, HS-grad
-456,marital-status, Married-civ-spouse
-456,occupation, Craft-repair
-456,relationship, Husband
-456,race, Asian-Pac-Islander
-456,sex, Male
-456,hours-per-week,60
-456,native-country, Japan
-456,income, <=50K
 457,age,24
 457,workclass, Private
 457,education, Some-college
@@ -4751,17 +3376,6 @@ tid,attribute,correct_val
 457,hours-per-week,43
 457,native-country, United-States
 457,income, <=50K
-458,age,29
-458,workclass, Private
-458,education, HS-grad
-458,marital-status, Married-civ-spouse
-458,occupation, Craft-repair
-458,relationship, Husband
-458,race, Amer-Indian-Eskimo
-458,sex, Male
-458,hours-per-week,48
-458,native-country, United-States
-458,income, <=50K
 459,age,61
 459,workclass, Self-emp-inc
 459,education, Bachelors
@@ -4795,28 +3409,6 @@ tid,attribute,correct_val
 461,hours-per-week,30
 461,native-country, Japan
 461,income, <=50K
-462,age,42
-462,workclass, Private
-462,education, Some-college
-462,marital-status, Married-civ-spouse
-462,occupation, Transport-moving
-462,relationship, Husband
-462,race, Black
-462,sex, Male
-462,hours-per-week,45
-462,native-country, United-States
-462,income, >50K
-463,age,42
-463,workclass, Private
-463,education, Masters
-463,marital-status, Married-civ-spouse
-463,occupation, Exec-managerial
-463,relationship, Husband
-463,race, White
-463,sex, Male
-463,hours-per-week,40
-463,native-country, United-States
-463,income, >50K
 464,age,23
 464,workclass, Private
 464,education, Some-college
@@ -4828,6 +3420,17 @@ tid,attribute,correct_val
 464,hours-per-week,36
 464,native-country, Iran
 464,income, <=50K
+465,age,17
+465,workclass, Private
+465,education, 10th
+465,marital-status, Never-married
+465,occupation, Other-service
+465,relationship, Own-child
+465,race, White
+465,sex, Male
+465,hours-per-week,15
+465,native-country, United-States
+465,income, <=50K
 466,age,47
 466,workclass, Private
 466,education, HS-grad
@@ -4850,17 +3453,28 @@ tid,attribute,correct_val
 467,hours-per-week,40
 467,native-country, United-States
 467,income, >50K
-470,age,33
-470,workclass, Private
-470,education, Bachelors
-470,marital-status, Married-civ-spouse
-470,occupation, Sales
-470,relationship, Husband
-470,race, White
-470,sex, Male
-470,hours-per-week,40
-470,native-country, United-States
-470,income, <=50K
+468,age,32
+468,workclass, Private
+468,education, HS-grad
+468,marital-status, Married-civ-spouse
+468,occupation, Transport-moving
+468,relationship, Own-child
+468,race, White
+468,sex, Male
+468,hours-per-week,72
+468,native-country, Mexico
+468,income, <=50K
+469,age,21
+469,workclass, Private
+469,education, Some-college
+469,marital-status, Never-married
+469,occupation, Other-service
+469,relationship, Own-child
+469,race, White
+469,sex, Male
+469,hours-per-week,15
+469,native-country, United-States
+469,income, <=50K
 471,age,68
 471,workclass, Private
 471,education, Some-college
@@ -4872,17 +3486,6 @@ tid,attribute,correct_val
 471,hours-per-week,20
 471,native-country, United-States
 471,income, <=50K
-472,age,39
-472,workclass, Private
-472,education, HS-grad
-472,marital-status, Married-civ-spouse
-472,occupation, Farming-fishing
-472,relationship, Husband
-472,race, White
-472,sex, Male
-472,hours-per-week,30
-472,native-country, United-States
-472,income, <=50K
 473,age,32
 473,workclass, Private
 473,education, HS-grad
@@ -4905,28 +3508,6 @@ tid,attribute,correct_val
 474,hours-per-week,48
 474,native-country, United-States
 474,income, <=50K
-475,age,25
-475,workclass, Private
-475,education, 9th
-475,marital-status, Never-married
-475,occupation, Machine-op-inspct
-475,relationship, Other-relative
-475,race, White
-475,sex, Male
-475,hours-per-week,48
-475,native-country, Mexico
-475,income, <=50K
-476,age,36
-476,workclass, Private
-476,education, HS-grad
-476,marital-status, Married-civ-spouse
-476,occupation, Sales
-476,relationship, Husband
-476,race, White
-476,sex, Male
-476,hours-per-week,60
-476,native-country, United-States
-476,income, <=50K
 477,age,24
 477,workclass, Private
 477,education, Some-college
@@ -4971,28 +3552,6 @@ tid,attribute,correct_val
 480,hours-per-week,55
 480,native-country, United-States
 480,income, <=50K
-481,age,53
-481,workclass, Private
-481,education, Masters
-481,marital-status, Married-civ-spouse
-481,occupation, Exec-managerial
-481,relationship, Husband
-481,race, White
-481,sex, Male
-481,hours-per-week,55
-481,native-country, United-States
-481,income, >50K
-482,age,36
-482,workclass, Private
-482,education, Bachelors
-482,marital-status, Married-civ-spouse
-482,occupation, Sales
-482,relationship, Wife
-482,race, White
-482,sex, Female
-482,hours-per-week,35
-482,native-country, United-States
-482,income, >50K
 483,age,19
 483,workclass, ?
 483,education, Some-college
@@ -5004,17 +3563,6 @@ tid,attribute,correct_val
 483,hours-per-week,40
 483,native-country, United-States
 483,income, <=50K
-484,age,30
-484,workclass, Private
-484,education, HS-grad
-484,marital-status, Married-civ-spouse
-484,occupation, Machine-op-inspct
-484,relationship, Husband
-484,race, White
-484,sex, Male
-484,hours-per-week,40
-484,native-country, United-States
-484,income, >50K
 485,age,27
 485,workclass, Private
 485,education, Bachelors
@@ -5048,17 +3596,6 @@ tid,attribute,correct_val
 487,hours-per-week,20
 487,native-country, United-States
 487,income, <=50K
-488,age,33
-488,workclass, Private
-488,education, HS-grad
-488,marital-status, Married-civ-spouse
-488,occupation, Exec-managerial
-488,relationship, Wife
-488,race, White
-488,sex, Female
-488,hours-per-week,40
-488,native-country, United-States
-488,income, <=50K
 489,age,23
 489,workclass, Private
 489,education, Some-college
@@ -5070,50 +3607,6 @@ tid,attribute,correct_val
 489,hours-per-week,8
 489,native-country, United-States
 489,income, <=50K
-490,age,26
-490,workclass, Private
-490,education, Bachelors
-490,marital-status, Married-civ-spouse
-490,occupation, Craft-repair
-490,relationship, Husband
-490,race, White
-490,sex, Male
-490,hours-per-week,58
-490,native-country, United-States
-490,income, >50K
-491,age,37
-491,workclass, Private
-491,education, HS-grad
-491,marital-status, Married-civ-spouse
-491,occupation, Machine-op-inspct
-491,relationship, Husband
-491,race, White
-491,sex, Male
-491,hours-per-week,60
-491,native-country, United-States
-491,income, >50K
-492,age,31
-492,workclass, Private
-492,education, HS-grad
-492,marital-status, Married-civ-spouse
-492,occupation, Adm-clerical
-492,relationship, Husband
-492,race, Amer-Indian-Eskimo
-492,sex, Male
-492,hours-per-week,40
-492,native-country, United-States
-492,income, >50K
-493,age,40
-493,workclass, Private
-493,education, Assoc-voc
-493,marital-status, Married-civ-spouse
-493,occupation, Exec-managerial
-493,relationship, Husband
-493,race, White
-493,sex, Male
-493,hours-per-week,50
-493,native-country, United-States
-493,income, >50K
 494,age,19
 494,workclass, Self-emp-not-inc
 494,education, HS-grad
@@ -5125,17 +3618,6 @@ tid,attribute,correct_val
 494,hours-per-week,30
 494,native-country, United-States
 494,income, <=50K
-495,age,55
-495,workclass, Private
-495,education, Masters
-495,marital-status, Married-civ-spouse
-495,occupation, Exec-managerial
-495,relationship, Husband
-495,race, White
-495,sex, Male
-495,hours-per-week,55
-495,native-country, United-States
-495,income, >50K
 496,age,35
 496,workclass, Private
 496,education, HS-grad
@@ -5158,17 +3640,6 @@ tid,attribute,correct_val
 497,hours-per-week,12
 497,native-country, United-States
 497,income, <=50K
-498,age,27
-498,workclass, Private
-498,education, Bachelors
-498,marital-status, Married-civ-spouse
-498,occupation, Exec-managerial
-498,relationship, Husband
-498,race, White
-498,sex, Male
-498,hours-per-week,60
-498,native-country, United-States
-498,income, >50K
 499,age,25
 499,workclass, Private
 499,education, 10th

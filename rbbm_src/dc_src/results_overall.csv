@@ -1,0 +1,2 @@
+strategy,complaint_size,runtime,avg_size_increase,dirty_fix_rate,clean_preserving_rate
+information gain,2,0.017685890197753906,{0.0},1.0,1.0
