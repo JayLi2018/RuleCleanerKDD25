@@ -1,2 +1,0 @@
-complaint:
-{'type': 'after_clean', '_tid_': 94.0, 'age': '38', 'workclass': 'private', 'education': 'bachelors', 'marital-status': 'married-civ-spouse', 'occupation': 'protective-serv', 'relationship': 'husband', 'race': 'white', 'sex': 'male', 'hours-per-week': '17', 'native-country': 'united-states', 'income': '<=50k', 'income\n': nan, 'wrong_attr': 'race'}
