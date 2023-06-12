@@ -1,0 +1,39 @@
+digraph "round-table" { 1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 3 4 8 11 12 13 14 
+16 19 21 23 25 26 27 29 
+30 33 34 35 36 39 42 43 
+48 49 52 54 55 58 60 61 
+65 66 67 68 70 72 75 77 
+78 )
+0: (2 5 6 28 31 41 44 45 
+47 51 57 69 74 )"]
+4 [color=blue, label="keyword_predicate-word-(and)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(to)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (1 10 20 24 37 38 40 53 
+56 )"]
+10 [color=blue, label="keyword_predicate-word-(this)"]
+10->13
+10->12
+9 [color=green, label="1 0: ()
+1: (7 17 18 )"]
+13 [color=blue, label="keyword_predicate-word-(love)"]
+13->16
+13->15
+12 [color=blue, label="0 0: (46 59 62 76 79 )
+1: ()"]
+16 [color=blue, label="keyword_predicate-word-(song)"]
+16->17
+16->18
+15 [color=blue, label="0 0: (50 71 )
+1: ()"]
+17 [color=blue, label="1 0: ()
+1: (9 15 22 32 63 )"]
+18 [color=blue, label="0 0: (64 73 )
+1: ()"] } 

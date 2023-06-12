@@ -1,0 +1,145 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 9 10 17 22 27 30 
+32 33 35 37 41 44 46 48 
+51 57 61 62 63 64 65 74 
+76 80 82 83 88 89 92 94 
+96 98 100 101 103 105 106 107 
+108 110 112 115 118 121 122 125 
+126 129 133 142 143 145 148 150 
+153 155 157 158 )
+0: (2 5 6 28 31 54 60 69 
+81 84 85 86 87 90 99 102 
+104 109 111 113 116 119 120 123 
+127 131 132 134 135 136 141 144 
+146 147 152 154 156 )"]
+4 [color=blue, label="keyword_predicate-word-(new)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(would)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 59 66 78 )"]
+10 [color=blue, label="keyword_predicate-word-(fast)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 21 29 34 43 53 71 149 
+159 )"]
+13 [color=blue, label="keyword_predicate-word-(paid)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 45 )"]
+19 [color=blue, label="keyword_predicate-word-(shout)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (11 14 16 18 24 26 36 38 
+50 58 75 79 )"]
+22 [color=blue, label="keyword_predicate-word-(win)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 )"]
+25 [color=blue, label="keyword_predicate-word-(entire)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (13 )"]
+28 [color=blue, label="keyword_predicate-word-(called)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (15 )"]
+31 [color=blue, label="keyword_predicate-word-(for)"]
+31->34
+31->37
+30 [color=blue, label="1 0: ()
+1: (19 47 70 140 )"]
+34 [color=blue, label="keyword_predicate-word-(http)"]
+34->40
+34->36
+37 [color=blue, label="keyword_predicate-word-(from)"]
+37->43
+37->39
+40 [color=blue, label="keyword_predicate-word-(a)"]
+40->46
+40->49
+36 [color=blue, label="1 0: ()
+1: (25 )"]
+43 [color=blue, label="keyword_predicate-word-(do)"]
+43->52
+43->45
+39 [color=blue, label="1 0: ()
+1: (20 68 )"]
+46 [color=blue, label="keyword_predicate-word-(please)"]
+46->55
+46->48
+49 [color=blue, label="keyword_predicate-word-(subscribers)"]
+49->58
+49->51
+52 [color=blue, label="keyword_predicate-word-(really)"]
+52->61
+52->54
+45 [color=blue, label="1 0: ()
+1: (23 )"]
+55 [color=blue, label="keyword_predicate-word-(gets)"]
+55->64
+55->57
+48 [color=blue, label="1 0: ()
+1: (40 )"]
+58 [color=blue, label="keyword_predicate-word-(not)"]
+58->59
+58->60
+51 [color=blue, label="1 0: ()
+1: (39 73 )"]
+61 [color=blue, label="keyword_predicate-word-(certification)"]
+61->67
+61->63
+54 [color=blue, label="1 0: ()
+1: (42 )"]
+64 [color=blue, label="keyword_predicate-word-(song)"]
+64->70
+64->66
+57 [color=blue, label="1 0: ()
+1: (49 )"]
+59 [color=blue, label="0 0: (128 130 137 )
+1: ()"]
+60 [color=blue, label="1 0: ()
+1: (56 77 )"]
+67 [color=blue, label="keyword_predicate-word-(spying)"]
+67->73
+67->69
+63 [color=blue, label="1 0: ()
+1: (55 )"]
+70 [color=blue, label="keyword_predicate-word-(do)"]
+70->71
+70->72
+66 [color=blue, label="1 0: ()
+1: (52 )"]
+73 [color=blue, label="keyword_predicate-word-(not)"]
+73->76
+73->75
+69 [color=blue, label="1 0: ()
+1: (67 )"]
+71 [color=blue, label="0 0: (91 97 114 124 138 139 )
+1: ()"]
+72 [color=blue, label="1 0: ()
+1: (95 )"]
+76 [color=blue, label="keyword_predicate-word-(you)"]
+76->77
+76->78
+75 [color=blue, label="1 0: ()
+1: (72 )"]
+77 [color=blue, label="0 0: (151 )
+1: ()"]
+78 [color=blue, label="1 0: ()
+1: (93 117 )"] } 

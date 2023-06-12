@@ -1,0 +1,80 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(check)"]
+1->2
+1->4
+2 [label="-1 1: (5 7 8 9 12 13 21 22 
+26 32 33 37 38 )
+0: (0 1 3 4 6 10 11 14 
+15 16 24 35 36 40 45 48 
+)"]
+4 [color=blue, label="keyword_predicate-word-(dude)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(video)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (17 )"]
+10 [color=blue, label="keyword_predicate-word-(like)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (18 27 29 39 41 49 )"]
+13 [color=blue, label="keyword_predicate-word-(wake)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (19 25 )"]
+16 [color=blue, label="keyword_predicate-word-(across)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (20 )"]
+19 [color=blue, label="keyword_predicate-word-(luther)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (23 )"]
+22 [color=blue, label="keyword_predicate-word-(friends)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (28 )"]
+25 [color=blue, label="keyword_predicate-word-(book)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (30 )"]
+28 [color=blue, label="keyword_predicate-word-(tunez)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (31 )"]
+31 [color=blue, label="keyword_predicate-word-(u)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (34 )"]
+34 [color=blue, label="keyword_predicate-word-(website)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (42 )"]
+37 [color=blue, label="keyword_predicate-word-(everybody)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (43 )"]
+40 [color=blue, label="keyword_predicate-word-(pl)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (44 )"]
+43 [color=blue, label="keyword_predicate-word-(ever)"]
+43->44
+43->45
+42 [color=blue, label="1 0: ()
+1: (46 )"]
+44 [color=blue, label="0 0: (2 )
+1: ()"]
+45 [color=blue, label="1 0: ()
+1: (47 )"] } 

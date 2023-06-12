@@ -1,0 +1,56 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(and)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 6 8 11 12 
+14 21 22 25 28 32 37 43 
+)
+0: (0 9 13 16 17 19 20 26 
+27 29 33 34 39 40 41 42 
+45 47 49 )"]
+4 [color=blue, label="keyword_predicate-word-(ya)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(senator)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (7 )"]
+10 [color=blue, label="keyword_predicate-word-(rapper)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (10 )"]
+13 [color=blue, label="keyword_predicate-word-(bet)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (15 )"]
+16 [color=blue, label="keyword_predicate-word-(channel)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (30 )"]
+19 [color=blue, label="keyword_predicate-word-(thank)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (31 )"]
+22 [color=blue, label="keyword_predicate-word-(reach)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (35 )"]
+25 [color=blue, label="keyword_predicate-word-(friends)"]
+25->26
+25->28
+24 [color=blue, label="1 0: ()
+1: (38 )"]
+26 [color=blue, label="0 0: (4 23 24 36 44 48 )
+1: ()"]
+28 [color=blue, label="keyword_predicate-word-(everyday)"]
+28->29
+28->30
+29 [color=blue, label="0 0: (18 )
+1: ()"]
+30 [color=blue, label="1 0: ()
+1: (46 )"] } 

@@ -1,0 +1,69 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+31 34 38 39 42 46 47 48 
+52 54 59 60 61 62 66 69 
+73 74 77 78 )
+0: (2 9 13 24 26 28 30 35 
+36 37 40 41 44 50 51 53 
+55 57 58 65 68 70 72 75 
+76 79 )"]
+4 [color=blue, label="keyword_predicate-word-(please)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(lol)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (1 7 10 17 18 29 32 67 
+)"]
+10 [color=blue, label="keyword_predicate-word-(easily)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(guys)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(skills)"]
+16->22
+16->18
+12 [color=blue, label="1 0: ()
+1: (12 )"]
+19 [color=blue, label="keyword_predicate-word-(gets)"]
+19->20
+19->21
+15 [color=blue, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(style)"]
+22->25
+22->24
+18 [color=blue, label="1 0: ()
+1: (14 )"]
+20 [color=blue, label="0 0: (25 49 )
+1: ()"]
+21 [color=blue, label="1 0: ()
+1: (8 )"]
+25 [color=blue, label="keyword_predicate-word-(br)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (15 )"]
+28 [color=blue, label="keyword_predicate-word-(time)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (19 )"]
+31 [color=blue, label="keyword_predicate-word-(guys)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (22 )"]
+34 [color=blue, label="keyword_predicate-word-(hi)"]
+34->35
+34->36
+33 [color=blue, label="1 0: ()
+1: (43 )"]
+35 [color=blue, label="0 0: (21 27 33 56 63 64 71 )
+1: ()"]
+36 [color=blue, label="1 0: ()
+1: (45 )"] } 

@@ -1,0 +1,27 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(just)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 6 7 8 10 
+11 12 15 16 17 18 19 20 
+21 22 23 24 25 31 32 35 
+38 40 42 45 47 48 )
+0: (0 4 9 13 26 27 28 30 
+33 36 37 39 43 44 46 49 
+)"]
+4 [color=blue, label="keyword_predicate-word-(many)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(like)"]
+7->8
+7->10
+6 [color=blue, label="1 0: ()
+1: (14 )"]
+8 [color=blue, label="0 0: (29 )
+1: ()"]
+10 [color=blue, label="keyword_predicate-word-(hey)"]
+10->11
+10->12
+11 [color=blue, label="0 0: (34 )
+1: ()"]
+12 [color=blue, label="1 0: ()
+1: (41 )"] } 

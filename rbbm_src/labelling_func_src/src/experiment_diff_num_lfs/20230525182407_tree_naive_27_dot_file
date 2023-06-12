@@ -1,0 +1,75 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(the)"]
+1->2
+1->4
+2 [label="-1 1: (3 6 9 18 23 24 25 28 
+31 32 35 41 43 44 45 49 
+)
+0: (5 7 11 12 13 14 15 16 
+20 22 39 40 47 48 )"]
+4 [color=blue, label="keyword_predicate-word-(song)"]
+4->7
+4->10
+7 [color=blue, label="keyword_predicate-word-(quality)"]
+7->13
+7->9
+10 [color=blue, label="keyword_predicate-word-(quiet)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(dom)"]
+13->19
+13->15
+9 [color=blue, label="1 0: ()
+1: (1 )"]
+16 [color=blue, label="keyword_predicate-word-(href)"]
+16->17
+16->18
+12 [color=blue, label="1 0: ()
+1: (0 4 )"]
+19 [color=blue, label="keyword_predicate-word-(fuck)"]
+19->22
+19->21
+15 [color=blue, label="1 0: ()
+1: (2 )"]
+17 [color=blue, label="0 0: (27 )
+1: ()"]
+18 [color=blue, label="1 0: ()
+1: (17 )"]
+22 [color=blue, label="keyword_predicate-word-(day)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (8 )"]
+25 [color=blue, label="keyword_predicate-word-(video)"]
+25->28
+25->31
+24 [color=blue, label="1 0: ()
+1: (10 )"]
+28 [color=blue, label="keyword_predicate-word-(subscribe)"]
+28->34
+28->30
+31 [color=blue, label="keyword_predicate-word-(win)"]
+31->37
+31->33
+34 [color=blue, label="keyword_predicate-word-(channel)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (21 )"]
+37 [color=blue, label="keyword_predicate-word-(check)"]
+37->38
+37->39
+33 [color=blue, label="1 0: ()
+1: (19 )"]
+40 [color=blue, label="keyword_predicate-word-(name)"]
+40->41
+40->42
+36 [color=blue, label="1 0: ()
+1: (37 )"]
+38 [color=blue, label="0 0: (36 )
+1: ()"]
+39 [color=blue, label="1 0: ()
+1: (34 )"]
+41 [color=blue, label="0 0: (26 29 30 33 38 42 )
+1: ()"]
+42 [color=blue, label="1 0: ()
+1: (46 )"] } 

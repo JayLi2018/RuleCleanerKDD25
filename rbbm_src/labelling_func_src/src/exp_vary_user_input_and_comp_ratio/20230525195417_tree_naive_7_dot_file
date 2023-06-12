@@ -1,0 +1,151 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 40 42 43 44 45 47 49 
+58 59 62 65 66 67 69 71 
+74 77 79 87 90 94 95 98 
+102 103 104 108 110 115 116 117 
+118 122 125 129 130 133 134 137 
+140 143 145 146 147 148 150 152 
+156 157 )
+0: (2 9 13 39 64 80 82 84 
+86 91 92 93 96 97 100 106 
+107 109 111 113 114 121 124 126 
+128 131 132 135 136 138 139 142 
+144 149 151 153 154 155 159 )"]
+4 [color=blue, label="keyword_predicate-word-(http)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(make)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 17 56 60 )"]
+10 [color=blue, label="keyword_predicate-word-(free)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 12 68 70 72 73 85 99 
+)"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 14 18 41 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(subscribed)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 26 33 48 51 52 61 101 
+)"]
+22 [color=blue, label="keyword_predicate-word-(song)"]
+22->25
+22->28
+21 [color=blue, label="1 0: ()
+1: (15 19 )"]
+25 [color=blue, label="keyword_predicate-word-(many)"]
+25->31
+25->27
+28 [color=blue, label="keyword_predicate-word-(time)"]
+28->34
+28->30
+31 [color=blue, label="keyword_predicate-word-(search)"]
+31->37
+31->33
+27 [color=blue, label="1 0: ()
+1: (25 )"]
+34 [color=blue, label="keyword_predicate-word-(may)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (22 )"]
+37 [color=blue, label="keyword_predicate-word-(things)"]
+37->43
+37->39
+33 [color=blue, label="1 0: ()
+1: (29 )"]
+40 [color=blue, label="keyword_predicate-word-(dont)"]
+40->46
+40->42
+36 [color=blue, label="1 0: ()
+1: (37 )"]
+43 [color=blue, label="keyword_predicate-word-(uk)"]
+43->49
+43->45
+39 [color=blue, label="1 0: ()
+1: (38 )"]
+46 [color=blue, label="keyword_predicate-word-(finally)"]
+46->52
+46->48
+42 [color=blue, label="1 0: ()
+1: (53 )"]
+49 [color=blue, label="keyword_predicate-word-(brings)"]
+49->55
+49->51
+45 [color=blue, label="1 0: ()
+1: (46 )"]
+52 [color=blue, label="keyword_predicate-word-(ancestors)"]
+52->53
+52->54
+48 [color=blue, label="1 0: ()
+1: (57 )"]
+55 [color=blue, label="keyword_predicate-word-(like)"]
+55->58
+55->61
+51 [color=blue, label="1 0: ()
+1: (50 )"]
+53 [color=blue, label="0 0: (81 83 )
+1: ()"]
+54 [color=blue, label="1 0: ()
+1: (78 )"]
+58 [color=blue, label="keyword_predicate-word-(called)"]
+58->64
+58->60
+61 [color=blue, label="keyword_predicate-word-(could)"]
+61->67
+61->63
+64 [color=blue, label="keyword_predicate-word-(sexy)"]
+64->70
+64->73
+60 [color=blue, label="1 0: ()
+1: (63 )"]
+67 [color=blue, label="keyword_predicate-word-(cuz)"]
+67->76
+67->69
+63 [color=blue, label="1 0: ()
+1: (54 )"]
+70 [color=blue, label="keyword_predicate-word-(guys)"]
+70->71
+70->72
+73 [color=blue, label="keyword_predicate-word-(ass)"]
+73->74
+73->75
+76 [color=blue, label="keyword_predicate-word-(waka)"]
+76->79
+76->78
+69 [color=blue, label="1 0: ()
+1: (55 )"]
+71 [color=blue, label="0 0: (21 89 105 112 119 141 158 )
+1: ()"]
+72 [color=blue, label="1 0: ()
+1: (123 )"]
+74 [color=blue, label="0 0: (127 )
+1: ()"]
+75 [color=blue, label="1 0: ()
+1: (75 )"]
+79 [color=blue, label="keyword_predicate-word-(hy)"]
+79->80
+79->81
+78 [color=blue, label="1 0: ()
+1: (76 )"]
+80 [color=blue, label="0 0: (120 )
+1: ()"]
+81 [color=blue, label="1 0: ()
+1: (88 )"] } 

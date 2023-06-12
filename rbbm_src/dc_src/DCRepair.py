@@ -91,7 +91,7 @@ def parse_dc_to_tree_rule(dc_text):
     last_right.parent=parent
     tree_size+=1
     # print(f"tree size: {tree_size}, cur_number={cur_number}")
-    return TreeRule(rtype='dc', root=root_node, size=tree_size)
+    return TreeRule(rtype='dc', root=root_node, size=tree_size, max_node_id=-1)
 
 def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=True):
     if(non_symetric_op.search(dc_text)):

@@ -1,0 +1,84 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 35 38 )
+0: (2 9 13 28 30 32 34 39 
+)"]
+4 [color=blue, label="keyword_predicate-word-(us)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(video)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (1 18 )"]
+10 [color=blue, label="keyword_predicate-word-(gets)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(getting)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(virucide)"]
+16->22
+16->18
+12 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(videos)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(comfort)"]
+22->28
+22->24
+18 [color=blue, label="1 0: ()
+1: (10 )"]
+25 [color=blue, label="keyword_predicate-word-(featuring)"]
+25->26
+25->27
+21 [color=blue, label="1 0: ()
+1: (7 )"]
+28 [color=blue, label="keyword_predicate-word-(style)"]
+28->31
+28->30
+24 [color=blue, label="1 0: ()
+1: (12 )"]
+26 [color=blue, label="0 0: (29 37 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (14 )"]
+31 [color=blue, label="keyword_predicate-word-(without)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (15 )"]
+34 [color=blue, label="keyword_predicate-word-(subscribed)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (17 )"]
+37 [color=blue, label="keyword_predicate-word-(really)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (19 )"]
+40 [color=blue, label="keyword_predicate-word-(videos)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (22 )"]
+43 [color=blue, label="keyword_predicate-word-(nguyen)"]
+43->46
+43->45
+42 [color=blue, label="1 0: ()
+1: (25 33 )"]
+46 [color=blue, label="keyword_predicate-word-(real)"]
+46->47
+46->48
+45 [color=blue, label="1 0: ()
+1: (26 )"]
+47 [color=blue, label="0 0: (21 31 )
+1: ()"]
+48 [color=blue, label="1 0: ()
+1: (36 )"] } 

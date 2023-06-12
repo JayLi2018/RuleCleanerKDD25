@@ -1,0 +1,43 @@
+digraph "rule" { 
+// presize: 3, after_size: 29, deleted: False factor: 0.0 reverse_cnt:7
+1 [label="keyword_predicate-word-(this)"]
+1->2
+1->4
+2 [label="-1 1: (5 8 9 12 13 17 18 20 
+21 23 26 32 33 34 37 38 
+39 40 42 43 47 48 49 )
+0: (2 27 35 36 44 )"]
+4 [color=blue, label="keyword_predicate-word-(youtube)"]
+4->7
+4->10
+7 [color=blue, label="keyword_predicate-word-(br)"]
+7->13
+7->16
+10 [color=blue, label="keyword_predicate-word-(comments)"]
+10->11
+10->12
+13 [color=blue, label="keyword_predicate-word-(know)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(spooked)"]
+16->17
+16->18
+11 [color=green, label="0 0: (28 )
+1: ()"]
+12 [color=green, label="1 0: ()
+1: (7 )"]
+19 [color=blue, label="keyword_predicate-word-(also)"]
+19->20
+19->21
+15 [color=green, label="1 0: ()
+1: (45 )"]
+17 [color=green, label="0 0: (11 )
+1: ()"]
+18 [color=green, label="1 0: ()
+1: (41 )"]
+20 [color=green, label="0 0: (0 1 3 4 6 10 14 15 
+16 19 22 24 25 29 30 31 
+)
+1: ()"]
+21 [color=green, label="1 0: ()
+1: (46 )"] } 

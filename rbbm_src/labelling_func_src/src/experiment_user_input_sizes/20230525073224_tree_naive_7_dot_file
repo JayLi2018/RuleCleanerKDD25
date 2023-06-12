@@ -1,0 +1,83 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+31 34 38 39 42 46 47 48 
+52 54 59 60 61 62 66 69 
+73 74 77 78 )
+0: (2 9 13 24 26 28 30 35 
+36 37 40 41 44 50 51 53 
+55 57 58 65 68 70 72 75 
+76 79 )"]
+4 [color=blue, label="keyword_predicate-word-(shop)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(doesnt)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(pretty)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(lol)"]
+13->16
+13->19
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->22
+16->18
+19 [color=blue, label="keyword_predicate-word-(gets)"]
+19->20
+19->21
+22 [color=blue, label="keyword_predicate-word-(get)"]
+22->25
+22->24
+18 [color=blue, label="1 0: ()
+1: (10 18 45 )"]
+20 [color=blue, label="0 0: (25 49 )
+1: ()"]
+21 [color=blue, label="1 0: ()
+1: (8 )"]
+25 [color=blue, label="keyword_predicate-word-(player)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (12 32 )"]
+28 [color=blue, label="keyword_predicate-word-(btw)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (14 )"]
+31 [color=blue, label="keyword_predicate-word-(way)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (15 )"]
+34 [color=blue, label="keyword_predicate-word-(br)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (17 )"]
+37 [color=blue, label="keyword_predicate-word-(v)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (19 )"]
+40 [color=blue, label="keyword_predicate-word-(make)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (22 )"]
+43 [color=blue, label="keyword_predicate-word-(channel)"]
+43->44
+43->45
+42 [color=blue, label="1 0: ()
+1: (29 43 )"]
+44 [color=blue, label="0 0: (21 27 33 56 63 64 71 )
+1: ()"]
+45 [color=blue, label="1 0: ()
+1: (67 )"] } 

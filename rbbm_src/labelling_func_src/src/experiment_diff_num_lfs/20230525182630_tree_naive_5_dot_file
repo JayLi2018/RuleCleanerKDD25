@@ -1,0 +1,46 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(you)"]
+1->2
+1->4
+2 [label="-1 1: (3 5 11 16 17 19 21 22 
+24 27 31 34 35 37 38 40 
+41 42 44 48 )
+0: (2 4 6 10 12 13 14 15 
+18 20 25 29 32 33 43 46 
+47 )"]
+4 [color=blue, label="keyword_predicate-word-(web)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(checking)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(joyce)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (7 )"]
+13 [color=blue, label="keyword_predicate-word-(sub)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (8 )"]
+16 [color=blue, label="keyword_predicate-word-(czfcxsn)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (9 30 )"]
+19 [color=blue, label="keyword_predicate-word-(give)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (23 )"]
+22 [color=blue, label="keyword_predicate-word-(channel)"]
+22->23
+22->24
+21 [color=blue, label="1 0: ()
+1: (26 )"]
+23 [color=blue, label="0 0: (1 28 36 45 )
+1: ()"]
+24 [color=blue, label="1 0: ()
+1: (39 49 )"] } 

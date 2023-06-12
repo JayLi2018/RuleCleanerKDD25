@@ -1,0 +1,55 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(my)"]
+1->2
+1->4
+2 [label="-1 1: (7 8 9 12 21 33 34 37 
+40 41 42 46 47 48 )
+0: (0 1 2 3 4 6 10 11 
+15 16 19 22 24 25 28 29 
+30 31 35 36 44 )"]
+4 [color=blue, label="keyword_predicate-word-(world)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(youtube)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (5 )"]
+10 [color=blue, label="keyword_predicate-word-(please)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (13 )"]
+13 [color=blue, label="keyword_predicate-word-(sub)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (17 45 49 )"]
+16 [color=blue, label="keyword_predicate-word-(gamezzmta)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (18 26 )"]
+19 [color=blue, label="keyword_predicate-word-(withing)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (20 )"]
+22 [color=blue, label="keyword_predicate-word-(come)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (23 )"]
+25 [color=blue, label="keyword_predicate-word-(video)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (32 43 )"]
+28 [color=blue, label="keyword_predicate-word-(plzz)"]
+28->29
+28->30
+27 [color=blue, label="1 0: ()
+1: (38 )"]
+29 [color=blue, label="0 0: (14 27 )
+1: ()"]
+30 [color=blue, label="1 0: ()
+1: (39 )"] } 

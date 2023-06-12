@@ -1,0 +1,190 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(songs,song)"]
+1->2
+1->4
+2 [label="-1 1: (1 3 5 7 8 10 11 12 
+14 15 16 17 18 19 20 23 
+24 25 26 27 29 30 31 32 
+33 34 35 36 38 40 41 42 
+44 45 46 47 48 50 51 52 
+54 55 56 58 60 62 63 65 
+66 67 68 69 70 71 72 74 
+75 77 79 80 82 83 84 85 
+86 88 89 90 91 92 93 95 
+96 97 99 100 101 102 103 104 
+105 106 108 109 110 111 112 113 
+114 115 116 119 120 121 122 124 
+126 127 128 129 132 133 134 136 
+137 138 139 140 142 144 145 146 
+148 149 150 151 152 153 154 155 
+156 157 158 159 160 161 163 164 
+165 166 167 169 170 171 172 173 
+174 175 177 179 180 181 182 184 
+185 186 189 190 191 192 194 197 
+199 201 202 203 204 205 206 207 
+208 209 213 214 215 216 218 219 
+221 222 223 229 231 232 234 238 
+239 242 243 245 246 247 248 252 
+254 259 260 261 262 266 267 269 
+273 274 277 278 281 284 287 289 
+290 291 292 294 296 300 301 309 
+311 313 314 316 317 )
+0: (2 9 13 21 39 64 94 98 
+125 188 210 224 226 228 230 233 
+235 237 241 249 253 255 256 257 
+263 264 268 270 271 272 275 280 
+282 283 285 286 288 293 297 299 
+302 303 304 305 308 315 319 )"]
+4 [color=blue, label="keyword_predicate-word-(g)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(popular)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(songs)"]
+10->13
+10->16
+9 [color=blue, label="1 0: ()
+1: (4 57 )"]
+13 [color=blue, label="keyword_predicate-word-(loops)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(written)"]
+16->22
+16->18
+19 [color=blue, label="keyword_predicate-word-(king)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (22 )"]
+22 [color=blue, label="keyword_predicate-word-(www)"]
+22->28
+22->24
+18 [color=blue, label="1 0: ()
+1: (6 )"]
+25 [color=blue, label="keyword_predicate-word-(write)"]
+25->31
+25->27
+21 [color=blue, label="1 0: ()
+1: (28 )"]
+28 [color=blue, label="keyword_predicate-word-(page)"]
+28->34
+28->30
+24 [color=blue, label="1 0: ()
+1: (49 )"]
+31 [color=blue, label="keyword_predicate-word-(music)"]
+31->37
+31->33
+27 [color=blue, label="1 0: ()
+1: (37 )"]
+34 [color=blue, label="keyword_predicate-word-(band)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (59 118 )"]
+37 [color=blue, label="keyword_predicate-word-(sub)"]
+37->43
+37->39
+33 [color=blue, label="1 0: ()
+1: (43 73 141 195 211 217 )"]
+40 [color=blue, label="keyword_predicate-word-(remember)"]
+40->46
+40->42
+36 [color=blue, label="1 0: ()
+1: (61 131 200 )"]
+43 [color=blue, label="keyword_predicate-word-(baba)"]
+43->49
+43->45
+39 [color=blue, label="1 0: ()
+1: (53 )"]
+46 [color=blue, label="keyword_predicate-word-(love)"]
+46->52
+46->48
+42 [color=blue, label="1 0: ()
+1: (76 )"]
+49 [color=blue, label="keyword_predicate-word-(hard)"]
+49->55
+49->51
+45 [color=blue, label="1 0: ()
+1: (78 )"]
+52 [color=blue, label="keyword_predicate-word-(share)"]
+52->58
+52->54
+48 [color=blue, label="1 0: ()
+1: (81 )"]
+55 [color=blue, label="keyword_predicate-word-(static)"]
+55->61
+55->57
+51 [color=blue, label="1 0: ()
+1: (87 )"]
+58 [color=blue, label="keyword_predicate-word-(hotter)"]
+58->64
+58->60
+54 [color=blue, label="1 0: ()
+1: (176 183 212 )"]
+61 [color=blue, label="keyword_predicate-word-(thank)"]
+61->67
+61->63
+57 [color=blue, label="1 0: ()
+1: (107 )"]
+64 [color=blue, label="keyword_predicate-word-(peace)"]
+64->65
+64->66
+60 [color=blue, label="1 0: ()
+1: (193 )"]
+67 [color=blue, label="keyword_predicate-word-(nice)"]
+67->70
+67->69
+63 [color=blue, label="1 0: ()
+1: (117 196 )"]
+65 [color=blue, label="0 0: (236 )
+1: ()"]
+66 [color=blue, label="1 0: ()
+1: (220 )"]
+70 [color=blue, label="keyword_predicate-word-(eminem)"]
+70->73
+70->72
+69 [color=blue, label="1 0: ()
+1: (123 )"]
+73 [color=blue, label="keyword_predicate-word-(sorry)"]
+73->76
+73->75
+72 [color=blue, label="1 0: ()
+1: (130 )"]
+76 [color=blue, label="keyword_predicate-word-(ema)"]
+76->79
+76->78
+75 [color=blue, label="1 0: ()
+1: (135 )"]
+79 [color=blue, label="keyword_predicate-word-(every)"]
+79->82
+79->81
+78 [color=blue, label="1 0: ()
+1: (143 )"]
+82 [color=blue, label="keyword_predicate-word-(piss)"]
+82->85
+82->84
+81 [color=blue, label="1 0: ()
+1: (147 )"]
+85 [color=blue, label="keyword_predicate-word-(football)"]
+85->88
+85->87
+84 [color=blue, label="1 0: ()
+1: (162 )"]
+88 [color=blue, label="keyword_predicate-word-(im)"]
+88->91
+88->90
+87 [color=blue, label="1 0: ()
+1: (168 )"]
+91 [color=blue, label="keyword_predicate-word-(soundcloud)"]
+91->92
+91->93
+90 [color=blue, label="1 0: ()
+1: (178 198 )"]
+92 [color=blue, label="0 0: (225 227 240 244 250 251 258 265 
+276 279 295 298 306 307 310 312 
+318 )
+1: ()"]
+93 [color=blue, label="1 0: ()
+1: (187 )"] } 

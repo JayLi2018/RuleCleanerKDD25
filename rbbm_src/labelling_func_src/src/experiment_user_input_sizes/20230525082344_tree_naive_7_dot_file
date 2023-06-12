@@ -1,0 +1,183 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 40 42 43 44 45 47 49 
+58 59 62 65 66 67 69 71 
+74 77 79 80 81 82 83 85 
+89 90 93 102 104 105 115 116 
+117 118 119 121 122 123 124 128 
+130 132 136 137 140 143 151 154 
+158 159 )
+0: (2 9 13 39 64 94 98 125 
+144 146 148 150 155 156 157 )"]
+4 [color=blue, label="keyword_predicate-word-(shop)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(guys)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(subscribers)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 7 12 29 60 73 86 87 
+110 138 142 152 )"]
+13 [color=blue, label="keyword_predicate-word-(virucide)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (8 37 50 55 109 120 127 )"]
+16 [color=blue, label="keyword_predicate-word-(aka)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (10 )"]
+19 [color=blue, label="keyword_predicate-word-(subscribed)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (14 )"]
+22 [color=blue, label="keyword_predicate-word-(could)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (15 19 99 )"]
+25 [color=blue, label="keyword_predicate-word-(took)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (17 18 54 70 95 114 129 )"]
+28 [color=blue, label="keyword_predicate-word-(love)"]
+28->31
+28->34
+27 [color=blue, label="1 0: ()
+1: (22 )"]
+31 [color=blue, label="keyword_predicate-word-(click)"]
+31->37
+31->33
+34 [color=blue, label="keyword_predicate-word-(thanks)"]
+34->40
+34->36
+37 [color=blue, label="keyword_predicate-word-(please)"]
+37->43
+37->39
+33 [color=blue, label="1 0: ()
+1: (26 61 131 )"]
+40 [color=blue, label="keyword_predicate-word-(mind)"]
+40->46
+40->42
+36 [color=blue, label="1 0: ()
+1: (25 )"]
+43 [color=blue, label="keyword_predicate-word-(share)"]
+43->49
+43->45
+39 [color=blue, label="1 0: ()
+1: (33 56 68 91 92 96 103 108 
+113 134 141 149 )"]
+46 [color=blue, label="keyword_predicate-word-(new)"]
+46->52
+46->48
+42 [color=blue, label="1 0: ()
+1: (63 )"]
+49 [color=blue, label="keyword_predicate-word-(inspired)"]
+49->55
+49->51
+45 [color=blue, label="1 0: ()
+1: (38 )"]
+52 [color=blue, label="keyword_predicate-word-(ft)"]
+52->58
+52->54
+48 [color=blue, label="1 0: ()
+1: (107 )"]
+55 [color=blue, label="keyword_predicate-word-(someone)"]
+55->61
+55->57
+51 [color=blue, label="1 0: ()
+1: (41 )"]
+58 [color=blue, label="keyword_predicate-word-(facebook)"]
+58->64
+58->60
+54 [color=blue, label="1 0: ()
+1: (111 )"]
+61 [color=blue, label="keyword_predicate-word-(subscribe)"]
+61->67
+61->63
+57 [color=blue, label="1 0: ()
+1: (46 57 )"]
+64 [color=blue, label="keyword_predicate-word-(iiiiiiiiiii)"]
+64->70
+64->66
+60 [color=blue, label="1 0: ()
+1: (133 )"]
+67 [color=blue, label="keyword_predicate-word-(dont)"]
+67->73
+67->69
+63 [color=blue, label="1 0: ()
+1: (48 51 52 88 )"]
+70 [color=blue, label="keyword_predicate-word-(aftermath)"]
+70->71
+70->72
+66 [color=blue, label="1 0: ()
+1: (135 )"]
+73 [color=blue, label="keyword_predicate-word-(channel)"]
+73->76
+73->75
+69 [color=blue, label="1 0: ()
+1: (53 72 )"]
+71 [color=blue, label="0 0: (145 147 )
+1: ()"]
+72 [color=blue, label="1 0: ()
+1: (139 )"]
+76 [color=blue, label="keyword_predicate-word-(shakira)"]
+76->79
+76->78
+75 [color=blue, label="1 0: ()
+1: (75 )"]
+79 [color=blue, label="keyword_predicate-word-(something)"]
+79->82
+79->81
+78 [color=blue, label="1 0: ()
+1: (76 )"]
+82 [color=blue, label="keyword_predicate-word-(netjobs)"]
+82->85
+82->84
+81 [color=blue, label="1 0: ()
+1: (78 )"]
+85 [color=blue, label="keyword_predicate-word-(think)"]
+85->88
+85->87
+84 [color=blue, label="1 0: ()
+1: (84 )"]
+88 [color=blue, label="keyword_predicate-word-(entire)"]
+88->91
+88->90
+87 [color=blue, label="1 0: ()
+1: (97 )"]
+91 [color=blue, label="keyword_predicate-word-(look)"]
+91->94
+91->93
+90 [color=blue, label="1 0: ()
+1: (100 )"]
+94 [color=blue, label="keyword_predicate-word-(first)"]
+94->97
+94->96
+93 [color=blue, label="1 0: ()
+1: (101 )"]
+97 [color=blue, label="keyword_predicate-word-(subscrib)"]
+97->100
+97->99
+96 [color=blue, label="1 0: ()
+1: (106 )"]
+100 [color=blue, label="keyword_predicate-word-(phone)"]
+100->101
+100->102
+99 [color=blue, label="1 0: ()
+1: (112 )"]
+101 [color=blue, label="0 0: (21 153 )
+1: ()"]
+102 [color=blue, label="1 0: ()
+1: (126 )"] } 

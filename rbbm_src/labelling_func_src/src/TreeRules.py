@@ -5,6 +5,9 @@ from dataclasses import dataclass
 import re 
 from snorkel.labeling import LabelingFunction
 import nltk
+from string import Template
+
+dot_string_template=Template("""digraph "rule" { $nodes_details } """)
 
 SPAM=1
 HAM=0
@@ -27,6 +30,8 @@ class Node:
 	left: 'Node'=None
 	right: 'Node'=None
 	parent: 'Node'=None
+	is_added: bool=False
+	is_reversed: bool=False
 
 class Predicate:
 	def __init__(self, instance: str):
@@ -182,19 +187,82 @@ class TreeRule:
 # 	"""
 	rule_counter=0
 
-	@classmethod
-	def eval_rule(ls, rule, instance):
-		return rule.evaluate(instance)
+	# @classmethod
+	# def eval_rule(ls, rule, instance):
+	# 	return rule.evaluate(instance)
 
-	def __init__(self, rtype: str, root: 'Node', size: int):
+	def __init__(self, rtype: str, root: 'Node', size: int, max_node_id: int):
 		self.rtype = rtype
 		self.root = root
 		self.size = size
 		self.id=TreeRule.rule_counter
+		self.max_node_id=max_node_id
+		self.reversed_cnt=0
 		TreeRule.rule_counter+=1
 
 	def setsize(self, new_size:int):
 		self.size=new_size
+
+	def gen_dot_string(self, comments):
+		# color schemes
+		reversed_color='yellow'
+		added_color='blue'
+		reversed_and_added_color='green'
+		str_list = ['\n'+comments]
+		queue = deque([self.root])
+		while(queue):
+			# print(f"level: {level}, queue: {queue}")
+			cur_node = queue.popleft()
+			# print(cur_node)
+			if(isinstance(cur_node, PredicateNode)):
+				if(cur_node.is_added and cur_node.is_reversed):
+					color=reversed_and_added_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.pred)}"]')
+				elif(cur_node.is_added):
+					color=added_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.pred)}"]')
+				elif(cur_node.is_reversed):
+					color=reversed_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.pred)}"]')
+				else:
+					str_list.append(f'{cur_node.number} [label="{str(cur_node.pred)}"]')
+				str_list.append(f'{cur_node.number}->{cur_node.left.number}')
+				str_list.append(f'{cur_node.number}->{cur_node.right.number}')
+			else:
+				user_inputs = []
+				for k,v in cur_node.pairs.items():
+					kstr=f"{str(k)}: ("
+					if(self.rtype=='lf'):
+						i=1
+						for m in v:
+							kstr+=f'{str(m.id)} '
+							if(i%8==0):
+								kstr+='\n'
+							i+=1
+					kstr+=')'
+					user_inputs.append(kstr)
+					user_input_str="\n".join(user_inputs)
+				if(cur_node.is_added and cur_node.is_reversed):
+					color=reversed_and_added_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.label)} {user_input_str}"]')
+				elif(cur_node.is_added):
+					color=added_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.label)} {user_input_str}"]')
+				elif(cur_node.is_reversed):
+					color=reversed_color
+					str_list.append(f'{cur_node.number} [color={color}, label="{str(cur_node.label)} {user_input_str}"]')
+				else:
+					str_list.append(f'{cur_node.number} [label="{str(cur_node.label)} {user_input_str}"]')
+				# str_list.append(f'{cur_node.number} [label="{str(cur_node.label)} {user_input_str}"]')
+
+			if(cur_node.left):
+				queue.append(cur_node.left)
+			if(cur_node.right):
+				queue.append(cur_node.right)
+
+		dot_string= dot_string_template.substitute(nodes_details='\n'.join(str_list))
+		return dot_string
+
 
 	def __str__(self):
 		str_list = []

@@ -1,0 +1,50 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (2 3 8 10 17 18 19 21 
+25 31 32 34 35 37 41 43 
+45 49 )
+0: (5 11 12 22 26 30 36 42 
+47 48 )"]
+4 [color=blue, label="keyword_predicate-word-(hook)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(someone)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(love)"]
+10->13
+10->16
+9 [color=blue, label="1 0: ()
+1: (1 )"]
+13 [color=blue, label="keyword_predicate-word-(subscribe)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(getting)"]
+16->22
+16->18
+19 [color=blue, label="keyword_predicate-word-(channel)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (6 9 23 24 )"]
+22 [color=blue, label="keyword_predicate-word-(www)"]
+22->23
+22->24
+18 [color=blue, label="1 0: ()
+1: (4 )"]
+25 [color=blue, label="keyword_predicate-word-(singer)"]
+25->26
+25->27
+21 [color=blue, label="1 0: ()
+1: (44 )"]
+23 [color=blue, label="0 0: (13 15 20 27 33 )
+1: ()"]
+24 [color=blue, label="1 0: ()
+1: (28 )"]
+26 [color=blue, label="0 0: (7 14 16 29 38 39 40 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (46 )"] } 

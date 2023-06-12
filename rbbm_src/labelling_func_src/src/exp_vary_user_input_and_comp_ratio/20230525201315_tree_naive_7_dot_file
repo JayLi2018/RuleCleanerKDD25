@@ -1,0 +1,98 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+31 34 38 39 42 46 47 48 
+52 54 59 60 61 62 66 69 
+73 74 77 78 )
+0: (2 9 13 24 26 28 30 35 
+36 37 40 41 44 50 51 53 
+55 57 58 65 68 70 72 75 
+76 79 )"]
+4 [color=blue, label="keyword_predicate-word-(lt)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(popular)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 32 )"]
+10 [color=blue, label="keyword_predicate-word-(free)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(subscribers)"]
+13->16
+13->19
+12 [color=blue, label="1 0: ()
+1: (7 14 18 )"]
+16 [color=blue, label="keyword_predicate-word-(virucide)"]
+16->22
+16->18
+19 [color=blue, label="keyword_predicate-word-(less)"]
+19->20
+19->21
+22 [color=blue, label="keyword_predicate-word-(social)"]
+22->25
+22->24
+18 [color=blue, label="1 0: ()
+1: (10 )"]
+20 [color=blue, label="0 0: (64 )
+1: ()"]
+21 [color=blue, label="1 0: ()
+1: (8 )"]
+25 [color=blue, label="keyword_predicate-word-(good)"]
+25->28
+25->31
+24 [color=blue, label="1 0: ()
+1: (12 )"]
+28 [color=blue, label="keyword_predicate-word-(www)"]
+28->34
+28->30
+31 [color=blue, label="keyword_predicate-word-(style)"]
+31->32
+31->33
+34 [color=blue, label="keyword_predicate-word-(subscribed)"]
+34->37
+34->36
+30 [color=blue, label="1 0: ()
+1: (17 )"]
+32 [color=blue, label="0 0: (25 )
+1: ()"]
+33 [color=blue, label="1 0: ()
+1: (15 )"]
+37 [color=blue, label="keyword_predicate-word-(fruity)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (19 )"]
+40 [color=blue, label="keyword_predicate-word-(trying)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (22 )"]
+43 [color=blue, label="keyword_predicate-word-(thanks)"]
+43->46
+43->49
+42 [color=blue, label="1 0: ()
+1: (29 )"]
+46 [color=blue, label="keyword_predicate-word-(lil)"]
+46->52
+46->48
+49 [color=blue, label="keyword_predicate-word-(remixes)"]
+49->50
+49->51
+52 [color=blue, label="keyword_predicate-word-(hiphop)"]
+52->53
+52->54
+48 [color=blue, label="1 0: ()
+1: (45 )"]
+50 [color=blue, label="0 0: (33 )
+1: ()"]
+51 [color=blue, label="1 0: ()
+1: (43 )"]
+53 [color=blue, label="0 0: (21 27 49 56 63 71 )
+1: ()"]
+54 [color=blue, label="1 0: ()
+1: (67 )"] } 

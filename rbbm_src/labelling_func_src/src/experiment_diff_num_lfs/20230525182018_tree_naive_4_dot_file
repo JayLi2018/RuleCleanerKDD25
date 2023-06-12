@@ -1,0 +1,69 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(this)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 4 5 8 11 13 15 
+16 20 22 28 29 30 31 33 
+34 37 38 45 46 49 )
+0: (17 19 41 43 )"]
+4 [color=blue, label="keyword_predicate-word-(toilet)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(pages)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(kill)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (3 9 )"]
+13 [color=blue, label="keyword_predicate-word-(give)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (6 )"]
+16 [color=blue, label="keyword_predicate-word-(people)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (7 35 )"]
+19 [color=blue, label="keyword_predicate-word-(tsu)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 23 )"]
+22 [color=blue, label="keyword_predicate-word-(watching)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 )"]
+25 [color=blue, label="keyword_predicate-word-(adf)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (14 )"]
+28 [color=blue, label="keyword_predicate-word-(click)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (18 )"]
+31 [color=blue, label="keyword_predicate-word-(sheilcen)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (21 )"]
+34 [color=blue, label="keyword_predicate-word-(exagdl)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (24 )"]
+37 [color=blue, label="keyword_predicate-word-(youtube)"]
+37->38
+37->39
+36 [color=blue, label="1 0: ()
+1: (25 )"]
+38 [color=blue, label="0 0: (32 36 39 40 42 44 48 )
+1: ()"]
+39 [color=blue, label="1 0: ()
+1: (26 27 47 )"] } 

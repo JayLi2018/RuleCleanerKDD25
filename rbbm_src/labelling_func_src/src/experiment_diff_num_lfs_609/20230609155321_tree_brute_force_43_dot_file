@@ -1,0 +1,14 @@
+digraph "rule" { 
+// presize: 3, after_size: 5, deleted: True factor: 0.7 reverse_cnt:0
+1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (2 3 8 9 )
+0: (5 )"]
+4 [color=blue, label="keyword_predicate-word-(still)"]
+4->5
+4->6
+5 [color=blue, label="1 0: ()
+1: (0 1 4 6 )"]
+6 [color=blue, label="0 0: (7 )
+1: ()"] } 

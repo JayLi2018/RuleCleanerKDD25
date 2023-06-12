@@ -1,0 +1,174 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 40 42 43 44 45 47 49 
+58 59 62 65 66 67 69 71 
+74 77 79 80 81 82 83 85 
+89 90 93 102 104 105 115 116 
+117 118 119 121 122 123 124 128 
+130 132 136 137 140 143 151 154 
+158 159 )
+0: (2 9 13 39 64 94 98 125 
+144 146 148 150 155 156 157 )"]
+4 [color=blue, label="keyword_predicate-word-(http)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(song)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (1 17 56 60 100 101 108 111 
+)"]
+10 [color=blue, label="keyword_predicate-word-(hey)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(awesome)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(gets)"]
+16->22
+16->18
+12 [color=blue, label="1 0: ()
+1: (7 29 54 92 110 114 142 152 
+)"]
+19 [color=blue, label="keyword_predicate-word-(check)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(dear)"]
+22->28
+22->24
+18 [color=blue, label="1 0: ()
+1: (8 134 )"]
+25 [color=blue, label="keyword_predicate-word-(past)"]
+25->31
+25->27
+21 [color=blue, label="1 0: ()
+1: (22 73 78 87 107 )"]
+28 [color=blue, label="keyword_predicate-word-(hello)"]
+28->34
+28->30
+24 [color=blue, label="1 0: ()
+1: (10 )"]
+31 [color=blue, label="keyword_predicate-word-(sub)"]
+31->37
+31->33
+27 [color=blue, label="1 0: ()
+1: (37 )"]
+34 [color=blue, label="keyword_predicate-word-(hi)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (12 55 68 149 )"]
+37 [color=blue, label="keyword_predicate-word-(finally)"]
+37->43
+37->39
+33 [color=blue, label="1 0: ()
+1: (53 )"]
+40 [color=blue, label="keyword_predicate-word-(subscribed)"]
+40->46
+40->42
+36 [color=blue, label="1 0: ()
+1: (14 18 25 61 86 97 )"]
+43 [color=blue, label="keyword_predicate-word-(iiiiiiiiiii)"]
+43->49
+43->45
+39 [color=blue, label="1 0: ()
+1: (57 )"]
+46 [color=blue, label="keyword_predicate-word-(help)"]
+46->52
+46->48
+42 [color=blue, label="1 0: ()
+1: (15 19 99 )"]
+49 [color=blue, label="keyword_predicate-word-(year)"]
+49->50
+49->51
+45 [color=blue, label="1 0: ()
+1: (135 )"]
+52 [color=blue, label="keyword_predicate-word-(lol)"]
+52->55
+52->54
+48 [color=blue, label="1 0: ()
+1: (26 88 109 127 131 )"]
+50 [color=blue, label="0 0: (145 147 )
+1: ()"]
+51 [color=blue, label="1 0: ()
+1: (141 )"]
+55 [color=blue, label="keyword_predicate-word-(gonna)"]
+55->58
+55->57
+54 [color=blue, label="1 0: ()
+1: (33 )"]
+58 [color=blue, label="keyword_predicate-word-(edm)"]
+58->61
+58->60
+57 [color=blue, label="1 0: ()
+1: (38 70 )"]
+61 [color=blue, label="keyword_predicate-word-(haha)"]
+61->64
+61->63
+60 [color=blue, label="1 0: ()
+1: (41 )"]
+64 [color=blue, label="keyword_predicate-word-(subscribe)"]
+64->67
+64->66
+63 [color=blue, label="1 0: ()
+1: (46 )"]
+67 [color=blue, label="keyword_predicate-word-(katy)"]
+67->70
+67->69
+66 [color=blue, label="1 0: ()
+1: (48 51 52 95 103 113 138 139 
+)"]
+70 [color=blue, label="keyword_predicate-word-(please)"]
+70->73
+70->72
+69 [color=blue, label="1 0: ()
+1: (50 129 )"]
+73 [color=blue, label="keyword_predicate-word-(want)"]
+73->76
+73->75
+72 [color=blue, label="1 0: ()
+1: (63 91 96 )"]
+76 [color=blue, label="keyword_predicate-word-(shaking)"]
+76->79
+76->78
+75 [color=blue, label="1 0: ()
+1: (72 )"]
+79 [color=blue, label="keyword_predicate-word-(top)"]
+79->82
+79->81
+78 [color=blue, label="1 0: ()
+1: (75 )"]
+82 [color=blue, label="keyword_predicate-word-(stop)"]
+82->85
+82->84
+81 [color=blue, label="1 0: ()
+1: (76 )"]
+85 [color=blue, label="keyword_predicate-word-(omg)"]
+85->88
+85->87
+84 [color=blue, label="1 0: ()
+1: (84 )"]
+88 [color=blue, label="keyword_predicate-word-(like)"]
+88->91
+88->90
+87 [color=blue, label="1 0: ()
+1: (106 )"]
+91 [color=blue, label="keyword_predicate-word-(yrs)"]
+91->94
+91->93
+90 [color=blue, label="1 0: ()
+1: (112 126 )"]
+94 [color=blue, label="keyword_predicate-word-(simply)"]
+94->95
+94->96
+93 [color=blue, label="1 0: ()
+1: (120 )"]
+95 [color=blue, label="0 0: (21 153 )
+1: ()"]
+96 [color=blue, label="1 0: ()
+1: (133 )"] } 

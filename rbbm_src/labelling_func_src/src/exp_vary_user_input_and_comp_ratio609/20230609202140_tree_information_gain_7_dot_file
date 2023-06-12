@@ -1,0 +1,15 @@
+digraph "rule" { 
+// presize: 3, after_size: 9, deleted: True factor: 0.5 reverse_cnt:2
+1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 9 12 16 17 )
+0: (2 4 6 8 13 14 15 18 
+19 )"]
+4 [color=blue, label="keyword_predicate-word-(please)"]
+4->5
+4->6
+5 [color=green, label="0 0: (3 5 11 )
+1: ()"]
+6 [color=green, label="1 0: ()
+1: (1 7 10 )"] } 

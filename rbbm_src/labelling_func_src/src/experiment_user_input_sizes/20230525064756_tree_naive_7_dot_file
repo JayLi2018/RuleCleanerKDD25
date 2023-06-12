@@ -1,0 +1,112 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 47 50 54 55 58 62 63 
+64 68 70 75 76 77 78 )
+0: (2 9 13 39 40 42 44 46 
+51 52 53 56 57 60 66 67 
+69 71 73 74 )"]
+4 [color=blue, label="keyword_predicate-word-(http)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(video)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (1 17 )"]
+10 [color=blue, label="keyword_predicate-word-(gets)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(water)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(friends)"]
+16->22
+16->18
+12 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(give)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(netjobs)"]
+22->28
+22->24
+18 [color=blue, label="1 0: ()
+1: (10 45 )"]
+25 [color=blue, label="keyword_predicate-word-(football)"]
+25->31
+25->27
+21 [color=blue, label="1 0: ()
+1: (7 )"]
+28 [color=blue, label="keyword_predicate-word-(style)"]
+28->34
+28->30
+24 [color=blue, label="1 0: ()
+1: (12 )"]
+31 [color=blue, label="keyword_predicate-word-(started)"]
+31->32
+31->33
+27 [color=blue, label="1 0: ()
+1: (14 )"]
+34 [color=blue, label="keyword_predicate-word-(want)"]
+34->37
+34->36
+30 [color=blue, label="1 0: ()
+1: (15 )"]
+32 [color=blue, label="0 0: (41 49 72 )
+1: ()"]
+33 [color=blue, label="1 0: ()
+1: (37 )"]
+37 [color=blue, label="keyword_predicate-word-(br)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (18 33 )"]
+40 [color=blue, label="keyword_predicate-word-(song)"]
+40->43
+40->46
+39 [color=blue, label="1 0: ()
+1: (19 )"]
+43 [color=blue, label="keyword_predicate-word-(hi)"]
+43->49
+43->45
+46 [color=blue, label="keyword_predicate-word-(dubstep)"]
+46->47
+46->48
+49 [color=blue, label="keyword_predicate-word-(nguyen)"]
+49->52
+49->51
+45 [color=blue, label="1 0: ()
+1: (25 61 )"]
+47 [color=blue, label="0 0: (43 )
+1: ()"]
+48 [color=blue, label="1 0: ()
+1: (22 )"]
+52 [color=blue, label="keyword_predicate-word-(dancing)"]
+52->55
+52->54
+51 [color=blue, label="1 0: ()
+1: (26 )"]
+55 [color=blue, label="keyword_predicate-word-(linz)"]
+55->58
+55->57
+54 [color=blue, label="1 0: ()
+1: (29 )"]
+58 [color=blue, label="keyword_predicate-word-(invest)"]
+58->61
+58->60
+57 [color=blue, label="1 0: ()
+1: (38 )"]
+61 [color=blue, label="keyword_predicate-word-(checked)"]
+61->62
+61->63
+60 [color=blue, label="1 0: ()
+1: (48 )"]
+62 [color=blue, label="0 0: (21 65 79 )
+1: ()"]
+63 [color=blue, label="1 0: ()
+1: (59 )"] } 

@@ -1,0 +1,19 @@
+digraph "rule" { 
+// presize: 3, after_size: 5, deleted: True factor: 0.7 reverse_cnt:0
+1 [label="keyword_predicate-word-(comment)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 6 7 8 10 
+11 12 15 16 17 18 19 20 
+21 23 24 31 32 35 38 40 
+41 42 45 47 48 )
+0: (0 4 9 13 26 27 28 29 
+30 34 36 37 39 43 44 46 
+49 )"]
+4 [color=blue, label="keyword_predicate-word-(randomly)"]
+4->5
+4->6
+5 [color=blue, label="1 0: ()
+1: (14 22 25 )"]
+6 [color=blue, label="0 0: (33 )
+1: ()"] } 

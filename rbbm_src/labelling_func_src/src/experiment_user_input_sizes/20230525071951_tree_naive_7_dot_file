@@ -1,0 +1,373 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 40 42 43 44 45 47 49 
+58 59 62 65 66 67 69 71 
+74 77 79 80 81 82 83 85 
+89 90 93 102 104 105 115 116 
+117 118 119 121 122 123 124 128 
+130 132 136 137 140 143 146 149 
+150 151 152 156 157 158 161 167 
+168 169 171 172 175 176 178 182 
+183 184 185 186 187 192 198 202 
+203 205 206 209 212 216 217 218 
+219 220 231 234 238 239 242 246 
+247 248 252 254 259 260 261 262 
+266 269 273 274 277 278 281 284 
+287 289 290 291 292 294 296 300 
+301 309 311 313 314 316 317 )
+0: (2 9 13 39 64 94 98 125 
+188 210 224 226 228 230 235 236 
+237 240 241 244 250 251 253 255 
+257 258 265 268 270 272 275 276 
+279 280 282 283 286 288 293 295 
+297 298 299 303 305 306 307 312 
+315 318 319 )"]
+4 [color=blue, label="keyword_predicate-word-(shop)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(thumbs)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(new)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 37 50 70 72 88 95 114 
+129 162 232 )"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 54 91 96 107 108 131 154 
+197 200 211 222 )"]
+16 [color=blue, label="keyword_predicate-word-(virucide)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 134 )"]
+19 [color=blue, label="keyword_predicate-word-(monthly)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 )"]
+22 [color=blue, label="keyword_predicate-word-(watch)"]
+22->25
+22->28
+21 [color=blue, label="1 0: ()
+1: (12 84 165 191 )"]
+25 [color=blue, label="keyword_predicate-word-(subscribed)"]
+25->31
+25->27
+28 [color=blue, label="keyword_predicate-word-(football)"]
+28->34
+28->30
+31 [color=blue, label="keyword_predicate-word-(f)"]
+31->37
+31->33
+27 [color=blue, label="1 0: ()
+1: (15 19 99 )"]
+34 [color=blue, label="keyword_predicate-word-(v)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (14 )"]
+37 [color=blue, label="keyword_predicate-word-(love)"]
+37->43
+37->46
+33 [color=blue, label="1 0: ()
+1: (17 )"]
+40 [color=blue, label="keyword_predicate-word-(subscrib)"]
+40->49
+40->42
+36 [color=blue, label="1 0: ()
+1: (22 )"]
+43 [color=blue, label="keyword_predicate-word-(thank)"]
+43->52
+43->45
+46 [color=blue, label="keyword_predicate-word-(duo)"]
+46->55
+46->48
+49 [color=blue, label="keyword_predicate-word-(shake)"]
+49->58
+49->51
+42 [color=blue, label="1 0: ()
+1: (112 )"]
+52 [color=blue, label="keyword_predicate-word-(nearly)"]
+52->61
+52->54
+45 [color=blue, label="1 0: ()
+1: (26 55 68 142 174 195 215 )"]
+55 [color=blue, label="keyword_predicate-word-(performance)"]
+55->64
+55->57
+48 [color=blue, label="1 0: ()
+1: (18 )"]
+58 [color=blue, label="keyword_predicate-word-(rights)"]
+58->67
+58->60
+51 [color=blue, label="1 0: ()
+1: (135 )"]
+61 [color=blue, label="keyword_predicate-word-(things)"]
+61->70
+61->63
+54 [color=blue, label="1 0: ()
+1: (33 )"]
+64 [color=blue, label="keyword_predicate-word-(guys)"]
+64->73
+64->66
+57 [color=blue, label="1 0: ()
+1: (25 )"]
+67 [color=blue, label="keyword_predicate-word-(guys)"]
+67->76
+67->69
+60 [color=blue, label="1 0: ()
+1: (138 )"]
+70 [color=blue, label="keyword_predicate-word-(shirts)"]
+70->79
+70->72
+63 [color=blue, label="1 0: ()
+1: (38 120 141 )"]
+73 [color=blue, label="keyword_predicate-word-(thank)"]
+73->82
+73->75
+66 [color=blue, label="1 0: ()
+1: (29 )"]
+76 [color=blue, label="keyword_predicate-word-(birthday)"]
+76->77
+76->78
+69 [color=blue, label="1 0: ()
+1: (196 )"]
+79 [color=blue, label="keyword_predicate-word-(link)"]
+79->85
+79->81
+72 [color=blue, label="1 0: ()
+1: (41 )"]
+82 [color=blue, label="keyword_predicate-word-(rihanna)"]
+82->88
+82->84
+75 [color=blue, label="1 0: ()
+1: (63 )"]
+77 [color=blue, label="0 0: (256 )
+1: ()"]
+78 [color=blue, label="1 0: ()
+1: (221 )"]
+85 [color=blue, label="keyword_predicate-word-(subscribe)"]
+85->91
+85->87
+81 [color=blue, label="1 0: ()
+1: (46 )"]
+88 [color=blue, label="keyword_predicate-word-(simply)"]
+88->94
+88->90
+84 [color=blue, label="1 0: ()
+1: (111 )"]
+91 [color=blue, label="keyword_predicate-word-(sub)"]
+91->97
+91->93
+87 [color=blue, label="1 0: ()
+1: (48 51 52 61 103 113 163 179 
+245 )"]
+94 [color=blue, label="keyword_predicate-word-(soon)"]
+94->100
+94->96
+90 [color=blue, label="1 0: ()
+1: (133 )"]
+97 [color=blue, label="keyword_predicate-word-(gofundme)"]
+97->103
+97->99
+93 [color=blue, label="1 0: ()
+1: (53 190 )"]
+100 [color=blue, label="keyword_predicate-word-(blast)"]
+100->106
+100->102
+96 [color=blue, label="1 0: ()
+1: (139 )"]
+103 [color=blue, label="keyword_predicate-word-(gangnam)"]
+103->109
+103->105
+99 [color=blue, label="1 0: ()
+1: (56 144 )"]
+106 [color=blue, label="keyword_predicate-word-(comments)"]
+106->112
+106->108
+102 [color=blue, label="1 0: ()
+1: (147 )"]
+109 [color=blue, label="keyword_predicate-word-(give)"]
+109->115
+109->111
+105 [color=blue, label="1 0: ()
+1: (57 )"]
+112 [color=blue, label="keyword_predicate-word-(master)"]
+112->113
+112->114
+108 [color=blue, label="1 0: ()
+1: (155 )"]
+115 [color=blue, label="keyword_predicate-word-(human)"]
+115->118
+115->117
+111 [color=blue, label="1 0: ()
+1: (60 87 208 )"]
+113 [color=blue, label="0 0: (225 227 )
+1: ()"]
+114 [color=blue, label="1 0: ()
+1: (166 )"]
+118 [color=blue, label="keyword_predicate-word-(shaking)"]
+118->121
+118->120
+117 [color=blue, label="1 0: ()
+1: (73 )"]
+121 [color=blue, label="keyword_predicate-word-(africa)"]
+121->124
+121->123
+120 [color=blue, label="1 0: ()
+1: (75 )"]
+124 [color=blue, label="keyword_predicate-word-(thanx)"]
+124->127
+124->126
+123 [color=blue, label="1 0: ()
+1: (76 78 )"]
+127 [color=blue, label="keyword_predicate-word-(better)"]
+127->130
+127->129
+126 [color=blue, label="1 0: ()
+1: (86 )"]
+130 [color=blue, label="keyword_predicate-word-(say)"]
+130->133
+130->132
+129 [color=blue, label="1 0: ()
+1: (92 193 201 )"]
+133 [color=blue, label="keyword_predicate-word-(http)"]
+133->136
+133->135
+132 [color=blue, label="1 0: ()
+1: (97 )"]
+136 [color=blue, label="keyword_predicate-word-(omg)"]
+136->139
+136->138
+135 [color=blue, label="1 0: ()
+1: (100 101 181 213 )"]
+139 [color=blue, label="keyword_predicate-word-(end)"]
+139->142
+139->141
+138 [color=blue, label="1 0: ()
+1: (106 )"]
+142 [color=blue, label="keyword_predicate-word-(comedy)"]
+142->145
+142->144
+141 [color=blue, label="1 0: ()
+1: (109 )"]
+145 [color=blue, label="keyword_predicate-word-(phone)"]
+145->148
+145->147
+144 [color=blue, label="1 0: ()
+1: (110 )"]
+148 [color=blue, label="keyword_predicate-word-(goal)"]
+148->151
+148->150
+147 [color=blue, label="1 0: ()
+1: (126 )"]
+151 [color=blue, label="keyword_predicate-word-(girl)"]
+151->154
+151->157
+150 [color=blue, label="1 0: ()
+1: (127 )"]
+154 [color=blue, label="keyword_predicate-word-(hack)"]
+154->160
+154->156
+157 [color=blue, label="keyword_predicate-word-(check)"]
+157->163
+157->159
+160 [color=blue, label="keyword_predicate-word-(amazon)"]
+160->166
+160->162
+156 [color=blue, label="1 0: ()
+1: (148 )"]
+163 [color=blue, label="keyword_predicate-word-(lovely)"]
+163->164
+163->165
+159 [color=blue, label="1 0: ()
+1: (145 )"]
+166 [color=blue, label="keyword_predicate-word-(night)"]
+166->169
+166->168
+162 [color=blue, label="1 0: ()
+1: (153 )"]
+164 [color=blue, label="0 0: (285 )
+1: ()"]
+165 [color=blue, label="1 0: ()
+1: (204 )"]
+169 [color=blue, label="keyword_predicate-word-(comment)"]
+169->172
+169->171
+168 [color=blue, label="1 0: ()
+1: (159 )"]
+172 [color=blue, label="keyword_predicate-word-(mail)"]
+172->175
+172->174
+171 [color=blue, label="1 0: ()
+1: (160 173 )"]
+175 [color=blue, label="keyword_predicate-word-(get)"]
+175->178
+175->181
+174 [color=blue, label="1 0: ()
+1: (164 )"]
+178 [color=blue, label="keyword_predicate-word-(put)"]
+178->184
+178->180
+181 [color=blue, label="keyword_predicate-word-(subs)"]
+181->182
+181->183
+184 [color=blue, label="keyword_predicate-word-(college)"]
+184->187
+184->186
+180 [color=blue, label="1 0: ()
+1: (177 )"]
+182 [color=blue, label="0 0: (308 )
+1: ()"]
+183 [color=blue, label="1 0: ()
+1: (170 )"]
+187 [color=blue, label="keyword_predicate-word-(yall)"]
+187->190
+187->189
+186 [color=blue, label="1 0: ()
+1: (180 )"]
+190 [color=blue, label="keyword_predicate-word-(people)"]
+190->193
+190->192
+189 [color=blue, label="1 0: ()
+1: (189 )"]
+193 [color=blue, label="keyword_predicate-word-(football)"]
+193->196
+193->195
+192 [color=blue, label="1 0: ()
+1: (194 )"]
+196 [color=blue, label="keyword_predicate-word-(google)"]
+196->199
+196->198
+195 [color=blue, label="1 0: ()
+1: (199 )"]
+199 [color=blue, label="keyword_predicate-word-(guys)"]
+199->202
+199->201
+198 [color=blue, label="1 0: ()
+1: (207 )"]
+202 [color=blue, label="keyword_predicate-word-(support)"]
+202->205
+202->204
+201 [color=blue, label="1 0: ()
+1: (214 243 267 )"]
+205 [color=blue, label="keyword_predicate-word-(reach)"]
+205->206
+205->207
+204 [color=blue, label="1 0: ()
+1: (223 )"]
+206 [color=blue, label="0 0: (21 233 249 263 264 271 302 304 
+310 )
+1: ()"]
+207 [color=blue, label="1 0: ()
+1: (229 )"] } 

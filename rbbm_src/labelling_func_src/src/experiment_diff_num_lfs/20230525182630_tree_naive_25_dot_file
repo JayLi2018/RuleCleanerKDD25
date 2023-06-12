@@ -1,0 +1,56 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (0 5 9 11 17 21 24 31 
+34 35 37 38 40 41 42 44 
+48 )
+0: (6 13 14 15 28 32 33 43 
+45 46 )"]
+4 [color=blue, label="keyword_predicate-word-(reason)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(checking)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (3 )"]
+10 [color=blue, label="keyword_predicate-word-(joyce)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (7 )"]
+13 [color=blue, label="keyword_predicate-word-(need)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (8 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (16 )"]
+19 [color=blue, label="keyword_predicate-word-(give)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (19 23 26 )"]
+22 [color=blue, label="keyword_predicate-word-(video)"]
+22->25
+22->28
+21 [color=blue, label="1 0: ()
+1: (22 )"]
+25 [color=blue, label="keyword_predicate-word-(channel)"]
+25->26
+25->27
+28 [color=blue, label="keyword_predicate-word-(account)"]
+28->29
+28->30
+26 [color=blue, label="0 0: (1 2 4 10 12 18 20 25 
+29 36 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (30 39 49 )"]
+29 [color=blue, label="0 0: (47 )
+1: ()"]
+30 [color=blue, label="1 0: ()
+1: (27 )"] } 

@@ -1,0 +1,51 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(like)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 7 8 11 16 19 
+21 22 24 25 28 32 34 41 
+42 44 47 )
+0: (1 6 10 12 13 14 15 20 
+29 30 33 35 36 37 39 40 
+43 45 48 49 )"]
+4 [color=blue, label="keyword_predicate-word-(song)"]
+4->7
+4->10
+7 [color=blue, label="keyword_predicate-word-(kamal)"]
+7->13
+7->9
+10 [color=blue, label="keyword_predicate-word-(dont)"]
+10->11
+10->12
+13 [color=blue, label="keyword_predicate-word-(must)"]
+13->16
+13->15
+9 [color=blue, label="1 0: ()
+1: (17 )"]
+11 [color=blue, label="0 0: (4 18 )
+1: ()"]
+12 [color=blue, label="1 0: ()
+1: (9 )"]
+16 [color=blue, label="keyword_predicate-word-(transformation)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (23 46 )"]
+19 [color=blue, label="keyword_predicate-word-(year)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (26 )"]
+22 [color=blue, label="keyword_predicate-word-(sharing)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (27 )"]
+25 [color=blue, label="keyword_predicate-word-(view)"]
+25->26
+25->27
+24 [color=blue, label="1 0: ()
+1: (31 )"]
+26 [color=blue, label="0 0: (2 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (38 )"] } 

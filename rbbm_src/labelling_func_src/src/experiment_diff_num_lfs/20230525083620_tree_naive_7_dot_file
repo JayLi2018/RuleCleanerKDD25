@@ -1,0 +1,199 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+36 40 42 43 44 45 47 49 
+58 59 62 65 66 67 69 71 
+74 77 79 80 81 82 83 85 
+89 90 93 103 106 110 111 114 
+118 119 120 124 126 131 132 133 
+134 138 141 145 146 149 150 153 
+156 159 161 162 163 164 166 168 
+172 173 181 183 185 186 188 189 
+192 194 195 197 199 201 205 207 
+213 214 220 222 224 225 228 230 
+234 235 236 237 243 244 246 247 
+249 251 252 255 260 261 262 263 
+265 268 273 277 279 280 282 290 
+291 292 293 298 299 300 301 303 
+307 310 311 312 314 317 318 )
+0: (2 9 13 39 64 94 96 98 
+100 102 107 108 109 112 113 116 
+122 123 125 127 129 130 137 140 
+142 144 147 148 151 152 154 155 
+158 160 165 167 169 170 171 175 
+177 178 179 184 187 190 191 193 
+196 198 200 202 204 206 208 209 
+211 215 216 218 226 227 229 231 
+232 233 238 239 242 250 253 256 
+257 258 259 264 266 270 271 272 
+274 275 276 278 281 286 287 288 
+297 305 308 309 313 )"]
+4 [color=blue, label="keyword_predicate-word-(sones)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(doesnt)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(pretty)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(begin)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 18 26 33 48 51 52 61 
+68 70 88 95 117 219 241 267 
+)"]
+22 [color=blue, label="keyword_predicate-word-(dribbleproshot)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 84 )"]
+25 [color=blue, label="keyword_predicate-word-(subscribed)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (14 )"]
+28 [color=blue, label="keyword_predicate-word-(surgery)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (15 19 )"]
+31 [color=blue, label="keyword_predicate-word-(loops)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (17 73 )"]
+34 [color=blue, label="keyword_predicate-word-(hi)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (22 )"]
+37 [color=blue, label="keyword_predicate-word-(knows)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (25 86 )"]
+40 [color=blue, label="keyword_predicate-word-(started)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (29 )"]
+43 [color=blue, label="keyword_predicate-word-(ryhme)"]
+43->46
+43->45
+42 [color=blue, label="1 0: ()
+1: (37 87 294 )"]
+46 [color=blue, label="keyword_predicate-word-(news)"]
+46->49
+46->48
+45 [color=blue, label="1 0: ()
+1: (38 )"]
+49 [color=blue, label="keyword_predicate-word-(take)"]
+49->52
+49->51
+48 [color=blue, label="1 0: ()
+1: (41 46 )"]
+52 [color=blue, label="keyword_predicate-word-(dont)"]
+52->55
+52->54
+51 [color=blue, label="1 0: ()
+1: (50 55 101 203 315 )"]
+55 [color=blue, label="keyword_predicate-word-(new)"]
+55->58
+55->57
+54 [color=blue, label="1 0: ()
+1: (53 72 104 )"]
+58 [color=blue, label="keyword_predicate-word-(http)"]
+58->61
+58->60
+57 [color=blue, label="1 0: ()
+1: (54 91 )"]
+61 [color=blue, label="keyword_predicate-word-(get)"]
+61->64
+61->67
+60 [color=blue, label="1 0: ()
+1: (56 60 )"]
+64 [color=blue, label="keyword_predicate-word-(mind)"]
+64->70
+64->66
+67 [color=blue, label="keyword_predicate-word-(sense)"]
+67->73
+67->69
+70 [color=blue, label="keyword_predicate-word-(channel)"]
+70->76
+70->72
+66 [color=blue, label="1 0: ()
+1: (63 )"]
+73 [color=blue, label="keyword_predicate-word-(href)"]
+73->74
+73->75
+69 [color=blue, label="1 0: ()
+1: (57 )"]
+76 [color=blue, label="keyword_predicate-word-(forget)"]
+76->79
+76->78
+72 [color=blue, label="1 0: ()
+1: (75 92 139 )"]
+74 [color=blue, label="0 0: (180 )
+1: ()"]
+75 [color=blue, label="1 0: ()
+1: (254 )"]
+79 [color=blue, label="keyword_predicate-word-(something)"]
+79->82
+79->85
+78 [color=blue, label="1 0: ()
+1: (76 )"]
+82 [color=blue, label="keyword_predicate-word-(gangnamstyle)"]
+82->88
+82->84
+85 [color=blue, label="keyword_predicate-word-(colour)"]
+85->86
+85->87
+88 [color=blue, label="keyword_predicate-word-(decent)"]
+88->91
+88->90
+84 [color=blue, label="1 0: ()
+1: (115 )"]
+86 [color=blue, label="0 0: (240 )
+1: ()"]
+87 [color=blue, label="1 0: ()
+1: (78 )"]
+91 [color=blue, label="keyword_predicate-word-(awesoooome)"]
+91->94
+91->93
+90 [color=blue, label="1 0: ()
+1: (212 )"]
+94 [color=blue, label="keyword_predicate-word-(one)"]
+94->95
+94->97
+93 [color=blue, label="1 0: ()
+1: (221 )"]
+95 [color=blue, label="0 0: (21 97 99 105 121 135 136 143 
+157 174 176 182 210 217 223 245 
+248 269 283 285 289 302 304 306 
+316 319 )
+1: ()"]
+97 [color=blue, label="keyword_predicate-word-(sextoy)"]
+97->98
+97->99
+98 [color=blue, label="0 0: (128 295 296 )
+1: ()"]
+99 [color=blue, label="1 0: ()
+1: (284 )"] } 

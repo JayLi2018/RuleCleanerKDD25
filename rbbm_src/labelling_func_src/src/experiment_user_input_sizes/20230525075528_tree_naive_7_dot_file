@@ -1,0 +1,94 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+31 34 38 39 42 46 47 48 
+52 54 59 60 61 62 66 69 
+73 74 77 78 )
+0: (2 9 13 24 26 28 30 35 
+36 37 40 41 44 50 51 53 
+55 57 58 65 68 70 72 75 
+76 79 )"]
+4 [color=blue, label="keyword_predicate-word-(gt)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(fast)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(nearly)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(home)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 18 45 )"]
+22 [color=blue, label="keyword_predicate-word-(player)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 )"]
+25 [color=blue, label="keyword_predicate-word-(brother)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (14 )"]
+28 [color=blue, label="keyword_predicate-word-(family)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (15 )"]
+31 [color=blue, label="keyword_predicate-word-(subscribed)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (17 )"]
+34 [color=blue, label="keyword_predicate-word-(really)"]
+34->37
+34->40
+33 [color=blue, label="1 0: ()
+1: (19 )"]
+37 [color=blue, label="keyword_predicate-word-(second)"]
+37->43
+37->39
+40 [color=blue, label="keyword_predicate-word-(made)"]
+40->41
+40->42
+43 [color=blue, label="keyword_predicate-word-(awgu)"]
+43->46
+43->45
+39 [color=blue, label="1 0: ()
+1: (29 )"]
+41 [color=blue, label="0 0: (49 )
+1: ()"]
+42 [color=blue, label="1 0: ()
+1: (22 )"]
+46 [color=blue, label="keyword_predicate-word-(even)"]
+46->49
+46->48
+45 [color=blue, label="1 0: ()
+1: (32 )"]
+49 [color=blue, label="keyword_predicate-word-(hiphop)"]
+49->50
+49->51
+48 [color=blue, label="1 0: ()
+1: (43 )"]
+50 [color=blue, label="0 0: (21 25 27 33 56 63 64 71 
+)
+1: ()"]
+51 [color=blue, label="1 0: ()
+1: (67 )"] } 

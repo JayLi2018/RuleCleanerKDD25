@@ -1,0 +1,43 @@
+digraph "rule" { 
+// presize: 3, after_size: 29, deleted: False factor: 0.0 reverse_cnt:7
+1 [label="keyword_predicate-word-(the)"]
+1->2
+1->4
+2 [label="-1 1: (3 5 7 11 16 17 19 22 
+23 26 27 31 35 37 39 40 
+41 42 44 48 )
+0: (1 2 4 6 10 12 13 14 
+15 18 20 25 29 32 33 36 
+43 45 47 )"]
+4 [color=blue, label="keyword_predicate-word-(projects)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(hey)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(sub)"]
+10->13
+10->12
+9 [color=green, label="1 0: ()
+1: (8 30 )"]
+13 [color=blue, label="keyword_predicate-word-(sneakiestg)"]
+13->16
+13->15
+12 [color=green, label="1 0: ()
+1: (9 )"]
+16 [color=blue, label="keyword_predicate-word-(katty)"]
+16->19
+16->18
+15 [color=green, label="1 0: ()
+1: (21 )"]
+19 [color=blue, label="keyword_predicate-word-(check)"]
+19->20
+19->21
+18 [color=green, label="1 0: ()
+1: (24 )"]
+20 [color=green, label="0 0: (28 46 )
+1: ()"]
+21 [color=green, label="1 0: ()
+1: (34 38 49 )"] } 

@@ -1,0 +1,119 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(love)"]
+1->2
+1->4
+2 [label="-1 1: (0 1 3 5 6 7 8 10 
+11 12 14 15 16 17 19 20 
+22 23 24 26 27 28 30 31 
+32 33 34 35 36 37 38 40 
+41 42 43 44 45 46 47 48 
+49 50 51 52 53 54 55 56 
+57 58 59 60 61 62 65 66 
+68 71 72 73 74 75 76 77 
+78 79 80 82 84 85 86 87 
+88 89 90 91 92 93 101 103 
+104 106 110 111 114 115 117 118 
+119 120 124 126 131 132 133 134 
+138 139 141 145 146 149 150 153 
+156 159 161 162 163 164 166 168 
+172 173 181 183 185 186 188 189 
+192 194 195 197 199 201 203 205 
+207 212 213 214 219 220 221 222 
+224 225 228 230 234 235 236 237 
+241 243 244 246 247 249 251 252 
+254 255 260 261 262 263 265 267 
+268 273 277 279 280 282 284 290 
+291 292 293 294 298 299 300 301 
+303 307 310 311 312 314 315 317 
+318 )
+0: (2 9 13 21 39 64 94 98 
+100 102 105 107 108 109 112 113 
+116 121 123 128 130 135 136 137 
+140 143 144 151 152 154 155 157 
+160 165 169 171 174 175 176 177 
+178 179 180 182 187 190 191 193 
+196 198 200 208 209 210 211 215 
+216 217 218 227 229 232 239 240 
+245 248 250 256 257 259 264 266 
+269 270 271 272 275 276 278 281 
+283 285 286 287 289 295 302 304 
+306 308 309 316 319 )"]
+4 [color=blue, label="keyword_predicate-word-(fast)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(much)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (4 )"]
+10 [color=blue, label="keyword_predicate-word-(lie)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(give)"]
+13->14
+13->15
+16 [color=blue, label="keyword_predicate-word-(girl)"]
+16->19
+16->22
+12 [color=blue, label="1 0: ()
+1: (25 )"]
+14 [color=blue, label="0 0: (147 148 158 )
+1: ()"]
+15 [color=blue, label="1 0: ()
+1: (18 )"]
+19 [color=blue, label="keyword_predicate-word-(called)"]
+19->25
+19->21
+22 [color=blue, label="keyword_predicate-word-(cause)"]
+22->23
+22->24
+25 [color=blue, label="keyword_predicate-word-(itt)"]
+25->28
+25->27
+21 [color=blue, label="1 0: ()
+1: (63 )"]
+23 [color=blue, label="0 0: (97 )
+1: ()"]
+24 [color=blue, label="1 0: ()
+1: (29 )"]
+28 [color=blue, label="keyword_predicate-word-(tryna)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (67 )"]
+31 [color=blue, label="keyword_predicate-word-(music)"]
+31->34
+31->37
+30 [color=blue, label="1 0: ()
+1: (69 )"]
+34 [color=blue, label="keyword_predicate-word-(one)"]
+34->40
+34->43
+37 [color=blue, label="keyword_predicate-word-(probably)"]
+37->46
+37->39
+40 [color=blue, label="keyword_predicate-word-(brazil)"]
+40->41
+40->42
+43 [color=blue, label="keyword_predicate-word-(subscribed)"]
+43->44
+43->45
+46 [color=blue, label="keyword_predicate-word-(deazy)"]
+46->47
+46->48
+39 [color=blue, label="1 0: ()
+1: (70 )"]
+41 [color=blue, label="0 0: (96 99 122 125 127 129 142 167 
+170 184 202 204 206 223 231 233 
+238 242 253 258 274 288 297 313 
+)
+1: ()"]
+42 [color=blue, label="1 0: ()
+1: (83 )"]
+44 [color=blue, label="0 0: (296 )
+1: ()"]
+45 [color=blue, label="1 0: ()
+1: (81 )"]
+47 [color=blue, label="0 0: (226 305 )
+1: ()"]
+48 [color=blue, label="1 0: ()
+1: (95 )"] } 

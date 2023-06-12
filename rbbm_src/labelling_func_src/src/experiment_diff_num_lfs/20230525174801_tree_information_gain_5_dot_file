@@ -1,0 +1,26 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(you)"]
+1->2
+1->4
+2 [label="-1 1: (7 8 9 12 17 18 19 20 
+23 26 27 28 29 30 32 34 
+37 39 41 44 46 47 49 )
+0: (0 1 2 3 4 6 10 11 
+14 24 35 36 )"]
+4 [color=blue, label="keyword_predicate-word-(katy)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(little)"]
+7->10
+7->9
+6 [color=blue, label="0 0: (15 45 48 )
+1: ()"]
+10 [color=blue, label="keyword_predicate-word-(shakira)"]
+10->11
+10->12
+9 [color=blue, label="0 0: (16 )
+1: ()"]
+11 [color=blue, label="1 0: ()
+1: (5 13 21 22 25 31 33 38 
+42 43 )"]
+12 [color=blue, label="0 0: (40 )
+1: ()"] } 

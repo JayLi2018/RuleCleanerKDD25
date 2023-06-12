@@ -1,0 +1,23 @@
+digraph "round-table" { 1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 3 4 8 12 13 18 19 
+)
+0: (2 5 6 11 14 15 17 )"]
+4 [color=blue, label="keyword_predicate-word-(subscribers)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(are)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(woozy)"]
+10->11
+10->12
+9 [color=blue, label="1 0: ()
+1: (7 9 )"]
+11 [color=blue, label="0 0: (16 )
+1: ()"]
+12 [color=blue, label="1 0: ()
+1: (10 )"] } 

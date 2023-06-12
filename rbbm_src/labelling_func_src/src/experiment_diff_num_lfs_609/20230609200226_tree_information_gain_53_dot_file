@@ -1,0 +1,28 @@
+digraph "rule" { 
+// presize: 3, after_size: 9, deleted: True factor: 0.7 reverse_cnt:0
+1 [label="keyword_predicate-word-(a)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 6 8 11 12 
+15 21 22 25 28 32 35 37 
+43 46 )
+0: (0 4 9 13 16 17 18 19 
+20 23 26 27 29 33 34 36 
+41 44 45 47 49 )"]
+4 [color=blue, label="keyword_predicate-word-(katy)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(video)"]
+7->10
+7->9
+6 [color=blue, label="0 0: (24 39 )
+1: ()"]
+10 [color=blue, label="keyword_predicate-word-(billion)"]
+10->11
+10->12
+9 [color=blue, label="0 0: (42 48 )
+1: ()"]
+11 [color=blue, label="1 0: ()
+1: (7 10 14 30 31 38 )"]
+12 [color=blue, label="0 0: (40 )
+1: ()"] } 

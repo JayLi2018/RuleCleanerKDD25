@@ -1,0 +1,26 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(m)"]
+1->2
+1->4
+2 [label="-1 1: (2 3 5 8 11 12 14 15 
+17 21 23 24 25 29 30 31 
+33 34 39 40 42 48 )
+0: (6 7 9 10 13 16 18 19 
+20 22 27 28 32 35 36 38 
+41 43 44 46 )"]
+4 [color=blue, label="keyword_predicate-word-(video)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(like)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 4 37 )"]
+10 [color=blue, label="keyword_predicate-word-(leader)"]
+10->11
+10->12
+9 [color=blue, label="1 0: ()
+1: (1 26 47 )"]
+11 [color=blue, label="0 0: (45 )
+1: ()"]
+12 [color=blue, label="1 0: ()
+1: (49 )"] } 

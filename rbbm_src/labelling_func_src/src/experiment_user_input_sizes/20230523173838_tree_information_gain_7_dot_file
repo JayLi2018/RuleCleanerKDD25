@@ -1,0 +1,20 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 9 10 17 20 22 23 
+28 29 32 34 36 38 )
+0: (2 5 6 21 24 25 26 27 
+30 39 )"]
+4 [color=blue, label="keyword_predicate-word-(re)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(cup)"]
+7->8
+7->9
+6 [color=blue, label="0 0: (31 )
+1: ()"]
+8 [color=blue, label="1 0: ()
+1: (1 4 7 8 11 12 13 14 
+15 16 18 19 33 35 )"]
+9 [color=blue, label="0 0: (37 )
+1: ()"] } 

@@ -1,0 +1,89 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 32 34 35 
+)
+0: (2 9 13 36 38 )"]
+4 [color=blue, label="keyword_predicate-word-(army)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(thumbs)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(youtuber)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(less)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(friends)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(upto)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 )"]
+22 [color=blue, label="keyword_predicate-word-(best)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 )"]
+25 [color=blue, label="keyword_predicate-word-(keep)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (14 18 )"]
+28 [color=blue, label="keyword_predicate-word-(f)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (15 )"]
+31 [color=blue, label="keyword_predicate-word-(br)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (17 )"]
+34 [color=blue, label="keyword_predicate-word-(dubstep)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (19 )"]
+37 [color=blue, label="keyword_predicate-word-(lie)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (22 )"]
+40 [color=blue, label="keyword_predicate-word-(nguyen)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (25 )"]
+43 [color=blue, label="keyword_predicate-word-(cause)"]
+43->46
+43->45
+42 [color=blue, label="1 0: ()
+1: (26 )"]
+46 [color=blue, label="keyword_predicate-word-(lol)"]
+46->47
+46->49
+45 [color=blue, label="1 0: ()
+1: (29 )"]
+47 [color=blue, label="0 0: (21 39 )
+1: ()"]
+49 [color=blue, label="keyword_predicate-word-(im)"]
+49->50
+49->51
+50 [color=blue, label="0 0: (37 )
+1: ()"]
+51 [color=blue, label="1 0: ()
+1: (33 )"] } 

@@ -1,0 +1,79 @@
+digraph "round-table" { 1 [label="SLengthPredicate-thresh-5"]
+1->2
+1->4
+2 [label="-1 1: (0 1 3 4 6 7 8 10 
+12 14 15 16 17 18 20 22 
+23 25 26 27 28 29 33 34 
+35 36 37 38 41 42 43 44 
+45 46 47 48 49 50 51 52 
+53 54 55 56 57 58 59 60 
+61 62 63 66 67 68 69 70 
+71 72 73 74 75 76 77 78 
+85 87 88 90 94 95 98 99 
+101 102 103 104 108 110 115 116 
+117 118 122 123 125 129 130 133 
+134 137 140 143 145 146 147 148 
+150 152 156 157 )
+0: (2 9 13 21 39 64 80 81 
+83 86 89 92 96 105 106 107 
+111 112 114 119 120 124 126 127 
+131 132 136 138 139 141 142 151 
+155 158 )"]
+4 [color=blue, label="keyword_predicate-word-(check)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(aslamu)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (5 32 )"]
+10 [color=blue, label="keyword_predicate-word-(br)"]
+10->13
+10->16
+9 [color=blue, label="1 0: ()
+1: (11 )"]
+13 [color=blue, label="keyword_predicate-word-(channel)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(subscribed)"]
+16->17
+16->18
+19 [color=blue, label="keyword_predicate-word-(binbox)"]
+19->22
+19->21
+15 [color=blue, label="1 0: ()
+1: (24 )"]
+17 [color=blue, label="0 0: (144 )
+1: ()"]
+18 [color=blue, label="1 0: ()
+1: (19 )"]
+22 [color=blue, label="keyword_predicate-word-(comment)"]
+22->25
+22->28
+21 [color=blue, label="1 0: ()
+1: (30 )"]
+25 [color=blue, label="keyword_predicate-word-(share)"]
+25->31
+25->27
+28 [color=blue, label="keyword_predicate-word-(like)"]
+28->29
+28->30
+31 [color=blue, label="keyword_predicate-word-(give)"]
+31->34
+31->33
+27 [color=blue, label="1 0: ()
+1: (40 )"]
+29 [color=blue, label="0 0: (159 )
+1: ()"]
+30 [color=blue, label="1 0: ()
+1: (31 )"]
+34 [color=blue, label="keyword_predicate-word-(vimeo)"]
+34->35
+34->36
+33 [color=blue, label="1 0: ()
+1: (65 )"]
+35 [color=blue, label="0 0: (82 84 91 93 97 100 109 113 
+121 128 135 149 153 154 )
+1: ()"]
+36 [color=blue, label="1 0: ()
+1: (79 )"] } 

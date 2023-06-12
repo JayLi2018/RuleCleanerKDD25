@@ -1,0 +1,53 @@
+digraph "rule" { 
+// presize: 3, after_size: 37, deleted: False factor: 0.0 reverse_cnt:9
+1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 7 8 10 11 
+15 16 17 18 20 21 22 24 
+25 26 28 29 32 33 37 38 
+40 42 43 )
+0: (0 4 9 13 27 36 39 41 
+44 )"]
+4 [color=blue, label="keyword_predicate-word-(subscribe)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(wanna)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (6 12 23 )"]
+10 [color=blue, label="keyword_predicate-word-(hello)"]
+10->13
+10->12
+9 [color=green, label="1 0: ()
+1: (14 )"]
+13 [color=blue, label="keyword_predicate-word-(like)"]
+13->16
+13->19
+12 [color=green, label="1 0: ()
+1: (19 )"]
+16 [color=blue, label="keyword_predicate-word-(love)"]
+16->17
+16->22
+19 [color=blue, label="keyword_predicate-word-(comment)"]
+19->25
+19->21
+17 [color=green, label="0 0: (35 49 )
+1: ()"]
+22 [color=blue, label="keyword_predicate-word-(one)"]
+22->23
+22->24
+25 [color=blue, label="keyword_predicate-word-(hey)"]
+25->26
+25->27
+21 [color=green, label="1 0: ()
+1: (30 45 )"]
+23 [color=green, label="0 0: (46 47 )
+1: ()"]
+24 [color=green, label="1 0: ()
+1: (31 )"]
+26 [color=green, label="0 0: (48 )
+1: ()"]
+27 [color=green, label="1 0: ()
+1: (34 )"] } 

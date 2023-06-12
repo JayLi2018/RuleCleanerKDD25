@@ -1,0 +1,31 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (2 3 8 10 17 18 19 21 
+25 31 32 34 35 37 41 43 
+45 49 )
+0: (5 11 12 22 26 30 36 42 
+47 48 )"]
+4 [color=blue, label="keyword_predicate-word-(thumbs)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(subscribe)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 1 4 )"]
+10 [color=blue, label="keyword_predicate-word-(sheilcen)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (6 9 23 24 )"]
+13 [color=blue, label="keyword_predicate-word-(get)"]
+13->14
+13->15
+12 [color=blue, label="1 0: ()
+1: (28 )"]
+14 [color=blue, label="0 0: (7 13 14 15 16 20 27 29 
+33 38 39 40 )
+1: ()"]
+15 [color=blue, label="1 0: ()
+1: (44 46 )"] } 

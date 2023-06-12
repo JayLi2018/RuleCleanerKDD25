@@ -1,0 +1,87 @@
+digraph "rule" { 
+// presize: 3, after_size: 65, deleted: True factor: 0.3 reverse_cnt:16
+1 [label="keyword_predicate-word-(this)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 4 5 8 11 13 15 
+16 20 22 25 26 29 30 33 
+34 37 38 39 42 43 44 48 
+49 )
+0: (17 19 36 41 )"]
+4 [color=blue, label="keyword_predicate-word-(gives)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(https)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(like)"]
+10->13
+10->12
+9 [color=green, label="1 0: ()
+1: (3 12 45 )"]
+13 [color=blue, label="keyword_predicate-word-(paid)"]
+13->16
+13->15
+12 [color=green, label="1 0: ()
+1: (6 14 31 )"]
+16 [color=blue, label="keyword_predicate-word-(guys)"]
+16->19
+16->18
+15 [color=green, label="1 0: ()
+1: (7 )"]
+19 [color=blue, label="keyword_predicate-word-(sup)"]
+19->22
+19->21
+18 [color=green, label="1 0: ()
+1: (9 )"]
+22 [color=blue, label="keyword_predicate-word-(coby)"]
+22->25
+22->24
+21 [color=green, label="1 0: ()
+1: (10 )"]
+25 [color=blue, label="keyword_predicate-word-(nice)"]
+25->28
+25->27
+24 [color=green, label="1 0: ()
+1: (18 )"]
+28 [color=blue, label="keyword_predicate-word-(maybe)"]
+28->31
+28->30
+27 [color=green, label="1 0: ()
+1: (21 )"]
+31 [color=blue, label="keyword_predicate-word-(really)"]
+31->34
+31->33
+30 [color=green, label="1 0: ()
+1: (23 )"]
+34 [color=blue, label="keyword_predicate-word-(guy)"]
+34->37
+34->36
+33 [color=green, label="1 0: ()
+1: (24 )"]
+37 [color=blue, label="keyword_predicate-word-(take)"]
+37->40
+37->39
+36 [color=green, label="1 0: ()
+1: (27 )"]
+40 [color=blue, label="keyword_predicate-word-(spanish)"]
+40->43
+40->42
+39 [color=green, label="1 0: ()
+1: (28 )"]
+43 [color=blue, label="keyword_predicate-word-(also)"]
+43->46
+43->45
+42 [color=green, label="1 0: ()
+1: (32 )"]
+46 [color=blue, label="keyword_predicate-word-(check)"]
+46->47
+46->48
+45 [color=green, label="1 0: ()
+1: (40 )"]
+47 [color=green, label="0 0: (35 )
+1: ()"]
+48 [color=green, label="1 0: ()
+1: (46 47 )"] } 

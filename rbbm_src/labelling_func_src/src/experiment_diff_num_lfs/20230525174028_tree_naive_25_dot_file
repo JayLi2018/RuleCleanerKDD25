@@ -1,0 +1,51 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (2 3 8 10 17 18 19 21 
+25 26 27 30 33 35 38 40 
+45 )
+0: (5 11 12 22 28 29 34 36 
+42 46 )"]
+4 [color=blue, label="keyword_predicate-word-(addicting)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(please)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(video)"]
+10->13
+10->16
+9 [color=blue, label="1 0: ()
+1: (1 )"]
+13 [color=blue, label="keyword_predicate-word-(subscribe)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(really)"]
+16->17
+16->18
+19 [color=blue, label="keyword_predicate-word-(subscribing)"]
+19->22
+19->21
+15 [color=blue, label="1 0: ()
+1: (6 9 23 24 37 )"]
+17 [color=blue, label="0 0: (43 47 )
+1: ()"]
+18 [color=blue, label="1 0: ()
+1: (4 48 )"]
+22 [color=blue, label="keyword_predicate-word-(also)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (31 )"]
+25 [color=blue, label="keyword_predicate-word-(someone)"]
+25->26
+25->27
+24 [color=blue, label="1 0: ()
+1: (32 )"]
+26 [color=blue, label="0 0: (7 13 14 15 16 20 39 44 
+49 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (41 )"] } 

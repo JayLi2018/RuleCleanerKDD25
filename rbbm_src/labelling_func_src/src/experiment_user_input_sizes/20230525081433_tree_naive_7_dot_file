@@ -1,0 +1,49 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 19 22 26 
+27 30 34 35 36 )
+0: (2 9 12 14 16 18 23 24 
+25 28 29 32 38 39 )"]
+4 [color=blue, label="keyword_predicate-word-(face)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(meaning)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(pretty)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(nothing)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 33 )"]
+22 [color=blue, label="keyword_predicate-word-(probably)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (17 )"]
+25 [color=blue, label="keyword_predicate-word-(yr)"]
+25->26
+25->27
+24 [color=blue, label="1 0: ()
+1: (20 )"]
+26 [color=blue, label="0 0: (13 15 21 37 )
+1: ()"]
+27 [color=blue, label="1 0: ()
+1: (31 )"] } 

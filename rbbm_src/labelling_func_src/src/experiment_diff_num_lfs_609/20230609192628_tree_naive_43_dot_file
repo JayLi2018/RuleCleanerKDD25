@@ -1,0 +1,48 @@
+digraph "rule" { 
+// presize: 3, after_size: 33, deleted: True factor: 0.5 reverse_cnt:8
+1 [label="keyword_predicate-word-(i)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 11 12 15 18 22 
+25 27 28 33 36 41 44 46 
+47 49 )
+0: (0 4 17 19 24 29 30 31 
+32 34 38 39 40 43 )"]
+4 [color=blue, label="keyword_predicate-word-(know)"]
+4->7
+4->10
+7 [color=blue, label="keyword_predicate-word-(really)"]
+7->13
+7->9
+10 [color=blue, label="keyword_predicate-word-(may)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(hey)"]
+13->19
+13->22
+9 [color=green, label="1 0: ()
+1: (20 21 )"]
+16 [color=blue, label="keyword_predicate-word-(hahaa)"]
+16->17
+16->18
+12 [color=green, label="1 0: ()
+1: (5 )"]
+19 [color=blue, label="keyword_predicate-word-(guys)"]
+19->20
+19->21
+22 [color=blue, label="keyword_predicate-word-(nerdy)"]
+22->23
+22->24
+17 [color=green, label="0 0: (26 )
+1: ()"]
+18 [color=green, label="1 0: ()
+1: (42 )"]
+20 [color=green, label="0 0: (6 7 8 10 13 14 16 23 
+35 37 )
+1: ()"]
+21 [color=green, label="1 0: ()
+1: (48 )"]
+23 [color=green, label="0 0: (9 )
+1: ()"]
+24 [color=green, label="1 0: ()
+1: (45 )"] } 

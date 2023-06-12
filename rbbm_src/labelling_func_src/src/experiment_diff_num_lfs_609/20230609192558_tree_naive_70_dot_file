@@ -1,0 +1,29 @@
+digraph "rule" { 
+// presize: 3, after_size: 17, deleted: True factor: 0.3 reverse_cnt:4
+1 [label="keyword_predicate-word-(for)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 11 12 15 18 20 
+22 27 28 33 36 41 44 45 
+46 47 48 49 )
+0: (0 4 6 7 8 9 10 14 
+16 17 19 23 24 26 29 30 
+31 32 34 35 37 38 39 40 
+43 )"]
+4 [color=blue, label="keyword_predicate-word-(know)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(please)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (5 42 )"]
+10 [color=blue, label="keyword_predicate-word-(check)"]
+10->11
+10->12
+9 [color=green, label="1 0: ()
+1: (21 )"]
+11 [color=green, label="0 0: (13 )
+1: ()"]
+12 [color=green, label="1 0: ()
+1: (25 )"] } 

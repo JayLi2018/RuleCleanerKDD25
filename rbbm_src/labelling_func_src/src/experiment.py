@@ -59,9 +59,9 @@ def lf_main(lf_input, LFs=lattice_lfs):
 	logger.critical(sentences_df.head())
 	# sentences_df = pd.concat([pd.read_csv(f) for f in all_filenames ])
 	# sentences_df = sentences_df.rename(columns={"content": "text"})
-	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "text"})
-	sentences_df['text'] = sentences_df['text'].apply(lambda s: clean_text(s))
-
+	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+	sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
+	sentences_df = sentences_df[~sentences_df['text'].isna()]
 	lexp = LabelExpaliner()
 	lf_internal_args = lf_input_internal(funcs=LFs, lattice_dict=lattice_dict)
 

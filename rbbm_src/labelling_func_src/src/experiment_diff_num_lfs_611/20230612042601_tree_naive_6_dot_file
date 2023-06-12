@@ -1,0 +1,72 @@
+digraph "rule" { 
+// presize: 3, after_size: 53, deleted: False factor: 0.0 reverse_cnt:13
+1 [label="keyword_predicate-word-(this)"]
+1->2
+1->4
+2 [label="-1 1: (3 6 8 9 10 17 18 21 
+23 24 26 27 30 31 33 35 
+37 38 40 )
+0: (34 46 47 )"]
+4 [color=blue, label="keyword_predicate-word-(addicting)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(know)"]
+7->10
+7->13
+6 [color=green, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(https)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(someone)"]
+13->14
+13->15
+16 [color=blue, label="keyword_predicate-word-(gives)"]
+16->19
+16->18
+12 [color=green, label="1 0: ()
+1: (2 )"]
+14 [color=green, label="0 0: (29 44 )
+1: ()"]
+15 [color=green, label="1 0: ()
+1: (1 )"]
+19 [color=blue, label="keyword_predicate-word-(share)"]
+19->22
+19->21
+18 [color=green, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(sup)"]
+22->25
+22->24
+21 [color=green, label="1 0: ()
+1: (19 )"]
+25 [color=blue, label="keyword_predicate-word-(also)"]
+25->28
+25->27
+24 [color=green, label="1 0: ()
+1: (25 )"]
+28 [color=blue, label="keyword_predicate-word-(finally)"]
+28->31
+28->30
+27 [color=green, label="1 0: ()
+1: (32 )"]
+31 [color=blue, label="keyword_predicate-word-(check)"]
+31->34
+31->37
+30 [color=green, label="1 0: ()
+1: (41 )"]
+34 [color=blue, label="keyword_predicate-word-(really)"]
+34->35
+34->36
+37 [color=blue, label="keyword_predicate-word-(youtube)"]
+37->38
+37->39
+35 [color=green, label="0 0: (5 7 11 12 13 14 15 16 
+20 22 28 36 39 43 49 )
+1: ()"]
+36 [color=green, label="1 0: ()
+1: (48 )"]
+38 [color=green, label="0 0: (42 )
+1: ()"]
+39 [color=green, label="1 0: ()
+1: (45 )"] } 

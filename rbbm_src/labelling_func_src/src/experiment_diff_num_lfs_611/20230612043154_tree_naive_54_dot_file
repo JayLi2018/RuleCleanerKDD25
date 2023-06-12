@@ -1,0 +1,34 @@
+digraph "rule" { 
+// presize: 3, after_size: 21, deleted: True factor: 0.3 reverse_cnt:5
+1 [label="keyword_predicate-word-(like)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 7 8 11 16 19 
+21 22 24 27 30 31 34 35 
+37 38 39 40 41 42 44 48 
+)
+0: (1 6 10 12 13 14 15 20 
+25 28 29 32 33 36 43 45 
+46 47 )"]
+4 [color=blue, label="keyword_predicate-word-(sub)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(drones)"]
+7->10
+7->9
+6 [color=green, label="1 0: ()
+1: (9 )"]
+10 [color=blue, label="keyword_predicate-word-(subscribe)"]
+10->13
+10->12
+9 [color=green, label="1 0: ()
+1: (17 )"]
+13 [color=blue, label="keyword_predicate-word-(sorry)"]
+13->14
+13->15
+12 [color=green, label="1 0: ()
+1: (23 26 )"]
+14 [color=green, label="0 0: (2 4 18 )
+1: ()"]
+15 [color=green, label="1 0: ()
+1: (49 )"] } 

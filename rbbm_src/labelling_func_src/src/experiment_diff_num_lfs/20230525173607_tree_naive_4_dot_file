@@ -1,0 +1,80 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(this)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 4 5 8 11 13 15 
+16 20 22 25 26 29 30 33 
+34 38 39 40 41 43 44 47 
+48 )
+0: (17 19 )"]
+4 [color=blue, label="keyword_predicate-word-(lyrics)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(com)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 21 )"]
+10 [color=blue, label="keyword_predicate-word-(p)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (3 24 35 )"]
+13 [color=blue, label="keyword_predicate-word-(fast)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (6 )"]
+16 [color=blue, label="keyword_predicate-word-(facebook)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (7 )"]
+19 [color=blue, label="keyword_predicate-word-(watching)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (9 )"]
+22 [color=blue, label="keyword_predicate-word-(get)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (10 14 )"]
+25 [color=blue, label="keyword_predicate-word-(coby)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (12 45 )"]
+28 [color=blue, label="keyword_predicate-word-(case)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (18 )"]
+31 [color=blue, label="keyword_predicate-word-(sleeping)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (23 )"]
+34 [color=blue, label="keyword_predicate-word-(month)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (27 )"]
+37 [color=blue, label="keyword_predicate-word-(uncle)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (28 )"]
+40 [color=blue, label="keyword_predicate-word-(spanish)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (31 )"]
+43 [color=blue, label="keyword_predicate-word-(youtube)"]
+43->44
+43->45
+42 [color=blue, label="1 0: ()
+1: (32 )"]
+44 [color=blue, label="0 0: (42 46 49 )
+1: ()"]
+45 [color=blue, label="1 0: ()
+1: (36 37 )"] } 

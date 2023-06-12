@@ -1,0 +1,24 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(songs,song)"]
+1->2
+1->4
+2 [label="-1 1: (1 3 5 7 8 14 16 17 
+19 23 24 27 28 )
+0: (2 9 11 13 15 18 20 22 
+26 )"]
+4 [color=blue, label="keyword_predicate-word-(discover)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(awesome)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (0 )"]
+10 [color=blue, label="keyword_predicate-word-(go)"]
+10->11
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+11 [color=blue, label="0 0: (10 12 21 25 29 )
+1: ()"]
+12 [color=blue, label="1 0: ()
+1: (6 )"] } 

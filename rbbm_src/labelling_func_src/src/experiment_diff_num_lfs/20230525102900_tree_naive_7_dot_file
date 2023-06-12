@@ -1,0 +1,147 @@
+digraph "round-table" { 1 [label="POSPredicate-tag-(PRPVB)"]
+1->2
+1->4
+2 [label="-1 1: (0 3 5 6 11 16 20 23 
+24 27 28 30 31 39 42 46 
+47 50 54 55 56 60 62 67 
+68 69 70 74 77 81 82 85 
+86 89 92 95 97 98 99 100 
+102 104 108 109 117 119 121 122 
+124 125 128 130 131 133 135 137 
+141 143 149 150 156 158 160 161 
+164 166 170 171 172 173 179 180 
+182 183 185 187 188 191 196 197 
+198 199 201 204 209 213 215 216 
+218 226 227 228 229 234 235 236 
+237 239 243 246 247 248 250 253 
+254 256 257 259 260 262 265 266 
+268 272 276 277 279 280 281 282 
+284 285 292 293 294 295 296 301 
+304 307 310 318 319 )
+0: (2 9 13 32 34 36 38 43 
+44 45 48 49 52 58 59 61 
+63 65 66 73 76 78 80 83 
+84 87 88 90 91 94 96 101 
+103 105 106 107 111 113 114 115 
+120 123 126 127 129 132 134 136 
+138 140 142 144 145 147 151 152 
+154 162 163 165 167 168 169 174 
+175 178 186 189 192 193 194 195 
+200 202 206 207 208 210 211 212 
+214 217 222 223 224 233 241 244 
+245 249 258 263 264 267 269 270 
+271 273 274 275 278 283 291 297 
+298 299 300 303 305 306 308 309 
+311 315 316 317 )"]
+4 [color=blue, label="keyword_predicate-word-(fan)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(water)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (1 )"]
+10 [color=blue, label="keyword_predicate-word-(small)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (4 )"]
+13 [color=blue, label="keyword_predicate-word-(gets)"]
+13->16
+13->15
+12 [color=blue, label="1 0: ()
+1: (7 139 )"]
+16 [color=blue, label="keyword_predicate-word-(subscribe)"]
+16->19
+16->18
+15 [color=blue, label="1 0: ()
+1: (8 )"]
+19 [color=blue, label="keyword_predicate-word-(jobs)"]
+19->22
+19->21
+18 [color=blue, label="1 0: ()
+1: (10 18 26 53 155 177 203 290 
+)"]
+22 [color=blue, label="keyword_predicate-word-(dribbleproshot)"]
+22->25
+22->24
+21 [color=blue, label="1 0: ()
+1: (12 )"]
+25 [color=blue, label="keyword_predicate-word-(subscribed)"]
+25->28
+25->27
+24 [color=blue, label="1 0: ()
+1: (14 )"]
+28 [color=blue, label="keyword_predicate-word-(f)"]
+28->31
+28->30
+27 [color=blue, label="1 0: ()
+1: (15 19 )"]
+31 [color=blue, label="keyword_predicate-word-(dubstep)"]
+31->34
+31->33
+30 [color=blue, label="1 0: ()
+1: (17 )"]
+34 [color=blue, label="keyword_predicate-word-(lie)"]
+34->37
+34->36
+33 [color=blue, label="1 0: ()
+1: (22 )"]
+37 [color=blue, label="keyword_predicate-word-(cause)"]
+37->40
+37->39
+36 [color=blue, label="1 0: ()
+1: (25 )"]
+40 [color=blue, label="keyword_predicate-word-(friends)"]
+40->43
+40->42
+39 [color=blue, label="1 0: ()
+1: (29 )"]
+43 [color=blue, label="keyword_predicate-word-(awgu)"]
+43->46
+43->45
+42 [color=blue, label="1 0: ()
+1: (37 )"]
+46 [color=blue, label="keyword_predicate-word-(gangnamstyle)"]
+46->49
+46->48
+45 [color=blue, label="1 0: ()
+1: (40 )"]
+49 [color=blue, label="keyword_predicate-word-(guys)"]
+49->52
+49->51
+48 [color=blue, label="1 0: ()
+1: (51 )"]
+52 [color=blue, label="keyword_predicate-word-(videos)"]
+52->55
+52->54
+51 [color=blue, label="1 0: ()
+1: (75 287 )"]
+55 [color=blue, label="keyword_predicate-word-(playtime)"]
+55->58
+55->57
+54 [color=blue, label="1 0: ()
+1: (148 190 251 )"]
+58 [color=blue, label="keyword_predicate-word-(companions)"]
+58->61
+58->60
+57 [color=blue, label="1 0: ()
+1: (157 )"]
+61 [color=blue, label="keyword_predicate-word-(moment)"]
+61->62
+61->64
+60 [color=blue, label="1 0: ()
+1: (220 )"]
+62 [color=blue, label="0 0: (21 33 35 41 57 64 71 72 
+79 93 110 112 116 118 146 153 
+159 181 184 205 219 221 225 231 
+232 238 240 242 252 255 261 286 
+288 289 302 312 313 314 )
+1: ()"]
+64 [color=blue, label="keyword_predicate-word-(views)"]
+64->65
+64->66
+65 [color=blue, label="0 0: (176 )
+1: ()"]
+66 [color=blue, label="1 0: ()
+1: (230 )"] } 

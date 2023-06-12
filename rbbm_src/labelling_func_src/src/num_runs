@@ -1,0 +1,1100 @@
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 10 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 20 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 40 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 80 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 160 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.1 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.3 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.5 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.7 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r information_gain
+python LFRepair.py -U 320 -t 0.9 -e experiment_user_input_sizes -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 10 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 20 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 30 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 40 -r naive
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.1  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.3  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.5  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.7  -e experiment_diff_num_lfs -n 50 -r naive
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r information_gain
+python LFRepair.py -U 320 -t 0.9  -e experiment_diff_num_lfs -n 50 -r naive

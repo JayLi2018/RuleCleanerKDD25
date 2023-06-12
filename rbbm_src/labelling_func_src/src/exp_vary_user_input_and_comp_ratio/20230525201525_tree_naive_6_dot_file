@@ -1,0 +1,166 @@
+digraph "round-table" { 1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 1 5 6 8 11 12 19 
+22 24 26 28 30 31 32 37 
+40 43 45 46 48 49 51 53 
+56 60 65 70 77 79 )
+0: (2 9 13 21 39 64 74 76 
+)"]
+4 [color=blue, label="keyword_predicate-word-(stupid)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(video)"]
+7->10
+7->13
+6 [color=blue, label="1 0: ()
+1: (3 )"]
+10 [color=blue, label="keyword_predicate-word-(subscribe)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(rap)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(style)"]
+16->22
+16->18
+12 [color=blue, label="1 0: ()
+1: (10 18 33 52 61 )"]
+19 [color=blue, label="keyword_predicate-word-(life)"]
+19->25
+19->21
+15 [color=blue, label="1 0: ()
+1: (4 69 )"]
+22 [color=blue, label="keyword_predicate-word-(smart)"]
+22->28
+22->24
+18 [color=blue, label="1 0: ()
+1: (15 57 )"]
+25 [color=blue, label="keyword_predicate-word-(amazed)"]
+25->31
+25->27
+21 [color=blue, label="1 0: ()
+1: (7 50 )"]
+28 [color=blue, label="keyword_predicate-word-(member)"]
+28->34
+28->30
+24 [color=blue, label="1 0: ()
+1: (16 )"]
+31 [color=blue, label="keyword_predicate-word-(b)"]
+31->37
+31->33
+27 [color=blue, label="1 0: ()
+1: (14 )"]
+34 [color=blue, label="keyword_predicate-word-(mogotrevo)"]
+34->40
+34->36
+30 [color=blue, label="1 0: ()
+1: (17 )"]
+37 [color=blue, label="keyword_predicate-word-(youtube)"]
+37->43
+37->39
+33 [color=blue, label="1 0: ()
+1: (20 )"]
+40 [color=blue, label="keyword_predicate-word-(way)"]
+40->46
+40->42
+36 [color=blue, label="1 0: ()
+1: (23 )"]
+43 [color=blue, label="keyword_predicate-word-(master)"]
+43->49
+43->45
+39 [color=blue, label="1 0: ()
+1: (27 )"]
+46 [color=blue, label="keyword_predicate-word-(dance)"]
+46->52
+46->48
+42 [color=blue, label="1 0: ()
+1: (25 55 )"]
+49 [color=blue, label="keyword_predicate-word-(see)"]
+49->50
+49->51
+45 [color=blue, label="1 0: ()
+1: (63 )"]
+52 [color=blue, label="keyword_predicate-word-(get)"]
+52->55
+52->54
+48 [color=blue, label="1 0: ()
+1: (29 )"]
+50 [color=blue, label="0 0: (73 78 )
+1: ()"]
+51 [color=blue, label="1 0: ()
+1: (68 )"]
+55 [color=blue, label="keyword_predicate-word-(woman)"]
+55->58
+55->57
+54 [color=blue, label="1 0: ()
+1: (34 )"]
+58 [color=blue, label="keyword_predicate-word-(gay)"]
+58->61
+58->60
+57 [color=blue, label="1 0: ()
+1: (35 )"]
+61 [color=blue, label="keyword_predicate-word-(little)"]
+61->64
+61->63
+60 [color=blue, label="1 0: ()
+1: (36 )"]
+64 [color=blue, label="keyword_predicate-word-(clothing)"]
+64->67
+64->66
+63 [color=blue, label="1 0: ()
+1: (38 )"]
+67 [color=blue, label="keyword_predicate-word-(officiates)"]
+67->70
+67->69
+66 [color=blue, label="1 0: ()
+1: (41 )"]
+70 [color=blue, label="keyword_predicate-word-(music)"]
+70->73
+70->72
+69 [color=blue, label="1 0: ()
+1: (42 )"]
+73 [color=blue, label="keyword_predicate-word-(pazzi)"]
+73->76
+73->75
+72 [color=blue, label="1 0: ()
+1: (44 )"]
+76 [color=blue, label="keyword_predicate-word-(peach)"]
+76->79
+76->78
+75 [color=blue, label="1 0: ()
+1: (47 )"]
+79 [color=blue, label="keyword_predicate-word-(happy)"]
+79->82
+79->81
+78 [color=blue, label="1 0: ()
+1: (54 )"]
+82 [color=blue, label="keyword_predicate-word-(youtube)"]
+82->85
+82->84
+81 [color=blue, label="1 0: ()
+1: (58 )"]
+85 [color=blue, label="keyword_predicate-word-(eminem)"]
+85->88
+85->87
+84 [color=blue, label="1 0: ()
+1: (59 )"]
+88 [color=blue, label="keyword_predicate-word-(register)"]
+88->91
+88->90
+87 [color=blue, label="1 0: ()
+1: (62 )"]
+91 [color=blue, label="keyword_predicate-word-(ppl)"]
+91->94
+91->93
+90 [color=blue, label="1 0: ()
+1: (66 )"]
+94 [color=blue, label="keyword_predicate-word-(probable)"]
+94->95
+94->96
+93 [color=blue, label="1 0: ()
+1: (67 )"]
+95 [color=blue, label="0 0: (72 75 )
+1: ()"]
+96 [color=blue, label="1 0: ()
+1: (71 )"] } 

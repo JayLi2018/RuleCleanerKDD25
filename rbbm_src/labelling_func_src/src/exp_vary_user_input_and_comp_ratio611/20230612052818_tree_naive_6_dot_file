@@ -1,0 +1,99 @@
+digraph "rule" { 
+// presize: 3, after_size: 73, deleted: False factor: 0.0 reverse_cnt:18
+1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 1 5 6 8 11 12 19 
+22 24 26 28 30 31 32 37 
+40 43 45 46 48 49 51 53 
+56 60 65 70 77 79 )
+0: (2 9 13 21 39 64 74 76 
+)"]
+4 [color=blue, label="keyword_predicate-word-(subscribe)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(song)"]
+7->10
+7->13
+6 [color=green, label="1 0: ()
+1: (3 10 18 33 52 61 68 )"]
+10 [color=blue, label="keyword_predicate-word-(hey)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(awesome)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(hi)"]
+16->22
+16->18
+12 [color=green, label="1 0: ()
+1: (7 29 54 )"]
+19 [color=blue, label="keyword_predicate-word-(finally)"]
+19->20
+19->21
+15 [color=green, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(subscribed)"]
+22->25
+22->24
+18 [color=green, label="1 0: ()
+1: (14 25 )"]
+20 [color=green, label="0 0: (73 75 )
+1: ()"]
+21 [color=green, label="1 0: ()
+1: (57 )"]
+25 [color=blue, label="keyword_predicate-word-(awesome)"]
+25->28
+25->27
+24 [color=green, label="1 0: ()
+1: (15 )"]
+28 [color=blue, label="keyword_predicate-word-(beautiful)"]
+28->31
+28->30
+27 [color=green, label="1 0: ()
+1: (16 55 )"]
+31 [color=blue, label="keyword_predicate-word-(check)"]
+31->34
+31->33
+30 [color=green, label="1 0: ()
+1: (17 )"]
+34 [color=blue, label="keyword_predicate-word-(hello)"]
+34->37
+34->36
+33 [color=green, label="1 0: ()
+1: (20 23 35 42 44 59 62 63 
+67 69 71 )"]
+37 [color=blue, label="keyword_predicate-word-(like)"]
+37->40
+37->39
+36 [color=green, label="1 0: ()
+1: (27 )"]
+40 [color=blue, label="keyword_predicate-word-(thumbs)"]
+40->43
+40->42
+39 [color=green, label="1 0: ()
+1: (34 )"]
+43 [color=blue, label="keyword_predicate-word-(im)"]
+43->46
+43->49
+42 [color=green, label="1 0: ()
+1: (36 50 )"]
+46 [color=blue, label="keyword_predicate-word-(edm)"]
+46->52
+46->48
+49 [color=blue, label="keyword_predicate-word-(gonna)"]
+49->50
+49->51
+52 [color=blue, label="keyword_predicate-word-(http)"]
+52->53
+52->54
+48 [color=green, label="1 0: ()
+1: (41 )"]
+50 [color=green, label="0 0: (78 )
+1: ()"]
+51 [color=green, label="1 0: ()
+1: (38 )"]
+53 [color=green, label="0 0: (72 )
+1: ()"]
+54 [color=green, label="1 0: ()
+1: (47 58 66 )"] } 

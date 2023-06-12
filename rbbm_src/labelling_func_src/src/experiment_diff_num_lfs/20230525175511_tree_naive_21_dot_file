@@ -1,0 +1,36 @@
+digraph "round-table" { 1 [label="keyword_predicate-word-(is)"]
+1->2
+1->4
+2 [label="-1 1: (1 2 3 5 6 7 8 11 
+12 14 21 22 25 28 31 32 
+35 37 38 43 )
+0: (9 13 16 17 18 19 23 24 
+26 29 33 34 36 39 40 45 
+47 48 49 )"]
+4 [color=blue, label="keyword_predicate-word-(dot)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(life)"]
+7->10
+7->9
+6 [color=blue, label="1 0: ()
+1: (10 )"]
+10 [color=blue, label="keyword_predicate-word-(google)"]
+10->13
+10->12
+9 [color=blue, label="1 0: ()
+1: (15 )"]
+13 [color=blue, label="keyword_predicate-word-(make)"]
+13->14
+13->16
+12 [color=blue, label="1 0: ()
+1: (30 )"]
+14 [color=blue, label="0 0: (0 4 27 41 42 44 )
+1: ()"]
+16 [color=blue, label="keyword_predicate-word-(new)"]
+16->17
+16->18
+17 [color=blue, label="0 0: (20 )
+1: ()"]
+18 [color=blue, label="1 0: ()
+1: (46 )"] } 

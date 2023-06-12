@@ -96,7 +96,7 @@ def pos_vbprps_stuff(x):
     """VB with PRP$(subscribe my channel)"""
     text = nltk.word_tokenize(x.text)
     posstr = ''.join([t[1] for t in nltk.pos_tag(text)])
-    return SPAM if 'VBPRP$' in posstr else ABSTAIN
+    return SPAM if 'PRPVB' in posstr else ABSTAIN
 
 ############# TWITTER FUNCS ##################################################
 

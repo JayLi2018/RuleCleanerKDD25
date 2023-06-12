@@ -15,11 +15,14 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	CLEAN,
 	DIRTY,
 )
-from rbbm_src.labelling_func_src.src.lfs_tree import keyword_labelling_func_builder, regex_func_builder, f_sent, f_tag, f_length
+import rbbm_src.logconfig
+from math import floor
+from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs
+from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
 from itertools import product
-from collections import deque
+from collections import deque,OrderedDict
 from rbbm_src.classes import StatsTracker, FixMonitor, RepairConfig, lf_input
-from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
+from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text, wrong_check_ids, correct_check_ids
 from rbbm_src.labelling_func_src.src.experiment import lf_main
 from datetime import datetime
 import psycopg2 
@@ -37,6 +40,14 @@ import pandas as pd
 from TreeRules import textblob_sentiment
 import logging
 import random
+import os
+import argparse
+import nltk
+from nltk.corpus import stopwords
+import copy
+
+nltk.download('stopwords') 
+stop_words = set(stopwords.words('english')) 
 
 logger = logging.getLogger(__name__)
 
@@ -57,27 +68,22 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 	# which is solving one pair can simutaneously fix some other pairs so we need 
 	# to redistribute the pairs in newly added nodes if possible
 	sign=None
-	cur_number=tree_rule.size+1
-	# if(len(the_fix)==4):
-	#     _, _, _, sign = the_fix
-	# elif(len(the_fix)==5):
-	#     _, _, _, _, sign = the_fix
-	# new_pred, modified_fix = convert_tuple_fix_to_pred(the_fix, reverse)
-	# # print("modified_fix")
-	# # print(modified_fix)
-	# if(len(the_fix)==4):
-	# elif(len(the_fix)==5):
-	#     new_predicate_node = PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=new_pred, operator=sign))
+	cur_number=tree_rule.max_node_id+1
+
 	the_fix_words, llabel, rlabel = the_fix
 	if(reverse):
 		llabel, rlabel = rlabel, llabel
 	new_predicate_node = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=[the_fix_words]))
+	new_predicate_node.is_added=True
 	cur_number+=1
 	new_predicate_node.left= LabelNode(number=cur_number, label=llabel, pairs={HAM:[], SPAM:[]}, used_predicates=set([]))
+	new_predicate_node.left.is_added=True
 	cur_number+=1
 	new_predicate_node.right=LabelNode(number=cur_number, label=rlabel, pairs={HAM:[], SPAM:[]}, used_predicates=set([]))
+	new_predicate_node.right.is_added=True
 	new_predicate_node.left.parent= new_predicate_node
 	new_predicate_node.right.parent= new_predicate_node
+	tree_rule.max_node_id=max(cur_number, tree_rule.max_node_id)
 
 	# print(node)
 	if(node.parent.left is node):
@@ -87,8 +93,6 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 
 	new_predicate_node.parent = node.parent
 
-	# if(len(modified_fix)==4):
-	#     role, attr, const, sign = modified_fix
 	for k in [SPAM, HAM]:
 		for p in node.pairs[k]:
 			if(new_predicate_node.pred.evaluate(p)):
@@ -98,23 +102,7 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 				new_predicate_node.left.pairs[p['expected_label']].append(p)
 				new_predicate_node.left.used_predicates.add(the_fix)
 
-	# elif(len(modified_fix)==5):
-	#     role1, attr1, role2, attr2, sign = modified_fix
-	#     for k in [CLEAN, DIRTY]:
-	#         for p in node.pairs[k]:
-	#             # print(p)
-	#             # print(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")
-	#             if(eval(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")):
-	#                 new_predicate_node.right.pairs[p['expected_label']].append(p)
-	#                 new_predicate_node.right.used_predicates.add(modified_fix)
-	#             else:
-	#                 new_predicate_node.left.pairs[p['expected_label']].append(p)
-	#                 new_predicate_node.left.used_predicates.add(modified_fix)
-
-	# print(f"after fix {the_fix}, the left child is: {new_predicate_node.left.pairs}")
-	# print(f"after fix {the_fix}, the right child is: {new_predicate_node.right.pairs}")
-
-	new_predicate_node.pairs={CLEAN:{}, DIRTY:{}}
+	new_predicate_node.pairs={SPAM:{}, HAM:{}}
 
 	return new_predicate_node
 
@@ -135,14 +123,9 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 
 	# find the difference between ham_pair and spam_pair
 	ham_sentence, spam_sentence = ham_sentence.text, spam_sentence.text
-	# print('ham_sentence')
-	# print(ham_sentence)
 
-	# print('spam_sentence')
-	# print(spam_sentence)
-
-	ham_available_words=set([h for h in ham_sentence.split() if h not in spam_sentence.split()])
-	spam_available_words=set([s for s in spam_sentence.split() if s not in ham_sentence.split()])
+	ham_available_words=list(OrderedDict.fromkeys([h for h in ham_sentence.split() if h not in spam_sentence.split()]))
+	spam_available_words=list(OrderedDict.fromkeys([h for h in spam_sentence.split() if h not in ham_sentence.split()]))
 
 	# print(f'ham_available_words: {ham_available_words}')
 	# print(f'spam_available_words: {spam_available_words}')
@@ -159,12 +142,13 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# rlabel: the right node label 
 		# check if the predicate is already present
 		# in the current constraint
-		cand = (w, SPAM, HAM)
-		if(cand not in used_predicates):
-			if(not all_possible):
-				return cand
-			else:
-				res.append(cand)
+		if(w.lower() not in stop_words):
+			cand = (w, SPAM, HAM)
+			if(cand not in used_predicates):
+				if(not all_possible):
+					return cand
+				else:
+					res.append(cand)
 
 	for w in spam_available_words:
 		# tuple cand has x elements: 
@@ -173,17 +157,18 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# rlabel: the right node label 
 		# check if the predicate is already present
 		# in the current constraint
-		cand = (w, HAM, SPAM)
-		if(cand not in used_predicates):
-			if(not all_possible):
-				return cand
-			else:
-				res.append(cand)
+		if(w.lower() not in stop_words):
+			cand = (w, HAM, SPAM)
+			if(cand not in used_predicates):
+				if(not all_possible):
+					return cand
+				else:
+					res.append(cand)
 	return res
 
 def locate_node(tree, number):
-	print(tree)
-	print(f"locating node {number}")
+	# print(tree)
+	# print(f"locating node {number}")
 	queue = deque([tree.root])
 	while(queue):
 		cur_node = queue.popleft()
@@ -274,21 +259,7 @@ def calculate_gini(node, the_fix):
 	return gini_impurity, reverse_condition
 
 def fix_violations(treerule, repair_config, leaf_nodes):
-	print(f"leaf_nodes")
-	# for ln in leaf_nodes:
-	# 	print('************')
-	# 	print(f'ln.label: {ln.label}')
-	# 	print(f'number: {ln.number}')
-	# 	print(f'left: {ln.left} ')
-	# 	print(f'right: {ln.right} ')
-	# 	print(f'parent: {ln.parent} ')
-	# 	print(f'label: {ln.label} ')
-	# 	print(f'pairs: {ln.pairs} ')
-	# 	print(f'used_predicates: {ln.used_predicates}')
-	# 	print('***********')
-	# 	print('\n')
-	# print(f'len of leaf_nodes: {len(leaf_nodes)}')
-	# exit()
+	# print(f"leaf_nodes")
 	if(repair_config.strategy=='naive'):
 		# initialize the queue to work with
 		queue = deque([])
@@ -296,7 +267,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			queue.append(ln)
 		# print(queue)
 		# print(len(queue))
-		i=0
+
 		while(queue):
 			# print(f'queue size={len(queue)}')
 			node = queue.popleft()
@@ -307,35 +278,39 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			if(node.label==ABSTAIN):
 				continue
 			if(node.pairs[SPAM] and node.pairs[HAM]):
-				the_fix = find_available_repair(node.pairs[SPAM][0],
-				 node.pairs[HAM][0], node.used_predicates)
+				found=False
+				the_fix=None
+				for si in range(len(node.pairs[SPAM])):
+					if(found):
+						break
+					for hi in range(len(node.pairs[HAM])):		
+						the_fix = find_available_repair(node.pairs[SPAM][si],
+						 node.pairs[HAM][hi], node.used_predicates)
+						if(the_fix):
+							found=True
+							break
 				# print(f"the fix number={i}")
 				# print(the_fix)
 				new_parent_node=redistribute_after_fix(treerule, node, the_fix)
-				i+=1
-				# print("new_parent_node")
-				# print(new_parent_node)
+
 			# handle the left and right child after redistribution
 			else:
 				if(node.pairs[SPAM]):
 					if(node.label!=SPAM):
 						node.label=SPAM
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				elif(node.pairs[HAM]):
 					if(node.label!=HAM):
 						node.label=HAM
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				if(check_tree_purity(treerule)):
-					# print('its pure already!')
-					# print("----------------------")
-					# print('\n')
-					# print(treerule)
-					# print('---------------------')
-					# print('\n')
 					return treerule
 
 			if(new_parent_node):
-				# print(f'the new new_parent_node')
-				# print(new_parent_node)
-				# exit()
 				still_inpure=False
 				for k in [SPAM,HAM]:
 					if(still_inpure):
@@ -356,13 +331,9 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 								break
 				# print(queue)
 				treerule.setsize(treerule.size+2)
-				# print("adding new predicate, size+2")
-				# print('\n')
-				# print(f"after fix, treerule size is {treerule.size}")
-			# print(f"queue size: {len(queue)}")
 		return treerule
 
-	elif(repair_config.strategy=='information gain'):
+	elif(repair_config.strategy=='information_gain'):
 		# new implementation
 		# 1. ignore the label of nodes at first
 		# calculate the gini index of the split
@@ -399,7 +370,6 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							continue
 						gini, reverse_cond =calculate_gini(node, f)
 						considered_fixes.add(f)
-						# print(f'gini score: {gini}')
 						if(gini<min_gini):
 							min_gini=gini
 							best_fix=f
@@ -411,16 +381,16 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 				if(node.pairs[SPAM]):
 					if(node.label!=SPAM):
 						node.label=SPAM
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				elif(node.pairs[HAM]):
 					if(node.label!=HAM):
 						node.label=HAM
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				if(check_tree_purity(treerule)):
-					print('its pure already!')
-					print("----------------------")
-					print('\n')
-					print(treerule)
-					print('---------------------')
-					print('\n')
 					return treerule
 
 				# print('its not pure?')
@@ -438,7 +408,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							still_inpure=True
 							break
 				still_inpure=False          
-				for k in [CLEAN,DIRTY]:
+				for k in [SPAM,HAM]:
 					if(still_inpure):
 						break
 					for p in new_parent_node.right.pairs[k]:
@@ -451,136 +421,136 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 
 		return treerule
 
-	# elif(repair_config.strategy=='optimal'):
-	#     # 1. create a queue with tree nodes
-	#     # 2. need to deepcopy the tree in order to enumerate all possible trees
-	#     for ln in leaf_nodes:
-	#         queue = deque([])
-	#         queue.append(ln.number)
-	#     # print(f"number of leaf_nodes: {len(queue)}")
-	#     # print("queue")
-	#     # print(queue)
-	#     cur_fixed_tree = treerule
-	#     while(queue):
-	#         sub_root_number = queue.popleft()
-	#         subqueue=deque([(cur_fixed_tree, sub_root_number, sub_root_number)])
-	#         # triples are needed here, since: we need to keep track of the 
-	#         # updated(if so) subtree root in order to check purity from that node
-	#         # print(f"subqueue: {subqueue}")
-	#         sub_node_pure=False
-	#         while(subqueue and not sub_node_pure):
-	#             prev_tree, leaf_node_number, subtree_root_number = subqueue.popleft()
-	#             # print(f"prev tree: {prev_tree}")
-	#             node = locate_node(prev_tree, leaf_node_number)
-	#             # print(f"node that needs to be fixed")
-	#             # print(f"nodel.label: {node.label}")
-	#             # print(f"nodel.clean: {node.pairs[CLEAN]}")
-	#             # print(f"nodel.dirty: {node.pairs[DIRTY]}")
-	#             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
-	#                 # print("we need to fix it!")
-	#                 # need to examine all possible pair combinations
-	#                 considered_fixes = set()
-	#                 # print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
-	#                 found_fix = False
-	#                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
-	#                     if(found_fix):
-	#                         break
-	#                     the_fixes = find_available_repair(pair[0],
-	#                      pair[1], domain_value_dict, node.used_predicates,
-	#                      all_possible=True)
-	#                     # print("the fixes")
-	#                     # print(the_fixes)
-	#                     # print("the_fixes")
-	#                     # print(the_fixes)
-	#                     # print(f"fixes: len = {len(the_fixes)}")
-	#                     # print("iterating fixes")
-	#                     # print(f"len(fixes): {len(the_fixes)}")
-	#                     for f in the_fixes:
-	#                         # print(f"the fix: {f}")
-	#                         new_parent_node=None
-	#                         if(f in considered_fixes):
-	#                             continue
-	#                         considered_fixes.add(f)
-	#                         new_tree = copy.deepcopy(prev_tree)
-	#                         node = locate_node(new_tree, node.number)
-	#                         new_parent_node = redistribute_after_fix(new_tree, node, f)
-	#                         if(leaf_node_number==sub_root_number):
-	#                             # first time replacing subtree root, 
-	#                             # the node number will change so we need 
-	#                             # to replace it
-	#                             subtree_root_number=new_parent_node.number
-	#                             # print(f"subtree_root_number is being updated to {new_parent_node.number}")
-	#                         new_tree.setsize(new_tree.size+2)
-	#                         if(check_tree_purity(new_tree, subtree_root_number)):
-	#                             # print("done with this leaf node, the fixed tree is updated to")
-	#                             cur_fixed_tree = new_tree
-	#                             # print(cur_fixed_tree)
-	#                             found_fix=True
-	#                             sub_node_pure=True
-	#                             break
-	#                         # else:
-	#                         #     print("not pure yet, need to enqueue")
-	#                         # handle the left and right child after redistribution
-	#                         still_inpure=False
-	#                         for k in [CLEAN,DIRTY]:
-	#                             if(still_inpure):
-	#                                 break
-	#                             for p in new_parent_node.left.pairs[k]:
-	#                                 if(p['expected_label']!=new_parent_node.left.label):
-	#                                     # print("enqueued")
-	#                                     # print("current_queue: ")
-	#                                     new_tree = copy.deepcopy(new_tree)
-	#                                     parent_node = locate_node(new_tree, new_parent_node.number)
-	#                                     subqueue.append((new_tree, parent_node.left.number, subtree_root_number))
-	#                                     # print(subqueue)
-	#                                     still_inpure=True
-	#                                     break
-	#                         still_inpure=False          
-	#                         for k in [CLEAN,DIRTY]:
-	#                             if(still_inpure):
-	#                                 break
-	#                             for p in new_parent_node.right.pairs[k]:
-	#                                 if(p['expected_label']!=new_parent_node.right.label):
-	#                                     # print("enqueued")
-	#                                     # print("current_queue: ")
-	#                                     new_tree = copy.deepcopy(new_tree)
-	#                                     parent_node = locate_node(new_tree, new_parent_node.number)
-	#                                     # new_parent_node=redistribute_after_fix(new_tree, new_node, f)
-	#                                     subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
-	#                                     # print(subqueue)
-	#                                     still_inpure=True
-	#                                     break
-	#                         # print('\n')
-	#             else:
-	#                 # print("just need to reverse node condition")
-	#                 reverse_node_parent_condition(node)
-	#                 if(check_tree_purity(prev_tree, subtree_root_number)):
-	#                     # print("done with this leaf node, the fixed tree is updated to")
-	#                     found_fix=True
-	#                     cur_fixed_tree = prev_tree
-	#                     sub_node_pure=True
-	#                     # print(cur_fixed_tree)
-	#                     break
+	elif(repair_config.strategy=='brute_force'):
+		# 1. create a queue with tree nodes
+		# 2. need to deepcopy the tree in order to enumerate all possible trees
+		# logger.debug("leaf_nodes:")
+		# logger.debug(leaf_nodes)
+		queue = deque([])
+		for ln in leaf_nodes:
+			queue.append(ln.number)
+		# print(f"number of leaf_nodes: {len(queue)}")
+		# print("queue")
+		# print(queue)
+		cur_fixed_tree = treerule
+		while(queue):
+			sub_root_number = queue.popleft()
+			subqueue=deque([(cur_fixed_tree, sub_root_number, sub_root_number)])
+			# triples are needed here, since: we need to keep track of the 
+			# updated(if so) subtree root in order to check purity from that node
+			# print(f"subqueue: {subqueue}")
+			sub_node_pure=False
+			while(subqueue and not sub_node_pure):
+				logger.debug(f"len of subqueue: {len(subqueue)}")
+				prev_tree, leaf_node_number, subtree_root_number = subqueue.popleft()
+				node = locate_node(prev_tree, leaf_node_number)
+				if(node.label==ABSTAIN):
+					continue
+				if(node.pairs[HAM] and node.pairs[SPAM]):
+					# need to examine all possible pair combinations
+					considered_fixes = set()
+					# print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
+					for pair in list(product(node.pairs[HAM], node.pairs[SPAM])):
+						if(sub_node_pure):
+							break
+						fixes = find_available_repair(pair[0],pair[1], node.used_predicates,all_possible=True)
+						valid_fixes = [x for x in fixes if x]
+						if(not valid_fixes):
+							continue
+						else:
+							for f in valid_fixes:
+								new_parent_node=None
+								if(f in considered_fixes):
+									continue
+								considered_fixes.add(f)
+								new_tree = copy.deepcopy(prev_tree)
+								node = locate_node(new_tree, node.number)
+								new_parent_node = redistribute_after_fix(new_tree, node, f)
+								if(leaf_node_number==sub_root_number):
+									# first time replacing subtree root, 
+									# the node number will change so we need 
+									# to replace it
+									subtree_root_number=new_parent_node.number
+									# print(f"subtree_root_number is being updated to {new_parent_node.number}")
+								new_tree.setsize(new_tree.size+2)
+								if(check_tree_purity(new_tree, subtree_root_number)):
+									# print("done with this leaf node, the fixed tree is updated to")
+									cur_fixed_tree = new_tree
+									# print(cur_fixed_tree)
+									sub_node_pure=True
+									break
+								# else:
+								#     print("not pure yet, need to enqueue")
+								# handle the left and right child after redistribution
+								still_inpure=False
+								for k in [HAM,SPAM]:
+									if(still_inpure):
+										break
+									for p in new_parent_node.left.pairs[k]:
+										if(p['expected_label']!=new_parent_node.left.label):
+											# print("enqueued")
+											# print("current_queue: ")
+											new_tree = copy.deepcopy(new_tree)
+											parent_node = locate_node(new_tree, new_parent_node.number)
+											subqueue.append((new_tree, parent_node.left.number, subtree_root_number))
+											# print(subqueue)
+											still_inpure=True
+											break
+								still_inpure=False          
+								for k in [HAM,SPAM]:
+									if(still_inpure):
+										break
+									for p in new_parent_node.right.pairs[k]:
+										if(p['expected_label']!=new_parent_node.right.label):
+											# print("enqueued")
+											# print("current_queue: ")
+											new_tree = copy.deepcopy(new_tree)
+											parent_node = locate_node(new_tree, new_parent_node.number)
+											# new_parent_node=redistribute_after_fix(new_tree, new_node, f)
+											subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
+											# print(subqueue)
+											still_inpure=True
+											break
+								# print('\n')
+				else:
+					# print("just need to reverse node condition")
+					if(node.pairs[SPAM]):
+						if(node.label!=SPAM):
+							node.label=SPAM
+							node.is_reversed=True
+							treerule.reversed_cnt+=1
+							prev_tree.setsize(prev_tree.size+2)
+					elif(node.pairs[HAM]):
+						if(node.label!=HAM):
+							node.label=HAM
+							node.is_reversed=True
+							treerule.reversed_cnt+=1
+							prev_tree.setsize(prev_tree.size+2)
+					if(check_tree_purity(prev_tree,subtree_root_number)):                
+						# print("done with this leaf node, the fixed tree is updated to")
+						cur_fixed_tree = prev_tree
+						sub_node_pure=True
+						# print(cur_fixed_tree)
+						break
 				# print(f"current queue size: {len(queue)}")
-		# print("fixed all, return the fixed tree")
-		# print(cur_fixed_tree)
-		# return cur_fixed_tree 
-		# list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
-		# return list_of_repaired_trees[0] 
-
+		print("fixed all, return the fixed tree")
+		print(cur_fixed_tree)
+		return cur_fixed_tree 
 	else:
 		print("not a valid repair option")
 		exit()
 
-def calculate_retrained_results(complaints, new_wrongs_df):
+def calculate_retrained_results(complaints, new_wrongs_df, file_dir):
 	the_complaints = complaints[complaints['expected_label']!=complaints['model_pred']]
 	the_confirmatons = complaints[complaints['expected_label']==complaints['model_pred']]
 	still_wrongs = pd.merge(the_complaints, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
+	# still_wrongs.to_csv(file_dir+'_still_wrongs.csv', index=False)
 	not_correct_anymores = pd.merge(the_confirmatons, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
 	print("complaints")
 	print(complaints)
 	print("new_wrongs")
 	print(new_wrongs_df)
+	# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
 	print('still wrongs')
 	print(still_wrongs)
 
@@ -592,19 +562,27 @@ def calculate_retrained_results(complaints, new_wrongs_df):
 
 	return complaint_fix_rate, confirm_preserve_rate
 
-def fix_rules(repair_config, original_rules, conn):
-	rules = original_rules
+def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, deletion_factor, current_start_id_pos, sorted_rule_ids):
 	all_fixed_rules = []
 	cur_fixed_rules = []
+	all_rules_cnt=len(fix_book_keeping_dict)
 	# domain_value_dict = construct_domain_dict(conn, table_name=table_name)
-	fix_book_keeping_dict = {k.id:{} for k in original_rules}
+	# fix_book_keeping_dict = {k.id:{'rule':k} for k in original_rules}
 	# print(domain_value_dict)
-	for treerule in rules:
-		# print("before fixing the rule, the rule is")
-		# print(r)
-		# treerule = parse_dc_to_tree_rule(r)
-		# print(treerule)
-		fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
+	fixed_run_cnt=0
+
+	if(current_start_id_pos+floor(all_rules_cnt*return_after_percent)>=all_rules_cnt):
+		stop_at_id_pos=all_rules_cnt-1
+	else:
+		stop_at_id_pos=current_start_id_pos+floor(all_rules_cnt*return_after_percent)
+	# print("fix_book_keeping_dict")
+	# print(fix_book_keeping_dict)
+	print(f"current_start_id:{sorted_rule_ids[current_start_id_pos]}")
+	print(f"stop_at_id: {sorted_rule_ids[stop_at_id_pos]}")
+
+	while(current_start_id_pos<=stop_at_id_pos):
+		treerule=fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']
+		# for treerule in rules:
 		leaf_nodes = []
 		for i, c in repair_config.complaints.iterrows():
 			# print("the complaint is")
@@ -615,163 +593,290 @@ def fix_rules(repair_config, original_rules, conn):
 				# if node is already in leaf nodes, dont
 				# need to add it again
 				leaf_nodes.append(leaf_node_with_complaints)
-		# print("node with pairs")
-		# for ln in leaf_nodes:
-			# print(f"node id: {ln.number}")
-			# print(ln.pairs)
-			# print('\n')
-		# print(leaf_nodes)
 		if(leaf_nodes):
 			# its possible for certain rule we dont have any violations
-			# print("the TreeRule we wanted to fix")
-			# print(treerule)
-			# print("the leaf nodes")
-			# print(leaf_nodes)
+			# if(sorted_rule_ids[current_start_id_pos]==6):
+			# 	import pudb; pudb.set_trace()
 			fixed_treerule = fix_violations(treerule, repair_config, leaf_nodes)
+			fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']=fixed_treerule
 			# print(fixed_treerule)
 			fix_book_keeping_dict[treerule.id]['after_fix_size']=fixed_treerule.size
-			fixed_treerule_text = treerule.serialize()
+			fixed_treerule_text = fixed_treerule.serialize()
 			fix_book_keeping_dict[treerule.id]['fixed_treerule_text']=fixed_treerule_text
 		else:
+			fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']=tree_rule
 			fix_book_keeping_dict[treerule.id]['after_fix_size']=treerule.size
 			fixed_treerule_text = treerule.serialize()
 			fix_book_keeping_dict[treerule.id]['fixed_treerule_text']=fixed_treerule_text
+			fixed_treerule=tree_rule
 
-	return fix_book_keeping_dict
+		if(fixed_treerule.size/fix_book_keeping_dict[treerule.id]['pre_fix_size']*deletion_factor>=1):
+			fix_book_keeping_dict[treerule.id]['deleted']=True
+		else:
+			fix_book_keeping_dict[treerule.id]['deleted']=False
+		current_start_id_pos+=1
+
+	return stop_at_id_pos
 
 
 if __name__ == '__main__':
 
-	# create a file to store the results:
-	for i in range(0, 1):
-		timestamp = datetime.now()
-		timestamp_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
-		with open('more_lf_'+timestamp_str, 'w') as file:
+	parser = argparse.ArgumentParser(description='Running experiments of RBBM')
+
+	parser.add_argument('-d','--dbname', metavar="\b", type=str, default='label',
+	  help='database name which stores the dataset, (default: %(default)s)')
+
+	parser.add_argument('-P','--port', metavar="\b", type=int, default=5432,
+	  help='database port, (default: %(default)s)')
+
+	parser.add_argument('-p', '--password', metavar="\b", type=int, default=5432,
+	  help='database password, (default: %(default)s)')
+
+	parser.add_argument('-u', '--user', metavar="\b", type=str, default='postgres',
+	  help='database user, (default: %(default)s)')
+
+	parser.add_argument('-r','--repair_method', metavar="\b", type=str, default='information_gain',
+	  help='method used to repair the rules (naive, information_gain, optimal) (default: %(default)s)')
+
+	parser.add_argument('-U','--userinput_size', metavar="\b", type=int, default=40,
+	  help='user input size (default: %(default)s)')
+
+	parser.add_argument('-t','--complaint_ratio', metavar="\b", type=float, default=0.5,
+	  help='out of the user input, what percentage of it is complaint? (the rest are confirmations) (default: %(default)s)')
+
+	parser.add_argument('-f','--lf_source', metavar="\b", type=str, default='intro',
+	  help='the source of labelling function (intro / system generate) (default: %(default)s)')
+
+	parser.add_argument('-n','--number_of_funcs', metavar="\b", type=int, default=20,
+	  help='if if_source is selected as system generate, how many do you want(default: %(default)s)')
+
+	parser.add_argument('-e', '--experiment_name', metavar="\b", type=str, default='test_blah',
+	  help='the name of the experiment, the results will be stored in the directory named with experiment_name_systime (default: %(default)s)')
+
+	parser.add_argument('-R', '--repeatable', metavar="\b", type=bool, default=True,
+	  help='repeatable? (default: %(default)s)')
+
+	parser.add_argument('-s', '--seed', metavar="\b", type=int, default=123,
+	  help='if repeatable, specify a seed number here (default: %(default)s)')
+
+	parser.add_argument('-i', '--run_intro',  metavar="\b", type=bool, default=False,
+	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
+	
+	parser.add_argument('-D', '--deletion_factor',  metavar="\b", type=float, default=0.5,
+	  help='this is a factor controlling how aggressive the algorithm chooses to delete the rule from the rulset (default: %(default)s)')
+	# if a rule gets deleted is decided by comparing (new_size/old_size)*deletion_factor and 1, if (new_size/old_size)*deletion_factor<=1 
+	# we keep the rule, other wise we delete
+	parser.add_argument('-E', '--retrain_every_percent',  metavar="\b", type=float, default=1,
+	  help='retrain over every (default: %(default)s*100), the default order is sorted by treesize ascendingly')
+
+	parser.add_argument('-A', '--retrain_accuracy_thresh',  metavar="\b", type=float, default=0.5,
+	  help='when retrain over every retrain_every_percent, the algorithm stops when the fix rate is over this threshold (default: %(default)s)')
+
+	# parser.add_argument('-C', '--customized_complaints_file', metavar="\b", type=text, default='test',
+	#   help='input file name which contains the cids of the complaints (mainly used for running example)(default: %(default)s)')
+
+	args = parser.parse_args()
+
+	#########
+	conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password)
+	sample_size=args.userinput_size
+	complaint_ratio=args.complaint_ratio
+	strat=args.repair_method
+	lf_source=args.lf_source
+	number_of_funcs=args.number_of_funcs
+	experiment_name=args.experiment_name
+	repeatable=args.repeatable
+	rseed=args.seed
+	run_intro=args.run_intro
+	retrain_after_percent=args.retrain_every_percent
+	deletion_factor=args.deletion_factor
+	retrain_accuracy_thresh=args.retrain_accuracy_thresh
+	# customized_complaints_file=args.customized_complaints_file
+	######
+	print(args)
+
+
+	timestamp = datetime.now()
+	timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
+	result_dir = f'./{args.experiment_name}'
+	if not os.path.exists(result_dir):
+		os.makedirs(result_dir)
+
+	if(lf_source=='intro' or run_intro):
+		tree_rules=gen_example_funcs()
+	else:
+		sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
+		sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+		sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
+		sentences_df = sentences_df[~sentences_df['text'].isna()]
+		kwm = KeyWordRuleMiner(sentences_df)
+		tree_rules = kwm.gen_funcs(number_of_funcs, 0.3)
+
+
+	labelling_funcs=[f.gen_label_rule() for f in tree_rules]
+	li =lf_input(
+		connection=conn,
+		contingency_size_threshold=1,
+		contingency_sample_times=1,
+		clustering_responsibility=False,
+		sample_contingency=False,
+		log_level='debug',
+		user_provide=True,
+		training_model_type='snorkel',
+		word_threshold=3,
+		greedy=True,
+		cardinality_thresh=2,
+		using_lattice=True,
+		eval_mode='single_func',
+		# lattice: bool
+		invoke_type='terminal', # is it from 'terminal' or 'notebook'
+		arg_str=None, # only used if invoke_type='notebook'
+		# lattice_dict:dict
+		# lfs:List[lfunc]
+		# sentences_df:pd.core.frame.DataFrame
+		topk=3, # topk value for number of lfs when doing responsibility generation
+		random_number_for_complaint=5,
+		dataset_name='youtube',
+		stats=StatsTracker(),
+		prune_only=True,
+		return_complaint_and_results=True
+		)
+	global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
+	# all_sentences_df=all_sentences_df.sort_values(by=['text'])
+	old_signaled_cnt=len(all_sentences_df)
+	# wrongs_df.to_csv('initial_wrongs.csv', index=False)
+	wrong_hams=wrongs_df[wrongs_df['expected_label']==HAM]
+	wrong_spams=wrongs_df[wrongs_df['expected_label']==SPAM]
+	print(f"wrong_hams count: {len(wrong_hams)}")
+	print(f"wrong_spams count: {len(wrong_spams)}")
+
+	rs = None
+	new_seed = int.from_bytes(os.urandom(4), byteorder="big")
+	random.seed(new_seed)
+	if(repeatable):
+		rs = rseed
+	else:
+		rs = random.randint(1, 1000)
+
+	print(f"random_seed: {rs}")
+	print(f"size: {sample_size}, strat:{strat}")
+	# tree_rules = [f1, f2, f3]
+
+	if(run_intro):
+		# intro_input_cids = []
+		# wrong_ids = random.sample(wrong_check_ids, 5)
+		# correct_ids = random.sample(correct_check_ids, 5)
+		# intro_input_cids.extend(wrong_ids)
+		# intro_input_cids.extend(correct_ids)
+		with open('intro_complaint_ids', 'r') as file:
+		    intro_input_cids = [int(x) for x in file.readline().strip().split(',')]
+		sampled_complaints=all_sentences_df[all_sentences_df['cid'].isin(intro_input_cids)]
+		# print("sampled_complaints")
+		# print(sampled_complaints)
+		# print("intro_input_cids")
+		# print(intro_input_cids)
+		# exit()
+		num_complaints=5
+		num_confirm=5
+	else:
+		all_wrongs=all_sentences_df[all_sentences_df['expected_label']!=all_sentences_df['model_pred']]
+		all_confirms=all_sentences_df[all_sentences_df['expected_label']==all_sentences_df['model_pred']]
+		wrong_sample_size=floor(sample_size*complaint_ratio)
+		sampled_wrongs=all_wrongs.sample(n=wrong_sample_size,random_state=rs)
+		sampled_confirms=all_confirms.sample(n=sample_size-wrong_sample_size, random_state=rs)
+		sampled_complaints=pd.concat([sampled_wrongs, sampled_confirms])
+		num_complaints=len(sampled_wrongs)
+		num_confirm=len(sampled_confirms)
+
+	sampled_complaints['id'] = sampled_complaints.reset_index().index
+
+	stimestamp = datetime.now()
+	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+	current_fixed_percent=0
+	fixed_rate=0
+	runtime=0
+	current_start_id_pos=0
+	new_global_accuracy=0
+	confirm_preserve_rate=0
+	new_signaled_cnt=0
+	num_funcs=0
+	post_fix_num_funcs=0
+	tree_ids=[k.id for k in tree_rules]
+	tree_ids.sort()
+	new_all_sentences_df=None
+	num_of_funcs_processed_by_algo=0
+	print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
+	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size} for k in tree_rules}
+		# fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
+
+	while(fixed_rate<retrain_accuracy_thresh):
+		start = time.time()
+		prev_stop_tree_id_pos = fix_rules(repair_config=rc, fix_book_keeping_dict=fix_book_keeping_dict, conn=conn, 
+			return_after_percent=retrain_after_percent, deletion_factor=deletion_factor, current_start_id_pos=current_start_id_pos, sorted_rule_ids=tree_ids)
+		tree_rules=[v['rule'] for k,v in fix_book_keeping_dict.items() if not v['deleted']]
+		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos)
+		current_start_id_pos=prev_stop_tree_id_pos+1
+		post_fix_num_funcs=len([value for value in fix_book_keeping_dict.values() if not value['deleted']])
+		print(f"post_fix_num_funcs: {post_fix_num_funcs}")
+		num_funcs = len(fix_book_keeping_dict)
+		end = time.time()
+		runtime+=round(end-start,3)
+		# print(bkeepdict)
+		print(f"runtime: {runtime}")
+		# retrain snorkel using modified labelling funcs
+		print("retraining using the fixed rules")
+		print(tree_rules)
+		# new_all_sentences_df.to_csv('new_all_sentences.csv', index=False)
+		# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
+		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
+		new_global_accuracy, new_all_sentences_df, new_wrongs_df = lf_main(li, LFs=new_labelling_funcs)
+		new_signaled_cnt=len(new_all_sentences_df)
+		fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df, result_dir+'/'+timestamp_str)
+		if(current_start_id_pos>=len(tree_rules)):
+			break
+
+	before_total_size=after_total_size=0
+	for k,v in fix_book_keeping_dict.items():
+		if(not v['deleted']):
+			before_total_size+=v['pre_fix_size']
+			after_total_size+=v['after_fix_size']
+
+	avg_tree_size_increase=(after_total_size-before_total_size)/post_fix_num_funcs
+	print(f"avg tree_size increase: {avg_tree_size_increase}")
+
+	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
+		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
-			file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt\n')
-		# load dataset 
-		# sentences_df=pd.read_csv('/home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/data/youtube.csv')
-		# test_df = sentences_df.head(2)
-		# test_df = test_df.rename(columns={"CLASS": "label", "CONTENT": "text"})
-		# # print(list(sentences_df))
-		# test_df['text'] = test_df['text'].apply(lambda s: ham_text(s))
+			file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo\n')
 
-		# f1.name='blah1'
-		# f2.name='blah2'
-		# print(f1.name)
-		# print(f2.name)
-		# applier = PandasLFApplier(lfs=[f.gen_label_rule() for f in tree_rules])
+	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
+	sampled_complaints.to_csv(f"{result_dir}/sampled_complaints_{timestamp_str}_{strat}_{str(sample_size)}.csv", index=False)
+	for kt,vt in fix_book_keeping_dict.items():
+		with open(f"{result_dir}/{timestamp_str}_tree_{strat}_{kt}_dot_file", 'a') as file:
+			comments=f"// presize: {fix_book_keeping_dict[kt]['pre_fix_size']}, after_size: {fix_book_keeping_dict[kt]['after_fix_size']}, deleted: {fix_book_keeping_dict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{fix_book_keeping_dict[kt]['rule'].reversed_cnt}"
+			dot_file=fix_book_keeping_dict[kt]['rule'].gen_dot_string(comments)
+			file.write(dot_file)
+		print("dot string:")
+		print(dot_file)
+	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
+	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
+		# Write the row to the file
+		file.write(f'{strat},{runtime},{avg_tree_size_increase},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},'+\
+			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo}\n')
 
-		# Apply the labelling functions to get vectors
-		# initial_vectors = applier.apply(df=test_df, progress_bar=False)
 
-		# print(test_df.text.tolist())
 
-		# print(initial_vectors)
-		# start = time.time()
-		# bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name)
 
-		conn = psycopg2.connect(dbname='label', user='postgres', password='123')
-		for sample_size in [1,2,4,8,16,32,64,128]:
-		# for sample_size in [1]:
-			random_seed = random.randint(0, 1000)
-			print(f"size: {sample_size*2}, strat:{strat}")
-			f1 = keyword_labelling_func_builder(['songs', 'song'], HAM)
-			f2 = keyword_labelling_func_builder(['check'], SPAM)
-			f3 = keyword_labelling_func_builder(['love'], HAM)
-			f4 = keyword_labelling_func_builder(['shakira'], SPAM)
-			f5 = keyword_labelling_func_builder(['checking'], SPAM)
-			f6 = regex_func_builder(['http'],SPAM)
-			
-			tree_rules = [f1, f2, f3, f4, f5, f6, f_sent, f_tag, f_length]
-			labelling_funcs=[f.gen_label_rule() for f in tree_rules]
+# parameters needed 
 
-			li =lf_input(
-				connection=conn,
-				contingency_size_threshold=1,
-				contingency_sample_times=1,
-				clustering_responsibility=False,
-				sample_contingency=False,
-				log_level='DEBUG',
-				user_provide=True,
-				training_model_type='snorkel',
-				word_threshold=3,
-				greedy=True,
-				cardinality_thresh=2,
-				using_lattice=True,
-				eval_mode='single_func',
-				# lattice: bool
-				invoke_type='terminal', # is it from 'terminal' or 'notebook'
-				arg_str=None, # only used if invoke_type='notebook'
-				# lattice_dict:dict
-				# lfs:List[lfunc]
-				# sentences_df:pd.core.frame.DataFrame
-				topk=3, # topk value for number of lfs when doing responsibility generation
-				random_number_for_complaint=5,
-				dataset_name='youtube',
-				stats=StatsTracker(),
-				prune_only=True,
-				return_complaint_and_results=True
-				)
-			global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
-			for strat in ['information gain', 'naive']:
-				old_signaled_cnt=len(all_sentences_df)
-				all_sentences_df.to_csv('initial_results.csv', index=False)
-				wrongs_df.to_csv('initial_wrongs.csv', index=False)
-				wrong_hams=wrongs_df[wrongs_df['expected_label']==HAM]
-				wrong_spams=wrongs_df[wrongs_df['expected_label']==SPAM]
-				# for index, row in wrong_hams.iterrows():
-				# 	logger.critical("--------------------------------------------------------------------------------------------")  
-				# 	logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['expected_label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
-
-				# for index, row in wrong_spams.iterrows():
-				# 	logger.critical("--------------------------------------------------------------------------------------------")  
-				# 	logger.critical(f"setence#: {index}  sentence: {row['text']} \n correct_label : {row['expected_label']}  pred_label: {row['model_pred']} vectors: {row['vectors']}\n")
-				print(f"wrong_hams count: {len(wrong_hams)}")
-				print(f"wrong_spams count: {len(wrong_spams)}")
-				rng = pd.np.random.default_rng(random_seed)
-				sampled_complaints = pd.concat([all_sentences_df[all_sentences_df['expected_label']==HAM].sample(n=sample_size,random_state=rng), \
-					all_sentences_df[all_sentences_df['expected_label']==SPAM].sample(n=sample_size, random_state=rng)])
-				print(f"sampled_complaints")
-				num_complaints=len(sampled_complaints[sampled_complaints['expected_label']!=sampled_complaints['model_pred']])
-				num_confirm=len(sampled_complaints[sampled_complaints['expected_label']==sampled_complaints['model_pred']])
-				print(sampled_complaints)
-				stimestamp = datetime.now()
-				# Convert the timestamp to a string
-				sample_time_stamp = stimestamp.strftime('%Y-%m-%d-%H-%M-%S')
-				# sampled_complaints.to_csv(f'sampled_complaints_{sample_size}_{sample_time_stamp}.csv', index=False)
-				# choices = input('please input sentence # of sentence, multiple sentences should be seperated using space')
-				# sentences_of_interest = wrong_preds[wrong_preds.index.isin(choice_indices)]
-				rc = RepairConfig(strategy=strat, complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
-				# rc = RepairConfig(strategy='naive', complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
-
-				start = time.time()
-				bkeepdict = fix_rules(repair_config=rc, original_rules=tree_rules, conn=conn)
-				num_funcs = len(bkeepdict)
-				before_total_size=after_total_size=0
-				for k,v in bkeepdict.items():
-					before_total_size+=v['pre_fix_size']
-					after_total_size+=v['after_fix_size']
-
-				end = time.time()
-				runtime=round(end-start,3)
-				avg_tree_size_increase=(after_total_size-before_total_size)/num_funcs
-				# print(bkeepdict)
-				print(f"runtime: {runtime}")
-				print(f"avg tree_size increase: {avg_tree_size_increase}")
-				# retrain snorkel using modified labelling funcs
-
-				print("retraining using the fixed rules")
-				print(tree_rules)
-				new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
-				new_global_accuracy, new_all_sentences_df, new_wrongs_df = lf_main(li, LFs=new_labelling_funcs)
-				new_signaled_cnt=len(new_all_sentences_df)
-				new_wrongs_df.to_csv('new_wrongs.csv', index=False)
-				fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df)
-				with open('more_lf_'+timestamp_str, 'a') as file:
-					# Write the row to the file
-					file.write(f'{strat},{runtime},{avg_tree_size_increase},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt}\n')
-					# file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt\n')
+# repair method (str): naive, information gain, optimal
+# userinput size (integer):  
+# complaint ratio
+# lf source? (str: running example, sys_gen)
+# number of lfs (if sysgen)
+# db conn params
+# dataset name
 
 
 

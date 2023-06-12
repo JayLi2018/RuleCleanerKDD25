@@ -1,0 +1,172 @@
+digraph "rule" { 
+// presize: 3, after_size: 109, deleted: True factor: 0.3 reverse_cnt:27
+1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 1 5 6 8 11 12 19 
+22 24 26 28 30 31 32 37 
+40 43 45 46 48 49 51 53 
+56 60 65 70 76 78 79 80 
+82 84 87 90 91 95 101 103 
+104 106 110 111 114 115 117 118 
+119 120 124 126 131 132 133 134 
+138 139 141 145 146 149 150 153 
+156 159 161 162 163 164 166 168 
+172 173 181 183 185 186 188 189 
+192 194 195 197 199 201 203 205 
+207 212 213 214 219 220 221 222 
+224 225 228 230 234 235 236 237 
+241 243 244 246 247 249 251 252 
+254 255 260 261 262 263 265 267 
+268 273 277 279 280 282 284 290 
+291 292 293 294 298 299 300 301 
+303 307 310 311 312 314 315 317 
+318 )
+0: (2 9 13 21 39 64 94 98 
+100 105 107 108 109 112 113 116 
+121 128 130 135 136 137 148 151 
+165 169 178 179 180 190 191 196 
+206 209 210 232 239 245 256 257 
+259 269 270 271 283 285 286 287 
+289 302 306 309 316 )"]
+4 [color=blue, label="keyword_predicate-word-(subscribe)"]
+4->7
+4->6
+7 [color=blue, label="keyword_predicate-word-(song)"]
+7->10
+7->13
+6 [color=green, label="1 0: ()
+1: (3 10 18 33 52 61 68 83 
+88 )"]
+10 [color=blue, label="keyword_predicate-word-(hey)"]
+10->16
+10->12
+13 [color=blue, label="keyword_predicate-word-(awesome)"]
+13->19
+13->15
+16 [color=blue, label="keyword_predicate-word-(hi)"]
+16->22
+16->18
+12 [color=green, label="1 0: ()
+1: (7 29 54 92 )"]
+19 [color=blue, label="keyword_predicate-word-(finally)"]
+19->25
+19->21
+15 [color=green, label="1 0: ()
+1: (4 )"]
+22 [color=blue, label="keyword_predicate-word-(subscribed)"]
+22->28
+22->24
+18 [color=green, label="1 0: ()
+1: (14 25 86 )"]
+25 [color=blue, label="keyword_predicate-word-(hey)"]
+25->26
+25->27
+21 [color=green, label="1 0: ()
+1: (57 )"]
+28 [color=blue, label="keyword_predicate-word-(awesome)"]
+28->31
+28->30
+24 [color=green, label="1 0: ()
+1: (15 81 )"]
+26 [color=green, label="0 0: (97 99 122 123 167 170 182 184 
+198 202 204 211 223 233 240 242 
+248 296 304 313 )
+1: ()"]
+27 [color=green, label="1 0: ()
+1: (73 )"]
+31 [color=blue, label="keyword_predicate-word-(beautiful)"]
+31->34
+31->37
+30 [color=green, label="1 0: ()
+1: (16 55 )"]
+34 [color=blue, label="keyword_predicate-word-(check)"]
+34->40
+34->36
+37 [color=blue, label="keyword_predicate-word-(bella)"]
+37->38
+37->39
+40 [color=blue, label="keyword_predicate-word-(hello)"]
+40->43
+40->42
+36 [color=green, label="1 0: ()
+1: (20 23 35 42 44 59 62 63 
+67 69 71 72 74 77 )"]
+38 [color=green, label="0 0: (147 171 217 )
+1: ()"]
+39 [color=green, label="1 0: ()
+1: (17 )"]
+43 [color=blue, label="keyword_predicate-word-(like)"]
+43->46
+43->49
+42 [color=green, label="1 0: ()
+1: (27 )"]
+46 [color=blue, label="keyword_predicate-word-(thumbs)"]
+46->52
+46->48
+49 [color=blue, label="keyword_predicate-word-(comment)"]
+49->50
+49->51
+52 [color=blue, label="keyword_predicate-word-(im)"]
+52->55
+52->58
+48 [color=green, label="1 0: ()
+1: (36 50 )"]
+50 [color=green, label="0 0: (152 158 176 229 295 )
+1: ()"]
+51 [color=green, label="1 0: ()
+1: (34 )"]
+55 [color=blue, label="keyword_predicate-word-(edm)"]
+55->61
+55->57
+58 [color=blue, label="keyword_predicate-word-(gonna)"]
+58->59
+58->60
+61 [color=blue, label="keyword_predicate-word-(http)"]
+61->64
+61->67
+57 [color=green, label="1 0: ()
+1: (41 )"]
+59 [color=green, label="0 0: (102 278 )
+1: ()"]
+60 [color=green, label="1 0: ()
+1: (38 )"]
+64 [color=blue, label="keyword_predicate-word-(shaking)"]
+64->70
+64->66
+67 [color=blue, label="keyword_predicate-word-(www)"]
+67->73
+67->69
+70 [color=blue, label="keyword_predicate-word-(https)"]
+70->76
+70->72
+66 [color=green, label="1 0: ()
+1: (75 )"]
+73 [color=blue, label="keyword_predicate-word-(happy)"]
+73->74
+73->75
+69 [color=green, label="1 0: ()
+1: (47 66 )"]
+76 [color=blue, label="keyword_predicate-word-(subscribing)"]
+76->79
+76->78
+72 [color=green, label="1 0: ()
+1: (85 )"]
+74 [color=green, label="0 0: (305 )
+1: ()"]
+75 [color=green, label="1 0: ()
+1: (58 )"]
+79 [color=blue, label="keyword_predicate-word-(make)"]
+79->80
+79->81
+78 [color=green, label="1 0: ()
+1: (89 )"]
+80 [color=green, label="0 0: (96 125 127 129 140 142 143 144 
+154 155 157 160 174 175 177 187 
+193 200 208 215 216 218 226 227 
+231 238 250 253 258 264 266 272 
+274 275 276 281 288 297 308 319 
+)
+1: ()"]
+81 [color=green, label="1 0: ()
+1: (93 )"] } 

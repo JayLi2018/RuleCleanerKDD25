@@ -1,0 +1,13 @@
+digraph "round-table" { 1 [label="sentiment_predicate-thresh-0.5"]
+1->2
+1->4
+2 [label="-1 1: (0 3 4 8 12 13 18 19 
+)
+0: (2 5 6 11 14 15 17 )"]
+4 [color=blue, label="keyword_predicate-word-(most)"]
+4->5
+4->6
+5 [color=blue, label="1 0: ()
+1: (1 7 9 10 )"]
+6 [color=blue, label="0 0: (16 )
+1: ()"] } 
