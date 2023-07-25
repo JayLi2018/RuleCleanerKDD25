@@ -18,12 +18,17 @@ import time
 from rbbm_src.holoclean.examples.holoclean_repair import main
 import random
 from math import ceil
+import logging
 
-dc_tuple_violation_template_targeted_t1=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc;")
-dc_tuple_violation_template_targeted_t2=Template("SELECT DISTINCT t1.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc;")
+
+logger = logging.getLogger(__name__)
+
+dc_tuple_violation_template_targeted_t1=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc")
+dc_tuple_violation_template_targeted_t2=Template("SELECT DISTINCT t1.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc")
 dc_tuple_violation_template=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc;")
 
 ops = re.compile(r'IQ|EQ|LTE|GTE|GT|LT')
+eq_op = re.compile(r'EQ')
 non_symetric_op = re.compile(r'LTE|GTE|GT|LT')
 const_detect = re.compile(r'([\'|\"])')
 
@@ -101,17 +106,26 @@ def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=T
         't2': pd.read_sql(q2, conn).to_dict('records')}
     else:
         q1= construct_query_for_violation(t_interest, 't1', dc_text, target_table, targeted)
+        # print(q1)
         res = {'t1':pd.read_sql(q1, conn).to_dict('records')}
+        # print(res)
     return res 
 
 def construct_query_for_violation(t_interest, role, dc_text, target_table, targeted): 
     predicates = dc_text.split('&')
 #     clause = parse_rule_to_where_clause(dc_text)
     constants=[]
-
+    # print(f"t_interest:{t_interest}")
+    need_tid=True 
+    # if the constraint only has equals, we need to add an artificial
+    # key (_tid_) to differentiate tuples in violation with the tuple it
+    # self
     for pred in predicates[2:]:
-        attr = re.search(r't[1|2]\.([-\w]+)', pred).group(1)
-        constants.append(f'{role}.\"{attr}\"=\'{t_interest[attr]}\'')
+        if(not eq_op.search(pred)):
+            need_tid=False
+        attr = re.search(r't[1|2]\.([-\w]+)', pred).group(1).lower()
+        # print(attr)
+        constants.append(f'{role}.{attr}=\'{t_interest[attr]}\'')
     constants_clause = ' AND '.join(constants)
     # print(f"dc_text:{dc_text}")
     if(role=='t1'):
@@ -121,11 +135,14 @@ def construct_query_for_violation(t_interest, role, dc_text, target_table, targe
     if(targeted):
         r_q  = template.substitute(table=target_table, dc_desc=parse_rule_to_where_clause(dc_text),
                                            tuple_desc=constants_clause)
-        # print(r_q)
-        return r_q
+
     else:
         r_q  = template.substitute(table=target_table, dc_desc=parse_rule_to_where_clause(dc_text))
-        return r_q
+
+    if(need_tid):
+        r_q+=f" AND _tid_!={t_interest['_tid_']}"
+
+    return r_q
 
 
 def gen_repaired_tree_rule(t_interest, desired_label, t_in_violation, target_attribute, tree_rule, role):
@@ -227,10 +244,12 @@ def fix_violation(t_interest, desired_label, t_in_violation, tree_rule, role):
 #         # fix_violation(complaint_tuple, CLEAN, tuples_inviolation[1], treerule)
 #     print(rules)
 
-def construct_domain_dict(connection, table_name):
+def construct_domain_dict(connection, table_name, exclude_cols=['_tid_']):
     res = {}
     cols = list(pd.read_sql(f'select * from "{table_name}" limit 1', connection))
-    cols.remove("_tid_")
+    
+    for c in exclude_cols:
+        cols.remove(c)
 
     cur=connection.cursor()
     for c in cols:
@@ -239,14 +258,15 @@ def construct_domain_dict(connection, table_name):
 
     return res
 
-def fix_rules(repair_config, original_rules, conn, table_name):
+def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_tid_']):
     rules = original_rules
     all_fixed_rules = []
     cur_fixed_rules = []
-    domain_value_dict = construct_domain_dict(conn, table_name=table_name)
+    domain_value_dict = construct_domain_dict(conn, table_name=table_name, exclude_cols=exclude_cols)
     fix_book_keeping_dict = {k:{} for k in original_rules}
     # print(domain_value_dict)
     for r in rules:
+        fix_book_keeping_dict[r]['deleted']=False
         # print("before fixing the rule, the rule is")
         # print(r)
         treerule = parse_dc_to_tree_rule(r)
@@ -277,6 +297,8 @@ def fix_rules(repair_config, original_rules, conn, table_name):
             fixed_treerule = fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict)
             # print(fixed_treerule)
             fix_book_keeping_dict[r]['after_fix_size']=fixed_treerule.size
+            if(fixed_treerule.size/fix_book_keeping_dict[r]['pre_fix_size']*repair_config.deletion_factor>=1):
+                fix_book_keeping_dict[r]['deleted']=True
             fixed_treerule_text = treerule.serialize()
             fix_book_keeping_dict[r]['fixed_treerule_text']=fixed_treerule_text
         else:
@@ -334,6 +356,16 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
     """
     # loop through every attribute to find one
     res = []
+    # check clean pair
+
+    if(not (clean_pair['t1']['is_dirty']==False and clean_pair['t2']['is_dirty']==False)):
+        return res
+    else:
+        print("found valid 2 pairs")
+        print('clean pair')
+        print(clean_pair)
+        print('dirty_pair')
+        print(dirty_pair)
     # print(f"finding fix for {clean_pair} and {dirty_pair}")
     # for k in domain_value_dict:
     # attribute
@@ -344,6 +376,9 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
 
         # start with attribute level and then constants
     cand=None
+    # print(f"used_predicates: {used_predicates}")
+    # print(f"dirty_pair: {dirty_pair}")
+    # print(f"clean_pair: {clean_pair}")
     for k in domain_value_dict:
         if((clean_pair['t1'][k]==clean_pair['t2'][k]) and \
            (dirty_pair['t1'][k]!=dirty_pair['t2'][k])):
@@ -529,11 +564,13 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
         new_predicate_node = PredicateNode(number=cur_number, pred=DCConstPredicate(pred=new_pred, operator=sign))
     elif(len(the_fix)==5):
         new_predicate_node = PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=new_pred, operator=sign))
-    
+    new_predicate_node.is_added=True
     cur_number+=1
     new_predicate_node.left= LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    new_predicate_node.left.is_added=True
     cur_number+=1
     new_predicate_node.right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    new_predicate_node.right.is_added=True
     new_predicate_node.left.parent= new_predicate_node
     new_predicate_node.right.parent= new_predicate_node
 
@@ -569,6 +606,8 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
                     new_predicate_node.left.pairs[p['expected_label']].append(p)
                     new_predicate_node.left.used_predicates.add(modified_fix)
 
+    print("redistributing new parent_node: ")
+    print(new_predicate_node)
     # print(f"after fix {the_fix}, the left child is: {new_predicate_node.left.pairs}")
     # print(f"after fix {the_fix}, the right child is: {new_predicate_node.right.pairs}")
 
@@ -613,8 +652,10 @@ def reverse_node_parent_condition(node):
     old_left.label=DIRTY
     node.parent.left=old_right
     node.parent.right=old_left
+    node.parent.is_reversed=True
 
 def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
+    # print(f"fixing : {treerule}")
     if(repair_config.strategy=='naive'):
         # initialize the queue to work with
         queue = deque([])
@@ -640,6 +681,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                     return treerule
                 else:
                     reverse_node_parent_condition(node)
+                    treerule.setsize(treerule.size+2)
                     # print('its not pure?')
                     continue
 
@@ -683,7 +725,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
         queue = deque([])
         for ln in leaf_nodes:
             queue.append(ln)
-        # print(queue)
+        # print(f"queue: {queue}")
         while(queue):
             node = queue.popleft()
             new_parent_node=None
@@ -693,6 +735,11 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
             best_fix = None
             reverse_condition=False
             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
+                # print("all pairs: ")
+                # print("all pairs[clean]:")
+                # print(node.pairs[CLEAN])
+                # print("all pairs[dirty]:")
+                # print(node.pairs[DIRTY])
                 # need to examine all possible pair combinations
                 considered_fixes = set()
                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
@@ -703,13 +750,30 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                         if(f in considered_fixes):
                             continue
                         gini, reverse_cond =calculate_gini(node, f)
+                        # print(f"the fix: {f}, gini : {gini}")
                         considered_fixes.add(f)
                         if(gini<min_gini):
                             min_gini=gini
                             best_fix=f
+                            best_fix_pair=pair
                             reverse_condition=reverse_cond
+                # print(f"considered_fixes: {considered_fixes}")
                 if(best_fix):
+                    print(f"best_fix for rule: {treerule}")
+                    print(f"best_fix: {best_fix}")
+                    print(f"best_fix_pair: {best_fix_pair}")
                     new_parent_node=redistribute_after_fix(treerule, node, best_fix, reverse_condition)
+            else:
+                if(check_tree_purity(treerule)):
+                    # print('its pure already!')
+                    # print(treerule)
+                    return treerule
+                else:
+                    reverse_node_parent_condition(node)
+                    treerule.setsize(treerule.size+2)
+                    # print('its not pure?')
+                    continue
+
             # handle the left and right child after redistribution
             if(new_parent_node):
                 still_inpure=False
@@ -1090,126 +1154,85 @@ def locate_node(tree, number):
     print('cant find the node!')
     exit()
 
-def populate_violations(tree_rule, conn, rule_text, complaint, table_name):
+def populate_violations(tree_rule, conn, rule_text, complaint, table_name, violations_dict=None, complaint_selection=False, check_existence_only=False):
     # given a tree rule and a complaint, populate the complaint and violation tuple pairs
     # to the leaf nodes
+    # print("rule text:")
+    # print(rule_text)
     tuples_inviolation=find_tuples_in_violation(complaint['tuple'], conn, rule_text, table_name, targeted=True)
+    if(check_existence_only):
+        if('t1' in tuples_inviolation):
+            if(tuples_inviolation['t1']):
+                return True 
+        if('t2' in tuples_inviolation):
+            if(tuples_inviolation['t2']):
+                return True 
+
     # print(f"tuples_inviolation with {complaint} on rule {rule_text}")
     # print(len(tuples_inviolation))
     pairs = []
-
+    if(complaint_selection):
+        if(complaint['tuple']['_tid_'] not in violations_dict):
+            violations_dict[complaint['tuple']['_tid_']]=set()
     if('t1' in tuples_inviolation):
         for v in tuples_inviolation['t1']:
             pair = {'t1':complaint['tuple'], 't2':v, 'expected_label':complaint['expected_label']}
             pairs.append(pair)
+            if(complaint_selection):
+                violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
     if('t2' in tuples_inviolation):
         for v in tuples_inviolation['t2']:
             pair = {'t1':v, 't2':complaint['tuple'], 'expected_label':complaint['expected_label']}
             pairs.append(pair)
+            if(complaint_selection):
+                violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
     # print("total_pairs")
     # print(len(pairs))
-    leaf_nodes = []
+    if(not complaint_selection):
+        leaf_nodes = []
+        # print(f"pairs: {pairs}")
+        for p in pairs:
+            leaf_node = tree_rule.evaluate(p, ret='node')
+            leaf_node.pairs[p['expected_label']].append(p)
+            if(leaf_node not in leaf_nodes):
+                leaf_nodes.append(leaf_node)
+        # print(leaf_nodes)
+        # print(tree_rule)
+        # print('\n')
+        return leaf_nodes
+    else:
+        return violations_dict
 
-    for p in pairs:
-        leaf_node = tree_rule.evaluate(p)
-        leaf_node.pairs[p['expected_label']].append(p)
-        if(leaf_node not in leaf_nodes):
-            leaf_nodes.append(leaf_node)
-    # print(leaf_nodes)
-    # print(tree_rule)
-    # print('\n')
-    return leaf_nodes
-
-
-def get_holoclean_results(table_name, conn, cols):
-
-    union_sql = f"""
-    SELECT 'before_clean' AS type, * from  {table_name}
-    union all 
-    SELECT 'after_clean' AS type, * from {table_name}_repaired
-    order by _tid_
-    """
-    df_union_before_and_after = pd.read_sql(union_sql, conn) 
-    # print("cols before and after union")
-    # print(list(df_union_before_and_after))
-    j = 0
-    for i in range(0,num_lines):
-        if(j%100==0):
-            print(j)
-        j+=1
-        df_row = pd.DataFrame(columns=['type']+cols)
-        df_row.loc[0,'type'] = 'ground_truth'
-        df_row.loc[0,'_tid_'] = i
-        q = f"""
-        SELECT * FROM {table_name}_clean WHERE _tid_={i} 
-        """
-        df_for_one_row = pd.read_sql(q,conn)
-        for index, row in df_for_one_row.iterrows():
-            df_row.loc[0, f"{row['_attribute_']}"] = row['_value_']
-        df_union_before_and_after = pd.concat([df_union_before_and_after, df_row])
-
-    # iterate this dataframe to find all wrong predictions and list them to choose
-    grouped = df_union_before_and_after.groupby('_tid_')
-
-    # print("cols before and after union")
-    # print(list(df_union_before_and_after))
-
-    # for d,v in repaired_dict.items():
-    #     print(f"{d}: {len(repaired_dict[d])}")
+def get_muse_results(table_name, conn, muse_dirties):
+    # muse input are a list of tuples being deleted, need to identify the 
+    cur=conn.cursor()
+    cur.execute(f"select _tid_, is_dirty from {table_name}")
+    res=cur.fetchall()
+    real_dirties=[x[0] for x in res if x[1]==True]
+    real_cleans=[x[0] for x in res if x[1]==False]
+    print(f"real dirties:")
+    print(real_dirties)
+    print(f"real_cleans:")
+    print(real_cleans)
+    muse_dirty_ids=[int(x[-2]) for x in muse_dirties]
+    print(f"muse_dirty_ids:")
+    print(muse_dirty_ids)
+    dc = [x for x in muse_dirty_ids if x in real_cleans]
+    dd = [x for x in muse_dirty_ids if x in real_dirties]
+    cc = [x for x in real_cleans if x not in muse_dirty_ids]
+    return dc, dd, cc, len(res)
 
 
-    ddc = set([])
-    ddw = set([])
-    dc = set([])
-    cd = set([])
-    cc = set([])
-    dirties = set([])
-    # ddc: dirty -> expected_dirty and repaired correctly
-    # ddw: dirty -> expected_dirty and repaired wrong (Start with ddc)
-    # dc: dirty -> expected_clean
-    # cd: clean -> expected_dirty
-    # cc: clean -> expected_clean 
- 
-    # iterate this dataframe to find all wrong predictions and list them to choose
-    grouped = df_union_before_and_after.groupby('_tid_')
-    for name, group in grouped:
-        tid = pd.to_numeric(group.iloc[0]['_tid_'], downcast="integer")
-        # if(k%100==0):
-        #     print(k)
-        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True))):
-            dirties.add(int(tid))
+def calculate_retrained_results(complaints, confirmations, new_dirties):
 
-        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
-            group[group['type']=='before_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
-            dc.add(int(tid))
+    new_dirties_ids = [int(x[-2]) for x in new_dirties]
+    print(f"complaints:{complaints}")
+    print(f'confirmations: {confirmations}')
+    print(f"new_dirties: {new_dirties_ids}")
+    complaint_fix_rate=1-len([x for x in complaints if x in new_dirties_ids])/len(complaints)
+    confirm_preserve_rate=len([x for x in confirmations if x in new_dirties_ids])/len(confirmations)
 
-            # dirties: 224, dc: 0, ddw: 80, ddc: 144, cc: 486, cd: 290
-
-        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
-           not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True)) and \
-           not group[group['type']=='before_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
-            ddw.add(int(tid))
-            # this is the case : dirty -> expected_dirty but holoclean didnt repair correctly
-
-        if(not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
-            group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
-            ddc.add(int(tid))
-
-        if(group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
-            group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
-            cc.add(int(tid))
-
-        if(group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='before_clean'][cols].reset_index(drop=True)) and \
-            not group[group['type']=='after_clean'][cols].reset_index(drop=True).equals(group[group['type']=='ground_truth'][cols].reset_index(drop=True))):
-            # print(group)
-            cd.add(int(tid))
-
-    # print(f"cd: {cd}")
-    print(f"dirties: {len(dirties)}, dc: {len(dc)}, ddw: {len(ddw)}, ddc: {len(ddc)}, cc: {len(cc)}, cd: {len(cd)}")
-    # exit()
-    return dirties, dc, ddw, ddc, cc, cd, df_union_before_and_after
-
-
+    return complaint_fix_rate, confirm_preserve_rate
     # wrong_repairs_dfs=[]
     # correct_repairs_dfs=[]
     # still_dirty_dfs=[]
@@ -1258,217 +1281,418 @@ def get_holoclean_results(table_name, conn, cols):
     # clean_input: currently dirty, but should be clean
 
 
-
-
 if __name__ == '__main__':
-    conn=psycopg2.connect('dbname=holo user=postgres')
-    cur = conn.cursor()
+    
+    from rbbm_src.dc_src.DCQueryTranslator import convert_dc_to_muse_rule
+    from rbbm_src.muse.running_example.running_example_adult import *
 
-    input_csv_dir = '/home/opc/chenjie/RBBM/experiments/dc/'
-    # input_csv_dir = '/home/opc/chenjie/holoclean/testdata/'
-    # input_csv_file = 'hospital_1000.csv'
-    # input_csv_file = 'gt_emp.csv'
-    # input_csv_file = 'dirty_hospital.csv'
-    # input_csv_file = 'hospital.csv'
-    input_csv_file = 'dirty_hospital_coosa.csv'
-    # input_csv_file='dirty_2_col_hospital.csv'
-
-    input_dc_dir = input_csv_dir
-    # input_dc_file = 'hospital_1000_constraints.txt'
-    input_dc_file = 'hospital_1000_constraints.txt'
-
-    ground_truth_dir = input_csv_dir
-    # ground_truth_file = 'gt_emp_hoclean_format.csv'
-    # ground_truth_file = 'gt_hospital_holoclean_format.csv'
-    ground_truth_file = 'gt_hospital_1k.csv'
-    # ground_truth_file = 'hospital_1000_clean.csv'
-    # ground_truth_file='gt_hospital_2col_1k_manually_changed.csv'
-    conn.autocommit=True
-    cur=conn.cursor()
-    input_file=input_csv_dir+input_csv_file
-    table_name=input_csv_file.split('.')[0]
-    cols=None
-    num_lines=0
+    # dc_file='/home/opc/chenjie/RBBM/experiments/dc/dc_sample_10'
+    # table_name='adult'
+    dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/flights_dcfinder_rules_sample.txt'
+    table_name='flights_new'
+    res=[]
+    rule_texts=[]
     try:
-        with open(input_file) as f:
-            first_line = f.readline()
-            num_lines = sum(1 for line in f)
-    except Exception as e:
-        print(f'cant read file {input_file}')
-        exit()
+        with open(dc_file, "r") as file:
+            for line in file:
+                rule_texts.append(line.strip())
+                # rules_from_line = [(table_name, x) for x in convert_dc_to_muse_rule(line, 'adult', 't1')]
+                rules_from_line = [(table_name, x) for x in convert_dc_to_muse_rule(line, 'flights_new', 't1')]
+                res.extend(rules_from_line)
+    except FileNotFoundError:
+        print("File not found.")
+    except IOError:
+        print("Error reading the file.")
+
+    muse_dirties = muse_find_mss(rules=res)
+    # print("muse dirties")
+    # print(muse_dirties)
+    # exit()
+    tupled_muse_dirties=[x[1].strip('()').split(',') for x in muse_dirties]
+    print(len(tupled_muse_dirties))
+    print(tupled_muse_dirties)
+    conn=psycopg2.connect('dbname=cr user=postgres')
+
+    dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
+
+    # do a check and construct user complaint set
+    violations_dict={}
+    for w in dc:
+        complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {w}", conn)
+        complaint_tuples = complaint_df.to_dict('records')
+        complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
+        for r in rule_texts:
+            violations_dict=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=complaint_dicts[0], table_name=table_name, 
+                violations_dict=violations_dict, complaint_selection=True)
+
+    print(f"dc:{dc}")
+    print(f"dd:{dd}")
+    print(f"cc:{cc}")
+    print(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+    print(f"violations_dict")
+    print(violations_dict)
+    complaint_size=10
+    confirmation_size=10
+    current_complaint_cnt=0
+    complaint_input=set([])
+    complaint_set_completed=False
+    for vk,vv in violations_dict.items():
+        if(complaint_set_completed):
+            break
+        current_dc_added = False
+        for c in vv:
+            if(c in dc):
+                print(f"(c, c) case found ({vk}, {c})")
+                print(f"complaint_input added {c}")
+                complaint_input.add(c)
+                current_complaint_cnt=len(complaint_input)
+                if(not current_dc_added):
+                    complaint_input.add(vk)
+                    current_complaint_cnt=len(complaint_input)
+                    current_dc_added=True
+                if(current_complaint_cnt>=complaint_size):
+                    complaint_set_completed=True
+                    break
+    if(not complaint_set_completed):
+        size_needed=complaint_size-len(complaint_input)
+        rest_avaiable_dcs = [x for x in dc if x not in complaint_input]
+        complaint_input.extend(random.sample(rest_avaiable_dcs, size_needed))
+
+    # complaint_input = random.sample(dc, complaint_size)
+    print(f"complaint_input:{complaint_input}")
+    confirm_input = random.sample(dd, confirmation_size)
+    print(f"confirm_input:{confirm_input}")
+
+    # stats being used to delete rules pre fix algorithm
+    cnt_non_violation_on_confirmation=cnt_violation_on_complaints=0
+
+    rules_with_violations = {r:{'violate_confirm_cnt':0, 'violate_complaint_cnt':0} for r in rule_texts}
+
+    for l in complaint_input:
+        complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {l}", conn)
+        complaint_tuples = complaint_df.to_dict('records')
+        complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
+        for r in rule_texts:
+            has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=complaint_dicts[0], table_name=table_name, 
+                violations_dict=None, complaint_selection=False, check_existence_only=True)
+            if(has_violation):
+                rules_with_violations[r]['violate_complaint_cnt']+=1
+
+    for f in confirm_input:
+        confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ = {f}", conn)
+        confirm_tuples = confirm_df.to_dict('records')
+        confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+        for r in rule_texts:
+            has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=confirm_dicts[0], table_name=table_name, 
+                violations_dict=None, complaint_selection=False, check_existence_only=True)
+            if(has_violation):
+                rules_with_violations[r]['violate_confirm_cnt']+=1
+
+    print('rules_with_violations')
+    print(rules_with_violations)
+
+    pre_delete_thresh=0.3
+    post_delete_rules=[r for r,v in rules_with_violations.items() if ((len(confirm_input)-v['violate_confirm_cnt']+v['violate_complaint_cnt'])/(len(complaint_input) + len(confirm_input)))<pre_delete_thresh]
+    deleted_rules =[r for r,v in rules_with_violations.items() if ((len(confirm_input)-v['violate_confirm_cnt']+v['violate_complaint_cnt'])/(len(complaint_input) + len(confirm_input)))>=pre_delete_thresh]
+    print("deleted_rules")
+    print(deleted_rules)
+    print(len(deleted_rules))
+    print("rules to be used in fix")
+    print(post_delete_rules)
+    print(len(post_delete_rules))
+    exit()
+    print(f" running user input: size: complaint(dirties but should be clean): {len(complaint_input)}, confirmation(clean and should be clean):\
+     {len(confirm_input)}, version: information gain....")
+    # print(f"on complaint size {c}")
+    user_input = []
+
+    if(complaint_size>0):
+        complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})", conn)
+        print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})")
+        print(complaints_df)
+        complaints_df.to_csv('complaint_input_tuples.csv', index=False)
+        complaint_tuples = complaints_df.to_dict('records')
+        complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
     else:
-        cols=first_line.split(',')
-        cols=[c.strip() for c in cols]
-    # drop preexisted repaired records 
-    select_old_repairs_q = f"""
-    SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES 
-    WHERE TABLE_NAME LIKE '{table_name}_repaired_%' AND TABLE_TYPE = 'BASE TABLE'
-    """
-    cur.execute(select_old_repairs_q)
+        complaint_dicts=[]
 
-    for records in cur.fetchall():
-        drop_q = f"drop table if exists {records[0]}"
-        cur.execute(drop_q)
+    if(confirmation_size>0):
+        confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})", conn)
+        print(confirm_df)
+        complaints_df.to_csv('confirm_input_tuples.csv', index=False)
+        print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})")
+        confirm_tuples = confirm_df.to_dict('records')
+        confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+    else:
+        confirm_dicts = []
+    user_input.extend(complaint_dicts)
+    user_input.extend(confirm_dicts)
 
-    main(table_name=table_name, csv_dir=input_csv_dir, 
-        csv_file=input_csv_file, dc_dir=input_dc_dir, dc_file=input_dc_file, gt_dir=ground_truth_dir, 
-        gt_file=ground_truth_file, initial_training=True)
+    rule_file = open(dc_file, 'r')
+    test_rules = [l.strip() for l in rule_file.readlines()]
 
-    # confirm_dirty, expected_clean, expected_dirty, before_fix_correct_repair_cnt, before_fix_repair_cnt
-    dirties, dc, ddw, ddc, cc, cd, concated_df = get_holoclean_results(table_name, conn, cols)
-    ddw_dfs = []
-    ddc_dfs = []
-    dc_dfs = []
-    for k in ddw:
-        ddw_dfs.append(concated_df[concated_df['_tid_']==k])
-    for k in ddc:
-        ddc_dfs.append(concated_df[concated_df['_tid_']==k])
-    for k in dc:
-        dc_dfs.append(concated_df[concated_df['_tid_']==k])
-    # expected labels:
-    # correct_repairs: DIRTY
-    # clean_tuples: CLEAN
-    # still_dirty_tuples: DIRTY
-    if(ddw_dfs):
-        pd.concat(ddw_dfs).to_csv('ddws.csv', index=False)
-    if(ddc_dfs):
-        pd.concat(ddc_dfs).to_csv('ddcs.csv', index=False)
-    if(dc_dfs):
-        pd.concat(dc_dfs).to_csv('dcs.csv', index=False)
-
-    print(f"before fixes, the accuracy of holoclean is {(len(ddc)+len(cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
-
-    results = []
-
-    dirty_expected_clean = []
-    dirty_expected_clean.extend(list(dc))
-    dirty_expected_dirty = []
-    dirty_expected_dirty.extend(list(ddw))
-    dirty_expected_dirty.extend(list(ddc))
-    clean_expected_clean = []
-    clean_expected_clean.extend(list(cc))
-
-    # for p in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
-    for p in [1]:
-
-    # for p in [0.1]:
-        # confirm_dirty_input = random.sample(dirty_expected_dirty, ceil(len(dirty_expected_dirty)*p))
-        # dirty_input= random.sample(dirty_expected_dirty, ceil(len(dirty_expected_dirty)*p))
-        # clean_input= random.sample(dirty_expected_clean, ceil(len(dirty_expected_clean)*p))
-
-        if(dirty_expected_dirty):
-            dirty_input= random.sample(dirty_expected_dirty, 1)
+    rc = RepairConfig(strategy='information gain', deletion_factor=0.5, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+    start = time.time()
+    bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'])
+    end = time.time()
+    new_rules = []
+    deleted_cnt = 0
+    for k in bkeepdict:
+        if(bkeepdict[k]['deleted']==False):
+            new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
         else:
-            print("no dirties !")
-            exit()
-        if(dirty_expected_clean):
-            clean_input= random.sample(dirty_expected_clean, 1)
-        else:
-            clean_input= random.sample(clean_expected_clean, 1)
+            deleted_cnt+=len(bkeepdict[k]['fixed_treerule_text'])
 
 
-        print(f"dirty_input: {concated_df[concated_df['_tid_']==dirty_input[0]]}")
-        print(f"clean_input: {concated_df[concated_df['_tid_']==clean_input[0]]}")
+    print(f"new_rules")
+    print(new_rules)
+    print(f'"len(new_rules): {len(new_rules)}')
+    conn.close()
+    conn=psycopg2.connect('dbname=cr user=postgres')
+    new_muse_program= []
+    for r in new_rules:
+        new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
+    muse_dirties_new = muse_find_mss(rules=new_muse_program)
+    tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
+    print(len(tupled_muse_dirties_new))
+    print(tupled_muse_dirties_new)
+    # conn=psycopg2.connect('dbname=cr user=postgres')
+    # cur = conn.cursor()
 
-        # print("expected_ids")
-        # print(expected_ids)
+    dc_new, dd_new, cc_new, total_cnt_new = get_muse_results('flights_new', conn, tupled_muse_dirties_new)
+    print(f"complaint_input:{complaint_input}")
+    print(f"confirm_input:{confirm_input}")
+    print(f"dc:{dc}")
+    print(f"dd:{dd}")
+    print(f"cc:{cc}")
+    print(f"new_dc:{dc_new}")
+    print(f"new_dd:{dd_new}")
+    print(f"new_cc:{cc_new}")
+    # 'complaints', 'confirmations', and 'new_dirties'
+    fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_input, confirmations=confirm_input, new_dirties=tupled_muse_dirties_new)
+    print(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+    print(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
+    print(f"before fix, we had {len(res)} rules as input, after fix, we have {len(new_rules)} rules as input, deleted {deleted_cnt} rules")
 
-        # print("clean_tuples")
-        # print(clean_tuples)
+    # for k in bkeepdict:
+    #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+    print(bkeepdict)
 
-        # complaint_size_for_each_label = [3]
-        # # complaint_size_for_each_label = [2]
-        versions = ['information gain']
-        # versions = ['optimal']
+    rc.runtime=end-start
 
-        # for c in complaint_size_for_each_label:
-        for v in versions:
-            print(f" running complaint: size: dity: {len(dirty_input)}, clean: {len(clean_input)}, version: {v}....")
-            # print(f"on complaint size {c}")
-            complaints_dirty_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})", conn)
-            print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})")
-            complaints_clean_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})", conn)
-            print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})")
-            expected_dirty_tuples = complaints_dirty_df.to_dict('records')
-            expected_clean_tuples = complaints_clean_df.to_dict('records')
-            expected_dirty_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in expected_dirty_tuples]
-            expected_clean_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in expected_clean_tuples]
-            complaints = []
-            complaints.extend(expected_dirty_dicts)
-            complaints.extend(expected_clean_dicts)
+    for r in new_rules:
+        print(r+'\n')
 
-            rule_file = open(input_dc_dir+input_dc_file, 'r')
-            test_rules = [l.strip() for l in rule_file.readlines()]
-            # print(complaints)
-            # test_rules=[
-            # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
-            # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
-            # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.marital-status,t2.marital-status)',
-            # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)',
-            # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-            # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)',
-            # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)',
-            # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-            # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&EQ(t1.age,t2.age)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
-            # 't1&t2&IQ(t1.age,t2.age)&IQ(t1.race,t2.race)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
-            # 't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
-            # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
-            # ]
-            rc = RepairConfig(strategy=v, complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
-            start = time.time()
-            bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name)
-            end = time.time()
-            new_rules = []
+    
+# if __name__ == '__main__':
+#     conn=psycopg2.connect('dbname=holo user=postgres')
+#     cur = conn.cursor()
 
-            for k in bkeepdict:
-                new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+#     input_csv_dir = '/home/opc/chenjie/RBBM/experiments/dc/'
+#     # input_csv_dir = '/home/opc/chenjie/holoclean/testdata/'
+#     # input_csv_file = 'hospital_1000.csv'
+#     # input_csv_file = 'gt_emp.csv'
+#     # input_csv_file = 'dirty_hospital.csv'
+#     # input_csv_file = 'hospital.csv'
+#     input_csv_file = 'dirty_hospital_coosa.csv'
+#     # input_csv_file='dirty_2_col_hospital.csv'
 
-            rc.runtime=end-start
+#     input_dc_dir = input_csv_dir
+#     # input_dc_file = 'hospital_1000_constraints.txt'
+#     input_dc_file = 'hospital_1000_constraints.txt'
 
-            timestr = time.strftime("%Y%m%d-%H%M%S")
+#     ground_truth_dir = input_csv_dir
+#     # ground_truth_file = 'gt_emp_hoclean_format.csv'
+#     # ground_truth_file = 'gt_hospital_holoclean_format.csv'
+#     ground_truth_file = 'gt_hospital_1k.csv'
+#     # ground_truth_file = 'hospital_1000_clean.csv'
+#     # ground_truth_file='gt_hospital_2col_1k_manually_changed.csv'
+#     conn.autocommit=True
+#     cur=conn.cursor()
+#     input_file=input_csv_dir+input_csv_file
+#     table_name=input_csv_file.split('.')[0]
+#     cols=None
+#     num_lines=0
+#     try:
+#         with open(input_file) as f:
+#             first_line = f.readline()
+#             num_lines = sum(1 for line in f)
+#     except Exception as e:
+#         print(f'cant read file {input_file}')
+#         exit()
+#     else:
+#         cols=first_line.split(',')
+#         cols=[c.strip() for c in cols]
+#     # drop preexisted repaired records 
+#     select_old_repairs_q = f"""
+#     SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES 
+#     WHERE TABLE_NAME LIKE '{table_name}_repaired_%' AND TABLE_TYPE = 'BASE TABLE'
+#     """
+#     cur.execute(select_old_repairs_q)
 
-            with open(f"{input_dc_dir}{timestr}", 'w') as f:
-                for line in new_rules:
-                    f.write(f"{line}\n")
+#     for records in cur.fetchall():
+#         drop_q = f"drop table if exists {records[0]}"
+#         cur.execute(drop_q)
+
+#     main(table_name=table_name, csv_dir=input_csv_dir, 
+#         csv_file=input_csv_file, dc_dir=input_dc_dir, dc_file=input_dc_file, gt_dir=ground_truth_dir, 
+#         gt_file=ground_truth_file, initial_training=True)
+
+#     # confirm_dirty, expected_clean, expected_dirty, before_fix_correct_repair_cnt, before_fix_repair_cnt
+#     dirties, dc, ddw, ddc, cc, cd, concated_df = get_holoclean_results(table_name, conn, cols)
+#     ddw_dfs = []
+#     ddc_dfs = []
+#     dc_dfs = []
+#     for k in ddw:
+#         ddw_dfs.append(concated_df[concated_df['_tid_']==k])
+#     for k in ddc:
+#         ddc_dfs.append(concated_df[concated_df['_tid_']==k])
+#     for k in dc:
+#         dc_dfs.append(concated_df[concated_df['_tid_']==k])
+#     # expected labels:
+#     # correct_repairs: DIRTY
+#     # clean_tuples: CLEAN
+#     # still_dirty_tuples: DIRTY
+#     if(ddw_dfs):
+#         pd.concat(ddw_dfs).to_csv('ddws.csv', index=False)
+#     if(ddc_dfs):
+#         pd.concat(ddc_dfs).to_csv('ddcs.csv', index=False)
+#     if(dc_dfs):
+#         pd.concat(dc_dfs).to_csv('dcs.csv', index=False)
+
+#     print(f"before fixes, the accuracy of holoclean is {(len(ddc)+len(cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
+
+#     results = []
+
+#     dirty_expected_clean = []
+#     dirty_expected_clean.extend(list(dc))
+#     dirty_expected_dirty = []
+#     dirty_expected_dirty.extend(list(ddw))
+#     dirty_expected_dirty.extend(list(ddc))
+#     clean_expected_clean = []
+#     clean_expected_clean.extend(list(cc))
+
+#     # for p in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
+#     for p in [1]:
+
+#     # for p in [0.1]:
+#         # confirm_dirty_input = random.sample(dirty_expected_dirty, ceil(len(dirty_expected_dirty)*p))
+#         # dirty_input= random.sample(dirty_expected_dirty, ceil(len(dirty_expected_dirty)*p))
+#         # clean_input= random.sample(dirty_expected_clean, ceil(len(dirty_expected_clean)*p))
+
+#         if(dirty_expected_dirty):
+#             dirty_input= random.sample(dirty_expected_dirty, 1)
+#         else:
+#             print("no dirties !")
+#             exit()
+#         if(dirty_expected_clean):
+#             clean_input= random.sample(dirty_expected_clean, 1)
+#         else:
+#             clean_input= random.sample(clean_expected_clean, 1)
+
+
+#         print(f"dirty_input: {concated_df[concated_df['_tid_']==dirty_input[0]]}")
+#         print(f"clean_input: {concated_df[concated_df['_tid_']==clean_input[0]]}")
+
+#         # print("expected_ids")
+#         # print(expected_ids)
+
+#         # print("clean_tuples")
+#         # print(clean_tuples)
+
+#         # complaint_size_for_each_label = [3]
+#         # # complaint_size_for_each_label = [2]
+#         versions = ['information gain']
+#         # versions = ['optimal']
+
+#         # for c in complaint_size_for_each_label:
+#         for v in versions:
+#             print(f" running complaint: size: dity: {len(dirty_input)}, clean: {len(clean_input)}, version: {v}....")
+#             # print(f"on complaint size {c}")
+#             complaints_dirty_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})", conn)
+#             print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})")
+#             complaints_clean_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})", conn)
+#             print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})")
+#             expected_dirty_tuples = complaints_dirty_df.to_dict('records')
+#             expected_clean_tuples = complaints_clean_df.to_dict('records')
+#             expected_dirty_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in expected_dirty_tuples]
+#             expected_clean_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in expected_clean_tuples]
+#             complaints = []
+#             complaints.extend(expected_dirty_dicts)
+#             complaints.extend(expected_clean_dicts)
+
+#             rule_file = open(input_dc_dir+input_dc_file, 'r')
+#             test_rules = [l.strip() for l in rule_file.readlines()]
+#             # print(complaints)
+#             # test_rules=[
+#             # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
+#             # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
+#             # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.marital-status,t2.marital-status)',
+#             # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&IQ(t1.relationship,t2.relationship)&EQ(t1.sex,t2.sex)&IQ(t1.workclass,t2.workclass)',
+#             # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.age,t2.age)&IQ(t1.race,t2.race)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+#             # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.marital-status,t2.marital-status)&EQ(t1.workclass,t2.workclass)&IQ(t1.native-country,t2.native-country)',
+#             # 't1&t2&EQ(t1.education,t2.education)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)',
+#             # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+#             # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&EQ(t1.age,t2.age)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.sex,t2.sex)&IQ(t1.native-country,t2.native-country)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.income,t2.income)',
+#             # 't1&t2&IQ(t1.age,t2.age)&IQ(t1.race,t2.race)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.education,t2.education)&EQ(t1.occupation,t2.occupation)&IQ(t1.race,t2.race)&IQ(t1.workclass,t2.workclass)',
+#             # 't1&t2&EQ(t1.age,t2.age)&IQ(t1.sex,t2.sex)&EQ(t1.relationship,t2.relationship)',
+#             # 't1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)'
+#             # ]
+#             rc = RepairConfig(strategy=v, complaints=complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+#             start = time.time()
+#             bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name)
+#             end = time.time()
+#             new_rules = []
+
+#             for k in bkeepdict:
+#                 new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+
+#             rc.runtime=end-start
+
+#             timestr = time.strftime("%Y%m%d-%H%M%S")
+
+#             with open(f"{input_dc_dir}{timestr}", 'w') as f:
+#                 for line in new_rules:
+#                     f.write(f"{line}\n")
                     
 
-            main(table_name=table_name, csv_dir=input_csv_dir, 
-                csv_file=input_csv_file, dc_dir=input_dc_dir, dc_file=timestr, gt_dir=ground_truth_dir, 
-                gt_file=ground_truth_file, initial_training=True)
+#             main(table_name=table_name, csv_dir=input_csv_dir, 
+#                 csv_file=input_csv_file, dc_dir=input_dc_dir, dc_file=timestr, gt_dir=ground_truth_dir, 
+#                 gt_file=ground_truth_file, initial_training=True)
 
-            new_dirties, new_dc, new_ddw, new_ddc, new_cc, new_cd, new_concated_df = get_holoclean_results(table_name, conn, cols)
-            print(f"after fixes, the accuracy of holoclean is {(len(new_ddc)+len(new_cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
+#             new_dirties, new_dc, new_ddw, new_ddc, new_cc, new_cd, new_concated_df = get_holoclean_results(table_name, conn, cols)
+#             print(f"after fixes, the accuracy of holoclean is {(len(new_ddc)+len(new_cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
 
-            fixed_dirty_cnt, fixed_clean_cnt = 0, 0
+#             fixed_dirty_cnt, fixed_clean_cnt = 0, 0
             
 
-            for c in clean_input:
-                if c not in new_dirties:
-                    fixed_clean_cnt+=1
+#             for c in clean_input:
+#                 if c not in new_dirties:
+#                     fixed_clean_cnt+=1
 
-            for d in dirty_input:
-                if d in new_ddc:
-                    fixed_dirty_cnt+=1
+#             for d in dirty_input:
+#                 if d in new_ddc:
+#                     fixed_dirty_cnt+=1
 
-            print(f"after the fix the original dirty is fixed {fixed_dirty_cnt}/{len(dirty_input)} = {fixed_dirty_cnt/len(dirty_input)}")
-            print(f"after the fix the original clean is fixed {fixed_clean_cnt}/{len(clean_input)} = {fixed_clean_cnt/len(clean_input)}")
+#             print(f"after the fix the original dirty is fixed {fixed_dirty_cnt}/{len(dirty_input)} = {fixed_dirty_cnt/len(dirty_input)}")
+#             print(f"after the fix the original clean is fixed {fixed_clean_cnt}/{len(clean_input)} = {fixed_clean_cnt/len(clean_input)}")
 
-            fix_result = {"dirty_fix_rate": fixed_dirty_cnt/len(dirty_input), "clean_preserving_rate": fixed_clean_cnt/len(clean_input)}
-            result_dict = print_fix_book_keeping_stats(rc, bkeepdict, fix_result)
+#             fix_result = {"dirty_fix_rate": fixed_dirty_cnt/len(dirty_input), "clean_preserving_rate": fixed_clean_cnt/len(clean_input)}
+#             result_dict = print_fix_book_keeping_stats(rc, bkeepdict, fix_result)
 
 
-            results.append(result_dict)
+#             results.append(result_dict)
 
-    results_df = pd.DataFrame.from_dict(results)
-    results_df.to_csv('results_overall.csv', index=False)
+#     results_df = pd.DataFrame.from_dict(results)
+#     results_df.to_csv('results_overall.csv', index=False)
 
 
 

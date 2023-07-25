@@ -116,7 +116,7 @@ class DCAttrPredicate(Predicate):
 		# print(re.findall(r'(t[12])\.[-\w]+,(t[12])\.[-\w]+', self.pred))
 		# print(self.pred)
 		self.pred_identifier= re.findall(r'(t[12])\.([-\w]+),(t[12])\.([-\w]+)', self.pred)[0] + (self.operator,)
-		self.attr=self.pred_identifier[1]
+		self.attr=self.pred_identifier[1].lower()
 
 	def __repr__(self):
 		return f"dc-attr-pred-{self.operator}{self.pred}"

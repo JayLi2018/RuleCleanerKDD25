@@ -45,6 +45,7 @@ import argparse
 import nltk
 from nltk.corpus import stopwords
 import copy
+import pickle
 
 nltk.download('stopwords') 
 stop_words = set(stopwords.words('english')) 
@@ -546,13 +547,13 @@ def calculate_retrained_results(complaints, new_wrongs_df, file_dir):
 	still_wrongs = pd.merge(the_complaints, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
 	# still_wrongs.to_csv(file_dir+'_still_wrongs.csv', index=False)
 	not_correct_anymores = pd.merge(the_confirmatons, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
-	print("complaints")
-	print(complaints)
-	print("new_wrongs")
-	print(new_wrongs_df)
+	# print("complaints")
+	# print(complaints)
+	# print("new_wrongs")
+	# print(new_wrongs_df)
 	# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
-	print('still wrongs')
-	print(still_wrongs)
+	# print('still wrongs')
+	# print(still_wrongs)
 
 	complaint_fix_rate=confirm_preserve_rate=1
 	if(len(the_complaints)>0):
@@ -577,8 +578,8 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 		stop_at_id_pos=current_start_id_pos+floor(all_rules_cnt*return_after_percent)
 	# print("fix_book_keeping_dict")
 	# print(fix_book_keeping_dict)
-	print(f"current_start_id:{sorted_rule_ids[current_start_id_pos]}")
-	print(f"stop_at_id: {sorted_rule_ids[stop_at_id_pos]}")
+	# print(f"current_start_id:{sorted_rule_ids[current_start_id_pos]}")
+	# print(f"stop_at_id: {sorted_rule_ids[stop_at_id_pos]}")
 
 	while(current_start_id_pos<=stop_at_id_pos):
 		treerule=fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']
@@ -653,13 +654,16 @@ if __name__ == '__main__':
 	parser.add_argument('-e', '--experiment_name', metavar="\b", type=str, default='test_blah',
 	  help='the name of the experiment, the results will be stored in the directory named with experiment_name_systime (default: %(default)s)')
 
-	parser.add_argument('-R', '--repeatable', metavar="\b", type=bool, default=True,
+	parser.add_argument('-R', '--repeatable', metavar="\b", type=str, default='true',
 	  help='repeatable? (default: %(default)s)')
 
 	parser.add_argument('-s', '--seed', metavar="\b", type=int, default=123,
 	  help='if repeatable, specify a seed number here (default: %(default)s)')
 
-	parser.add_argument('-i', '--run_intro',  metavar="\b", type=bool, default=False,
+	parser.add_argument('-S', '--seed_file', metavar="\b", type=str, default='seeds.txt',
+	  help='if repeatable, specify a seed number here (default: %(default)s)')
+
+	parser.add_argument('-i', '--run_intro',  metavar="\b", type=str, default='false',
 	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
 	
 	parser.add_argument('-D', '--deletion_factor',  metavar="\b", type=float, default=0.5,
@@ -672,11 +676,23 @@ if __name__ == '__main__':
 	parser.add_argument('-A', '--retrain_accuracy_thresh',  metavar="\b", type=float, default=0.5,
 	  help='when retrain over every retrain_every_percent, the algorithm stops when the fix rate is over this threshold (default: %(default)s)')
 
+	parser.add_argument('-k', '--load_funcs_from_pickle',  metavar="\b", type=str, default='false',
+	  help='(flag indicating if we want to load functions from a pickle file default: %(default)s)')
+
+	parser.add_argument('-K', '--pickle_file_name',  metavar="\b", type=str, default='placeholder_name',
+	  help='(if load_funcs_from_pickle, then heres the pickle file name : %(default)s)')
+
+	parser.add_argument('-B', '--before_fix_deletion_threshold', metavar="\b", type=float, default=0.5,
+	  help='(the threshold we use to pre-delete the rules before running the fix algorithm : %(default)s)')
+
+	parser.add_argument('-b', '--use_pre_fix_deletion', metavar="\b", type=str, default='False',
+	  help='(do we need pre deletion : %(default)s)')
 	# parser.add_argument('-C', '--customized_complaints_file', metavar="\b", type=text, default='test',
 	#   help='input file name which contains the cids of the complaints (mainly used for running example)(default: %(default)s)')
 
 	args = parser.parse_args()
-
+	param_str=", ".join([f'{k}={v}' for k,v in vars(args).items()])
+	logger.debug(param_str)
 	#########
 	conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password)
 	sample_size=args.userinput_size
@@ -691,9 +707,14 @@ if __name__ == '__main__':
 	retrain_after_percent=args.retrain_every_percent
 	deletion_factor=args.deletion_factor
 	retrain_accuracy_thresh=args.retrain_accuracy_thresh
+	load_funcs_from_pickle=args.load_funcs_from_pickle
+	pickle_file_name=args.pickle_file_name
+	seed_file=args.seed_file
+	pre_deletion_threshold=args.before_fix_deletion_threshold
+	use_pre_fix_deletion=args.use_pre_fix_deletion
 	# customized_complaints_file=args.customized_complaints_file
 	######
-	print(args)
+	logger.debug(f"args:{args}")
 
 
 	timestamp = datetime.now()
@@ -702,7 +723,12 @@ if __name__ == '__main__':
 	if not os.path.exists(result_dir):
 		os.makedirs(result_dir)
 
-	if(lf_source=='intro' or run_intro):
+	if(load_funcs_from_pickle=='true'):
+		with open(f'{pickle_file_name}.pkl', 'rb') as file:
+		    tree_rules = pickle.load(file)
+		    logger.debug('loaded pickled funcs')
+		    logger.debug(f'we have {len(tree_rules)} funcs')
+	elif(lf_source=='intro' or run_intro=='true'):
 		tree_rules=gen_example_funcs()
 	else:
 		sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
@@ -747,22 +773,31 @@ if __name__ == '__main__':
 	# wrongs_df.to_csv('initial_wrongs.csv', index=False)
 	wrong_hams=wrongs_df[wrongs_df['expected_label']==HAM]
 	wrong_spams=wrongs_df[wrongs_df['expected_label']==SPAM]
-	print(f"wrong_hams count: {len(wrong_hams)}")
-	print(f"wrong_spams count: {len(wrong_spams)}")
+	# print(f"wrong_hams count: {len(wrong_hams)}")
+	# print(f"wrong_spams count: {len(wrong_spams)}")
 
 	rs = None
-	new_seed = int.from_bytes(os.urandom(4), byteorder="big")
-	random.seed(new_seed)
-	if(repeatable):
+	# new_seed = int.from_bytes(os.urandom(4), byteorder="big")
+	logger.debug(f"repeatable?: {repeatable}")
+	random.seed()
+	
+	if(repeatable=='true'):
 		rs = rseed
 	else:
-		rs = random.randint(1, 1000)
+		rs = random.randint(1, 10000)
+		logger.debug(f"seed: {rs}")
+		if(not os.path.exists(seed_file)):
+			with open(seed_file, 'w') as file:
+				file.write(f'seed: {rs}\n')
+		else:
+			with open(seed_file, 'a') as file:
+				file.write(f'seed: {rs}\n')
 
-	print(f"random_seed: {rs}")
-	print(f"size: {sample_size}, strat:{strat}")
+	logger.debug(f"random_seed: {rs}")
+	logger.debug(f"size: {sample_size}, strat:{strat}")
 	# tree_rules = [f1, f2, f3]
 
-	if(run_intro):
+	if(run_intro=='true'):
 		# intro_input_cids = []
 		# wrong_ids = random.sample(wrong_check_ids, 5)
 		# correct_ids = random.sample(correct_check_ids, 5)
@@ -780,10 +815,21 @@ if __name__ == '__main__':
 		num_confirm=5
 	else:
 		all_wrongs=all_sentences_df[all_sentences_df['expected_label']!=all_sentences_df['model_pred']]
+		all_wrongs=all_wrongs.sort_values('cid')
 		all_confirms=all_sentences_df[all_sentences_df['expected_label']==all_sentences_df['model_pred']]
+		all_confirms=all_confirms.sort_values('cid')
+		complaint_reached_max=False
 		wrong_sample_size=floor(sample_size*complaint_ratio)
+		if(wrong_sample_size>=len(all_wrongs)):
+			complaint_reached_max=True
+			wrong_sample_size=len(all_wrongs)
 		sampled_wrongs=all_wrongs.sample(n=wrong_sample_size,random_state=rs)
-		sampled_confirms=all_confirms.sample(n=sample_size-wrong_sample_size, random_state=rs)
+		confirm_reached_max=False
+		confirm_sample_size=sample_size-wrong_sample_size
+		if(confirm_sample_size>=len(all_confirms)):
+			confirm_reached_max=True
+			confirm_sample_size=len(all_confirms)
+		sampled_confirms=all_confirms.sample(n=confirm_sample_size, random_state=rs)
 		sampled_complaints=pd.concat([sampled_wrongs, sampled_confirms])
 		num_complaints=len(sampled_wrongs)
 		num_confirm=len(sampled_confirms)
@@ -791,7 +837,7 @@ if __name__ == '__main__':
 	sampled_complaints['id'] = sampled_complaints.reset_index().index
 
 	stimestamp = datetime.now()
-	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0, deletion_factor=deletion_factor)
 	current_fixed_percent=0
 	fixed_rate=0
 	runtime=0
@@ -805,9 +851,12 @@ if __name__ == '__main__':
 	tree_ids.sort()
 	new_all_sentences_df=None
 	num_of_funcs_processed_by_algo=0
-	print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
+	# print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
 	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size} for k in tree_rules}
 		# fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
+
+	if(use_pre_fix_deletion):
+		
 
 	while(fixed_rate<retrain_accuracy_thresh):
 		start = time.time()
@@ -817,15 +866,15 @@ if __name__ == '__main__':
 		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos)
 		current_start_id_pos=prev_stop_tree_id_pos+1
 		post_fix_num_funcs=len([value for value in fix_book_keeping_dict.values() if not value['deleted']])
-		print(f"post_fix_num_funcs: {post_fix_num_funcs}")
+		# print(f"post_fix_num_funcs: {post_fix_num_funcs}")
 		num_funcs = len(fix_book_keeping_dict)
 		end = time.time()
 		runtime+=round(end-start,3)
 		# print(bkeepdict)
-		print(f"runtime: {runtime}")
+		# print(f"runtime: {runtime}")
 		# retrain snorkel using modified labelling funcs
-		print("retraining using the fixed rules")
-		print(tree_rules)
+		# print("retraining using the fixed rules")
+		# print(tree_rules)
 		# new_all_sentences_df.to_csv('new_all_sentences.csv', index=False)
 		# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
@@ -842,13 +891,13 @@ if __name__ == '__main__':
 			after_total_size+=v['after_fix_size']
 
 	avg_tree_size_increase=(after_total_size-before_total_size)/post_fix_num_funcs
-	print(f"avg tree_size increase: {avg_tree_size_increase}")
+	# print(f"avg tree_size increase: {avg_tree_size_increase}")
 
 	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
 		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
 			file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
-				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo\n')
+				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max\n')
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
 	sampled_complaints.to_csv(f"{result_dir}/sampled_complaints_{timestamp_str}_{strat}_{str(sample_size)}.csv", index=False)
@@ -857,13 +906,13 @@ if __name__ == '__main__':
 			comments=f"// presize: {fix_book_keeping_dict[kt]['pre_fix_size']}, after_size: {fix_book_keeping_dict[kt]['after_fix_size']}, deleted: {fix_book_keeping_dict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{fix_book_keeping_dict[kt]['rule'].reversed_cnt}"
 			dot_file=fix_book_keeping_dict[kt]['rule'].gen_dot_string(comments)
 			file.write(dot_file)
-		print("dot string:")
-		print(dot_file)
+		# print("dot string:")
+		# print(dot_file)
 	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
 	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
 		# Write the row to the file
 		file.write(f'{strat},{runtime},{avg_tree_size_increase},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},'+\
-			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo}\n')
+			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max}\n')
 
 
 
