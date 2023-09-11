@@ -5,8 +5,15 @@ import warnings
 warnings.filterwarnings('ignore')
 from rbbm_src.labelling_func_src.src.TreeRules import *
 from rbbm_src.classes import FixMonitor, RepairConfig
-
-from rbbm_src.dc_src.src.classes import parse_rule_to_where_clause, dc_violation_template
+from rbbm_src.dc_src.src.classes import (
+    parse_rule_to_where_clause, 
+    dc_violation_template,
+    ops,
+    eq_op,
+    non_symetric_op,
+    const_detect,
+    get_operator
+    )
 import psycopg2
 from string import Template
 from dataclasses import dataclass
@@ -19,6 +26,11 @@ from rbbm_src.holoclean.examples.holoclean_repair import main
 import random
 from math import ceil
 import logging
+from collections import defaultdict
+from rbbm_src import logconfig
+from math import floor
+from datetime import datetime
+import os
 
 
 logger = logging.getLogger(__name__)
@@ -27,31 +39,6 @@ dc_tuple_violation_template_targeted_t1=Template("SELECT DISTINCT t2.* FROM $tab
 dc_tuple_violation_template_targeted_t2=Template("SELECT DISTINCT t1.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc")
 dc_tuple_violation_template=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc;")
 
-ops = re.compile(r'IQ|EQ|LTE|GTE|GT|LT')
-eq_op = re.compile(r'EQ')
-non_symetric_op = re.compile(r'LTE|GTE|GT|LT')
-const_detect = re.compile(r'([\'|\"])')
-
-
-def get_operator(predicate):
-    predicate_sign=ops.search(predicate).group()
-    # print(predicate_sign)
-    if(predicate_sign=='EQ'):
-        sign='=='
-    elif(predicate_sign=='IQ'):
-        sign='!='
-    elif(predicate_sign=='LTE'):
-        sign='<='
-    elif(predicate_sign=='LT'):
-        sign='<'
-    elif(predicate_sign=='GTE'):
-        sign='>='
-    elif(predicate_sign=='GT'):
-        sign='>'
-    else:
-        print("non recognizable sign")
-        exit()
-    return sign
 
 def parse_dc_to_tree_rule(dc_text):
     # input:a dc raw text
@@ -65,6 +52,8 @@ def parse_dc_to_tree_rule(dc_text):
     predicates = dc_text.split('&')
     root_predicate = predicates[2]
     sign=get_operator(root_predicate)
+    if(sign=='='):
+        sign='=='
     root_node= PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=root_predicate, operator=sign))
     cur_number+=1
     root_left_child= LabelNode(number=cur_number, label=CLEAN, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
@@ -75,6 +64,8 @@ def parse_dc_to_tree_rule(dc_text):
     cur_number+=1
     for pred in predicates[3:]:
         sign=get_operator(pred)
+        if(sign=='='):
+            sign='=='
         if(not const_detect.search(pred)):
             cur_node = PredicateNode(number=cur_number, pred=DCAttrPredicate(pred=pred, operator=sign))
         else:
@@ -92,11 +83,11 @@ def parse_dc_to_tree_rule(dc_text):
         cur_number+=1
 
     last_right=LabelNode(number=cur_number, label=DIRTY, pairs={DIRTY:[], CLEAN:[]}, used_predicates=set([]))
+    cur_number+=1
     parent.right=last_right
     last_right.parent=parent
     tree_size+=1
-    # print(f"tree size: {tree_size}, cur_number={cur_number}")
-    return TreeRule(rtype='dc', root=root_node, size=tree_size, max_node_id=-1)
+    return TreeRule(rtype='dc', root=root_node, size=tree_size, max_node_id=cur_number)
 
 def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=True):
     if(non_symetric_op.search(dc_text)):
@@ -106,16 +97,13 @@ def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=T
         't2': pd.read_sql(q2, conn).to_dict('records')}
     else:
         q1= construct_query_for_violation(t_interest, 't1', dc_text, target_table, targeted)
-        # print(q1)
         res = {'t1':pd.read_sql(q1, conn).to_dict('records')}
-        # print(res)
     return res 
 
 def construct_query_for_violation(t_interest, role, dc_text, target_table, targeted): 
     predicates = dc_text.split('&')
 #     clause = parse_rule_to_where_clause(dc_text)
     constants=[]
-    # print(f"t_interest:{t_interest}")
     need_tid=True 
     # if the constraint only has equals, we need to add an artificial
     # key (_tid_) to differentiate tuples in violation with the tuple it
@@ -124,10 +112,8 @@ def construct_query_for_violation(t_interest, role, dc_text, target_table, targe
         if(not eq_op.search(pred)):
             need_tid=False
         attr = re.search(r't[1|2]\.([-\w]+)', pred).group(1).lower()
-        # print(attr)
         constants.append(f'{role}.{attr}=\'{t_interest[attr]}\'')
     constants_clause = ' AND '.join(constants)
-    # print(f"dc_text:{dc_text}")
     if(role=='t1'):
         template=dc_tuple_violation_template_targeted_t1
     else:
@@ -140,10 +126,34 @@ def construct_query_for_violation(t_interest, role, dc_text, target_table, targe
         r_q  = template.substitute(table=target_table, dc_desc=parse_rule_to_where_clause(dc_text))
 
     if(need_tid):
-        r_q+=f" AND _tid_!={t_interest['_tid_']}"
+        if(role=='t1'):
+            r_q+=f" AND t2._tid_!={t_interest['_tid_']}"
+        else:
+            r_q+=f" AND t1._tid_!={t_interest['_tid_']}"
 
     return r_q
 
+def user_choose_confirmation_assignment(dds, desired_dc, conn, table_name,):
+    
+    violations_to_rule_dict = {}
+    violations_dict = {}
+    print("choose user specified dd assignments!")
+    for d in dds:
+        complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {d}", conn)
+        complaint_tuples = complaint_df.to_dict('records')
+        complaint_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in complaint_tuples]
+        violations_to_rule_dict, violations_dict = populate_violations(tree_rule=None, conn=conn, 
+            rule_text=desired_dc, complaint=complaint_dicts[0], table_name=table_name, violations_dict=violations_dict, violations_to_rule_dict=violations_to_rule_dict,
+        complaint_selection=True, check_existence_only=False, 
+        user_input_pairs=False,
+        pre_selected_pairs=None)
+
+    print("violations_to_rule_dict:")
+    print(violations_to_rule_dict)
+    print("violations_dict")
+    print(violations_dict)
+    return violations_to_rule_dict, violations_dict
+    # exit()
 
 def gen_repaired_tree_rule(t_interest, desired_label, t_in_violation, target_attribute, tree_rule, role):
     # given a tuple of interest, the desired label (clean/dirty)
@@ -192,7 +202,6 @@ def fix_violation(t_interest, desired_label, t_in_violation, tree_rule, role):
 #         cur_node=cur_node.right
         
     available_attrs=list(set(set(list(t_interest)).difference(set(unusable_attrs))))
-    # print(available_attrs)
     if(not available_attrs):
         return None
     repaired_tree_rule=gen_repaired_tree_rule(t_interest, desired_label, t_in_violation, 
@@ -200,49 +209,6 @@ def fix_violation(t_interest, desired_label, t_in_violation, tree_rule, role):
 #         if(gen_repair_predicate(t_interest, t_in_violation, attr))
     return repaired_tree_rule
 
-
-# def fix_rules(original_rules, complaint_tuples, conn):
-#     rules = original_rules
-#     for r in rules:
-#     for c in complaint_tuples:
-#         new_rules = []
-#         i=0
-#         for r in rules:
-#             # if(r[1]!=-1):
-#             treerule = parse_dc_to_tree_rule(r)
-#             print(treerule)
-#             tuples_inviolation=find_tuples_in_violation(c, conn, r, 'adult500', targeted=True)
-#             print('tuples_inviolation:')
-#             print(tuples_inviolation)
-#             # check if we can pass by this rule
-#             if(all([not v for k,v in tuples_inviolation.items()])):
-#                 print('complaint not in violation, pass it by')
-#                 new_rules.append(r)
-#             else:
-#                 for k in tuples_inviolation:
-#                     if(tuples_inviolation[k]):
-#                         # if there are some tuples in violationW 
-#                         print(f"need to fix rule[{i}]")
-#                         print(f'before fixing {c}:')
-#                         print(treerule.serialize()[0])
-#                     # tuples_inviolation = find_tuples_in_violation(complaint_tuple, conn, r, 'adult500')
-#                         for t in tuples_inviolation[k]:
-#                             fix_violation(c, CLEAN, t, treerule, k)
-#                             # print(treerule)
-#                             tuples_inviolation_after_fix = find_tuples_in_violation(c, conn, treerule.serialize()[0], 'adult500')
-#                             if(all([not v for k,v in tuples_inviolation_after_fix.items()])):
-#                                 break
-#                         print(f'after fixing {c}:')
-#                         print(treerule.serialize()[0])
-#                         print('\n')
-#                         new_rules.append(treerule.serialize()[0])
-#             i+=1
-#         rules=new_rules
-#         # print(rules)
-#         # print(treerule)
-#         # print('---------------------------------------\n')
-#         # fix_violation(complaint_tuple, CLEAN, tuples_inviolation[1], treerule)
-#     print(rules)
 
 def construct_domain_dict(connection, table_name, exclude_cols=['_tid_']):
     res = {}
@@ -258,44 +224,42 @@ def construct_domain_dict(connection, table_name, exclude_cols=['_tid_']):
 
     return res
 
-def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_tid_']):
+def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_tid_'], user_specify_pairs=False, pre_selected_pairs=None):
     rules = original_rules
     all_fixed_rules = []
     cur_fixed_rules = []
     domain_value_dict = construct_domain_dict(conn, table_name=table_name, exclude_cols=exclude_cols)
     fix_book_keeping_dict = {k:{} for k in original_rules}
-    # print(domain_value_dict)
     for r in rules:
         fix_book_keeping_dict[r]['deleted']=False
-        # print("before fixing the rule, the rule is")
-        # print(r)
         treerule = parse_dc_to_tree_rule(r)
-        # print(treerule)
+        fix_book_keeping_dict[r]['rule']=treerule
         fix_book_keeping_dict[r]['pre_fix_size']=treerule.size
         leaf_nodes = []
-        for c in repair_config.complaints:
-            # print("the complaint is")
-            # print(c)
-            leaf_nodes_with_complaints = populate_violations(treerule, conn, r, c, table_name)
-            for ln in leaf_nodes_with_complaints:
-                if(ln not in leaf_nodes):
-                    # if node is already in leaf nodes, dont
-                    # need to add it again
-                    leaf_nodes.append(ln)
-        # print("node with pairs")
+        if(not user_specify_pairs):
+            for c in repair_config.complaints:
+                leaf_nodes_with_complaints = populate_violations(tree_rule=treerule, conn=conn, rule_text=r, 
+                    complaint=c, table_name=table_name, violations_dict=None,violations_to_rule_dict=None,
+                    complaint_selection=False, check_existence_only=False, 
+                    user_input_pairs=user_specify_pairs,
+                    pre_selected_pairs=pre_selected_pairs)
+        else:
+            leaf_nodes_with_complaints = populate_violations(tree_rule=treerule, conn=conn, rule_text=r, 
+                complaint=None, table_name=table_name, violations_dict=None,violations_to_rule_dict=None,
+                complaint_selection=False, check_existence_only=False, 
+                user_input_pairs=user_specify_pairs,
+                pre_selected_pairs=pre_selected_pairs)
+
+        for ln in leaf_nodes_with_complaints:
+            if(ln not in leaf_nodes):
+                # if node is already in leaf nodes, dont
+                # need to add it again
+                leaf_nodes.append(ln)
+
         # for ln in leaf_nodes:
-            # print(f"node id: {ln.number}")
-            # print(ln.pairs)
-            # print('\n')
-        # print(leaf_nodes)
         if(leaf_nodes):
             # its possible for certain rule we dont have any violations
-            # print("the TreeRule we wanted to fix")
-            # print(treerule)
-            # print("the leaf nodes")
-            # print(leaf_nodes)
-            fixed_treerule = fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict)
-            # print(fixed_treerule)
+            fixed_treerule = fix_violations(r, treerule, repair_config, leaf_nodes, domain_value_dict)
             fix_book_keeping_dict[r]['after_fix_size']=fixed_treerule.size
             if(fixed_treerule.size/fix_book_keeping_dict[r]['pre_fix_size']*repair_config.deletion_factor>=1):
                 fix_book_keeping_dict[r]['deleted']=True
@@ -306,9 +270,6 @@ def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_t
             fixed_treerule_text = treerule.serialize()
             fix_book_keeping_dict[r]['fixed_treerule_text']=fixed_treerule_text
 
-        # print(fixed_treerule)
-        # print(fixed_treerule_text)
-        # print("fixed result leaf nodes")
     #     cur_fixed_rules.append(fixed_treerule_text)
     #     repair_config.monitor.counter+=1
     #     repair_config.monitor.overall_fixed_count+=1
@@ -322,22 +283,18 @@ def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_t
     #         if(accuracy>=repair_config.acc_threshold):
     #             break
     # all_fixed_rules.extend(original_rules[repair_config.monitor.overall_fixed_count:])
-    # print(fix_book_keeping_dict)
     return fix_book_keeping_dict
 
 def print_fix_book_keeping_stats(config, bkeepdict, fix_performance):
     sizes_diff = []
-    # print(bkeepdict)
     for k,v in bkeepdict.items():
         sizes_diff.append(v['after_fix_size']-v['pre_fix_size'])
-    print('**************************\n')
-    print(f"strategy: {config.strategy}, complaint_size={len(config.complaints)}, runtime: {config.runtime}")
-    # print(sizes_diff)
-    print(f"average size increase: {sum(sizes_diff)/len(sizes_diff)}")
-    print('**************************\n')
+    logger.debug('**************************\n')
+    logger.debug(f"strategy: {config.strategy}, complaint_size={len(config.complaints)}, runtime: {config.runtime}")
+    logger.debug(f"average size increase: {sum(sizes_diff)/len(sizes_diff)}")
+    logger.debug('**************************\n')
 
-    print("fixed rules")
-    # print(bkeepdict)
+    logger.debug("fixed rules")
 
     res = {'strategy':config.strategy, 'complaint_size': len(config.complaints), 'runtime': config.runtime, 'avg_size_increase': {sum(sizes_diff)/len(sizes_diff)}}
     res.update(fix_performance)
@@ -360,13 +317,12 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
 
     if(not (clean_pair['t1']['is_dirty']==False and clean_pair['t2']['is_dirty']==False)):
         return res
-    else:
-        print("found valid 2 pairs")
-        print('clean pair')
-        print(clean_pair)
-        print('dirty_pair')
-        print(dirty_pair)
-    # print(f"finding fix for {clean_pair} and {dirty_pair}")
+    # else:
+    #     logger.debug("found valid 2 pairs")
+    #     logger.debug('clean pair')
+    #     logger.debug(clean_pair)
+    #     logger.debug('dirty_pair')
+    #     logger.debug(dirty_pair)
     # for k in domain_value_dict:
     # attribute
     # equal_assign_sign=None 
@@ -376,9 +332,6 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
 
         # start with attribute level and then constants
     cand=None
-    # print(f"used_predicates: {used_predicates}")
-    # print(f"dirty_pair: {dirty_pair}")
-    # print(f"clean_pair: {clean_pair}")
     for k in domain_value_dict:
         if((clean_pair['t1'][k]==clean_pair['t2'][k]) and \
            (dirty_pair['t1'][k]!=dirty_pair['t2'][k])):
@@ -399,7 +352,6 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
                     return cand
                 else:
                     res.append(cand)
-                # print(len(res))
 
     for k in domain_value_dict:
         for v in domain_value_dict[k]:
@@ -417,7 +369,6 @@ def find_available_repair(clean_pair, dirty_pair, domain_value_dict, used_predic
                         return cand
                     else:
                         res.append(cand)
-                    # print(len(res))
             if((clean_pair['t2'][k]==v) and (dirty_pair['t2'][k]!=v)):
                 cand = ('t2', k, v, equal_assign_sign)
                 if(cand and cand not in used_predicates):
@@ -473,10 +424,6 @@ def convert_tuple_fix_to_pred(the_fix, reverse=False):
         return f"{text_sign}({role1}.{attr1},{role2}.{attr2})", (role1, attr1, role2, attr2, sign)
 
 def calculate_gini(node, the_fix):
-    # print("node:")
-    # print(node)
-    # print("pairs:")
-    # print(node.pairs)
     sign=None
     if(len(the_fix)==4):
         _, _, _, sign = the_fix
@@ -516,8 +463,6 @@ def calculate_gini(node, the_fix):
         role1, attr1, role2, attr2, sign = the_fix
         for k in [CLEAN, DIRTY]:
             for p in node.pairs[k]:
-                # print(p)
-                # print(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")
                 if(eval(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")):
                     if(k==DIRTY):
                         right_leaf_dirty_cnt+=1
@@ -543,7 +488,6 @@ def calculate_gini(node, the_fix):
     gini_impurity = (left_total_cnt/total_cnt)*(1-((left_leaf_dirty_cnt/left_total_cnt)**2+(left_leaf_clean_cnt/left_total_cnt)**2))+ \
     (right_total_cnt/total_cnt)*(1-((right_leaf_dirty_cnt/right_total_cnt)**2+(right_leaf_clean_cnt/right_total_cnt)**2))
 
-    # print(f"gini_impurity for {the_fix} using {the_fix}: {gini_impurity}, reverse:{reverse_condition}\n")
     
     return gini_impurity, reverse_condition
 
@@ -552,14 +496,14 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
     # which is solving one pair can simutaneously fix some other pairs so we need 
     # to redistribute the pairs in newly added nodes if possible
     sign=None
-    cur_number=tree_rule.size
+    # cur_number=tree_rule.size
+
+    cur_number=tree_rule.max_node_id+1
     if(len(the_fix)==4):
         _, _, _, sign = the_fix
     elif(len(the_fix)==5):
         _, _, _, _, sign = the_fix
     new_pred, modified_fix = convert_tuple_fix_to_pred(the_fix, reverse)
-    # print("modified_fix")
-    # print(modified_fix)
     if(len(the_fix)==4):
         new_predicate_node = PredicateNode(number=cur_number, pred=DCConstPredicate(pred=new_pred, operator=sign))
     elif(len(the_fix)==5):
@@ -573,8 +517,8 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
     new_predicate_node.right.is_added=True
     new_predicate_node.left.parent= new_predicate_node
     new_predicate_node.right.parent= new_predicate_node
+    tree_rule.max_node_id=max(cur_number, tree_rule.max_node_id)
 
-    # print(node)
     if(node.label==CLEAN):
         node.parent.left=new_predicate_node
     else:
@@ -597,8 +541,6 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
         role1, attr1, role2, attr2, sign = modified_fix
         for k in [CLEAN, DIRTY]:
             for p in node.pairs[k]:
-                # print(p)
-                # print(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")
                 if(eval(f"p['{role1}']['{attr1}']{sign}p['{role2}']['{attr2}']")):
                     new_predicate_node.right.pairs[p['expected_label']].append(p)
                     new_predicate_node.right.used_predicates.add(modified_fix)
@@ -606,23 +548,16 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
                     new_predicate_node.left.pairs[p['expected_label']].append(p)
                     new_predicate_node.left.used_predicates.add(modified_fix)
 
-    print("redistributing new parent_node: ")
-    print(new_predicate_node)
-    # print(f"after fix {the_fix}, the left child is: {new_predicate_node.left.pairs}")
-    # print(f"after fix {the_fix}, the right child is: {new_predicate_node.right.pairs}")
 
     new_predicate_node.pairs={CLEAN:{}, DIRTY:{}}
 
     return new_predicate_node
 
 def check_tree_purity(tree_rule, start_number=0):
-    # print("checking purity...")
-    # print(tree_rule)
     root = locate_node(tree_rule, start_number)
     queue = deque([root])
     leaf_nodes = []
     while(queue):
-        # print(queue)
         cur_node = queue.popleft()
         if(isinstance(cur_node,LabelNode)):
             leaf_nodes.append(cur_node)
@@ -630,7 +565,6 @@ def check_tree_purity(tree_rule, start_number=0):
             queue.append(cur_node.left)
         if(cur_node.right):
             queue.append(cur_node.right)
-        # print(cur_node.number)
 
     for n in leaf_nodes:
         for k in [CLEAN,DIRTY]:
@@ -654,35 +588,28 @@ def reverse_node_parent_condition(node):
     node.parent.right=old_left
     node.parent.is_reversed=True
 
-def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
-    # print(f"fixing : {treerule}")
+def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_value_dict):
     if(repair_config.strategy=='naive'):
         # initialize the queue to work with
         queue = deque([])
         for ln in leaf_nodes:
             queue.append(ln)
-        # print(queue)
         while(queue):
             node = queue.popleft()
-            # print(node.pairs)
             new_parent_node=None
             # need to find a pair of violations that get the different label
             # in order to differentiate them
             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
                 the_fix = find_available_repair(node.pairs[CLEAN][0],
                  node.pairs[DIRTY][0], domain_value_dict, node.used_predicates)
-                # print("the fix")
-                # print(the_fix)
                 new_parent_node=redistribute_after_fix(treerule, node, the_fix)
             # handle the left and right child after redistribution
             else:
                 if(check_tree_purity(treerule)):
-                    # print('its pure already!')
                     return treerule
                 else:
                     reverse_node_parent_condition(node)
                     treerule.setsize(treerule.size+2)
-                    # print('its not pure?')
                     continue
 
             if(new_parent_node):
@@ -704,12 +631,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 queue.append(new_parent_node.right)
                                 still_inpure=True
                                 break
-                # print(queue)
                 treerule.setsize(treerule.size+2)
-                # print("adding new predicate, size+2")
-                # print('\n')
-                # print(f"after fix, treerule size is {treerule.size}")
-            # print(f"queue size: {len(queue)}")
         return treerule
 
     elif(repair_config.strategy=='information gain'):
@@ -725,7 +647,6 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
         queue = deque([])
         for ln in leaf_nodes:
             queue.append(ln)
-        # print(f"queue: {queue}")
         while(queue):
             node = queue.popleft()
             new_parent_node=None
@@ -735,11 +656,6 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
             best_fix = None
             reverse_condition=False
             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
-                # print("all pairs: ")
-                # print("all pairs[clean]:")
-                # print(node.pairs[CLEAN])
-                # print("all pairs[dirty]:")
-                # print(node.pairs[DIRTY])
                 # need to examine all possible pair combinations
                 considered_fixes = set()
                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
@@ -750,28 +666,24 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                         if(f in considered_fixes):
                             continue
                         gini, reverse_cond =calculate_gini(node, f)
-                        # print(f"the fix: {f}, gini : {gini}")
+                        logger.debug(f"the fix: {f}, gini : {gini}")
                         considered_fixes.add(f)
                         if(gini<min_gini):
                             min_gini=gini
                             best_fix=f
                             best_fix_pair=pair
                             reverse_condition=reverse_cond
-                # print(f"considered_fixes: {considered_fixes}")
                 if(best_fix):
-                    print(f"best_fix for rule: {treerule}")
-                    print(f"best_fix: {best_fix}")
-                    print(f"best_fix_pair: {best_fix_pair}")
+                    logger.debug(f"best_fix for rule: {tree_rule_text}")
+                    logger.debug(f"best_fix: {best_fix}")
+                    logger.debug(f"best_fix_pair: {best_fix_pair}")
                     new_parent_node=redistribute_after_fix(treerule, node, best_fix, reverse_condition)
             else:
                 if(check_tree_purity(treerule)):
-                    # print('its pure already!')
-                    # print(treerule)
                     return treerule
                 else:
                     reverse_node_parent_condition(node)
                     treerule.setsize(treerule.size+2)
-                    # print('its not pure?')
                     continue
 
             # handle the left and right child after redistribution
@@ -795,7 +707,6 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 still_inpure=True
                                 break
                 treerule.setsize(treerule.size+2)
-                # print(f"after fix, treerule size is {treerule.size}")
 
         return treerule
 
@@ -805,30 +716,19 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
         for ln in leaf_nodes:
             queue = deque([])
             queue.append(ln.number)
-        # print(f"number of leaf_nodes: {len(queue)}")
-        # print("queue")
-        # print(queue)
         cur_fixed_tree = treerule
         while(queue):
             sub_root_number = queue.popleft()
             subqueue=deque([(cur_fixed_tree, sub_root_number, sub_root_number)])
             # triples are needed here, since: we need to keep track of the 
             # updated(if so) subtree root in order to check purity from that node
-            # print(f"subqueue: {subqueue}")
             sub_node_pure=False
             while(subqueue and not sub_node_pure):
                 prev_tree, leaf_node_number, subtree_root_number = subqueue.popleft()
-                # print(f"prev tree: {prev_tree}")
                 node = locate_node(prev_tree, leaf_node_number)
-                # print(f"node that needs to be fixed")
-                # print(f"nodel.label: {node.label}")
-                # print(f"nodel.clean: {node.pairs[CLEAN]}")
-                # print(f"nodel.dirty: {node.pairs[DIRTY]}")
                 if(node.pairs[CLEAN] and node.pairs[DIRTY]):
-                    # print("we need to fix it!")
                     # need to examine all possible pair combinations
                     considered_fixes = set()
-                    # print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
                     found_fix = False
                     for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
                         if(found_fix):
@@ -836,15 +736,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                         the_fixes = find_available_repair(pair[0],
                          pair[1], domain_value_dict, node.used_predicates,
                          all_possible=True)
-                        # print("the fixes")
-                        # print(the_fixes)
-                        # print("the_fixes")
-                        # print(the_fixes)
-                        # print(f"fixes: len = {len(the_fixes)}")
-                        # print("iterating fixes")
-                        # print(f"len(fixes): {len(the_fixes)}")
                         for f in the_fixes:
-                            # print(f"the fix: {f}")
                             new_parent_node=None
                             if(f in considered_fixes):
                                 continue
@@ -857,17 +749,14 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                 # the node number will change so we need 
                                 # to replace it
                                 subtree_root_number=new_parent_node.number
-                                # print(f"subtree_root_number is being updated to {new_parent_node.number}")
                             new_tree.setsize(new_tree.size+2)
                             if(check_tree_purity(new_tree, subtree_root_number)):
-                                # print("done with this leaf node, the fixed tree is updated to")
                                 cur_fixed_tree = new_tree
-                                # print(cur_fixed_tree)
                                 found_fix=True
                                 sub_node_pure=True
                                 break
                             # else:
-                            #     print("not pure yet, need to enqueue")
+                            #     logger.debug("not pure yet, need to enqueue")
                             # handle the left and right child after redistribution
                             still_inpure=False
                             for k in [CLEAN,DIRTY]:
@@ -875,12 +764,9 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                     break
                                 for p in new_parent_node.left.pairs[k]:
                                     if(p['expected_label']!=new_parent_node.left.label):
-                                        # print("enqueued")
-                                        # print("current_queue: ")
                                         new_tree = copy.deepcopy(new_tree)
                                         parent_node = locate_node(new_tree, new_parent_node.number)
                                         subqueue.append((new_tree, parent_node.left.number, subtree_root_number))
-                                        # print(subqueue)
                                         still_inpure=True
                                         break
                             still_inpure=False          
@@ -889,35 +775,25 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
                                     break
                                 for p in new_parent_node.right.pairs[k]:
                                     if(p['expected_label']!=new_parent_node.right.label):
-                                        # print("enqueued")
-                                        # print("current_queue: ")
                                         new_tree = copy.deepcopy(new_tree)
                                         parent_node = locate_node(new_tree, new_parent_node.number)
                                         # new_parent_node=redistribute_after_fix(new_tree, new_node, f)
                                         subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
-                                        # print(subqueue)
                                         still_inpure=True
                                         break
-                            # print('\n')
                 else:
-                    # print("just need to reverse node condition")
                     reverse_node_parent_condition(node)
                     if(check_tree_purity(prev_tree, subtree_root_number)):
-                        # print("done with this leaf node, the fixed tree is updated to")
                         found_fix=True
                         cur_fixed_tree = prev_tree
                         sub_node_pure=True
-                        # print(cur_fixed_tree)
                         break
-                # print(f"current queue size: {len(queue)}")
-        # print("fixed all, return the fixed tree")
-        # print(cur_fixed_tree)
         return cur_fixed_tree 
         # list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
         # return list_of_repaired_trees[0] 
 
     else:
-        print("not a valid repair option")
+        logger.debug("not a valid repair option")
         exit()
 
 
@@ -927,27 +803,27 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #         queue = deque([])
 #         for ln in leaf_nodes:
 #             queue.append(ln)
-#         # print(queue)
+
 #         while(queue):
 #             node = queue.popleft()
-#             # print(node.pairs)
+
 #             new_parent_node=None
 #             # need to find a pair of violations that get the different label
 #             # in order to differentiate them
 #             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
 #                 the_fix = find_available_repair(node.pairs[CLEAN][0],
 #                  node.pairs[DIRTY][0], domain_value_dict, node.used_predicates)
-#                 # print("the fix")
-#                 # print(the_fix)
+
+
 #                 new_parent_node=redistribute_after_fix(treerule, node, the_fix)
 #             # handle the left and right child after redistribution
 #             else:
 #                 if(check_tree_purity(treerule)):
-#                     # print('its pure already!')
+
 #                     return treerule
 #                 else:
 #                     reverse_node_parent_condition(node)
-#                     # print('its not pure?')
+
 #                     continue
 
 #             if(new_parent_node):
@@ -969,12 +845,12 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #                                 queue.append(new_parent_node.right)
 #                                 still_inpure=True
 #                                 break
-#                 # print(queue)
+
 #                 treerule.setsize(treerule.size+2)
-#                 # print("adding new predicate, size+2")
-#                 # print('\n')
-#                 # print(f"after fix, treerule size is {treerule.size}")
-#             # print(f"queue size: {len(queue)}")
+
+
+
+
 #         return treerule
 
 #     elif(repair_config.strategy=='information gain'):
@@ -990,7 +866,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #         queue = deque([])
 #         for ln in leaf_nodes:
 #             queue.append(ln)
-#         # print(queue)
+
 #         while(queue):
 #             node = queue.popleft()
 #             new_parent_node=None
@@ -1038,7 +914,7 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #                                 still_inpure=True
 #                                 break
 #                 treerule.setsize(treerule.size+2)
-#                 # print(f"after fix, treerule size is {treerule.size}")
+
 
 #         return treerule
 
@@ -1050,30 +926,30 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #         for ln in leaf_nodes:
 #             queue.append((treerule,ln))
 
-#         # print("queue")
-#         # print(queue)
+
+
 #         while(queue):
-#             # print(f'len of queue: {len(queue)}')
+
 #             prev_tree, node = queue.popleft()
 #             # new_tree = copy.deepcopy(prev_tree)
-#             # print("node pairs")
-#             # print(node.pairs)
-#             # print(f'clean: {len(node.pairs[CLEAN])}')
-#             # print(f'dirty: {len(node.pairs[DIRTY])}')
-#             # print(node.label)
-#             # print(bool(node.pairs[CLEAN] and node.pairs[DIRTY]))
+
+
+
+
+
+
 #             if(node.pairs[CLEAN] and node.pairs[DIRTY]):
-#                 # print("we need to fix it!")
+
 #                 # need to examine all possible pair combinations
 #                 considered_fixes = set()
-#                 # print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
+
 #                 for pair in list(product(node.pairs[CLEAN], node.pairs[DIRTY])):
 #                     the_fixes = find_available_repair(pair[0],
 #                      pair[1], domain_value_dict, node.used_predicates,
 #                      all_possible=True)
-#                     # print("the_fixes")
-#                     # print(the_fixes)
-#                     # print(f"fixes: len = {len(the_fixes)}")
+
+
+
 #                     for f in the_fixes:
 #                         new_parent_node=None
 #                         if(f in considered_fixes):
@@ -1083,18 +959,18 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #                         node = locate_node(new_tree, node.number)
 #                         new_parent_node = redistribute_after_fix(new_tree, node, f)
 #                         new_tree.setsize(new_tree.size+2)
-#                         # print("new_parent_node")
-#                         # print(new_parent_node)
-#                         # print("new_tree")
-#                         # print(new_tree)
+
+
+
+
 #                         if(check_tree_purity(new_tree)):
-#                             # print("its pure we are done!")
-#                             # print("new_tree")
-#                             # print(new_tree)
+
+
+
 #                             return new_tree
 #                         # handle the left and right child after redistribution
 #                         if(new_parent_node):
-#                             # print(new_parent_node)
+
 #                             # new_tree.setsize(new_tree.size+2)
 #                             still_inpure=False
 #                             for k in [CLEAN,DIRTY]:
@@ -1122,10 +998,10 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 #                                         break
 #             else:
 #                 if(check_tree_purity(prev_tree)):
-#                     print('its pure already!')
+#                     logger.debug('its pure already!')
 #                     return prev_tree
 #                 else:
-#                     # print("its not pure reverse parent condition")
+
 #                     reverse_node_parent_condition(node)
 #                     if(check_tree_purity(prev_tree)):
 #                         return prev_tree
@@ -1136,12 +1012,10 @@ def fix_violations(treerule, repair_config, leaf_nodes, domain_value_dict):
 
 
 #     else:
-#         print("not a valid repair option")
+#         logger.debug("not a valid repair option")
 #         exit()
 
 def locate_node(tree, number):
-    # print(tree)
-    # print(f"locating node {number}")
     queue = deque([tree.root])
     while(queue):
         cur_node = queue.popleft()
@@ -1151,57 +1025,62 @@ def locate_node(tree, number):
             queue.append(cur_node.left)
         if(cur_node.right):
             queue.append(cur_node.right)
-    print('cant find the node!')
+    logger.debug('cant find the node!')
     exit()
 
-def populate_violations(tree_rule, conn, rule_text, complaint, table_name, violations_dict=None, complaint_selection=False, check_existence_only=False):
+def populate_violations(tree_rule, conn, rule_text, complaint, table_name, violations_dict=None, violations_to_rule_dict=None,
+    complaint_selection=False, check_existence_only=False, 
+    user_input_pairs=False,
+    pre_selected_pairs=None):
     # given a tree rule and a complaint, populate the complaint and violation tuple pairs
     # to the leaf nodes
-    # print("rule text:")
-    # print(rule_text)
-    tuples_inviolation=find_tuples_in_violation(complaint['tuple'], conn, rule_text, table_name, targeted=True)
-    if(check_existence_only):
-        if('t1' in tuples_inviolation):
-            if(tuples_inviolation['t1']):
-                return True 
-        if('t2' in tuples_inviolation):
-            if(tuples_inviolation['t2']):
-                return True 
+    if(not user_input_pairs):
+        pairs = []
+        tuples_inviolation=find_tuples_in_violation(complaint['tuple'], conn, rule_text, table_name, targeted=True)
+        if(check_existence_only):
+            if('t1' in tuples_inviolation):
+                if(tuples_inviolation['t1']):
+                    return True 
+            if('t2' in tuples_inviolation):
+                if(tuples_inviolation['t2']):
+                    return True 
 
-    # print(f"tuples_inviolation with {complaint} on rule {rule_text}")
-    # print(len(tuples_inviolation))
-    pairs = []
-    if(complaint_selection):
-        if(complaint['tuple']['_tid_'] not in violations_dict):
-            violations_dict[complaint['tuple']['_tid_']]=set()
-    if('t1' in tuples_inviolation):
-        for v in tuples_inviolation['t1']:
-            pair = {'t1':complaint['tuple'], 't2':v, 'expected_label':complaint['expected_label']}
-            pairs.append(pair)
-            if(complaint_selection):
-                violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
-    if('t2' in tuples_inviolation):
-        for v in tuples_inviolation['t2']:
-            pair = {'t1':v, 't2':complaint['tuple'], 'expected_label':complaint['expected_label']}
-            pairs.append(pair)
-            if(complaint_selection):
-                violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
-    # print("total_pairs")
-    # print(len(pairs))
+        if(complaint_selection):
+            if(complaint['tuple']['_tid_'] not in violations_dict):
+                violations_dict[complaint['tuple']['_tid_']]=set()
+        if('t1' in tuples_inviolation):
+            for v in tuples_inviolation['t1']:
+                pair = {'t1':complaint['tuple'], 't2':v, 'expected_label':complaint['expected_label']}
+                pair_id = f"{complaint['tuple']['_tid_']}_{v['_tid_']}"
+                pairs.append(pair)
+                if(complaint_selection):
+                    if(pair_id not in violations_to_rule_dict):
+                        violations_to_rule_dict[pair_id] = {'pair':pair, 'rules':[]}
+                    violations_to_rule_dict[pair_id]['rules'].append(rule_text)
+                    violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
+        if('t2' in tuples_inviolation):
+            for v in tuples_inviolation['t2']:
+                pair = {'t1':v, 't2':complaint['tuple'], 'expected_label':complaint['expected_label']}
+                pair_id = f"{v['_tid_']}_{complaint['tuple']['_tid_']}"
+                pairs.append(pair)
+                if(complaint_selection):
+                    if(pair_id not in violations_to_rule_dict):
+                        violations_to_rule_dict[pair_id] = {'pair':pair, 'rules':[]}
+                    violations_to_rule_dict[pair_id]['rules'].append(rule_text)
+                    violations_dict[complaint['tuple']['_tid_']].add(v['_tid_'])
+    else:
+        pairs=[x['pair'] for x in pre_selected_pairs]
+
     if(not complaint_selection):
         leaf_nodes = []
-        # print(f"pairs: {pairs}")
         for p in pairs:
             leaf_node = tree_rule.evaluate(p, ret='node')
             leaf_node.pairs[p['expected_label']].append(p)
             if(leaf_node not in leaf_nodes):
                 leaf_nodes.append(leaf_node)
-        # print(leaf_nodes)
-        # print(tree_rule)
-        # print('\n')
         return leaf_nodes
     else:
-        return violations_dict
+        return violations_to_rule_dict, violations_dict
 
 def get_muse_results(table_name, conn, muse_dirties):
     # muse input are a list of tuples being deleted, need to identify the 
@@ -1210,25 +1089,25 @@ def get_muse_results(table_name, conn, muse_dirties):
     res=cur.fetchall()
     real_dirties=[x[0] for x in res if x[1]==True]
     real_cleans=[x[0] for x in res if x[1]==False]
-    print(f"real dirties:")
-    print(real_dirties)
-    print(f"real_cleans:")
-    print(real_cleans)
+    logger.debug(f"real dirties:")
+    logger.debug(real_dirties)
+    logger.debug(f"real_cleans:")
+    logger.debug(real_cleans)
     muse_dirty_ids=[int(x[-2]) for x in muse_dirties]
-    print(f"muse_dirty_ids:")
-    print(muse_dirty_ids)
-    dc = [x for x in muse_dirty_ids if x in real_cleans]
-    dd = [x for x in muse_dirty_ids if x in real_dirties]
-    cc = [x for x in real_cleans if x not in muse_dirty_ids]
+    logger.debug(f"muse_dirty_ids:")
+    logger.debug(muse_dirty_ids)
+    dc = set([x for x in muse_dirty_ids if x in real_cleans])
+    dd = set([x for x in muse_dirty_ids if x in real_dirties])
+    cc = set([x for x in real_cleans if x not in muse_dirty_ids])
     return dc, dd, cc, len(res)
 
 
 def calculate_retrained_results(complaints, confirmations, new_dirties):
 
     new_dirties_ids = [int(x[-2]) for x in new_dirties]
-    print(f"complaints:{complaints}")
-    print(f'confirmations: {confirmations}')
-    print(f"new_dirties: {new_dirties_ids}")
+    logger.debug(f"complaints:{complaints}")
+    logger.debug(f'confirmations: {confirmations}')
+    logger.debug(f"new_dirties: {new_dirties_ids}")
     complaint_fix_rate=1-len([x for x in complaints if x in new_dirties_ids])/len(complaints)
     confirm_preserve_rate=len([x for x in confirmations if x in new_dirties_ids])/len(confirmations)
 
@@ -1249,25 +1128,25 @@ def calculate_retrained_results(complaints, confirmations, new_dirties):
 
     # if(wrong_repairs_dfs):
     #     wrong_repairs_df = pd.concat(wrong_repairs_dfs)
-    #     print("wrong_repairs")
-    #     print(wrong_repairs_df)
+    #     logger.debug("wrong_repairs")
+    #     logger.debug(wrong_repairs_df)
     #     wrong_repairs_df.to_csv('wrong_repairs_adult.csv')
     # else:
-    #     print("no wrong repairs")
+    #     logger.debug("no wrong repairs")
 
     # if(correct_repairs_dfs):
     #     correct_repairs_df = pd.concat(correct_repairs_dfs)
-    #     print("correct_repars")
-    #     print(correct_repairs_df)
+    #     logger.debug("correct_repars")
+    #     logger.debug(correct_repairs_df)
     #     correct_repairs_df.to_csv('correct_repairs_adult.csv')
     # else:
-    #     print("no correct repairs")
+    #     logger.debug("no correct repairs")
 
     # if(still_dirty_dfs):
     #     still_needs_repair_df = pd.concat(still_dirty_dfs)
     #     still_needs_repair_df.to_csv('still_needs_repair.csv')
     # else:
-    #     print("no correct repairs")
+    #     logger.debug("no correct repairs")
 
     # dd.extend(list(correct_repairs))
     # expected_dirty.extend(list(still_dirty_tuples))
@@ -1283,205 +1162,493 @@ def calculate_retrained_results(complaints, confirmations, new_dirties):
 
 if __name__ == '__main__':
     
-    from rbbm_src.dc_src.DCQueryTranslator import convert_dc_to_muse_rule
+    from rbbm_src.dc_src.DCQueryTranslator import convert_dc_to_muse_rule,convert_dc_to_get_violation_tuple_ids
     from rbbm_src.muse.running_example.running_example_adult import *
 
     # dc_file='/home/opc/chenjie/RBBM/experiments/dc/dc_sample_10'
     # table_name='adult'
-    dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/flights_dcfinder_rules_sample.txt'
-    table_name='flights_new'
+    # dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/flights_dcfinder_rules.txt'
+    dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
+    table_name='tax'
     res=[]
-    rule_texts=[]
+    # rule_texts=[]
+    filtered_rules=[]
+    gt_good_rules=[]
+    gt_bad_rules=[]
+
     try:
         with open(dc_file, "r") as file:
             for line in file:
-                rule_texts.append(line.strip())
+                # rule_texts.append(line.strip())
                 # rules_from_line = [(table_name, x) for x in convert_dc_to_muse_rule(line, 'adult', 't1')]
-                rules_from_line = [(table_name, x) for x in convert_dc_to_muse_rule(line, 'flights_new', 't1')]
-                res.extend(rules_from_line)
+                rule,gt=line.strip('\n').split(":")
+                if(gt=='G'):
+                    gt_good_rules.append(rule)
+                elif(gt=='B'):
+                    gt_bad_rules.append(rule)
+                # muse_format=convert_dc_to_muse_rule(line, 'flights_new', 't1')
+                # prefilter_format=convert_dc_to_get_violation_tuple_ids(line, 'flights_new','t1')
+                muse_format=convert_dc_to_muse_rule(line, table_name)
+                prefilter_format=convert_dc_to_get_violation_tuple_ids(line, table_name)
+                res.append([table_name, rule, muse_format, prefilter_format])
+        logger.debug(res)
+        # exit()
     except FileNotFoundError:
-        print("File not found.")
+        logger.debug("File not found.")
     except IOError:
-        print("Error reading the file.")
+        logger.debug("Error reading the file.")
 
-    muse_dirties = muse_find_mss(rules=res)
-    # print("muse dirties")
-    # print(muse_dirties)
+    # query for real dirties
+    db = DatabaseEngine("cr")
+    database_reset(db,['adult','tax','flights_new'])
+    db.close_connection()
+    conn=psycopg2.connect('dbname=cr user=postgres')
+    real_dirty_query = f"SELECT _tid_ from {table_name} where is_dirty=True"
+    dataset_size_query = f"SELECT count(*) as cnt from {table_name}"
+    cur=conn.cursor()
+    cur.execute(real_dirty_query)
+    real_dirty_ids = [x[0] for x in cur.fetchall()]
+    logger.debug("real dirty ids")
+    logger.debug(real_dirty_ids)
+    cur.execute(dataset_size_query)
+    dataset_size=cur.fetchone()[0]
+    logger.debug("dataset size")
+    logger.debug(dataset_size)
+    pre_filter_thresh=1
+    # pre_filter_thresh=0.4
+    # pre_filter_thresh=0.3
+    # pre_filter_thresh=0.2
+    # pre_filter_thresh=0.1
+
+    # conn.close()
+
+    for r in res:
+        deleted_ids = []
+        for q in r[-1]:
+            logger.debug(q)
+            cur.execute(q)
+            r_deleted=[x[0] for x in cur.fetchall()]
+            deleted_ids.extend(r_deleted)
+        deleted_unique_ids=set(deleted_ids)
+        incorrect_deleted_cnt=len([x for x in deleted_unique_ids if x not in real_dirty_ids])
+        if(incorrect_deleted_cnt/dataset_size<pre_filter_thresh):
+            filtered_rules.append(r)
+
+    hit_gt_good_rules =  [x[1] for x in filtered_rules if x[1] in gt_good_rules]
+    missed_gt_good_rules = [x for x in gt_good_rules if x not in hit_gt_good_rules]
+    wrongly_kept_rules = [x[1] for x in filtered_rules if x[1] in gt_bad_rules]
+    logger.debug('filtered_rules')
+    logger.debug(filtered_rules)
+    logger.debug(len(filtered_rules))
+    logger.debug('\n')
+    logger.debug('gt_good_rules')
+    logger.debug(gt_good_rules)
+    logger.debug(len(gt_good_rules))
+    logger.debug('\n')
+    logger.debug('gt_bad_rules')
+    logger.debug(gt_bad_rules)
+    logger.debug(len(gt_bad_rules))
+    logger.debug('\n')
+    logger.debug("hit_gt_good_rules")
+    logger.debug(hit_gt_good_rules)
+    logger.debug(len(hit_gt_good_rules))
+    logger.debug('\n')
+    logger.debug("missed_gt_good_rules")
+    logger.debug(missed_gt_good_rules)
+    logger.debug(len(missed_gt_good_rules))
+    logger.debug('\n')
+    logger.debug('wrongly_kept_rules')
+    logger.debug(wrongly_kept_rules)
+    logger.debug('\n')
+    # exit()
+    conn.close()
+    muse_input_rules = [[x[0],x[2][0]] for x in filtered_rules]
+    muse_dirties = muse_find_mss(rules=muse_input_rules, semantic_version='ind')
     # exit()
     tupled_muse_dirties=[x[1].strip('()').split(',') for x in muse_dirties]
-    print(len(tupled_muse_dirties))
-    print(tupled_muse_dirties)
-    conn=psycopg2.connect('dbname=cr user=postgres')
 
-    dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
+    conn=psycopg2.connect('dbname=cr user=postgres')
+    # dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
+    dc, dd, cc, total_cnt = get_muse_results(table_name, conn, tupled_muse_dirties)
+
 
     # do a check and construct user complaint set
-    violations_dict={}
+    complain_violations_dict={}
+    complain_violations_to_rule_dict = {}
+    confirm_violations_dict={}
+    confirm_violations_to_rule_dict = {}
     for w in dc:
         complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {w}", conn)
         complaint_tuples = complaint_df.to_dict('records')
         complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
-        for r in rule_texts:
-            violations_dict=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=complaint_dicts[0], table_name=table_name, 
-                violations_dict=violations_dict, complaint_selection=True)
+        for r in res:
+            complain_violations_to_rule_dict, complain_violations_dict=populate_violations(tree_rule=None, 
+                conn=conn, rule_text=r[1], complaint=complaint_dicts[0], table_name=table_name, 
+                violations_to_rule_dict=complain_violations_to_rule_dict,
+                violations_dict=complain_violations_dict, complaint_selection=True,
+                check_existence_only=False, user_input_pairs=False,
+                pre_selected_pairs=None)
 
-    print(f"dc:{dc}")
-    print(f"dd:{dd}")
-    print(f"cc:{cc}")
-    print(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
-    print(f"violations_dict")
-    print(violations_dict)
-    complaint_size=10
-    confirmation_size=10
+    # for w in dd:
+    #     confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ = {w}", conn)
+    #     confirm_tuples = confirm_df.to_dict('records')
+    #     confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+    #     for r in res:
+    #         confirm_violations_to_rule_dict, confirm_violations_dict=populate_violations(tree_rule=None, 
+    #             conn=conn, rule_text=r[1], complaint=confirm_dicts[0], table_name=table_name, 
+    #             violations_to_rule_dict=confirm_violations_to_rule_dict,
+    #             violations_dict=confirm_violations_dict, complaint_selection=True,
+    #             check_existence_only=False, user_input_pairs=False,
+    #             pre_selected_pairs=None)
+
+
+    logger.debug(f"dc:{dc}")
+    logger.debug(f"len(dc)={len(dc)}")
+    logger.debug(f"dd:{dd}")
+    logger.debug(f"len(dd)={len(dd)}")
+    logger.debug(f"cc:{cc}")
+    logger.debug(f"len(cc)={len(cc)}")
+    logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+    complaint_size=5
+    confirmation_size=min(len(dd), 5)
     current_complaint_cnt=0
-    complaint_input=set([])
     complaint_set_completed=False
-    for vk,vv in violations_dict.items():
-        if(complaint_set_completed):
-            break
-        current_dc_added = False
-        for c in vv:
-            if(c in dc):
-                print(f"(c, c) case found ({vk}, {c})")
-                print(f"complaint_input added {c}")
-                complaint_input.add(c)
-                current_complaint_cnt=len(complaint_input)
-                if(not current_dc_added):
-                    complaint_input.add(vk)
+
+    user_specify_pairs=True
+
+    test_rules = [x[1] for x in filtered_rules]
+
+    if(user_specify_pairs==True):
+        complaint_tuples = set([])
+        confirmation_tuples = set([])
+        complaints_input=[]
+        confirmations_input=[]
+        complaint_assignment_ids = set([])
+        comfirm_assignment_ids = set([])
+        logger.debug("complain_violations_dict")
+        logger.debug(complain_violations_dict)
+        logger.debug("confirm_violations_dict")
+        logger.debug(confirm_violations_dict)
+
+        total_length = sum(len(sub_list) for sub_list in complain_violations_dict.values())
+        complain_probabilities = [len(sub_list) / total_length for sub_list in complain_violations_dict.values()]
+
+        cur_complaint_cnt = 0
+
+        while(cur_complaint_cnt<complaint_size):
+            # logger.debug(f"complain_violations_dict: {complain_violations_dict}")
+            # logger.debug(f"complain_probabilities: {complain_probabilities}")
+            selected_key = random.choices(list(complain_violations_dict.keys()), complain_probabilities)[0]
+            selected_list = complain_violations_dict[selected_key]
+            # we only want DC-DC to be included
+            selected_list = [x for x in selected_list if x in dc]
+            if(selected_list):
+                selected_element = random.choice(list(selected_list))
+                cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                if(cand_id1 in complain_violations_to_rule_dict and cand_id1 not in complaint_assignment_ids):
+                    complaint_assignment_ids.add(cand_id1)
+                    complaints_input.append(complain_violations_to_rule_dict[cand_id1])
+                    cur_complaint_cnt+=1
+                    complaint_tuples.add(selected_key)
+                if(cand_id2 in complain_violations_to_rule_dict and cand_id2 not in complaint_assignment_ids):
+                    complaint_assignment_ids.add(cand_id2)
+                    complaints_input.append(complain_violations_to_rule_dict[cand_id2])
+                    cur_complaint_cnt+=1
+                    complaint_tuples.add(selected_key)
+
+        logger.debug(f"complaint_tuples: {complaint_tuples}")
+        logger.debug(f"complaint_assignment_ids: {complaint_assignment_ids}")
+        confirm_violations_to_rule_dict, confirm_violations_dict = user_choose_confirmation_assignment(dds=dd, 
+            desired_dc="t1&t2&EQ(t1.State,t2.State)&EQ(t1.HasChild,t2.HasChild)&IQ(t1.ChildExemp,t2.ChildExemp)",
+         conn=conn, table_name=table_name)
+
+        total_length = sum(len(sub_list) for sub_list in confirm_violations_dict.values())
+        confirm_probabilities = [len(sub_list) / total_length for sub_list in confirm_violations_dict.values()]
+        cur_confirmation_cnt = 0
+        while(cur_confirmation_cnt<confirmation_size):
+            selected_key =  random.choices(list(confirm_violations_dict.keys()), confirm_probabilities)[0]
+            selected_list = confirm_violations_dict[selected_key]
+            # we only want DD-DD to be included
+            selected_list = [x for x in selected_list if x in dd]
+            if(selected_list):
+                selected_element = random.choice(list(selected_list))
+                cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                if(cand_id1 in confirm_violations_to_rule_dict and cand_id1 not in comfirm_assignment_ids):
+                    comfirm_assignment_ids.add(cand_id1)
+                    confirmations_input.append(confirm_violations_to_rule_dict[cand_id1])
+                    cur_confirmation_cnt+=1
+                    confirmation_tuples.add(selected_key)
+                if(cand_id2 in confirm_violations_to_rule_dict and cand_id2 not in comfirm_assignment_ids):
+                    comfirm_assignment_ids.add(cand_id2)
+                    confirmations_input.append(confirm_violations_to_rule_dict[cand_id2])
+                    cur_confirmation_cnt+=1
+                    confirmation_tuples.add(selected_key)
+
+        logger.debug(f"confirmation_tuples: {confirmation_tuples}")
+        logger.debug(f"comfirm_assignment_ids: {comfirm_assignment_ids}")
+        logger.debug("complaints:")
+        logger.debug(complaints_input)
+        # for cp in complaints_input:
+        #     df=pd.read_sql(f"select * from {table_name} where _tid_={cp['pair']['t1']['_tid_']} or _tid_={cp['pair']['t2']['_tid_']}", con=conn)
+        #     logger.debug('---------------------------------------')
+        #     logger.debug(df)
+        #     logger.debug(f"violated rules: {cp['rules']}")
+        #     logger.debug(f"violated rules count: {len(cp['rules'])}")
+        #     logger.debug('---------------------------------------\n')
+
+        # logger.debug("confirmations:")
+        # logger.debug(confirmations_input)
+        # for cf in confirmations_input:
+        #     df=pd.read_sql(f"select * from {table_name} where _tid_={cf['pair']['t1']['_tid_']} or _tid_={cf['pair']['t2']['_tid_']}", con=conn)
+        #     logger.debug('---------------------------------------')
+        #     logger.debug(df)
+        #     logger.debug(f"violated rules: {cf['rules']}")
+        #     logger.debug(f"violated rules count: {len(cf['rules'])}")
+        #     logger.debug('---------------------------------------\n')
+
+        for cp in complaints_input:
+            df=pd.read_sql(f"select * from {table_name} where _tid_={cp['pair']['t1']['_tid_']} or _tid_={cp['pair']['t2']['_tid_']}", con=conn)
+            logger.debug('---------------------------------------')
+            logger.debug(df)
+            logger.debug(f"violated rules: {cp['rules']}")
+            logger.debug(f"violated rules count: {len(cp['rules'])}")
+            logger.debug('---------------------------------------\n')
+
+        logger.debug("confirmations:")
+        logger.debug(confirmations_input)
+        for cf in confirmations_input:
+            df=pd.read_sql(f"select * from {table_name} where _tid_={cf['pair']['t1']['_tid_']} or _tid_={cf['pair']['t2']['_tid_']}", con=conn)
+            logger.debug('---------------------------------------')
+            logger.debug(df)
+            logger.debug(f"violated rules: {cf['rules']}")
+            logger.debug(f"violated rules count: {len(cf['rules'])}")
+            logger.debug('---------------------------------------\n')
+
+        user_input=[]
+        user_input.extend(complaints_input)
+        user_input.extend(confirmations_input)
+        rc = RepairConfig(strategy='information gain', deletion_factor=0.000001, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        start = time.time()
+        bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'], user_specify_pairs=user_specify_pairs,
+            pre_selected_pairs=user_input)
+        end = time.time()
+        new_rules = []
+        deleted_cnt = 0
+
+        timestamp = datetime.now()
+        timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
+        result_dir = f'./test_dc_dot'
+        if not os.path.exists(result_dir):
+            os.makedirs(result_dir)
+
+        for kt,vt in bkeepdict.items():
+            with open(f"{result_dir}/{timestamp_str}_tree_{kt}_dot_file", 'a') as file:
+                comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, \
+                deleted: {bkeepdict[kt]['deleted']}"
+                dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
+
+                file.write(dot_file)                
+
+        for k in bkeepdict:
+            if(bkeepdict[k]['deleted']==False):
+                new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+            else:
+                deleted_cnt+=1
+
+        logger.debug(f"new_rules")
+        logger.debug(new_rules)
+        logger.debug(f'"len(new_rules): {len(new_rules)}')
+        conn.close()
+        new_muse_program= []
+        logger.debug("new_rules")
+        logger.debug(new_rules)
+        for r in new_rules:
+            # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
+            new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
+        muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
+        tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
+        logger.debug(len(tupled_muse_dirties_new))
+        logger.debug(tupled_muse_dirties_new)
+
+        conn=psycopg2.connect('dbname=cr user=postgres')
+        dc_new, dd_new, cc_new, total_cnt_new = get_muse_results(table_name, conn, tupled_muse_dirties_new)
+
+        logger.debug(f"dc:{dc}")
+        logger.debug(f"dd:{dd}")
+        logger.debug(f"cc:{cc}")
+        logger.debug(f"new_dc:{dc_new}")
+        logger.debug(f"new_dd:{dd_new}")
+        logger.debug(f"new_cc:{cc_new}")
+        # 'complaints', 'confirmations', and 'new_dirties'
+        fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_tuples, confirmations=confirmation_tuples, new_dirties=tupled_muse_dirties_new)
+        logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
+        logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
+
+        # for k in bkeepdict:
+        #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+        logger.debug(bkeepdict)
+        rc.runtime=end-start
+        for r in new_rules:
+            logger.debug(r+'\n')
+
+    else:
+        complaint_input = []
+        for vk,vv in violations_dict.items():
+            if(complaint_set_completed):
+                break
+            current_dc_added = False
+            for c in vv:
+                if(c in dc):
+                    logger.debug(f"(c, c) case found ({vk}, {c})")
+                    logger.debug(f"complaint_input added {c}")
+                    complaint_input.add(c)
                     current_complaint_cnt=len(complaint_input)
-                    current_dc_added=True
-                if(current_complaint_cnt>=complaint_size):
-                    complaint_set_completed=True
-                    break
-    if(not complaint_set_completed):
-        size_needed=complaint_size-len(complaint_input)
-        rest_avaiable_dcs = [x for x in dc if x not in complaint_input]
-        complaint_input.extend(random.sample(rest_avaiable_dcs, size_needed))
+                    if(not current_dc_added):
+                        complaint_input.add(vk)
+                        current_complaint_cnt=len(complaint_input)
+                        current_dc_added=True
+                    if(current_complaint_cnt>=complaint_size):
+                        complaint_set_completed=True
+                        break
+        complaints_input=list(complaint_input)
+        if(not complaint_set_completed):
+            size_needed=complaint_size-len(complaint_input)
+            rest_avaiable_dcs = [x for x in dc if x not in complaint_input]
+            complaints_input.extend(random.sample(rest_avaiable_dcs, size_needed))
 
-    # complaint_input = random.sample(dc, complaint_size)
-    print(f"complaint_input:{complaint_input}")
-    confirm_input = random.sample(dd, confirmation_size)
-    print(f"confirm_input:{confirm_input}")
+        # complaint_input = random.sample(dc, complaint_size)
+        logger.debug(f"complaint_input:{complaint_input}")
+        confirmations_input = random.sample(dd, confirmation_size)
+        logger.debug(f"confirm_input:{confirm_input}")
 
-    # stats being used to delete rules pre fix algorithm
-    cnt_non_violation_on_confirmation=cnt_violation_on_complaints=0
+        # stats being used to delete rules pre fix algorithm
+        cnt_non_violation_on_confirmation=cnt_violation_on_complaints=0
 
-    rules_with_violations = {r:{'violate_confirm_cnt':0, 'violate_complaint_cnt':0} for r in rule_texts}
+        rules_with_violations = {r[1]:{'violate_confirm_cnt':0, 'violate_complaint_cnt':0} for r in res}
 
-    for l in complaint_input:
-        complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {l}", conn)
-        complaint_tuples = complaint_df.to_dict('records')
-        complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
-        for r in rule_texts:
-            has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=complaint_dicts[0], table_name=table_name, 
-                violations_dict=None, complaint_selection=False, check_existence_only=True)
-            if(has_violation):
-                rules_with_violations[r]['violate_complaint_cnt']+=1
+        for l in complaints_input:
+            complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {l}", conn)
+            complaint_tuples = complaint_df.to_dict('records')
+            complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
+            for r in res:
+                has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r[1], complaint=complaint_dicts[0], table_name=table_name, 
+                    violations_dict=None, complaint_selection=False, check_existence_only=True,
+                    user_specify_pairs=False,user_input_pairs=False,pre_selected_pairs=None)
 
-    for f in confirm_input:
-        confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ = {f}", conn)
-        confirm_tuples = confirm_df.to_dict('records')
-        confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
-        for r in rule_texts:
-            has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r, complaint=confirm_dicts[0], table_name=table_name, 
-                violations_dict=None, complaint_selection=False, check_existence_only=True)
-            if(has_violation):
-                rules_with_violations[r]['violate_confirm_cnt']+=1
+                if(has_violation):
+                    rules_with_violations[r[1]]['violate_complaint_cnt']+=1
 
-    print('rules_with_violations')
-    print(rules_with_violations)
+        for f in confirmations_input:
+            confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ = {f}", conn)
+            confirm_tuples = confirm_df.to_dict('records')
+            confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+            for r in res:
+                has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r[1], complaint=confirm_dicts[0], table_name=table_name, 
+                    violations_dict=None, complaint_selection=False, check_existence_only=True,
+                    user_specify_pairs=False,user_input_pairs=False,pre_selected_pairs=None)
+                if(has_violation):
+                    rules_with_violations[r[1]]['violate_confirm_cnt']+=1
 
-    pre_delete_thresh=0.3
-    post_delete_rules=[r for r,v in rules_with_violations.items() if ((len(confirm_input)-v['violate_confirm_cnt']+v['violate_complaint_cnt'])/(len(complaint_input) + len(confirm_input)))<pre_delete_thresh]
-    deleted_rules =[r for r,v in rules_with_violations.items() if ((len(confirm_input)-v['violate_confirm_cnt']+v['violate_complaint_cnt'])/(len(complaint_input) + len(confirm_input)))>=pre_delete_thresh]
-    print("deleted_rules")
-    print(deleted_rules)
-    print(len(deleted_rules))
-    print("rules to be used in fix")
-    print(post_delete_rules)
-    print(len(post_delete_rules))
-    exit()
-    print(f" running user input: size: complaint(dirties but should be clean): {len(complaint_input)}, confirmation(clean and should be clean):\
-     {len(confirm_input)}, version: information gain....")
-    # print(f"on complaint size {c}")
-    user_input = []
+        logger.debug('rules_with_violations')
+        logger.debug(rules_with_violations)
 
-    if(complaint_size>0):
-        complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})", conn)
-        print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})")
-        print(complaints_df)
-        complaints_df.to_csv('complaint_input_tuples.csv', index=False)
-        complaint_tuples = complaints_df.to_dict('records')
-        complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
-    else:
-        complaint_dicts=[]
+        # pre_delete_thresh=0.5
+        # pre_delete_complaint_thresh=0.5
+        # deleted_rules =[r for r,v in rules_with_violations.items() if (v['violate_complaint_cnt']/len(complaint_input)>pre_delete_complaint_thresh) and \
+        # (((len(confirm_input)-v['violate_confirm_cnt']+v['violate_complaint_cnt'])/(len(complaint_input) + len(confirm_input)))>=pre_delete_thresh)]
 
-    if(confirmation_size>0):
-        confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})", conn)
-        print(confirm_df)
-        complaints_df.to_csv('confirm_input_tuples.csv', index=False)
-        print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})")
-        confirm_tuples = confirm_df.to_dict('records')
-        confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
-    else:
-        confirm_dicts = []
-    user_input.extend(complaint_dicts)
-    user_input.extend(confirm_dicts)
+        # post_delete_rules=[r for r,v in rules_with_violations.items() if r not in deleted_rules]
 
-    rule_file = open(dc_file, 'r')
-    test_rules = [l.strip() for l in rule_file.readlines()]
+        # exit()
+        logger.debug(f" running user input: size: complaint(dirties but should be clean): {len(complaint_input)}, confirmation(clean and should be clean):\
+         {len(confirm_input)}, version: information gain....")
+        logger.debug(f"on complaint size {c}")
+        user_input = []
 
-    rc = RepairConfig(strategy='information gain', deletion_factor=0.5, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
-    start = time.time()
-    bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'])
-    end = time.time()
-    new_rules = []
-    deleted_cnt = 0
-    for k in bkeepdict:
-        if(bkeepdict[k]['deleted']==False):
-            new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+        if(complaint_size>0):
+            complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})", conn)
+            logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})")
+            logger.debug(complaints_df)
+            complaints_df.to_csv('complaint_input_tuples.csv', index=False)
+            complaint_tuples = complaints_df.to_dict('records')
+            complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
         else:
-            deleted_cnt+=len(bkeepdict[k]['fixed_treerule_text'])
+            complaint_dicts=[]
+
+        if(confirmation_size>0):
+            confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})", conn)
+            logger.debug(confirm_df)
+            confirm_df.to_csv('confirm_input_tuples.csv', index=False)
+            logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})")
+            confirm_tuples = confirm_df.to_dict('records')
+            confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+        else:
+            confirm_dicts = []
+        user_input.extend(complaint_dicts)
+        user_input.extend(confirm_dicts)
+
+        # rule_file = open(dc_file, 'r')
+        # test_rules = [l.strip() for l in rule_file.readlines()]
+
+        rc = RepairConfig(strategy='information gain', deletion_factor=0.5, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        start = time.time()
+        bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'])
+        end = time.time()
+        new_rules = []
+        deleted_cnt = 0
+        for k in bkeepdict:
+            if(bkeepdict[k]['deleted']==False):
+                new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+            else:
+                deleted_cnt+=1
 
 
-    print(f"new_rules")
-    print(new_rules)
-    print(f'"len(new_rules): {len(new_rules)}')
-    conn.close()
-    conn=psycopg2.connect('dbname=cr user=postgres')
-    new_muse_program= []
-    for r in new_rules:
-        new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
-    muse_dirties_new = muse_find_mss(rules=new_muse_program)
-    tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
-    print(len(tupled_muse_dirties_new))
-    print(tupled_muse_dirties_new)
-    # conn=psycopg2.connect('dbname=cr user=postgres')
-    # cur = conn.cursor()
+        logger.debug(f"new_rules")
+        logger.debug(new_rules)
+        logger.debug(f'"len(new_rules): {len(new_rules)}')
+        conn.close()
+        new_muse_program= []
+        logger.debug("new_rules")
+        logger.debug(new_rules)
+        for r in new_rules:
+            # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
+            new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
 
-    dc_new, dd_new, cc_new, total_cnt_new = get_muse_results('flights_new', conn, tupled_muse_dirties_new)
-    print(f"complaint_input:{complaint_input}")
-    print(f"confirm_input:{confirm_input}")
-    print(f"dc:{dc}")
-    print(f"dd:{dd}")
-    print(f"cc:{cc}")
-    print(f"new_dc:{dc_new}")
-    print(f"new_dd:{dd_new}")
-    print(f"new_cc:{cc_new}")
-    # 'complaints', 'confirmations', and 'new_dirties'
-    fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_input, confirmations=confirm_input, new_dirties=tupled_muse_dirties_new)
-    print(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
-    print(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
-    print(f"before fix, we had {len(res)} rules as input, after fix, we have {len(new_rules)} rules as input, deleted {deleted_cnt} rules")
+        logger.debug(f"new_muse_program: {new_muse_program}")
+        muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
+        tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
+        logger.debug(len(tupled_muse_dirties_new))
+        logger.debug(tupled_muse_dirties_new)
+        # conn=psycopg2.connect('dbname=cr user=postgres')
+        # cur = conn.cursor()
+        conn=psycopg2.connect('dbname=cr user=postgres')
 
-    # for k in bkeepdict:
-    #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
-    print(bkeepdict)
+        # dc_new, dd_new, cc_new, total_cnt_new = get_muse_results('flights_new', conn, tupled_muse_dirties_new)
+        dc_new, dd_new, cc_new, total_cnt_new = get_muse_results(table_name, conn, tupled_muse_dirties_new)
 
-    rc.runtime=end-start
+        logger.debug(f"complaint_input:{complaint_input}")
+        logger.debug(f"confirm_input:{confirm_input}")
+        logger.debug(f"dc:{dc}")
+        logger.debug(f"dd:{dd}")
+        logger.debug(f"cc:{cc}")
+        logger.debug(f"new_dc:{dc_new}")
+        logger.debug(f"new_dd:{dd_new}")
+        logger.debug(f"new_cc:{cc_new}")
+        # 'complaints', 'confirmations', and 'new_dirties'
+        fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_input, confirmations=confirm_input, new_dirties=tupled_muse_dirties_new)
+        logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
+        logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
 
-    for r in new_rules:
-        print(r+'\n')
+        # for k in bkeepdict:
+        #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+        logger.debug(bkeepdict)
+
+        rc.runtime=end-start
+
+        for r in new_rules:
+            logger.debug(r+'\n')
 
     
 # if __name__ == '__main__':
@@ -1518,7 +1685,7 @@ if __name__ == '__main__':
 #             first_line = f.readline()
 #             num_lines = sum(1 for line in f)
 #     except Exception as e:
-#         print(f'cant read file {input_file}')
+#         logger.debug(f'cant read file {input_file}')
 #         exit()
 #     else:
 #         cols=first_line.split(',')
@@ -1560,7 +1727,7 @@ if __name__ == '__main__':
 #     if(dc_dfs):
 #         pd.concat(dc_dfs).to_csv('dcs.csv', index=False)
 
-#     print(f"before fixes, the accuracy of holoclean is {(len(ddc)+len(cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
+#     logger.debug(f"before fixes, the accuracy of holoclean is {(len(ddc)+len(cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
 
 #     results = []
 
@@ -1583,7 +1750,7 @@ if __name__ == '__main__':
 #         if(dirty_expected_dirty):
 #             dirty_input= random.sample(dirty_expected_dirty, 1)
 #         else:
-#             print("no dirties !")
+#             logger.debug("no dirties !")
 #             exit()
 #         if(dirty_expected_clean):
 #             clean_input= random.sample(dirty_expected_clean, 1)
@@ -1591,14 +1758,14 @@ if __name__ == '__main__':
 #             clean_input= random.sample(clean_expected_clean, 1)
 
 
-#         print(f"dirty_input: {concated_df[concated_df['_tid_']==dirty_input[0]]}")
-#         print(f"clean_input: {concated_df[concated_df['_tid_']==clean_input[0]]}")
+#         logger.debug(f"dirty_input: {concated_df[concated_df['_tid_']==dirty_input[0]]}")
+#         logger.debug(f"clean_input: {concated_df[concated_df['_tid_']==clean_input[0]]}")
 
-#         # print("expected_ids")
-#         # print(expected_ids)
 
-#         # print("clean_tuples")
-#         # print(clean_tuples)
+
+
+
+
 
 #         # complaint_size_for_each_label = [3]
 #         # # complaint_size_for_each_label = [2]
@@ -1607,12 +1774,12 @@ if __name__ == '__main__':
 
 #         # for c in complaint_size_for_each_label:
 #         for v in versions:
-#             print(f" running complaint: size: dity: {len(dirty_input)}, clean: {len(clean_input)}, version: {v}....")
-#             # print(f"on complaint size {c}")
+#             logger.debug(f" running complaint: size: dity: {len(dirty_input)}, clean: {len(clean_input)}, version: {v}....")
+
 #             complaints_dirty_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})", conn)
-#             print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})")
+#             logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in dirty_input])})")
 #             complaints_clean_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})", conn)
-#             print(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})")
+#             logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in clean_input])})")
 #             expected_dirty_tuples = complaints_dirty_df.to_dict('records')
 #             expected_clean_tuples = complaints_clean_df.to_dict('records')
 #             expected_dirty_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in expected_dirty_tuples]
@@ -1623,7 +1790,7 @@ if __name__ == '__main__':
 
 #             rule_file = open(input_dc_dir+input_dc_file, 'r')
 #             test_rules = [l.strip() for l in rule_file.readlines()]
-#             # print(complaints)
+
 #             # test_rules=[
 #             # 't1&t2&EQ(t1.occupation,t2.occupation)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.race,t2.race)&IQ(t1.sex,t2.sex)',
 #             # 't1&t2&EQ(t1.marital-status,t2.marital-status)&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.relationship,t2.relationship)&IQ(t1.income,t2.income)',
@@ -1669,7 +1836,7 @@ if __name__ == '__main__':
 #                 gt_file=ground_truth_file, initial_training=True)
 
 #             new_dirties, new_dc, new_ddw, new_ddc, new_cc, new_cd, new_concated_df = get_holoclean_results(table_name, conn, cols)
-#             print(f"after fixes, the accuracy of holoclean is {(len(new_ddc)+len(new_cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
+#             logger.debug(f"after fixes, the accuracy of holoclean is {(len(new_ddc)+len(new_cc))/(len(dirties)+len(dc)+len(cc)+len(cd))}")
 
 #             fixed_dirty_cnt, fixed_clean_cnt = 0, 0
             
@@ -1682,8 +1849,8 @@ if __name__ == '__main__':
 #                 if d in new_ddc:
 #                     fixed_dirty_cnt+=1
 
-#             print(f"after the fix the original dirty is fixed {fixed_dirty_cnt}/{len(dirty_input)} = {fixed_dirty_cnt/len(dirty_input)}")
-#             print(f"after the fix the original clean is fixed {fixed_clean_cnt}/{len(clean_input)} = {fixed_clean_cnt/len(clean_input)}")
+#             logger.debug(f"after the fix the original dirty is fixed {fixed_dirty_cnt}/{len(dirty_input)} = {fixed_dirty_cnt/len(dirty_input)}")
+#             logger.debug(f"after the fix the original clean is fixed {fixed_clean_cnt}/{len(clean_input)} = {fixed_clean_cnt/len(clean_input)}")
 
 #             fix_result = {"dirty_fix_rate": fixed_dirty_cnt/len(dirty_input), "clean_preserving_rate": fixed_clean_cnt/len(clean_input)}
 #             result_dict = print_fix_book_keeping_stats(rc, bkeepdict, fix_result)

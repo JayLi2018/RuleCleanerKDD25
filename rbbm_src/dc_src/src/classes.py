@@ -11,25 +11,43 @@ import scipy.cluster.hierarchy as shc
 from scipy.spatial.distance import squareform, pdist
 
 dc_violation_template=Template("SELECT t2.* FROM $table t1, $table t2 WHERE $dc_desc;")
-ops = re.compile(r'IQ|EQ|LTE|GTE')
 
+ops = re.compile(r'IQ|EQ|LTE|GTE|GT|LT')
+eq_op = re.compile(r'EQ')
+non_symetric_op = re.compile(r'LTE|GTE|GT|LT')
+const_detect = re.compile(r'([\'|\"])')
+
+
+def get_operator(predicate):
+    predicate_sign=ops.search(predicate).group()
+    # print(predicate_sign)
+    if(predicate_sign=='EQ'):
+        sign='='
+    elif(predicate_sign=='IQ'):
+        sign='!='
+    elif(predicate_sign=='LTE'):
+        sign='<='
+    elif(predicate_sign=='LT'):
+        sign='<'
+    elif(predicate_sign=='GTE'):
+        sign='>='
+    elif(predicate_sign=='GT'):
+        sign='>'
+    else:
+        print("non recognizable sign")
+        # exit()
+    return sign
 
 def parse_rule_to_where_clause(rule):
 	# support EQ and IQ only so far
 	res = []
 	for xl in rule.split('&'):
 		if(ops.search(xl)):
-			predicate_sign=ops.search(xl).group()
-			if(predicate_sign=='EQ'):
-			    sign='='
-			elif(predicate_sign=='IQ'):
-			    sign='!='
-			elif(predicate_sign=='LTE'):
-			    sign='<='
-			else:
-			    sign='>='
+			sign=get_operator(xl)
 			bracket_content = re.findall(r'\((.*)\)', xl)[0]
-			res.append(sign.join(re.sub(r'(t[1|2]\.)([-\w]+)', r'\1"\2"', bracket_content).split(',')))
+			# res.append(sign.join(re.sub(r'(t[1|2]\.)([-\w]+)', r'\1"\2"', bracket_content).split(',')))
+			res.append(sign.join(bracket_content.split(',')))
+
 	# t1&t2&EQ(t1.hours-per-week,t2.hours-per-week)&IQ(t1.native-country,t2.native-country)&IQ(t1.income,t2.income)&EQ(t1.relationship,t2.relationship)&IQ(t1.workclass,t2.workclass)&IQ(t1.income,'<=50k')
 
 	return ' AND '.join(res)
