@@ -256,7 +256,9 @@ def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_t
                 # need to add it again
                 leaf_nodes.append(ln)
 
-        # for ln in leaf_nodes:
+        for ln in leaf_nodes:
+            ln=filter_assignments(ln)
+
         if(leaf_nodes):
             # its possible for certain rule we dont have any violations
             fixed_treerule = fix_violations(r, treerule, repair_config, leaf_nodes, domain_value_dict)
@@ -284,6 +286,16 @@ def fix_rules(repair_config, original_rules, conn, table_name, exclude_cols=['_t
     #             break
     # all_fixed_rules.extend(original_rules[repair_config.monitor.overall_fixed_count:])
     return fix_book_keeping_dict
+
+def filter_assignments(leaf_node):
+    # given a leaf node
+    # if label is DIRTY: do nothing
+    # if label is CLEAN: if the assignment is DD, remove it
+    if(leaf_node.label==DIRTY):
+        return leaf_node
+    leaf_node.pairs[DIRTY]=[]
+    # leaf_node.pairs[CLEAN] = [x for x in leaf_node.pairs[CLEAN] if x['expected_label']!=DIRTY]
+    return leaf_node
 
 def print_fix_book_keeping_stats(config, bkeepdict, fix_performance):
     sizes_diff = []
@@ -605,12 +617,19 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
                 new_parent_node=redistribute_after_fix(treerule, node, the_fix)
             # handle the left and right child after redistribution
             else:
-                if(check_tree_purity(treerule)):
-                    return treerule
-                else:
-                    reverse_node_parent_condition(node)
-                    treerule.setsize(treerule.size+2)
+                if(not node.pairs[CLEAN] and not node.pairs[DIRTY]):
                     continue
+                elif(node.pairs[CLEAN] and not node.pairs[DIRTY]):
+                    if(node.label!=CLEAN):
+                        reverse_node_parent_condition(node)
+                        treerule.setsize(treerule.size+2)
+                else:
+                    if(node.label!=DIRTY):
+                        reverse_node_parent_condition(node)
+                        treerule.setsize(treerule.size+2)
+
+                # if(check_tree_purity(treerule)):
+                #     return treerule
 
             if(new_parent_node):
                 still_inpure=False
@@ -679,12 +698,22 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
                     logger.debug(f"best_fix_pair: {best_fix_pair}")
                     new_parent_node=redistribute_after_fix(treerule, node, best_fix, reverse_condition)
             else:
-                if(check_tree_purity(treerule)):
-                    return treerule
-                else:
-                    reverse_node_parent_condition(node)
-                    treerule.setsize(treerule.size+2)
+                if(not node.pairs[CLEAN] and not node.pairs[DIRTY]):
                     continue
+                elif(node.pairs[CLEAN] and not node.pairs[DIRTY]):
+                    if(node.label!=CLEAN):
+                        reverse_node_parent_condition(node)
+                        treerule.setsize(treerule.size+2)
+                else:
+                    if(node.label!=DIRTY):
+                        reverse_node_parent_condition(node)
+                        treerule.setsize(treerule.size+2)
+                # if(check_tree_purity(treerule)):
+                #     return treerule
+                # else:
+                #     reverse_node_parent_condition(node)
+                #     treerule.setsize(treerule.size+2)
+                #     continue
 
             # handle the left and right child after redistribution
             if(new_parent_node):
@@ -1099,7 +1128,8 @@ def get_muse_results(table_name, conn, muse_dirties):
     dc = set([x for x in muse_dirty_ids if x in real_cleans])
     dd = set([x for x in muse_dirty_ids if x in real_dirties])
     cc = set([x for x in real_cleans if x not in muse_dirty_ids])
-    return dc, dd, cc, len(res)
+    cd = set([x for x in real_dirties if x not in muse_dirty_ids])
+    return dc, dd, cc, len(res), cd
 
 
 def calculate_retrained_results(complaints, confirmations, new_dirties):
@@ -1269,7 +1299,7 @@ if __name__ == '__main__':
 
     conn=psycopg2.connect('dbname=cr user=postgres')
     # dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
-    dc, dd, cc, total_cnt = get_muse_results(table_name, conn, tupled_muse_dirties)
+    dc, dd, cc, total_cnt, cd = get_muse_results(table_name, conn, tupled_muse_dirties)
 
 
     # do a check and construct user complaint set
@@ -1308,6 +1338,8 @@ if __name__ == '__main__':
     logger.debug(f"len(dd)={len(dd)}")
     logger.debug(f"cc:{cc}")
     logger.debug(f"len(cc)={len(cc)}")
+    logger.debug(f"cd:{cd}")
+    logger.debug(f"len(cd)={len(cd)}")
     logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
     complaint_size=5
     confirmation_size=min(len(dd), 5)
@@ -1336,28 +1368,35 @@ if __name__ == '__main__':
         cur_complaint_cnt = 0
 
         while(cur_complaint_cnt<complaint_size):
-            # logger.debug(f"complain_violations_dict: {complain_violations_dict}")
-            # logger.debug(f"complain_probabilities: {complain_probabilities}")
+            logger.debug("building complaint set...")
+            logger.debug(f"complain_violations_dict: {complain_violations_dict}")
+            logger.debug(f"complain_probabilities: {complain_probabilities}")
+            # exit()
             selected_key = random.choices(list(complain_violations_dict.keys()), complain_probabilities)[0]
             selected_list = complain_violations_dict[selected_key]
             # we only want DC-DC to be included
             selected_list = [x for x in selected_list if x in dc]
+            logger.debug(f"selected_list: {selected_list}")
             if(selected_list):
                 selected_element = random.choice(list(selected_list))
-                cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                # cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                cand_id1 = f'{str(selected_key)}_{str(selected_element)}'
+                logger.debug(f"cand_id1: {cand_id1}")
                 if(cand_id1 in complain_violations_to_rule_dict and cand_id1 not in complaint_assignment_ids):
                     complaint_assignment_ids.add(cand_id1)
                     complaints_input.append(complain_violations_to_rule_dict[cand_id1])
                     cur_complaint_cnt+=1
                     complaint_tuples.add(selected_key)
-                if(cand_id2 in complain_violations_to_rule_dict and cand_id2 not in complaint_assignment_ids):
-                    complaint_assignment_ids.add(cand_id2)
-                    complaints_input.append(complain_violations_to_rule_dict[cand_id2])
-                    cur_complaint_cnt+=1
-                    complaint_tuples.add(selected_key)
+                # if(cand_id2 in complain_violations_to_rule_dict and cand_id2 not in complaint_assignment_ids):
+                #     complaint_assignment_ids.add(cand_id2)
+                #     complaints_input.append(complain_violations_to_rule_dict[cand_id2])
+                #     cur_complaint_cnt+=1
+                #     complaint_tuples.add(selected_key)
 
         logger.debug(f"complaint_tuples: {complaint_tuples}")
         logger.debug(f"complaint_assignment_ids: {complaint_assignment_ids}")
+        logger.debug("building confirmation set...")
+
         confirm_violations_to_rule_dict, confirm_violations_dict = user_choose_confirmation_assignment(dds=dd, 
             desired_dc="t1&t2&EQ(t1.State,t2.State)&EQ(t1.HasChild,t2.HasChild)&IQ(t1.ChildExemp,t2.ChildExemp)",
          conn=conn, table_name=table_name)
@@ -1368,21 +1407,24 @@ if __name__ == '__main__':
         while(cur_confirmation_cnt<confirmation_size):
             selected_key =  random.choices(list(confirm_violations_dict.keys()), confirm_probabilities)[0]
             selected_list = confirm_violations_dict[selected_key]
+            logger.debug(f"selected_list: {selected_list}")
             # we only want DD-DD to be included
             selected_list = [x for x in selected_list if x in dd]
             if(selected_list):
                 selected_element = random.choice(list(selected_list))
-                cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                # cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
+                cand_id1=f'{str(selected_key)}_{str(selected_element)}'
+                logger.debug(f"cand_id1: {cand_id1}")
                 if(cand_id1 in confirm_violations_to_rule_dict and cand_id1 not in comfirm_assignment_ids):
                     comfirm_assignment_ids.add(cand_id1)
                     confirmations_input.append(confirm_violations_to_rule_dict[cand_id1])
                     cur_confirmation_cnt+=1
                     confirmation_tuples.add(selected_key)
-                if(cand_id2 in confirm_violations_to_rule_dict and cand_id2 not in comfirm_assignment_ids):
-                    comfirm_assignment_ids.add(cand_id2)
-                    confirmations_input.append(confirm_violations_to_rule_dict[cand_id2])
-                    cur_confirmation_cnt+=1
-                    confirmation_tuples.add(selected_key)
+                # if(cand_id2 in confirm_violations_to_rule_dict and cand_id2 not in comfirm_assignment_ids):
+                #     comfirm_assignment_ids.add(cand_id2)
+                #     confirmations_input.append(confirm_violations_to_rule_dict[cand_id2])
+                #     cur_confirmation_cnt+=1
+                #     confirmation_tuples.add(selected_key)
 
         logger.debug(f"confirmation_tuples: {confirmation_tuples}")
         logger.debug(f"comfirm_assignment_ids: {comfirm_assignment_ids}")
@@ -1427,7 +1469,7 @@ if __name__ == '__main__':
         user_input=[]
         user_input.extend(complaints_input)
         user_input.extend(confirmations_input)
-        rc = RepairConfig(strategy='information gain', deletion_factor=0.000001, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        rc = RepairConfig(strategy='naive', deletion_factor=0.000001, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
         start = time.time()
         bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'], user_specify_pairs=user_specify_pairs,
             pre_selected_pairs=user_input)
@@ -1437,7 +1479,7 @@ if __name__ == '__main__':
 
         timestamp = datetime.now()
         timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
-        result_dir = f'./test_dc_dot'
+        result_dir = f'./test_dc_dot_naive'
         if not os.path.exists(result_dir):
             os.makedirs(result_dir)
 
@@ -1471,18 +1513,20 @@ if __name__ == '__main__':
         logger.debug(tupled_muse_dirties_new)
 
         conn=psycopg2.connect('dbname=cr user=postgres')
-        dc_new, dd_new, cc_new, total_cnt_new = get_muse_results(table_name, conn, tupled_muse_dirties_new)
+        new_dc, new_dd, new_cc, total_cnt_new, new_cd = get_muse_results(table_name, conn, tupled_muse_dirties_new)
 
-        logger.debug(f"dc:{dc}")
-        logger.debug(f"dd:{dd}")
-        logger.debug(f"cc:{cc}")
-        logger.debug(f"new_dc:{dc_new}")
-        logger.debug(f"new_dd:{dd_new}")
-        logger.debug(f"new_cc:{cc_new}")
+        logger.debug(f"new_dc:{new_dc}")
+        logger.debug(f"len(new_dc)={len(new_dc)}")
+        logger.debug(f"new_dd:{new_dd}")
+        logger.debug(f"len(new_dd)={len(new_dd)}")
+        logger.debug(f"new_cc:{new_cc}")
+        logger.debug(f"len(new_cc)={len(new_cc)}")
+        logger.debug(f"new_cd:{cd}")
+        logger.debug(f"len(new_cd)={len(new_cd)}")
         # 'complaints', 'confirmations', and 'new_dirties'
         fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_tuples, confirmations=confirmation_tuples, new_dirties=tupled_muse_dirties_new)
         logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
-        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
+        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(new_dd)+len(new_cc))/total_cnt_new}")
         logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
 
         # for k in bkeepdict:
@@ -1625,7 +1669,7 @@ if __name__ == '__main__':
         conn=psycopg2.connect('dbname=cr user=postgres')
 
         # dc_new, dd_new, cc_new, total_cnt_new = get_muse_results('flights_new', conn, tupled_muse_dirties_new)
-        dc_new, dd_new, cc_new, total_cnt_new = get_muse_results(table_name, conn, tupled_muse_dirties_new)
+        dc_new, dd_new, cc_new, total_cnt_new, cd_new= get_muse_results(table_name, conn, tupled_muse_dirties_new)
 
         logger.debug(f"complaint_input:{complaint_input}")
         logger.debug(f"confirm_input:{confirm_input}")
@@ -1635,7 +1679,6 @@ if __name__ == '__main__':
         logger.debug(f"new_dc:{dc_new}")
         logger.debug(f"new_dd:{dd_new}")
         logger.debug(f"new_cc:{cc_new}")
-        # 'complaints', 'confirmations', and 'new_dirties'
         fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_input, confirmations=confirm_input, new_dirties=tupled_muse_dirties_new)
         logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
         logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")

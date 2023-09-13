@@ -35,7 +35,7 @@ def get_operator(predicate):
         sign='>'
     else:
         print("non recognizable sign")
-        # exit()
+        exit()
     return sign
 
 def parse_rule_to_where_clause(rule):
