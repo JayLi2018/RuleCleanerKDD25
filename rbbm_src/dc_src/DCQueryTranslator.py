@@ -1,6 +1,6 @@
 from string import Template
 from rbbm_src.dc_src.src.classes import parse_rule_to_where_clause
-from rbbm_src.dc_src.DCRepair import dc_tuple_violation_template_targeted_t1,dc_tuple_violation_template_targeted_t2,non_symetric_op
+from rbbm_src.dc_src.src.classes import non_symetric_op
 
 import re
 

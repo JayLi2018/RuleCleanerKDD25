@@ -34,9 +34,10 @@ class KeyWordRuleMiner:
 	def __init__(self,df):
 		self.df = df
 
-	def gen_funcs(self, count, apply_to_sentence_percentage_thresh, label_accuracy_thresh, label_accuracy_cap, pickle_it=False, pickle_file_name=None):
+	def gen_funcs(self, count, apply_to_sentence_percentage_thresh, label_accuracy_thresh, label_accuracy_cap, pickle_it=False, pickle_file_name=None, checked_words=None):
 		res = []
-		checked_words = set([])
+		if(not checked_words):
+			checked_words = set([])
 		candidate_sentences = self.df['text'].values.tolist()
 		cur_cnt=0
 		ccnt=0
@@ -52,7 +53,7 @@ class KeyWordRuleMiner:
 						#     test_funcs = pickle.load(file)
 						# for obj in test_funcs:
 						#     print(obj)
-					return res
+					return res, checked_words
 				if(word in stop_words):
 					# print(f"{word} is a stop word, skipped")
 					continue
@@ -111,13 +112,13 @@ if __name__ == '__main__':
 
 	total_funcs=[]
 
-	bad_funcs=kwm.gen_funcs(count=10, 
+	bad_funcs, checked_words=kwm.gen_funcs(count=10, 
 		apply_to_sentence_percentage_thresh=0.025, label_accuracy_thresh=0, label_accuracy_cap=0.2, pickle_it=False, pickle_file_name='picked_funcs_620')
 
 	total_funcs.extend(bad_funcs)
 
-	good_funcs=kwm.gen_funcs(count=20,
-		apply_to_sentence_percentage_thresh=0.03, label_accuracy_thresh=0.7, label_accuracy_cap=1, pickle_it=False, pickle_file_name='picked_funcs_620'
+	good_funcs, checked_words =kwm.gen_funcs(count=20,
+		apply_to_sentence_percentage_thresh=0.03, label_accuracy_thresh=0.65, label_accuracy_cap=1, pickle_it=False, pickle_file_name='picked_funcs_620', checked_words=checked_words
 		)
 
 	total_funcs.extend(good_funcs)

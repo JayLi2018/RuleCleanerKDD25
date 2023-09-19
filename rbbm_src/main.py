@@ -7,7 +7,7 @@ from rbbm_src.classes import (
 	lf_input,
 	dc_input)
 from rbbm_src.labelling_func_src.src.experiment import lf_main 
-from rbbm_src.dc_src.src.experiment import dc_main 
+from rbbm_src.dc_src.DCRepair import dc_main 
 import psycopg2
 import logging
 import colorful
@@ -24,14 +24,32 @@ def main():
 	# file_handler.setFormatter(file_formatter)
 	logger = logging.getLogger(__name__)
 
-	parser = argparse.ArgumentParser(description='Running experiments of LabelExplaination')
+	parser = argparse.ArgumentParser(description='Running experiments of LFRepair/DCRepair')
 	# common arguments needed for either DC or LF
 
-	parser.add_argument('-l', '--log_level', metavar='\b', type=str, default='critical',
+	parser.add_argument('-l', '--log_level', metavar='\b', type=str, default='debug',
 	help='loglevel: debug/info/warning/error/critical (default: %(default)s)')
 
-	parser.add_argument('-p', '--user_provide', metavar='\b', type=str, default='True',
-	help='user select from all wrong labels(for LF) or all wrong repairs(for DC)? (default: %(default)s)')
+	parser.add_argument('-s', '--user_input_size', metavar='\b', type=str, default=20,
+	help='user input size total (the complaint size is decided by user_input_size*complaint_ratio) and confirm size is decided by user_input_size-complaint_size(default: %(default)s)')
+
+	parser.add_argument('-r', '--complaint_ratio', metavar='\b', type=float, default=0.5,
+	help='user input complaint ratio (default: %(default)s)')
+
+	parser.add_argument('-G','--strategy', metavar="\b", type=str, default='information gain',
+	  help='method used to repair the rules (naive, information_gain, optimal) (default: %(default)s)')
+
+	parser.add_argument('-D', '--deletion_factor',  metavar="\b", type=float, default=0.5,
+	  help='this is a factor controlling how aggressive the algorithm chooses to delete the rule from the rulset (default: %(default)s)')
+
+	parser.add_argument('-E', '--retrain_every_percent',  metavar="\b", type=float, default=1,
+	  help='retrain over every (default: %(default)s*100), the default order is sorted by treesize ascendingly')
+
+	parser.add_argument('-A', '--retrain_accuracy_thresh',  metavar="\b", type=float, default=0.5,
+	  help='when retrain over every retrain_every_percent, the algorithm stops when the fix rate is over this threshold (default: %(default)s)')
+
+	# parser.add_argument('-p', '--user_provide', metavar='\b', type=str, default='True',
+	# help='user select from all wrong labels(for LF) or all wrong repairs(for DC)? (default: %(default)s)')
 
 	parser.add_argument('-U', '--use_case', metavar='\b', type=str, default='dc',
 		help='use case of the run, is it for dc or lf? (default: %(default)s)')
@@ -68,91 +86,71 @@ def main():
 	# parser.add_argument('-g', '--greedy', metavar='\b', type=str, default='False',
 	# help='early stop if no increase in terms of words influence (default: %(default)s)')
 
-	parser.add_argument('-A', '--cardinality_thresh', metavar='\b', type=int, default=4,
-	help='cardinality threshold if non greedy (i.e. exhaustive), ONLY userful when greedy==False (default: %(default)s)')
+	# parser.add_argument('-A', '--cardinality_thresh', metavar='\b', type=int, default=4,
+	# help='cardinality threshold if non greedy (i.e. exhaustive), ONLY userful when greedy==False (default: %(default)s)')
 
 	parser.add_argument('-L', '--using_lattice', metavar='\b', type=str, default='False',
 	help='using lattice when fiding rule influences? (default: %(default)s)')
 
-	parser.add_argument('-E', '--eval_mode', metavar='\b', type=str, default='single_func',
-	help='method used to evaluate the model (default: %(default)s)')
+	# parser.add_argument('-E', '--eval_mode', metavar='\b', type=str, default='single_func',
+	# help='method used to evaluate the model (default: %(default)s)')
 
-	parser.add_argument('-D', '--dataset_name', metavar='\b', type=str, default='enron',
+	parser.add_argument('-n', '--dataset_name', metavar='\b', type=str, default='enron',
 	help='dataset used in the use case of labelling functions (default: %(default)s)' )
 
 	# ----------------------------------------------------------------------------------------------------
 
 	# stuff needed for DCs
-	# conn = psycopg2.connect(dbname="holo", user="holocleanuser", password="abcd1234")
 
-	parser.add_argument('-c', '--dc_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
-	help='holoclean needs a input text file which contains the denial constraints, this will be the dir it finds the file (default: %(default)s)')
-
-	# parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='dc_finder_adult_rules.txt',
-	# help='holoclean needs a input csv file as the starting point, this will be the dir it finds the file')
-
-	parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='dc_sample_30',
+	parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt',
 	help='holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: %(default)s)')
 
-	parser.add_argument('-s', '--input_csv_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
-	help='holoclean needs a input csv file as the starting point, this will be the dir it finds the file (default: %(default)s)')
+	parser.add_argument('-S', '--semantic_version', metavar='\b', type=str, default='ind',
+	help='muse semantic version (ind/stage/end/step) (default: %(default)s)')
 
-	parser.add_argument('-S', '--input_csv_file', metavar='\b', type=str, default='adult500.csv',
-	help='holoclean needs a input csv file as the starting point, this will the file inside input_csv_dir (default: %(default)s)')
+	parser.add_argument('-t', '--table_name', metavar='\b', type=str, default='tax',
+	help='the table name from database cr that you want to work with (default: %(default)s)')
 
-	parser.add_argument('-t', '--ground_truth_dir', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/experiments/dc/',
-	help='holoclean needs ground truth file to evaluate, this will be the dir it finds the file (default: %(default)s)')
+	parser.add_argument('-T', '--pre_filter_thresh', metavar='\b', type=float, default=1,
+	help='prefilter those DCs that have number of tuples involved in violations above this thresh (default: %(default)s)')
 
-	parser.add_argument('-T', '--ground_truth_file', metavar='\b', type=str, default='adult500_clean.csv',
-	help='holoclean needs ground truth file to evaluate, this will be the file inside ground_truth_dir (default: %(default)s)')
+	parser.add_argument('-F', '--desired_dcs_file', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt',
+	help='the ground truth DCs that so called user think is correct (default: %(default)s)')
 
-	parser.add_argument('-H', '--contingency_size_threshold', metavar='\b', type=str, default='2',
-	help='if enumerate and test contingency, up to what size do you want to try (default: %(default)s)')
+	parser.add_argument('-I', '--user_specify_pairs', metavar='\b', type=str, default='True',
+	help='user specify pairs of violations to repair? (default: %(default)s)')
 
-	parser.add_argument('-O', '--prune_only', metavar='\b', type=str, default='False',
-	help='stop after pruning to see some properties (default: %(default)s)')
+	args = parser.parse_args()
 
-
-	args=parser.parse_args()
-
-	logger.critical(args)
-	if(args.sample_contingency=='True'):
-		sample_contingency=True
-	else:
-		sample_contingency=False
-	if(args.user_provide=='True'):
-		user_provide=True
-	else:
-		user_provide=False
-	if(args.prune_only=='True'):
-		prune_only=True
-	else:
-		prune_only=False
-	if(args.optimize_using_clustering):
-		clustering_responsibility=True
-	else:
-		clustering_responsibility=False
-
-	conn = psycopg2.connect(dbname=args.dbname, user=args.dbuser, password=args.dbpaswd)
+	logger.debug(args)
 
 	if(args.use_case=='dc'):
+		if(args.user_specify_pairs=='True'):
+			user_specify_pairs=True
+		else:
+			user_specify_pairs=False
+			
 		# conn = psycopg2.connect(dbname=args.dbname, user=args.dbuser, password=args.dbpaswd)
-		input_arg_obj = dc_input(connection=conn,
-			contingency_size_threshold=int(args.contingency_size_threshold),
-			contingency_sample_times=int(args.contingency_sample_times),
-			sample_contingency=sample_contingency,
-			user_provide=user_provide,
-			input_dc_dir=args.dc_dir,
-			input_dc_file=args.dc_file,
-			input_csv_dir=args.input_csv_dir,
-			input_csv_file=args.input_csv_file,
-			ground_truth_dir=args.ground_truth_dir,
-			ground_truth_file=args.ground_truth_file,
-			random_number_for_complaint=int(args.random_number_for_complaint),
+		input_arg_obj = dc_input(
+			dc_file=args.dc_file,
 			stats=StatsTracker(),
-			prune_only=prune_only,
-			clustering_responsibility=clustering_responsibility)
+			log_level=args.log_level,
+			table_name=args.table_name,
+			pre_filter_thresh=args.pre_filter_thresh,
+			semantic_version=args.semantic_version,
+			user_input_size=args.user_input_size,
+			complaint_ratio=args.complaint_ratio,
+			desired_dcs_file=args.desired_dcs_file,
+			strategy=args.strategy,
+			deletion_factor=args.deletion_factor,
+			acc_threshold=args.retrain_accuracy_thresh,
+			user_specify_pairs=user_specify_pairs,
+			retrain_every_percent=args.retrain_every_percent
+			)
 	else:
+
+		conn = psycopg2.connect(dbname=args.dbname, user=args.dbuser, password=args.dbpaswd)
+		
 		if(args.using_lattice=='True'):
 			using_lattice=True
 		else:

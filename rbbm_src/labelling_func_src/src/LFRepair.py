@@ -15,7 +15,6 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	CLEAN,
 	DIRTY,
 )
-import rbbm_src.logconfig
 from math import floor
 from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs
 from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
@@ -740,10 +739,9 @@ if __name__ == '__main__':
 
 
 	labelling_funcs=[f.gen_label_rule() for f in tree_rules]
+
 	li =lf_input(
 		connection=conn,
-		contingency_size_threshold=1,
-		contingency_sample_times=1,
 		clustering_responsibility=False,
 		sample_contingency=False,
 		log_level='debug',
@@ -752,21 +750,29 @@ if __name__ == '__main__':
 		word_threshold=3,
 		greedy=True,
 		cardinality_thresh=2,
-		using_lattice=True,
 		eval_mode='single_func',
-		# lattice: bool
-		invoke_type='terminal', # is it from 'terminal' or 'notebook'
 		arg_str=None, # only used if invoke_type='notebook'
-		# lattice_dict:dict
-		# lfs:List[lfunc]
-		# sentences_df:pd.core.frame.DataFrame
-		topk=3, # topk value for number of lfs when doing responsibility generation
 		random_number_for_complaint=5,
 		dataset_name='youtube',
 		stats=StatsTracker(),
-		prune_only=True,
-		return_complaint_and_results=True
 		)
+	connection: connection
+	log_level:str
+	user_provide:bool
+	training_model_type:str
+	greedy:bool
+	cardinality_thresh:int
+	using_lattice:bool
+	eval_mode:str
+	invoke_type: str # is it from 'terminal' or 'notebook'
+	arg_str: str # only used if invoke_type='notebook'
+	random_number_for_complaint:int
+	dataset_name: str
+	stats: StatsTracker
+
+
+
+
 	global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
 	# all_sentences_df=all_sentences_df.sort_values(by=['text'])
 	old_signaled_cnt=len(all_sentences_df)
@@ -845,29 +851,41 @@ if __name__ == '__main__':
 	new_global_accuracy=0
 	confirm_preserve_rate=0
 	new_signaled_cnt=0
-	num_funcs=0
+	num_funcs=len(labelling_funcs)
 	post_fix_num_funcs=0
-	tree_ids=[k.id for k in tree_rules]
-	tree_ids.sort()
 	new_all_sentences_df=None
 	num_of_funcs_processed_by_algo=0
 	# print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
-	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size} for k in tree_rules}
+	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size, 'pre-deleted': False} for k in tree_rules}
 		# fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
 
-	if(use_pre_fix_deletion):
-		
+	if(use_pre_fix_deletion.lower()!='false'):
+		for f in labelling_funcs:
+			applier = PandasLFApplier(lfs=[f])
+			initial_vectors = applier.apply(df=all_sentences_df, progress_bar=False)
+			func_results = [x[0] for x in list(initial_vectors)]
+			non_abstain_results_cnt=len([x for x in func_results if x!=ABSTAIN])
+			gts = all_sentences_df['expected_label'].values.tolist()
+			match_cnt = len([x for x,y in zip(func_results,gts) if (x == y and x!=ABSTAIN)])
+			if(match_cnt/non_abstain_results_cnt<pre_deletion_threshold):
+				fix_book_keeping_dict[f.id]['pre-deleted']=True
+
+	predeleted_book_keep_dict = {k:v for k,v in fix_book_keeping_dict.items() if v['pre-deleted']==True}
+	new_fix_book_keeping_dict = {k:v for k,v in fix_book_keeping_dict.items() if v['pre-deleted']==False}
+
+	tree_ids=[k for k in new_fix_book_keeping_dict]
+	tree_ids.sort()
 
 	while(fixed_rate<retrain_accuracy_thresh):
 		start = time.time()
-		prev_stop_tree_id_pos = fix_rules(repair_config=rc, fix_book_keeping_dict=fix_book_keeping_dict, conn=conn, 
+		prev_stop_tree_id_pos = fix_rules(repair_config=rc, fix_book_keeping_dict=new_fix_book_keeping_dict, conn=conn, 
 			return_after_percent=retrain_after_percent, deletion_factor=deletion_factor, current_start_id_pos=current_start_id_pos, sorted_rule_ids=tree_ids)
-		tree_rules=[v['rule'] for k,v in fix_book_keeping_dict.items() if not v['deleted']]
+		tree_rules=[v['rule'] for k,v in new_fix_book_keeping_dict.items() if not v['deleted']]
 		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos)
 		current_start_id_pos=prev_stop_tree_id_pos+1
-		post_fix_num_funcs=len([value for value in fix_book_keeping_dict.values() if not value['deleted']])
+		post_fix_num_funcs=len([value for value in new_fix_book_keeping_dict.values() if not value['deleted']])
 		# print(f"post_fix_num_funcs: {post_fix_num_funcs}")
-		num_funcs = len(fix_book_keeping_dict)
+		# num_funcs = len(new_fix_book_keeping_dict)
 		end = time.time()
 		runtime+=round(end-start,3)
 		# print(bkeepdict)
@@ -878,13 +896,18 @@ if __name__ == '__main__':
 		# new_all_sentences_df.to_csv('new_all_sentences.csv', index=False)
 		# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
+		print(new_labelling_funcs)
+		print(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
+		print(new_fix_book_keeping_dict)
 		new_global_accuracy, new_all_sentences_df, new_wrongs_df = lf_main(li, LFs=new_labelling_funcs)
 		new_signaled_cnt=len(new_all_sentences_df)
 		fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df, result_dir+'/'+timestamp_str)
-		if(current_start_id_pos>=len(tree_rules)):
+		if(current_start_id_pos>=len(new_fix_book_keeping_dict)):
 			break
 
 	before_total_size=after_total_size=0
+	fix_book_keeping_dict = {**predeleted_book_keep_dict, **new_fix_book_keeping_dict}
+
 	for k,v in fix_book_keeping_dict.items():
 		if(not v['deleted']):
 			before_total_size+=v['pre_fix_size']
@@ -901,6 +924,7 @@ if __name__ == '__main__':
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
 	sampled_complaints.to_csv(f"{result_dir}/sampled_complaints_{timestamp_str}_{strat}_{str(sample_size)}.csv", index=False)
+
 	for kt,vt in fix_book_keeping_dict.items():
 		with open(f"{result_dir}/{timestamp_str}_tree_{strat}_{kt}_dot_file", 'a') as file:
 			comments=f"// presize: {fix_book_keeping_dict[kt]['pre_fix_size']}, after_size: {fix_book_keeping_dict[kt]['after_fix_size']}, deleted: {fix_book_keeping_dict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{fix_book_keeping_dict[kt]['rule'].reversed_cnt}"

@@ -1,0 +1,2 @@
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.HasChild,t2.HasChild)&IQ(t1.ChildExemp,t2.ChildExemp)
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.City,t2.City)&IQ(t1.ChildExemp,t2.ChildExemp)

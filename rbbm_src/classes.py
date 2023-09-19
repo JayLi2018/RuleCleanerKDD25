@@ -83,31 +83,18 @@ class lf_input:
     function setting
     """
     connection: connection
-    contingency_size_threshold:int
-    contingency_sample_times:int
-    clustering_responsibility:bool
-    sample_contingency:bool
     log_level:str
     user_provide:bool
     training_model_type:str
-    word_threshold:int
     greedy:bool
     cardinality_thresh:int
     using_lattice:bool
     eval_mode:str
-    # lattice: bool
     invoke_type: str # is it from 'terminal' or 'notebook'
     arg_str: str # only used if invoke_type='notebook'
-    # lattice_dict:dict
-    # lfs:List[lfunc]
-    # sentences_df:pd.core.frame.DataFrame
-    topk: int # topk value for number of lfs when doing responsibility generation
     random_number_for_complaint:int
     dataset_name: str
     stats: StatsTracker
-    prune_only: bool
-    return_complaint_and_results: bool
-
 
 @dataclass
 class dc_input:
@@ -116,24 +103,20 @@ class dc_input:
     needed to execute the framework for denial 
     constraint setting
     """
-    connection: connection
-    contingency_size_threshold:int
-    contingency_sample_times:int
-    clustering_responsibility:bool
-    input_dc_dir:str 
-    input_dc_file:str
-    input_csv_dir:str
-    input_csv_file:str
-    ground_truth_dir:str 
-    ground_truth_file:str
-    sample_contingency:bool
-    user_provide:bool
-    random_number_for_complaint:int
     stats:StatsTracker
-    prune_only: bool
-
-
-
+    log_level:str
+    dc_file: str
+    table_name: str
+    pre_filter_thresh: float
+    semantic_version: str
+    user_input_size: int
+    complaint_ratio: float
+    strategy: str
+    acc_threshold: float
+    deletion_factor: float
+    user_specify_pairs: bool
+    desired_dcs_file:str
+    retrain_every_percent:float
 
 @dataclass
 class FixMonitor:
@@ -155,13 +138,13 @@ class RepairConfig:
     object that contains the information 
     needed to do the repair
     """
-
     strategy:str # 'naive', 'information gain', 'optimal' 
     # rtype: str # 'dc' or 'lf'
     complaints:List[dict]
     monitor: FixMonitor
     acc_threshold: float 
     runtime:float
+    deletion_factor:float
     # early stop threshold, i.e., if after fixing some rules the accuracy of 
     # the complaint set is above this threshold, we stop
 
