@@ -1,5 +1,0 @@
-fname,lname,gender,areacode,phone,city,state,zip,maritalstatus,haschild,salary,rate,singleexemp,marriedexemp,childexemp,_tid_,is_dirty
-Natalija,Jacques,M,843,1000123,HARTSVILLE,SC,29551,S,Y,95500,7.0,3300,0,3300,418,True
-Yudell,Boeck,M,864,1004786,GREENVILLE,SC,29611,S,Y,23000,7.0,3300,0,3300,733,True
-Lena,Dupuy,M,769,1003255,SHERMAN,MS,38869,M,Y,79500,5.0,0,12000,1500,860,True
-Uri,Charretton,M,980,1001811,ASHEVILLE,NC,28801,M,Y,70500,7.2115383,0,6600,3300,875,True

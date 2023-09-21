@@ -1,3 +1,33 @@
+from itertools import combinations
+import glob
+import numpy as np
+from copy import deepcopy
+from math import floor
+from itertools import product
+from collections import deque,OrderedDict
+from datetime import datetime
+import psycopg2 
+import time
+from snorkel.labeling import (
+	LabelingFunction, 
+	labeling_function, 
+	PandasLFApplier, 
+	LFAnalysis,
+	filter_unlabeled_dataframe
+	)
+from snorkel.labeling.model import MajorityLabelVoter, LabelModel
+from typing import *
+import pandas as pd
+import logging
+import random
+import os
+import argparse
+import nltk
+from nltk.corpus import stopwords
+import copy
+import pickle
+import argparse
+from itertools import chain
 from rbbm_src.labelling_func_src.src.TreeRules import (
 	textblob_sentiment,
 	Node,
@@ -14,37 +44,19 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	ABSTAIN,
 	CLEAN,
 	DIRTY,
+	textblob_sentiment
 )
-from math import floor
 from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs
 from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
-from itertools import product
-from collections import deque,OrderedDict
 from rbbm_src.classes import StatsTracker, FixMonitor, RepairConfig, lf_input
-from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text, wrong_check_ids, correct_check_ids
-from rbbm_src.labelling_func_src.src.experiment import lf_main
-from datetime import datetime
-import psycopg2 
-import time
-from snorkel.labeling import (
-	LabelingFunction, 
-	labeling_function, 
-	PandasLFApplier, 
-	LFAnalysis,
-	filter_unlabeled_dataframe
-	)
-from snorkel.labeling.model import MajorityLabelVoter, LabelModel
-from typing import *
-import pandas as pd
-from TreeRules import textblob_sentiment
-import logging
-import random
-import os
-import argparse
-import nltk
-from nltk.corpus import stopwords
-import copy
-import pickle
+from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
+from rbbm_src import logconfig
+from rbbm_src.labelling_func_src.src.bottom_up import sentence_filter, delete_words
+from rbbm_src.labelling_func_src.src.lfs import (
+	LFs)
+
+from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
+
 
 nltk.download('stopwords') 
 stop_words = set(stopwords.words('english')) 
@@ -105,7 +117,6 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 	new_predicate_node.pairs={SPAM:{}, HAM:{}}
 
 	return new_predicate_node
-
 
 def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_possible=False):
 	"""
@@ -307,8 +318,10 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 						node.is_reversed=True
 						treerule.reversed_cnt+=1
 						treerule.setsize(treerule.size+2)
-				if(check_tree_purity(treerule)):
-					return treerule
+				else:
+					continue
+				# if(check_tree_purity(treerule)):
+				# 	return treerule
 
 			if(new_parent_node):
 				still_inpure=False
@@ -390,11 +403,8 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 						node.is_reversed=True
 						treerule.reversed_cnt+=1
 						treerule.setsize(treerule.size+2)
-				if(check_tree_purity(treerule)):
-					return treerule
-
-				# print('its not pure?')
-				continue
+				else:
+					continue
 				# if(check_tree_purity(treerule)):
 
 			if(new_parent_node):
@@ -421,7 +431,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 
 		return treerule
 
-	elif(repair_config.strategy=='brute_force'):
+	elif(repair_config.strategy=='optimal'):
 		# 1. create a queue with tree nodes
 		# 2. need to deepcopy the tree in order to enumerate all possible trees
 		# logger.debug("leaf_nodes:")
@@ -526,12 +536,12 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							node.is_reversed=True
 							treerule.reversed_cnt+=1
 							prev_tree.setsize(prev_tree.size+2)
-					if(check_tree_purity(prev_tree,subtree_root_number)):                
-						# print("done with this leaf node, the fixed tree is updated to")
-						cur_fixed_tree = prev_tree
-						sub_node_pure=True
-						# print(cur_fixed_tree)
-						break
+					# if(check_tree_purity(prev_tree,subtree_root_number)):                
+					# 	# print("done with this leaf node, the fixed tree is updated to")
+					# 	cur_fixed_tree = prev_tree
+					# 	sub_node_pure=True
+					# 	# print(cur_fixed_tree)
+					# 	break
 				# print(f"current queue size: {len(queue)}")
 		print("fixed all, return the fixed tree")
 		print(cur_fixed_tree)
@@ -618,107 +628,124 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 
 	return stop_at_id_pos
 
+def run_snorkel(lf_input, LFs=None):
+	conn = lf_input.connection
+	# logger.critical(LFs)
+	sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
+	# logger.critical(sentences_df.head())
+	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+	sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
+	sentences_df = sentences_df[~sentences_df['text'].isna()]
 
-if __name__ == '__main__':
+	lf_internal_args = lf_input_internal(funcs=LFs)
 
-	parser = argparse.ArgumentParser(description='Running experiments of RBBM')
+	# Snorkel built-in labelling function applier
+	applier = PandasLFApplier(lfs=lf_internal_args.funcs)
 
-	parser.add_argument('-d','--dbname', metavar="\b", type=str, default='label',
-	  help='database name which stores the dataset, (default: %(default)s)')
+	# Apply the labelling functions to get vectors
+	initial_vectors = applier.apply(df=sentences_df, progress_bar=False)
+	# logger.critical(initial_vectors)
+	# df.to_csv('snorkel.csv')
 
-	parser.add_argument('-P','--port', metavar="\b", type=int, default=5432,
-	  help='database port, (default: %(default)s)')
+	if(lf_input.training_model_type=='majority'):
+		model = MajorityLabelVoter()
+	else:
+		model = LabelModel(cardinality=2, verbose=True, device='cpu')
+		model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
+		# snorkel needs to get an estimator using fit function first
+		# training model with all labelling functions
 
-	parser.add_argument('-p', '--password', metavar="\b", type=int, default=5432,
-	  help='database password, (default: %(default)s)')
+	probs_test= model.predict_proba(L=initial_vectors)
+	df_sentences_filtered, probs_test_filtered = filter_unlabeled_dataframe(
+			X=sentences_df, y=probs_test, L=initial_vectors
+	)
+	# reset df_train to those receive signals
+	df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
+	# df_sentences_filtered=sentences_df
+	filtered_vectors=initial_vectors
+	filtered_vectors = applier.apply(df=df_sentences_filtered, progress_bar=False)
+	cached_vectors = dict(zip(LFs, np.transpose(filtered_vectors)))
+	lf_internal_args.func_vectors = cached_vectors
 
-	parser.add_argument('-u', '--user', metavar="\b", type=str, default='postgres',
-	  help='database user, (default: %(default)s)')
+	# logger.critical(cached_vectors)
+	if(lf_input.training_model_type=='snorkel'):
+		model.fit(L_train=filtered_vectors, n_epochs=500, log_freq=100, seed=123)
 
-	parser.add_argument('-r','--repair_method', metavar="\b", type=str, default='information_gain',
-	  help='method used to repair the rules (naive, information_gain, optimal) (default: %(default)s)')
+	df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
 
-	parser.add_argument('-U','--userinput_size', metavar="\b", type=int, default=40,
-	  help='user input size (default: %(default)s)')
+	df_sentences_filtered['vectors'] = pd.Series([",".join(map(str, t)) for t in filtered_vectors])
 
-	parser.add_argument('-t','--complaint_ratio', metavar="\b", type=float, default=0.5,
-	  help='out of the user input, what percentage of it is complaint? (the rest are confirmations) (default: %(default)s)')
+	lf_internal_args.filtered_sentences_df = df_sentences_filtered
 
-	parser.add_argument('-f','--lf_source', metavar="\b", type=str, default='intro',
-	  help='the source of labelling function (intro / system generate) (default: %(default)s)')
+	# df_test_filtered.to_csv('result.csv')
+	# the wrong labels we get
+	wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
+	# df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)
+	wrong_preds['signal_strength'] = wrong_preds['vectors'].apply(lambda s: sum([1 for i in s.split(",") if int(i) == SPAM or int(i)==HAM]))
+	wrong_preds = wrong_preds.sort_values(['signal_strength'], ascending=False)
+	# logger.critical(wrong_preds)
+	accuracy=(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)
+	logger.critical(f"""
+		out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} actually got at least one signal to \n
+		make prediction. Out of all the valid predictions, we have {len(wrong_preds)} wrong predictions, \n
+		accuracy = {(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)} 
+		""")
 
-	parser.add_argument('-n','--number_of_funcs', metavar="\b", type=int, default=20,
-	  help='if if_source is selected as system generate, how many do you want(default: %(default)s)')
+	return accuracy, df_sentences_filtered, wrong_preds
 
-	parser.add_argument('-e', '--experiment_name', metavar="\b", type=str, default='test_blah',
-	  help='the name of the experiment, the results will be stored in the directory named with experiment_name_systime (default: %(default)s)')
+def lf_main(lf_input):
 
-	parser.add_argument('-R', '--repeatable', metavar="\b", type=str, default='true',
-	  help='repeatable? (default: %(default)s)')
-
-	parser.add_argument('-s', '--seed', metavar="\b", type=int, default=123,
-	  help='if repeatable, specify a seed number here (default: %(default)s)')
-
-	parser.add_argument('-S', '--seed_file', metavar="\b", type=str, default='seeds.txt',
-	  help='if repeatable, specify a seed number here (default: %(default)s)')
-
-	parser.add_argument('-i', '--run_intro',  metavar="\b", type=str, default='false',
-	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
-	
-	parser.add_argument('-D', '--deletion_factor',  metavar="\b", type=float, default=0.5,
-	  help='this is a factor controlling how aggressive the algorithm chooses to delete the rule from the rulset (default: %(default)s)')
-	# if a rule gets deleted is decided by comparing (new_size/old_size)*deletion_factor and 1, if (new_size/old_size)*deletion_factor<=1 
-	# we keep the rule, other wise we delete
-	parser.add_argument('-E', '--retrain_every_percent',  metavar="\b", type=float, default=1,
-	  help='retrain over every (default: %(default)s*100), the default order is sorted by treesize ascendingly')
-
-	parser.add_argument('-A', '--retrain_accuracy_thresh',  metavar="\b", type=float, default=0.5,
-	  help='when retrain over every retrain_every_percent, the algorithm stops when the fix rate is over this threshold (default: %(default)s)')
-
-	parser.add_argument('-k', '--load_funcs_from_pickle',  metavar="\b", type=str, default='false',
-	  help='(flag indicating if we want to load functions from a pickle file default: %(default)s)')
-
-	parser.add_argument('-K', '--pickle_file_name',  metavar="\b", type=str, default='placeholder_name',
-	  help='(if load_funcs_from_pickle, then heres the pickle file name : %(default)s)')
-
-	parser.add_argument('-B', '--before_fix_deletion_threshold', metavar="\b", type=float, default=0.5,
-	  help='(the threshold we use to pre-delete the rules before running the fix algorithm : %(default)s)')
-
-	parser.add_argument('-b', '--use_pre_fix_deletion', metavar="\b", type=str, default='False',
-	  help='(do we need pre deletion : %(default)s)')
-	# parser.add_argument('-C', '--customized_complaints_file', metavar="\b", type=text, default='test',
-	#   help='input file name which contains the cids of the complaints (mainly used for running example)(default: %(default)s)')
-
-	args = parser.parse_args()
-	param_str=", ".join([f'{k}={v}' for k,v in vars(args).items()])
-	logger.debug(param_str)
-	#########
-	conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password)
-	sample_size=args.userinput_size
-	complaint_ratio=args.complaint_ratio
-	strat=args.repair_method
-	lf_source=args.lf_source
-	number_of_funcs=args.number_of_funcs
-	experiment_name=args.experiment_name
-	repeatable=args.repeatable
-	rseed=args.seed
-	run_intro=args.run_intro
-	retrain_after_percent=args.retrain_every_percent
-	deletion_factor=args.deletion_factor
-	retrain_accuracy_thresh=args.retrain_accuracy_thresh
-	load_funcs_from_pickle=args.load_funcs_from_pickle
-	pickle_file_name=args.pickle_file_name
-	seed_file=args.seed_file
-	pre_deletion_threshold=args.before_fix_deletion_threshold
-	use_pre_fix_deletion=args.use_pre_fix_deletion
-	# customized_complaints_file=args.customized_complaints_file
+	conn = lf_input.connection
+	user_input_size=lf_input.user_input_size
+	complaint_ratio=lf_input.complaint_ratio
+	strat=lf_input.strat
+	lf_source=lf_input.lf_source
+	number_of_funcs=lf_input.number_of_funcs
+	experiment_name=lf_input.experiment_name
+	repeatable=lf_input.repeatable
+	rseed=lf_input.rseed
+	run_intro=lf_input.run_intro
+	retrain_after_percent=lf_input.retrain_every_percent
+	deletion_factor=lf_input.deletion_factor
+	retrain_accuracy_thresh=lf_input.retrain_accuracy_thresh
+	load_funcs_from_pickle=lf_input.load_funcs_from_pickle
+	pickle_file_name=lf_input.pickle_file_name
+	seed_file=lf_input.seed_file
+	pre_deletion_threshold=lf_input.pre_deletion_threshold
+	# customized_complaints_file=lf_input.customized_complaints_file
 	######
-	logger.debug(f"args:{args}")
+	logger.debug(f"lf_input:{lf_input}")
 
+	#########
+	current_fixed_percent=0
+	fixed_rate=0
+	rbbm_runtime=0
+	bbox_runtime=0
+	current_start_id_pos=prev_stop_tree_id_pos=0
+	new_global_accuracy=0
+	confirm_preserve_rate=0
+	new_signaled_cnt=0
+	post_fix_num_funcs=0
+	new_all_sentences_df=None
+	num_of_funcs_processed_by_algo=0
+
+	try:
+		log_map = { 'debug': logging.DEBUG,
+		'info': logging.INFO,
+		'warning': logging.WARNING,
+		'error': logging.ERROR,
+		'critical': logging.CRITICAL
+		}
+		print(logconfig.root)
+		logconfig.root.setLevel(log_map[lf_input.log_level])
+		print(lf_input.log_level)
+		print(logconfig.root)
+	except KeyError as e:
+		print('no such log level')
 
 	timestamp = datetime.now()
 	timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
-	result_dir = f'./{args.experiment_name}'
+	result_dir = f'./{lf_input.experiment_name}_{timestamp_str}'
 	if not os.path.exists(result_dir):
 		os.makedirs(result_dir)
 
@@ -730,50 +757,21 @@ if __name__ == '__main__':
 	elif(lf_source=='intro' or run_intro=='true'):
 		tree_rules=gen_example_funcs()
 	else:
-		sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
+		sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
 		sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
 		sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
 		sentences_df = sentences_df[~sentences_df['text'].isna()]
 		kwm = KeyWordRuleMiner(sentences_df)
 		tree_rules = kwm.gen_funcs(number_of_funcs, 0.3)
 
-
 	labelling_funcs=[f.gen_label_rule() for f in tree_rules]
+	num_funcs=len(labelling_funcs)
+	
+	bbox_start = time.time()
+	global_accuracy, all_sentences_df, wrongs_df = run_snorkel(lf_input, LFs=labelling_funcs)
+	bbox_end = time.time()
+	bbox_runtime+=round(bbox_end-bbox_start,3)
 
-	li =lf_input(
-		connection=conn,
-		clustering_responsibility=False,
-		sample_contingency=False,
-		log_level='debug',
-		user_provide=True,
-		training_model_type='snorkel',
-		word_threshold=3,
-		greedy=True,
-		cardinality_thresh=2,
-		eval_mode='single_func',
-		arg_str=None, # only used if invoke_type='notebook'
-		random_number_for_complaint=5,
-		dataset_name='youtube',
-		stats=StatsTracker(),
-		)
-	connection: connection
-	log_level:str
-	user_provide:bool
-	training_model_type:str
-	greedy:bool
-	cardinality_thresh:int
-	using_lattice:bool
-	eval_mode:str
-	invoke_type: str # is it from 'terminal' or 'notebook'
-	arg_str: str # only used if invoke_type='notebook'
-	random_number_for_complaint:int
-	dataset_name: str
-	stats: StatsTracker
-
-
-
-
-	global_accuracy, all_sentences_df, wrongs_df = lf_main(li, LFs=labelling_funcs)
 	# all_sentences_df=all_sentences_df.sort_values(by=['text'])
 	old_signaled_cnt=len(all_sentences_df)
 	# wrongs_df.to_csv('initial_wrongs.csv', index=False)
@@ -800,7 +798,7 @@ if __name__ == '__main__':
 				file.write(f'seed: {rs}\n')
 
 	logger.debug(f"random_seed: {rs}")
-	logger.debug(f"size: {sample_size}, strat:{strat}")
+	logger.debug(f"user_input_size: {user_input_size}, strat:{strat}")
 	# tree_rules = [f1, f2, f3]
 
 	if(run_intro=='true'):
@@ -825,13 +823,13 @@ if __name__ == '__main__':
 		all_confirms=all_sentences_df[all_sentences_df['expected_label']==all_sentences_df['model_pred']]
 		all_confirms=all_confirms.sort_values('cid')
 		complaint_reached_max=False
-		wrong_sample_size=floor(sample_size*complaint_ratio)
+		wrong_sample_size=floor(user_input_size*complaint_ratio)
 		if(wrong_sample_size>=len(all_wrongs)):
 			complaint_reached_max=True
 			wrong_sample_size=len(all_wrongs)
 		sampled_wrongs=all_wrongs.sample(n=wrong_sample_size,random_state=rs)
 		confirm_reached_max=False
-		confirm_sample_size=sample_size-wrong_sample_size
+		confirm_sample_size=user_input_size-wrong_sample_size
 		if(confirm_sample_size>=len(all_confirms)):
 			confirm_reached_max=True
 			confirm_sample_size=len(all_confirms)
@@ -843,32 +841,21 @@ if __name__ == '__main__':
 	sampled_complaints['id'] = sampled_complaints.reset_index().index
 
 	stimestamp = datetime.now()
-	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0, deletion_factor=deletion_factor)
-	current_fixed_percent=0
-	fixed_rate=0
-	runtime=0
-	current_start_id_pos=0
-	new_global_accuracy=0
-	confirm_preserve_rate=0
-	new_signaled_cnt=0
-	num_funcs=len(labelling_funcs)
-	post_fix_num_funcs=0
-	new_all_sentences_df=None
-	num_of_funcs_processed_by_algo=0
+	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, acc_threshold=0.8, runtime=0, deletion_factor=deletion_factor)
+
 	# print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
 	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size, 'pre-deleted': False} for k in tree_rules}
 		# fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
 
-	if(use_pre_fix_deletion.lower()!='false'):
-		for f in labelling_funcs:
-			applier = PandasLFApplier(lfs=[f])
-			initial_vectors = applier.apply(df=all_sentences_df, progress_bar=False)
-			func_results = [x[0] for x in list(initial_vectors)]
-			non_abstain_results_cnt=len([x for x in func_results if x!=ABSTAIN])
-			gts = all_sentences_df['expected_label'].values.tolist()
-			match_cnt = len([x for x,y in zip(func_results,gts) if (x == y and x!=ABSTAIN)])
-			if(match_cnt/non_abstain_results_cnt<pre_deletion_threshold):
-				fix_book_keeping_dict[f.id]['pre-deleted']=True
+	for f in tree_rules:
+		applier = PandasLFApplier(lfs=[f.gen_label_rule()])
+		initial_vectors = applier.apply(df=all_sentences_df, progress_bar=False)
+		func_results = [x[0] for x in list(initial_vectors)]
+		non_abstain_results_cnt=len([x for x in func_results if x!=ABSTAIN])
+		gts = all_sentences_df['expected_label'].values.tolist()
+		match_cnt = len([x for x,y in zip(func_results,gts) if (x == y and x!=ABSTAIN)])
+		if(match_cnt/non_abstain_results_cnt<pre_deletion_threshold):
+			fix_book_keeping_dict[f.id]['pre-deleted']=True
 
 	predeleted_book_keep_dict = {k:v for k,v in fix_book_keeping_dict.items() if v['pre-deleted']==True}
 	new_fix_book_keeping_dict = {k:v for k,v in fix_book_keeping_dict.items() if v['pre-deleted']==False}
@@ -877,29 +864,29 @@ if __name__ == '__main__':
 	tree_ids.sort()
 
 	while(fixed_rate<retrain_accuracy_thresh):
-		start = time.time()
+		logger.debug(f'curren_fix_rate:{fixed_rate}')
+		logger.debug(f'retrain_accuracy_thresh: {retrain_accuracy_thresh}')
+		logger.debug(f'current_start_id_pos:{current_start_id_pos}')
+		logger.debug(f'prev_stop_tree_id_pos: {prev_stop_tree_id_pos}')
+		logger.debug(f'\n')
+		rbbm_start = time.time()
 		prev_stop_tree_id_pos = fix_rules(repair_config=rc, fix_book_keeping_dict=new_fix_book_keeping_dict, conn=conn, 
 			return_after_percent=retrain_after_percent, deletion_factor=deletion_factor, current_start_id_pos=current_start_id_pos, sorted_rule_ids=tree_ids)
 		tree_rules=[v['rule'] for k,v in new_fix_book_keeping_dict.items() if not v['deleted']]
-		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos)
+		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos+1)
 		current_start_id_pos=prev_stop_tree_id_pos+1
 		post_fix_num_funcs=len([value for value in new_fix_book_keeping_dict.values() if not value['deleted']])
-		# print(f"post_fix_num_funcs: {post_fix_num_funcs}")
-		# num_funcs = len(new_fix_book_keeping_dict)
-		end = time.time()
-		runtime+=round(end-start,3)
-		# print(bkeepdict)
-		# print(f"runtime: {runtime}")
-		# retrain snorkel using modified labelling funcs
-		# print("retraining using the fixed rules")
-		# print(tree_rules)
-		# new_all_sentences_df.to_csv('new_all_sentences.csv', index=False)
-		# new_wrongs_df.to_csv('new_wrongs.csv', index=False)
+		rbbm_end = time.time()
+		rbbm_runtime+=round(rbbm_end-rbbm_start,3)
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
-		print(new_labelling_funcs)
-		print(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
-		print(new_fix_book_keeping_dict)
-		new_global_accuracy, new_all_sentences_df, new_wrongs_df = lf_main(li, LFs=new_labelling_funcs)
+		# print(new_labelling_funcs)
+		# print(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
+		# print(new_fix_book_keeping_dict)
+
+		bbox_start = time.time()
+		new_global_accuracy, new_all_sentences_df, new_wrongs_df = run_snorkel(lf_input, LFs=new_labelling_funcs)
+		bbox_end = time.time()
+		bbox_runtime+=round(bbox_end-bbox_start,3)
 		new_signaled_cnt=len(new_all_sentences_df)
 		fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df, result_dir+'/'+timestamp_str)
 		if(current_start_id_pos>=len(new_fix_book_keeping_dict)):
@@ -919,11 +906,11 @@ if __name__ == '__main__':
 	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
 		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
-			file.write('strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
-				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max\n')
+			file.write('strat,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
-	sampled_complaints.to_csv(f"{result_dir}/sampled_complaints_{timestamp_str}_{strat}_{str(sample_size)}.csv", index=False)
+	sampled_complaints.to_csv(f"{result_dir}/sampled_user_input_{timestamp_str}_{strat}_{str(user_input_size)}.csv", index=False)
 
 	for kt,vt in fix_book_keeping_dict.items():
 		with open(f"{result_dir}/{timestamp_str}_tree_{strat}_{kt}_dot_file", 'a') as file:
@@ -935,10 +922,13 @@ if __name__ == '__main__':
 	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
 	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
 		# Write the row to the file
-		file.write(f'{strat},{runtime},{avg_tree_size_increase},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},'+\
-			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max}\n')
+		file.write(f'{strat},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},'+\
+			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max},{lf_source},'+\
+			f'{retrain_after_percent},{retrain_accuracy_thresh},{load_funcs_from_pickle},{pre_deletion_threshold}\n')
 
-
+	with open(result_dir+'/'+timestamp_str+'fix_book_keeping_dict.pkl', 'wb') as file:
+	    # Use pickle.dump() to write the dictionary to the file
+	    pickle.dump(fix_book_keeping_dict, file)
 
 
 # parameters needed 

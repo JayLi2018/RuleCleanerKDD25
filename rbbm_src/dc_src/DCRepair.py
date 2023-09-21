@@ -621,7 +621,7 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
                 treerule.setsize(treerule.size+2)
         return treerule
 
-    elif(repair_config.strategy=='information gain'):
+    elif(repair_config.strategy=='information_gain'):
         # new implementation
         # 1. ignore the label of nodes at first
         # calculate the gini index of the split
@@ -712,7 +712,7 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
             sub_root_number = queue.popleft()
             subqueue=deque([(cur_fixed_tree, sub_root_number, sub_root_number)])
             # triples are needed here, since: we need to keep track of the 
-            # updated(if so) subtree root in order to check purity from that node
+            # updated(if so) subtree root i n order to check purity from that node
             sub_node_pure=False
             while(subqueue and not sub_node_pure):
                 prev_tree, leaf_node_number, subtree_root_number = subqueue.popleft()
@@ -772,13 +772,23 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
                                         subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
                                         still_inpure=True
                                         break
-                else:
-                    reverse_node_parent_condition(node)
-                    if(check_tree_purity(prev_tree, subtree_root_number)):
-                        found_fix=True
-                        cur_fixed_tree = prev_tree
-                        sub_node_pure=True
+                    if(found_fix):
+                        #break out of outer loop
                         break
+                else:
+                    if(node.pairs[CLEAN] and not node.pairs[DIRTY]):
+                        if(node.label!=CLEAN):
+                            reverse_node_parent_condition(node)
+                            prev_tree.setsize(treerule.size+2)
+                    elif(node.pairs[DIRTY] and not node.pairs[CLEAN]):
+                        if(node.label!=DIRTY):
+                            reverse_node_parent_condition(node)
+                            prev_tree.setsize(treerule.size+2)
+                    # if(check_tree_purity(prev_tree, subtree_root_number)):
+                    #     found_fix=True
+                    #     cur_fixed_tree = prev_tree
+                    #     sub_node_pure=True
+
         return cur_fixed_tree 
         # list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
         # return list_of_repaired_trees[0] 
@@ -965,12 +975,13 @@ def dc_main(dc_input):
             deleted_ids.extend(r_deleted)
         deleted_unique_ids=set(deleted_ids)
         incorrect_deleted_cnt=len([x for x in deleted_unique_ids if x not in real_dirty_ids])
-        if(incorrect_deleted_cnt/dataset_size<pre_filter_thresh):
+        if(1-incorrect_deleted_cnt/dataset_size>pre_filter_thresh):
             filtered_rules.append(r)
 
     hit_gt_good_rules =  [x[1] for x in filtered_rules if x[1] in gt_good_rules]
     missed_gt_good_rules = [x for x in gt_good_rules if x not in hit_gt_good_rules]
     wrongly_kept_rules = [x[1] for x in filtered_rules if x[1] in gt_bad_rules]
+
     logger.debug('filtered_rules')
     logger.debug(filtered_rules)
     logger.debug(len(filtered_rules))
@@ -1142,7 +1153,7 @@ def dc_main(dc_input):
         user_input=[]
         user_input.extend(complaints_input)
         user_input.extend(confirmations_input)
-        rc = RepairConfig(strategy=dc_input.strategy, deletion_factor=0.000001, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        rc = RepairConfig(strategy=dc_input.strategy, deletion_factor=0.000001, complaints=user_input, acc_threshold=0.8, runtime=0)
         start = time.time()
         bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'], user_specify_pairs=user_specify_pairs,
             pre_selected_pairs=user_input)
@@ -1152,7 +1163,7 @@ def dc_main(dc_input):
 
         timestamp = datetime.now()
         timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
-        result_dir = f'./dc_results_{timestamp}'
+        result_dir = f'./{dc_input.experiment_name}_{timestamp}'
         if not os.path.exists(result_dir):
             os.makedirs(result_dir)
 
@@ -1301,7 +1312,7 @@ def dc_main(dc_input):
         # rule_file = open(dc_file, 'r')
         # test_rules = [l.strip() for l in rule_file.readlines()]
 
-        rc = RepairConfig(strategy=strateg, deletion_factor=0.5, complaints=user_input, monitor=FixMonitor(rule_set_size=20), acc_threshold=0.8, runtime=0)
+        rc = RepairConfig(strategy=strateg, deletion_factor=0.5, complaints=user_input, acc_threshold=0.8, runtime=0)
         start = time.time()
         bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'])
         end = time.time()

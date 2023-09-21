@@ -82,19 +82,27 @@ class lf_input:
     needed to execute the framework for labelling
     function setting
     """
+    strat:str
+    complaint_ratio: float
+    user_input_size: int
     connection: connection
-    log_level:str
-    user_provide:bool
-    training_model_type:str
-    greedy:bool
-    cardinality_thresh:int
-    using_lattice:bool
-    eval_mode:str
-    invoke_type: str # is it from 'terminal' or 'notebook'
-    arg_str: str # only used if invoke_type='notebook'
-    random_number_for_complaint:int
+    log_level: str
+    training_model_type: str
+    number_of_funcs: int
+    experiment_name: str
+    repeatable: bool
+    rseed: int
+    run_intro: bool
+    retrain_every_percent: float
+    deletion_factor: float
+    retrain_accuracy_thresh: float
+    load_funcs_from_pickle: bool
+    pickle_file_name: str
+    seed_file: str
+    pre_deletion_threshold: float
     dataset_name: str
     stats: StatsTracker
+    lf_source: str
 
 @dataclass
 class dc_input:
@@ -111,12 +119,14 @@ class dc_input:
     semantic_version: str
     user_input_size: int
     complaint_ratio: float
+    experiment_name: str
     strategy: str
     acc_threshold: float
     deletion_factor: float
     user_specify_pairs: bool
     desired_dcs_file:str
     retrain_every_percent:float
+
 
 @dataclass
 class FixMonitor:
@@ -141,11 +151,6 @@ class RepairConfig:
     strategy:str # 'naive', 'information gain', 'optimal' 
     # rtype: str # 'dc' or 'lf'
     complaints:List[dict]
-    monitor: FixMonitor
     acc_threshold: float 
     runtime:float
     deletion_factor:float
-    # early stop threshold, i.e., if after fixing some rules the accuracy of 
-    # the complaint set is above this threshold, we stop
-
-    # tid:int=-1 # DC only

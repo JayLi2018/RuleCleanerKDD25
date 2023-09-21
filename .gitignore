@@ -143,5 +143,6 @@ cython_debug/
 *dot_file
 *experiment_stats
 *log*.txt
+rbbm_src/experiment_results_folders/
 # dist
 dist/

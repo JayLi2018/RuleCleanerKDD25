@@ -252,7 +252,8 @@ class TreeRule:
 							if(i%4==0):
 								kstr+='\n'
 							i+=1
-					# kstr+=')'
+					kstr+=')\n'
+
 					user_inputs.append(kstr)
 					user_input_str="\n".join(user_inputs)
 				if(cur_node.is_added and cur_node.is_reversed):

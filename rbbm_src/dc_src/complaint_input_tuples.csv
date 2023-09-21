@@ -1,7 +1,0 @@
-fname,lname,gender,areacode,phone,city,state,zip,maritalstatus,haschild,salary,rate,singleexemp,marriedexemp,childexemp,_tid_,is_dirty
-Xiufeng,Winograd,F,304,1007054,BOB WHITE,WV,25028,M,Y,6500,3.0,0,4000,2000,216,False
-Maytham,Kottmann,F,202,1002586,WASHINGTON,DC,20441,M,Y,6500,4.5,0,2740,1370,1109,False
-Traytcho,Ozhan,F,202,1013388,WASHINGTON,DC,20442,S,N,5000,4.5,1370,0,0,1217,False
-Stina,Hudlicka,F,202,1018387,WASHINGTON,DC,20008,S,Y,8000,4.5,1370,0,1370,1431,False
-Norton,Kamphusmann,M,304,1017817,COSTA,WV,25051,S,Y,63500,6.5,2000,0,2000,1792,False
-Chiang,Gavrilov,M,202,1005058,WASHINGTON,DC,20046,S,N,49500,9.0,1370,0,0,1902,False

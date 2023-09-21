@@ -1,4 +1,0 @@
-strategy,complaint_size,runtime,avg_size_increase
-optimal,6,1.126734733581543,{1.8}
-naive,6,0.2926146984100342,{6.2}
-information gain,6,0.37589406967163086,{1.9}

@@ -22,7 +22,6 @@ from itertools import product
 from collections import deque
 from rbbm_src.classes import StatsTracker,FixMonitor, RepairConfig, lf_input
 from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
-from rbbm_src.labelling_func_src.src.experiment import lf_main
 from datetime import datetime
 import psycopg2 
 import time
@@ -36,7 +35,6 @@ from snorkel.labeling import (
 from snorkel.labeling.model import MajorityLabelVoter, LabelModel
 from typing import *
 import pandas as pd
-from TreeRules import textblob_sentiment
 import logging
 import random
 
