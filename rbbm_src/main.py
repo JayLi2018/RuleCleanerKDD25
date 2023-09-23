@@ -72,7 +72,7 @@ def main():
 	parser.add_argument('-d','--dbname', metavar="\b", type=str, default='label',
 	  help='database name which stores the dataset, (default: %(default)s)')
 
-	parser.add_argument('-P','--port', metavar="\b", type=int, default=5432,
+	parser.add_argument('-P','--port', metavar="\b", type=int, default=5433,
 	  help='database port, (default: %(default)s)')
 
 	parser.add_argument('-p', '--password', metavar="\b", type=int, default=5432,
@@ -146,7 +146,7 @@ def main():
 			retrain_every_percent=args.retrain_every_percent
 			)
 	else:
-		conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password)
+		conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password, port=args.port)
 
 		if(args.run_intro=='false'):
 			run_intro=False

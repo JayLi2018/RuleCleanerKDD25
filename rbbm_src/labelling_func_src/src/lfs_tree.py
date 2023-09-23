@@ -42,7 +42,7 @@ import random
 # logger = logging.getLogger(__name__)
 
 # keyword lfs
-def keyword_labelling_func_builder(keywords: List[str], expected_label: int):
+def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_good: bool=True):
 	cur_number=1
 	tree_size=1
 	r1 = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=keywords))
@@ -58,7 +58,7 @@ def keyword_labelling_func_builder(keywords: List[str], expected_label: int):
 	r1_l.parent=r1
 	r1_r.parent=r1
 
-	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3)
+	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3, is_good=is_good)
 
 # regex lfs
 def regex_func_builder(patterns: List[str], expected_label: int):

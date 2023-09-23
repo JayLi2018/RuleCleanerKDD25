@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 # DISPLAY_ALL_TEXT = False
 
 # pd.set_option("display.max_colwidth", 0 if DISPLAY_ALL_TEXT else 50)
-pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_colwidth', None)
 
 # For clarity, we define constants to represent the class labels for spam, ham, and abstaining.
 
