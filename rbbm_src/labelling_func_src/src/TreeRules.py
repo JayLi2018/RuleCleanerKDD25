@@ -6,6 +6,9 @@ import re
 from snorkel.labeling import LabelingFunction
 import nltk
 from string import Template
+import logging
+
+logger = logging.getLogger(__name__)
 
 dot_string_template=Template("""digraph "rule" { $nodes_details } """)
 
@@ -327,6 +330,8 @@ class TreeRule:
 
 		ret: 'label'. 'node'
 		"""
+		# logger.debug("evaluating rule")
+		# logger.debug(self.__str__())
 		cur_node=self.root
 		# print(f"cur_node: {cur_node}")
 		used_predicates = []

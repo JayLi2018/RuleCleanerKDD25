@@ -81,7 +81,7 @@ def main():
 	parser.add_argument('-u', '--user', metavar="\b", type=str, default='postgres',
 	  help='database user, (default: %(default)s)')
 
-	parser.add_argument('-f','--lf_source', metavar="\b", type=str, default='intro',
+	parser.add_argument('-f','--lf_source', metavar="\b", type=str, default='undefined',
 	  help='the source of labelling function (intro / system generate) (default: %(default)s)')
 
 	parser.add_argument('-O','--number_of_funcs', metavar="\b", type=int, default=20,
@@ -90,7 +90,10 @@ def main():
 	parser.add_argument('-i', '--run_intro',  metavar="\b", type=str, default='false',
 	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
 
-	parser.add_argument('-k', '--load_funcs_from_pickle',  metavar="\b", type=str, default='true',
+	parser.add_argument('-z', '--run_amazon',  metavar="\b", type=str, default='false',
+	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
+
+	parser.add_argument('-k', '--load_funcs_from_pickle',  metavar="\b", type=str, default='false',
 	  help='(flag indicating if we want to load functions from a pickle file default: %(default)s)')
 
 	parser.add_argument('-K', '--pickle_file_name',  metavar="\b", type=str, default='placeholder_name',
@@ -134,6 +137,7 @@ def main():
 			stats=StatsTracker(),
 			log_level=args.log_level,
 			table_name=args.table_name,
+			experiment_name=args.experiment_name,
 			pre_filter_thresh=args.pre_filter_thresh,
 			semantic_version=args.semantic_version,
 			user_input_size=args.user_input_size,
@@ -153,6 +157,11 @@ def main():
 		else:
 			run_intro=True
 
+		if(args.run_amazon=='false'):
+			run_amazon=False
+		else:
+			run_amazon=True
+
 		if(args.load_funcs_from_pickle=='true'):
 			load_funcs_from_pickle=True
 		else:
@@ -170,6 +179,7 @@ def main():
 		repeatable=args.repeatable,
 		rseed=args.seed,
 		run_intro=run_intro,
+		run_amazon=run_amazon,
 		retrain_every_percent=args.retrain_every_percent,
 		deletion_factor=args.deletion_factor,
 		retrain_accuracy_thresh=args.retrain_accuracy_thresh,
