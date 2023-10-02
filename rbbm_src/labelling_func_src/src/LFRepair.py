@@ -677,7 +677,7 @@ def run_snorkel(lf_input, LFs=None):
 
 	lf_internal_args.filtered_sentences_df = df_sentences_filtered
 
-	# df_test_filtered.to_csv('result.csv')
+	df_sentences_filtered.to_csv('result.csv')
 	# the wrong labels we get
 	wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
 	# df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)

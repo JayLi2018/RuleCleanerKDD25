@@ -3,19 +3,27 @@
 
 sizes=(20 40 80 160 320)
 
-declare -i iterations=10
+declare -i iterations=5
+# x=1
+# while [ $x -le $iterations ]
+# do
+# 	for n in ${sizes[@]}
+# 	do
+# 		python main.py -U lf -e experiment_results_folders/experiment_lf_scalability -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G naive -D 0 -K /home/perm/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron -n enron -P 5433
+# 		python main.py -U lf -e experiment_results_folders/experiment_lf_scalability -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -K /home/perm/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron -n enron -P 5433
+# 	done
+# 	x=$(( $x+1 ))
+# done
+
 x=1
 while [ $x -le $iterations ]
 do
-	for n in ${sizes[@]}
-	do
-		python main.py -U lf -e experiment_results_folders/experiment_lf_scalability -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G naive -D 0 -K /home/perm/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron -n enron -P 5433
-		python main.py -U lf -e experiment_results_folders/experiment_lf_scalability -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -K /home/perm/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron -n enron -P 5433
-	done
-	x=$(( $x+1 ))
+  for n in ${sizes[@]}
+  do
+    python main.py -U lf -e experiment_results_folders/experiment_lf_amazon/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -n amazon -P 5433 -z true
+  done
+  x=$(( $x+1 ))
 done
-
-python main.py -U lf -e experiment_results_folders/experiment_lf_amazon -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0 -n amazon -P 5433 -z true
 
 
   # -h, --help            show this help message and exit
