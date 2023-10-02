@@ -61,17 +61,30 @@
 
 
 # LFs 
-# test 3 different variations with deletion factor = 0 (make sure size increase is correct)
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+python main.py -U lf -e exp_test_case -R true -x 123 -X test_cases_seed.txt -T 0 -s 80 -r 0.5 -G naive -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+python main.py -U lf -e exp_test_case_1 -R true -x 123 -X test_cases_seed.txt -T 0 -s 80 -r 0.5 -G information_gain -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+python main.py -U lf -e exp_test_case_2 -R true -x 123 -X test_cases_seed.txt -T 0 -s 80 -r 0.5 -G optimal -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
 
-# test 3 different variations with deletion factor = 0.5 (make sure size changes)
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube
 
-# test 3 different variations with deletion factor = 0.5 and predeletion threshold = 0.5
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G naive -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G information_gain -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G optimal -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube
+# DCs 
+# x=1
+# declare -i rseed
+# while [ $x -le $non_brute_iterations ]
+# do
+# 	for s in ${sizes[@]}
+# 		do
+# 			for c in ${complaint_ratio[@]}
+# 				do
+# 					for d in ${deletion_factor[@]}
+# 						do
+# 							rseed=$(shuf -i 1-1000 -n 1)
+# 							echo "rand= ${rseed}"
+# 							echo -e "LFRepair.py -U ${s} -t ${c} -e exp808_repeat1500 -r information_gain -f intro -D ${d} -k true -K pickled_funcs_720 -R true -s ${rseed} -S seed_file_808_1500.txt" >> "$filename"
+# 							python LFRepair.py -U ${s} -t ${c} -e exp808_repeat1500 -r information_gain  -D ${d} -k true -K pickled_funcs_720 -R true -s ${rseed} -S seed_file_808_1500.txt
+# 							echo -e "LFRepair.py -U ${s} -t ${c} -e exp808_repeat1500 -r naive -f intro -D ${d} -k true -K pickled_funcs_720 -R true -s ${rseed} -S seed_file_808_1500.txt" >> "$filename"
+# 							python LFRepair.py -U ${s} -t ${c} -e exp808_repeat1500 -r naive  -D ${d} -k true -K pickled_funcs_720 -R true -s ${rseed} -S seed_file_808_1500.txt
+# 						done
+# 				done
+# 		done	
+# 	x=$(( $x+1 ))
+# done

@@ -1,16 +1,53 @@
 #!/bin/bash
 
-# # brute_sizes=(40 80)
-# sizes=(320)
 
-# # sizes_brute=(5 10 20 30)
-# # num_funcs=(10 20 30 40 50)
-# complaint_ratio=(0.1 0.3 0.5 0.7 0.9)
-# # deletion_factor=(0.0 0.3 0.5 0.7)
-# deletion_factor=(0.0)
+sizes=(20 40 80 160 320)
 
-# declare -i brute_iterations=5
-# declare -i non_brute_iterations=1500
+complaint_ratio=(0.1 0.3 0.5 0.7 0.9)
+
+deletion_factor=(0.0 0.3 0.5 0.7)
+
+declare -i iterations=15
+
+
+declare -i rseed
+filename3="seed_file_924_without_optimal.txt" 
+
+# x=1
+global_runs=1
+
+x=1
+while [ $x -le $iterations ]
+do
+	for n in ${sizes[@]}
+		do
+			for c in ${complaint_ratio[@]}
+				do
+					for d in ${deletion_factor[@]}
+						do
+							echo "global_runs: $global_runs"
+							rseed=$(shuf -i 1-1000 -n 1)
+							# echo "rand= ${rseed}"
+							python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D ${d} -l critical \
+							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+							echo "python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D ${d} -l critical \
+							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
+							global_runs=$(( $global_runs+1 ))
+							python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G information_gain -D ${d} -l critical \
+							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+							echo "python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G information_gain -D ${d} -l critical \
+							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
+							global_runs=$(( $global_runs+1 ))
+						done
+				done
+		done
+	x=$(( $x+1 ))
+done
+
+
+
+# python main.py -U lf -e experiment_results_folders/exp_test_case_naive -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+
 
 # optional arguments:
 #   -h, --help            show this help message and exit
@@ -58,20 +95,3 @@
 #                         the ground truth DCs that so called user think is correct (default: /home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
 #   -I, --user_specify_pairs 
 #                         user specify pairs of violations to repair? (default: True)
-
-
-# LFs 
-# test 3 different variations with deletion factor = 0 (make sure size increase is correct)
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-
-# test 3 different variations with deletion factor = 0.5 (make sure size changes)
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube
-
-# test 3 different variations with deletion factor = 0.5 and predeletion threshold = 0.5
-python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G naive -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G information_gain -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G optimal -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube

@@ -233,8 +233,8 @@ class TreeRule:
 			else:
 				user_inputs = []
 				for k,v in cur_node.pairs.items():
-					print('cur_node.pairs')
-					print(cur_node.pairs)
+					# print('cur_node.pairs')
+					# print(cur_node.pairs)
 					kstr=f"{str(k)}: ("
 					if(self.rtype=='lf'):
 						i=1
@@ -275,7 +275,7 @@ class TreeRule:
 				queue.append(cur_node.right)
 		str_list.append(f"//{','.join([str(x) for x in extra_info])}")
 		str_list.append('}')
-		print(f'str_list: {str_list}')
+		# print(f'str_list: {str_list}')
 		dot_string= dot_string_template.substitute(nodes_details='\n'.join(str_list))
 		return dot_string
 
