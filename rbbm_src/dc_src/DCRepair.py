@@ -33,7 +33,7 @@ import os
 from rbbm_src.dc_src.DCQueryTranslator import convert_dc_to_muse_rule,convert_dc_to_get_violation_tuple_ids
 from rbbm_src.muse.running_example.running_example_adult import *
 from rbbm_src import logconfig
-
+import pickle
 
 logger = logging.getLogger(__name__)
 
@@ -906,6 +906,8 @@ def dc_main(dc_input):
     filtered_rules=[]
     gt_good_rules=[]
     gt_bad_rules=[]
+    rbbm_runtime=0
+    bbox_runtime=0
 
     try:
         log_map = { 'debug': logging.DEBUG,
@@ -947,7 +949,7 @@ def dc_main(dc_input):
     db = DatabaseEngine("cr")
     database_reset(db,['adult','tax','flights_new'])
     db.close_connection()
-    conn=psycopg2.connect('dbname=cr user=postgres')
+    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
     real_dirty_query = f"SELECT _tid_ from {table_name} where is_dirty=True"
     dataset_size_query = f"SELECT count(*) as cnt from {table_name}"
     cur=conn.cursor()
@@ -1013,10 +1015,16 @@ def dc_main(dc_input):
     # exit()
     tupled_muse_dirties=[x[1].strip('()').split(',') for x in muse_dirties]
 
-    conn=psycopg2.connect('dbname=cr user=postgres')
-    # dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
-    dc, dd, cc, total_cnt, cd = get_muse_results(table_name, conn, tupled_muse_dirties)
+    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
 
+
+
+
+    # dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
+    bbox_start = time.time()
+    dc, dd, cc, total_cnt, cd = get_muse_results(table_name, conn, tupled_muse_dirties)
+    bbox_end = time.time()
+    bbox_runtime+=round(bbox_end-bbox_start,3)
 
     # do a check and construct user complaint set
     complain_violations_dict={}
@@ -1043,7 +1051,8 @@ def dc_main(dc_input):
     logger.debug(f"len(cc)={len(cc)}")
     logger.debug(f"cd:{cd}")
     logger.debug(f"len(cd)={len(cd)}")
-    logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+    global_accuracy = (len(dd)+len(cc))/(total_cnt)
+    logger.debug(f"before fix, the global accuracy is {global_accuracy}")
 
     complaint_size=floor(dc_input.user_input_size*dc_input.complaint_ratio)
     confirmation_size=dc_input.user_input_size-complaint_size
@@ -1052,6 +1061,7 @@ def dc_main(dc_input):
 
 
     test_rules = [x[1] for x in filtered_rules]
+    user_input = []
 
     if(user_specify_pairs==True):
         complaint_tuples = set([])
@@ -1150,77 +1160,8 @@ def dc_main(dc_input):
             logger.debug(f"violated rules: {cf['rules']}")
             logger.debug(f"violated rules count: {len(cf['rules'])}")
             logger.debug('---------------------------------------\n')
-
-        user_input=[]
         user_input.extend(complaints_input)
         user_input.extend(confirmations_input)
-        rc = RepairConfig(strategy=dc_input.strategy, deletion_factor=0.000001, complaints=user_input, acc_threshold=0.8, runtime=0)
-        start = time.time()
-        bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'], user_specify_pairs=user_specify_pairs,
-            pre_selected_pairs=user_input)
-        end = time.time()
-        new_rules = []
-        deleted_cnt = 0
-
-        timestamp = datetime.now()
-        timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
-        result_dir = f'./{dc_input.experiment_name}_{timestamp}'
-        if not os.path.exists(result_dir):
-            os.makedirs(result_dir)
-
-        ki = 1
-        for kt,vt in bkeepdict.items():
-            with open(f"{result_dir}/{timestamp_str}_tree_{ki}_dot_file", 'a') as file:
-                comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, \
-                deleted: {bkeepdict[kt]['deleted']}"
-                dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
-                file.write(dot_file)                
-            ki+=1
-            
-        for k in bkeepdict:
-            if(bkeepdict[k]['deleted']==False):
-                new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
-            else:
-                deleted_cnt+=1
-
-        logger.debug(f"new_rules")
-        logger.debug(new_rules)
-        logger.debug(f'"len(new_rules): {len(new_rules)}')
-        conn.close()
-        new_muse_program= []
-        logger.debug("new_rules")
-        logger.debug(new_rules)
-        for r in new_rules:
-            # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
-            new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
-        muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
-        tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
-        logger.debug(len(tupled_muse_dirties_new))
-        logger.debug(tupled_muse_dirties_new)
-
-        conn=psycopg2.connect('dbname=cr user=postgres')
-        new_dc, new_dd, new_cc, total_cnt_new, new_cd = get_muse_results(table_name, conn, tupled_muse_dirties_new)
-
-        logger.debug(f"new_dc:{new_dc}")
-        logger.debug(f"len(new_dc)={len(new_dc)}")
-        logger.debug(f"new_dd:{new_dd}")
-        logger.debug(f"len(new_dd)={len(new_dd)}")
-        logger.debug(f"new_cc:{new_cc}")
-        logger.debug(f"len(new_cc)={len(new_cc)}")
-        logger.debug(f"new_cd:{cd}")
-        logger.debug(f"len(new_cd)={len(new_cd)}")
-        # 'complaints', 'confirmations', and 'new_dirties'
-        fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_tuples, confirmations=confirmation_tuples, new_dirties=tupled_muse_dirties_new)
-        logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
-        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(new_dd)+len(new_cc))/total_cnt_new}")
-        logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
-
-        # for k in bkeepdict:
-        #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
-        logger.debug(bkeepdict)
-        rc.runtime=end-start
-        for r in new_rules:
-            logger.debug(r+'\n')
 
     else:
         complaint_input = []
@@ -1286,7 +1227,6 @@ def dc_main(dc_input):
         logger.debug(f" running user input: size: complaint(dirties but should be clean): {len(complaint_input)}, confirmation(clean and should be clean):\
          {len(confirm_input)}, version: information gain....")
         logger.debug(f"on complaint size {c}")
-        user_input = []
 
         if(complaint_size>0):
             complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})", conn)
@@ -1310,63 +1250,115 @@ def dc_main(dc_input):
         user_input.extend(complaint_dicts)
         user_input.extend(confirm_dicts)
 
-        # rule_file = open(dc_file, 'r')
-        # test_rules = [l.strip() for l in rule_file.readlines()]
+    rc = RepairConfig(strategy=dc_input.strategy, deletion_factor=0.000001, complaints=user_input, acc_threshold=0.8, runtime=0)
+    rbbm_start = time.time()
+    bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'], user_specify_pairs=user_specify_pairs,
+        pre_selected_pairs=user_input)
+    rbbm_end = time.time()
+    rbbm_runtime+=round(rbbm_end-rbbm_start,3)
+    new_rules = []
+    deleted_cnt = 0
 
-        rc = RepairConfig(strategy=strateg, deletion_factor=0.5, complaints=user_input, acc_threshold=0.8, runtime=0)
-        start = time.time()
-        bkeepdict = fix_rules(repair_config=rc, original_rules=test_rules, conn=conn, table_name=table_name, exclude_cols=['_tid_','is_dirty'])
-        end = time.time()
-        new_rules = []
-        deleted_cnt = 0
-        for k in bkeepdict:
-            if(bkeepdict[k]['deleted']==False):
-                new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
-            else:
-                deleted_cnt+=1
+    timestamp = datetime.now()
+    timestamp_str = timestamp.strftime('%Y%m%d%H%M%S')
+    result_dir = f'./{dc_input.experiment_name}/{timestamp_str}/'
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
 
+    ki = 1
+    for kt,vt in bkeepdict.items():
+        with open(f"{result_dir}tree_{ki}_dot_file", 'a') as file:
+            comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, \
+            deleted: {bkeepdict[kt]['deleted']}"
+            dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
+            file.write(dot_file)                
+        ki+=1
+        
+    for k in bkeepdict:
+        if(bkeepdict[k]['deleted']==False):
+            new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+        else:
+            deleted_cnt+=1
 
-        logger.debug(f"new_rules")
-        logger.debug(new_rules)
-        logger.debug(f'"len(new_rules): {len(new_rules)}')
-        conn.close()
-        new_muse_program= []
-        logger.debug("new_rules")
-        logger.debug(new_rules)
-        for r in new_rules:
-            # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
-            new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
+    logger.debug(f"new_rules")
+    logger.debug(new_rules)
+    logger.debug(f'"len(new_rules): {len(new_rules)}')
+    conn.close()
+    new_muse_program= []
+    logger.debug("new_rules")
+    logger.debug(new_rules)
+    for r in new_rules:
+        # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
+        new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
+    bbox_start = time.time()
+    muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
+    bbox_end = time.time()
+    bbox_runtime+=round(bbox_end-bbox_start,3)
+    tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
+    logger.debug(len(tupled_muse_dirties_new))
+    logger.debug(tupled_muse_dirties_new)
 
-        logger.debug(f"new_muse_program: {new_muse_program}")
-        muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
-        tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
-        logger.debug(len(tupled_muse_dirties_new))
-        logger.debug(tupled_muse_dirties_new)
-        # conn=psycopg2.connect('dbname=cr user=postgres')
-        # cur = conn.cursor()
-        conn=psycopg2.connect('dbname=cr user=postgres')
+    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
+    new_dc, new_dd, new_cc, total_cnt_new, new_cd = get_muse_results(table_name, conn, tupled_muse_dirties_new)
 
-        # dc_new, dd_new, cc_new, total_cnt_new = get_muse_results('flights_new', conn, tupled_muse_dirties_new)
-        dc_new, dd_new, cc_new, total_cnt_new, cd_new= get_muse_results(table_name, conn, tupled_muse_dirties_new)
+    logger.debug(f"new_dc:{new_dc}")
+    logger.debug(f"len(new_dc)={len(new_dc)}")
+    logger.debug(f"new_dd:{new_dd}")
+    logger.debug(f"len(new_dd)={len(new_dd)}")
+    logger.debug(f"new_cc:{new_cc}")
+    logger.debug(f"len(new_cc)={len(new_cc)}")
+    logger.debug(f"new_cd:{cd}")
+    logger.debug(f"len(new_cd)={len(new_cd)}")
+    # 'complaints', 'confirmations', and 'new_dirties'
+    fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_tuples, confirmations=confirmation_tuples, new_dirties=tupled_muse_dirties_new)
+    logger.debug(f"(select *, 'complaint' as type from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_tuples])}))"+\
+        f" union all (select *, 'confirmation' as type from {table_name} where _tid_ in  ({','.join([str(x) for x in complaint_tuples])}))")
 
-        logger.debug(f"complaint_input:{complaint_input}")
-        logger.debug(f"confirm_input:{confirm_input}")
-        logger.debug(f"dc:{dc}")
-        logger.debug(f"dd:{dd}")
-        logger.debug(f"cc:{cc}")
-        logger.debug(f"new_dc:{dc_new}")
-        logger.debug(f"new_dd:{dd_new}")
-        logger.debug(f"new_cc:{cc_new}")
-        fix_rate, confirm_preserve_rate = calculate_retrained_results(complaints=complaint_input, confirmations=confirm_input, new_dirties=tupled_muse_dirties_new)
-        logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
-        logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {(len(dd_new)+len(cc_new))/total_cnt_new}")
-        logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
+    df_user_input=pd.read_sql(f"(select *, 'complaint' as type from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_tuples])}))"+\
+        f" union all (select *, 'confirmation' as type from {table_name} where _tid_ in  ({','.join([str(x) for x in complaint_tuples])}))", conn)
+    df_user_input.to_csv(f'{result_dir}user_input.csv', index=False)
 
-        # for k in bkeepdict:
-        #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
-        logger.debug(bkeepdict)
+    logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
+    new_global_accuracy=(len(new_dd)+len(new_cc))/total_cnt_new
+    logger.debug(f"after fix, fix_rate={fix_rate}, confirm_preserve_rate={confirm_preserve_rate}, the global accuracy is {new_global_accuracy}")
+    logger.debug(f"before initial training, we had {len(res)} rules as input, after predeletion, we have {len(test_rules)} rules as input, after fix, we deleted {deleted_cnt} rules")
 
-        rc.runtime=end-start
+    # for k in bkeepdict:
+    #     new_rules.extend(bkeepdict[k]['fixed_treerule_text'])
+    logger.debug(bkeepdict)
+    for r in new_rules:
+        logger.debug(r+'\n')
+    before_total_size=after_total_size=deleted_cnt=0
+    for k,v in bkeepdict.items():
+        if(not v['deleted']):
+            before_total_size+=v['pre_fix_size']
+            after_total_size+=v['after_fix_size']
+        else:
+            deleted_cnt+=1
 
-        for r in new_rules:
-            logger.debug(r+'\n')
+    avg_tree_size_increase=(after_total_size-before_total_size)/(len(bkeepdict)-deleted_cnt)
+
+    if(not os.path.exists(result_dir+'experiment_stats')):
+        with open(result_dir+'experiment_stats', 'w') as file:
+            # Write some text to the file
+            file.write('strat,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+                'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
+
+    for kt,vt in bkeepdict.items():
+        with open(f"{result_dir}/tree_{dc_input.strategy}_{kt}_dot_file", 'a') as file:
+            comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, deleted: {bkeepdict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{bkeepdict[kt]['rule'].reversed_cnt}"
+            dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
+            file.write(dot_file)
+
+    with open(result_dir+'experiment_stats', 'a') as file:
+        # Write the row to the file
+        file.write(f'{dc_input.strategy},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{dc_input.user_input_size},{dc_input.complaint_ratio},{complaint_size},{confirmation_size},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
+            f'{round(new_global_accuracy,3)},N/A,N/A,N/A,{deletion_factor},N/A,N/A,N/A,N/A,N/A,'+\
+            f'N/A,N/A,lf_only,{pre_filter_thresh}\n')
+
+    with open(result_dir+'fix_book_keeping_dict.pkl', 'wb') as file:
+        # Use pickle.dump() to write the dictionary to the file
+        pickle.dump(bkeepdict, file)
+
+    for r in new_rules:
+        logger.debug(r+'\n')

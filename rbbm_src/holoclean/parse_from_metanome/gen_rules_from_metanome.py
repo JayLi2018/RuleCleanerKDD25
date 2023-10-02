@@ -29,26 +29,25 @@ import json
 
 #this is pretty print, it just makes JSON more human-readable in the console:
 from pprint import pprint
+import json
 
-# options = dict(
-#     page_no = 1,
-#     checkin = "07/15/2016",
-#     checkout = "07/16/2016",
-#     sw_lat = "40.83397847641101",
-#     sw_lng = "-74.0845568169126",
-#     ne_lat = "40.88991628064286",
-#     ne_lng = "-73.86380028615088"
-# )
 
-json_url = 'http://localhost:8081/api/result-store/get-from-to/Denial%20Constraint/Predicates/true/0/3000'
+# json_url = 'http://localhost:8081/api/result-store/get-from-to/Denial%20Constraint/Predicates/true/0/3000'
 # download the raw JSON
-raw = requests.get(json_url).text
+file = 'dc_finder_adults_722'
+# raw = requests.get(json_url).text
+# with open(file) as f:
+#     data = json.load(f)
 
+data = []
+with open(file) as f:
+    for line in f:
+        data.append(json.loads(line))
 # parse it into a dict
-data = json.loads(raw)
+# data = json.loads(raw)
 
 # pretty-print some cool data about the 0th listing
-pprint(data)
+# pprint(data)
 
 # [{'result': {'predicates': [{'column1': {'columnIdentifier': 'Address1',
 #                                          'tableIdentifier': 'hospital.csv'},
@@ -77,9 +76,11 @@ pprint(data)
 
 # t1&t2&EQ(t1.HospitalName,t2.HospitalName)&IQ(t1.PhoneNumber,t2.PhoneNumber)
 
-with open('test.txt', 'a') as f:
+with open('flights_dc_722.txt', 'a') as f:
 	for d in data:
-		conditions = d['result']['predicates']
+		print(d)
+		# break
+		conditions = d['predicates']
 		tokens =['t1&t2']
 		for c in conditions:
 			t1_col = c['column1']['columnIdentifier']
@@ -88,5 +89,11 @@ with open('test.txt', 'a') as f:
 				sign = 'EQ'
 			if(c['op']=='UNEQUAL'):
 				sign='IQ'
+			if(c['op']=='LESS_EQUAL'):
+				sign='LTE'
+			if(c['op']=='GREATER_EQUAL'):
+				sign='GTE'
+			if(c['op']=='GREATER'):
+				sign='GT'
 			tokens.append(f"{sign}(t1.{t1_col},t2.{t2_col})")
 		f.write('&'.join(tokens)+'\n')

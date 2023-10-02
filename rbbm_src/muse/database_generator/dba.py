@@ -48,7 +48,7 @@ class DatabaseEngine():
             self.connection = psycopg2.connect(user = "postgres",
                                                # password = "Your Password Here",
                                                # host = "127.0.0.1",
-                                               port = "5432",
+                                               port = "5433",
                                                database = db_name)
             self.connection.set_session(readonly=False, autocommit=True)
 
@@ -278,7 +278,7 @@ class DatabaseEngine():
 
         if all(name in self.mas_schema for name in lst_names):
             schema = self.mas_schema
-            path = "/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/"
+            path = "/home/perm/chenjie/RBBM/rbbm_src/muse/data/mas/"
         elif all(name in self.tpc_h_schema for name in lst_names):
             schema = self.tpc_h_schema
             path = "../data/tpch/"

@@ -96,9 +96,15 @@ class KeyWordRuleMiner:
 
 if __name__ == '__main__':
 
-	conn = psycopg2.connect(dbname='label', user='postgres', password='123')
-	sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
-	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+	# conn = psycopg2.connect(dbname='label', user='postgres', password='123')
+	conn = psycopg2.connect(dbname='label', user='postgres', password='123', port=5433)
+
+	# sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
+	sentences_df=pd.read_sql(f'SELECT * FROM enron', conn)
+
+	# sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+	sentences_df = sentences_df.rename(columns={"label": "expected_label",  "content": "old_text"})
+
 	sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
 	sentences_df = sentences_df[~sentences_df['text'].isna()]
 
@@ -123,6 +129,6 @@ if __name__ == '__main__':
 
 	total_funcs.extend(good_funcs)
 
-	with open(f'pickled_funcs_720.pkl', 'wb') as file:
+	with open(f'pickled_funcs_enron.pkl', 'wb') as file:
 	    pickle.dump(total_funcs, file)
 	# print(funcs)

@@ -46,7 +46,7 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	DIRTY,
 	textblob_sentiment
 )
-from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs
+from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs,gen_amazon_funcs
 from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
 from rbbm_src.classes import StatsTracker, FixMonitor, RepairConfig, lf_input
 from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
@@ -553,9 +553,9 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 def calculate_retrained_results(complaints, new_wrongs_df, file_dir):
 	the_complaints = complaints[complaints['expected_label']!=complaints['model_pred']]
 	the_confirmatons = complaints[complaints['expected_label']==complaints['model_pred']]
-	still_wrongs = pd.merge(the_complaints, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
+	still_wrongs = pd.merge(the_complaints, new_wrongs_df, left_on='cid', right_on='cid', how='inner')
 	# still_wrongs.to_csv(file_dir+'_still_wrongs.csv', index=False)
-	not_correct_anymores = pd.merge(the_confirmatons, new_wrongs_df, left_on='comment_id', right_on='comment_id', how='inner')
+	not_correct_anymores = pd.merge(the_confirmatons, new_wrongs_df, left_on='cid', right_on='cid', how='inner')
 	# print("complaints")
 	# print(complaints)
 	# print("new_wrongs")
@@ -677,7 +677,7 @@ def run_snorkel(lf_input, LFs=None):
 
 	lf_internal_args.filtered_sentences_df = df_sentences_filtered
 
-	# df_test_filtered.to_csv('result.csv')
+	df_sentences_filtered.to_csv('result.csv')
 	# the wrong labels we get
 	wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
 	# df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)
@@ -705,6 +705,7 @@ def lf_main(lf_input):
 	repeatable=lf_input.repeatable
 	rseed=lf_input.rseed
 	run_intro=lf_input.run_intro
+	run_amazon = lf_input.run_amazon
 	retrain_after_percent=lf_input.retrain_every_percent
 	deletion_factor=lf_input.deletion_factor
 	retrain_accuracy_thresh=lf_input.retrain_accuracy_thresh
@@ -749,13 +750,16 @@ def lf_main(lf_input):
 	if not os.path.exists(result_dir):
 		os.makedirs(result_dir)
 
-	if(load_funcs_from_pickle=='true'):
+	if(lf_source=='intro' or run_intro):
+		tree_rules=gen_example_funcs()
+	elif(run_amazon):
+		logger.debug("amazon!")
+		tree_rules=gen_amazon_funcs()
+	elif(load_funcs_from_pickle=='true'):
 		with open(f'{pickle_file_name}.pkl', 'rb') as file:
 		    tree_rules = pickle.load(file)
 		    logger.debug('loaded pickled funcs')
 		    logger.debug(f'we have {len(tree_rules)} funcs')
-	elif(lf_source=='intro' or run_intro=='true'):
-		tree_rules=gen_example_funcs()
 	else:
 		sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
 		sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
@@ -766,7 +770,7 @@ def lf_main(lf_input):
 
 	labelling_funcs=[f.gen_label_rule() for f in tree_rules]
 	num_funcs=len(labelling_funcs)
-	
+	logger.debug(f'number of functions: {num_funcs}')
 	bbox_start = time.time()
 	global_accuracy, all_sentences_df, wrongs_df = run_snorkel(lf_input, LFs=labelling_funcs)
 	bbox_end = time.time()

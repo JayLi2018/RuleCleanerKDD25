@@ -93,6 +93,7 @@ class lf_input:
     repeatable: bool
     rseed: int
     run_intro: bool
+    run_amazon: bool
     retrain_every_percent: float
     deletion_factor: float
     retrain_accuracy_thresh: float
@@ -115,6 +116,7 @@ class dc_input:
     log_level:str
     dc_file: str
     table_name: str
+    experiment_name: str
     pre_filter_thresh: float
     semantic_version: str
     user_input_size: int
