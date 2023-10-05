@@ -58,18 +58,12 @@
 #                         the ground truth DCs that so called user think is correct (default: /home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
 #   -I, --user_specify_pairs 
 #                         user specify pairs of violations to repair? (default: True)
+python main.py -U dc -e experiment_results_folders/dc_test_case1004 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0 -t tax -C /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt \
+  -F /home/opc/chenjie/RBBM/rbbm_src/user_desired_dcs.txt -S ind -l critical 
 
+python main.py -U dc -e experiment_results_folders/dc_test_case1004 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0 -t tax -C /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt \
+   -F /home/opc/chenjie/RBBM/rbbm_src/user_desired_dcs.txt -S ind -l critical 
 
-# LFs 
+python main.py -U dc -e experiment_results_folders/dc_test_case1004 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -t tax -C /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt \
+-F /home/opc/chenjie/RBBM/rbbm_src/user_desired_dcs.txt -S ind -l critical 
 
-# python main.py -U lf -e experiment_results_folders/dc_test_case -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0 -t tax 
-python main.py -U dc -e experiment_results_folders/dc_test_case -R true -x 123 -X test_cases_seed.txt -T 0 -s 20 -r 0.5 -G naive -D 0 -t tax -C /home/perm/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt -F /home/perm/chenjie/RBBM/rbbm_src/user_desired_dcs.txt
-# python main.py -U lf -e experiment_results_folders/exp_test_case_optimal -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-
-# python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-# python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G information_gain -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-# python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05 -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G optimal -D 0.5 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube
-
-# python main.py -U lf -e experiment_results_folders/exp_test_case_naive_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G naive -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-# python main.py -U lf -e experiment_results_folders/exp_test_case_info_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G information_gain -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-# python main.py -U lf -e experiment_results_folders/exp_test_case_optimal_deletion05pre05 -R true -x 123 -X test_cases_seed.txt -T 0.5 -s 40 -r 0.5 -G optimal -D 0.5  -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube

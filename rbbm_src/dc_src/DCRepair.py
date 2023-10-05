@@ -22,7 +22,6 @@ from collections import deque
 from itertools import product
 import copy
 import time
-from rbbm_src.holoclean.examples.holoclean_repair import main
 import random
 from math import ceil
 import logging
@@ -40,7 +39,7 @@ logger = logging.getLogger(__name__)
 dc_tuple_violation_template_targeted_t1=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc")
 dc_tuple_violation_template_targeted_t2=Template("SELECT DISTINCT t1.* FROM $table t1, $table t2 WHERE $dc_desc AND $tuple_desc")
 dc_tuple_violation_template=Template("SELECT DISTINCT t2.* FROM $table t1, $table t2 WHERE $dc_desc;")
-
+index_template=Template("CREATE INDEX $index_name ON $table($colname);")
 
 def parse_dc_to_tree_rule(dc_text):
     # input:a dc raw text
@@ -100,6 +99,7 @@ def find_tuples_in_violation(t_interest, conn, dc_text, target_table, targeted=T
     else:
         q1= construct_query_for_violation(t_interest, 't1', dc_text, target_table, targeted)
         res = {'t1':pd.read_sql(q1, conn).to_dict('records')}
+
     return res 
 
 def construct_query_for_violation(t_interest, role, dc_text, target_table, targeted): 
@@ -138,23 +138,24 @@ def user_choose_confirmation_assignment(dds, desired_dcs, conn, table_name,):
     
     violations_to_rule_dict = {}
     violations_dict = {}
-    print("choose user specified dd assignments!")
-    logger.debug(f"desired_dcs: {desired_dcs}")
+    # print("choose user specified dd assignments!")
+    logger.critical(f"desired_dcs: {desired_dcs}")
+    logger.critical(f"dds to select from for user: {dds}")
     for d in dds:
         complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {d}", conn)
-        complaint_tuples = complaint_df.to_dict('records')
-        complaint_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in complaint_tuples]
+        complaint_tuple = complaint_df.to_dict('records')[0]
+        complaint_dict = {'tuple':complaint_tuple, 'expected_label':DIRTY}
         for c in desired_dcs:
             violations_to_rule_dict, violations_dict = populate_violations(tree_rule=None, conn=conn, 
-                rule_text=c, complaint=complaint_dicts[0], table_name=table_name, violations_dict=violations_dict, violations_to_rule_dict=violations_to_rule_dict,
+                rule_text=c, complaint=complaint_dict, table_name=table_name, violations_dict=violations_dict, violations_to_rule_dict=violations_to_rule_dict,
             complaint_selection=True, check_existence_only=False, 
             user_input_pairs=False,
             pre_selected_pairs=None)
 
-    print("violations_to_rule_dict:")
-    print(violations_to_rule_dict)
-    print("violations_dict")
-    print(violations_dict)
+    # print("violations_to_rule_dict:")
+    # print(violations_to_rule_dict)
+    # print("violations_dict")
+    # print(violations_dict)
     return violations_to_rule_dict, violations_dict
     # exit()
 
@@ -788,7 +789,6 @@ def fix_violations(tree_rule_text, treerule, repair_config, leaf_nodes, domain_v
                     #     found_fix=True
                     #     cur_fixed_tree = prev_tree
                     #     sub_node_pure=True
-
         return cur_fixed_tree 
         # list_of_repaired_trees = sorted(list_of_repaired_trees, key=lambda x: x[0].size, reverse=True)
         # return list_of_repaired_trees[0] 
@@ -908,6 +908,8 @@ def dc_main(dc_input):
     gt_bad_rules=[]
     rbbm_runtime=0
     bbox_runtime=0
+    prefilter_runtime=0
+
 
     try:
         log_map = { 'debug': logging.DEBUG,
@@ -937,7 +939,11 @@ def dc_main(dc_input):
                 # prefilter_format=convert_dc_to_get_violation_tuple_ids(line, 'flights_new','t1')
                 muse_format=convert_dc_to_muse_rule(line, table_name)
                 prefilter_format=convert_dc_to_get_violation_tuple_ids(line, table_name)
-                res.append([table_name, rule, muse_format, prefilter_format])
+                if(len(muse_format)>1):
+                    for i in range(len(muse_format)):
+                        res.append([table_name, rule, [muse_format[i]], [prefilter_format[i]]])
+                else:
+                    res.append([table_name, rule, muse_format, prefilter_format])
         logger.debug(res)
         # exit()
     except FileNotFoundError:
@@ -947,13 +953,16 @@ def dc_main(dc_input):
 
     # query for real dirties
     db = DatabaseEngine("cr")
-    database_reset(db,['adult','tax','flights_new'])
+    database_reset(db,[table_name])
     db.close_connection()
-    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
+    conn=psycopg2.connect('dbname=cr user=postgres port=5432')
+    cur=conn.cursor()
+    index_q = index_template.substitute(index_name=f"{table_name}_tid_index",table=table_name, colname='_tid_')
+    cur.execute(index_q)
     real_dirty_query = f"SELECT _tid_ from {table_name} where is_dirty=True"
     dataset_size_query = f"SELECT count(*) as cnt from {table_name}"
-    cur=conn.cursor()
     cur.execute(real_dirty_query)
+    logger.critical("created index!")
     real_dirty_ids = [x[0] for x in cur.fetchall()]
     logger.debug("real dirty ids")
     logger.debug(real_dirty_ids)
@@ -968,11 +977,14 @@ def dc_main(dc_input):
     # pre_filter_thresh=0.1
 
     # conn.close()
-
+    prefilter_start = time.time()
+    logger.debug(res)
+    logger.critical('TIME: filtering out rules')
     for r in res:
         deleted_ids = []
         for q in r[-1]:
-            logger.debug(q)
+            logger.debug(f"r: {r}")
+            logger.debug(f"q: {q}")
             cur.execute(q)
             r_deleted=[x[0] for x in cur.fetchall()]
             deleted_ids.extend(r_deleted)
@@ -980,6 +992,10 @@ def dc_main(dc_input):
         incorrect_deleted_cnt=len([x for x in deleted_unique_ids if x not in real_dirty_ids])
         if(1-incorrect_deleted_cnt/dataset_size>pre_filter_thresh):
             filtered_rules.append(r)
+    logger.critical('TIME: done filtering out rules')
+
+    prefilter_end = time.time()
+    prefilter_runtime+=round(prefilter_end-prefilter_start,3)
 
     hit_gt_good_rules =  [x[1] for x in filtered_rules if x[1] in gt_good_rules]
     missed_gt_good_rules = [x for x in gt_good_rules if x not in hit_gt_good_rules]
@@ -1011,19 +1027,21 @@ def dc_main(dc_input):
     # exit()
     conn.close()
     muse_input_rules = [[x[0],x[2][0]] for x in filtered_rules]
-    muse_dirties = muse_find_mss(rules=muse_input_rules, semantic_version='ind')
+
+    bbox_start = time.time()
+    logger.critical('TIME: bbox start')
+    muse_dirties = muse_find_mss(rules=muse_input_rules, semantic_version=semantic_version)    
+    bbox_end = time.time()
+    logger.critical('TIME: bbox end')
+
     # exit()
     tupled_muse_dirties=[x[1].strip('()').split(',') for x in muse_dirties]
 
-    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
+    conn=psycopg2.connect('dbname=cr user=postgres port=5432')
 
-
-
-
+    logger.critical('TIME: start populate_violations for dirty_clean')
     # dc, dd, cc, total_cnt = get_muse_results('flights_new', conn, tupled_muse_dirties)
-    bbox_start = time.time()
     dc, dd, cc, total_cnt, cd = get_muse_results(table_name, conn, tupled_muse_dirties)
-    bbox_end = time.time()
     bbox_runtime+=round(bbox_end-bbox_start,3)
 
     # do a check and construct user complaint set
@@ -1042,6 +1060,9 @@ def dc_main(dc_input):
                 violations_dict=complain_violations_dict, complaint_selection=True,
                 check_existence_only=False, user_input_pairs=False,
                 pre_selected_pairs=None)
+
+    logger.critical('TIME: populate_violations dirty_clean end')
+
 
     logger.debug(f"dc:{dc}")
     logger.debug(f"len(dc)={len(dc)}")
@@ -1079,6 +1100,8 @@ def dc_main(dc_input):
         complain_probabilities = [len(sub_list) / total_length for sub_list in complain_violations_dict.values()]
 
         cur_complaint_cnt = 0
+
+        logger.critical('TIME: start selecting user input')
 
         while(cur_complaint_cnt<complaint_size):
             logger.debug("building complaint set...")
@@ -1121,12 +1144,14 @@ def dc_main(dc_input):
         total_length = sum(len(sub_list) for sub_list in confirm_violations_dict.values())
         confirm_probabilities = [len(sub_list) / total_length for sub_list in confirm_violations_dict.values()]
         cur_confirmation_cnt = 0
+        logger.critical(f"confirm_violations_dict: {confirm_violations_dict}")
+        logger.critical(f"confirm_probabilities: {confirm_probabilities}")
         while(cur_confirmation_cnt<confirmation_size):
             selected_key =  random.choices(list(confirm_violations_dict.keys()), confirm_probabilities)[0]
             selected_list = confirm_violations_dict[selected_key]
             logger.debug(f"selected_list: {selected_list}")
-            # we only want DD-DD to be included
-            selected_list = [x for x in selected_list if x in dd]
+            # # we only want DD-DD to be included
+            # selected_list = [x for x in selected_list if x in dd]
             if(selected_list):
                 selected_element = random.choice(list(selected_list))
                 # cand_id1, cand_id2 = f'{str(selected_key)}_{str(selected_element)}',f'{str(selected_element)}_{str(selected_key)}'
@@ -1138,10 +1163,10 @@ def dc_main(dc_input):
                     cur_confirmation_cnt+=1
                     confirmation_tuples.add(selected_key)
 
-        logger.debug(f"confirmation_tuples: {confirmation_tuples}")
-        logger.debug(f"comfirm_assignment_ids: {comfirm_assignment_ids}")
-        logger.debug("complaints:")
-        logger.debug(complaints_input)
+        logger.critical(f"confirmation_tuples: {confirmation_tuples}")
+        logger.critical(f"comfirm_assignment_ids: {comfirm_assignment_ids}")
+        logger.critical("complaints:")
+        logger.critical(complaints_input)
 
         for cp in complaints_input:
             df=pd.read_sql(f"select * from {table_name} where _tid_={cp['pair']['t1']['_tid_']} or _tid_={cp['pair']['t2']['_tid_']}", con=conn)
@@ -1151,8 +1176,8 @@ def dc_main(dc_input):
             logger.debug(f"violated rules count: {len(cp['rules'])}")
             logger.debug('---------------------------------------\n')
 
-        logger.debug("confirmations:")
-        logger.debug(confirmations_input)
+        logger.critical("confirmations:")
+        logger.critical(confirmations_input)
         for cf in confirmations_input:
             df=pd.read_sql(f"select * from {table_name} where _tid_={cf['pair']['t1']['_tid_']} or _tid_={cf['pair']['t2']['_tid_']}", con=conn)
             logger.debug('---------------------------------------')
@@ -1163,92 +1188,27 @@ def dc_main(dc_input):
         user_input.extend(complaints_input)
         user_input.extend(confirmations_input)
 
-    else:
-        complaint_input = []
-        for vk,vv in violations_dict.items():
-            if(complaint_set_completed):
-                break
-            current_dc_added = False
-            for c in vv:
-                if(c in dc):
-                    logger.debug(f"(c, c) case found ({vk}, {c})")
-                    logger.debug(f"complaint_input added {c}")
-                    complaint_input.add(c)
-                    current_complaint_cnt=len(complaint_input)
-                    if(not current_dc_added):
-                        complaint_input.add(vk)
-                        current_complaint_cnt=len(complaint_input)
-                        current_dc_added=True
-                    if(current_complaint_cnt>=complaint_size):
-                        complaint_set_completed=True
-                        break
-        complaints_input=list(complaint_input)
-        if(not complaint_set_completed):
-            size_needed=complaint_size-len(complaint_input)
-            rest_avaiable_dcs = [x for x in dc if x not in complaint_input]
-            complaints_input.extend(random.sample(rest_avaiable_dcs, size_needed))
+        # if(complaint_size>0):
+        #     complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_tuples])})", conn)
+        #     logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_tuples])})")
+        #     logger.debug(complaints_df)
+        #     complaints_df.to_csv('complaint_input_tuples.csv', index=False)
+        #     complaint_tuples = complaints_df.to_dict('records')
+        #     complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
+        # else:
+        #     complaint_dicts=[]
 
-        # complaint_input = random.sample(dc, complaint_size)
-        logger.debug(f"complaint_input:{complaint_input}")
-        confirmations_input = random.sample(dd, confirmation_size)
-        logger.debug(f"confirm_input:{confirm_input}")
-
-        # stats being used to delete rules pre fix algorithm
-        cnt_non_violation_on_confirmation=cnt_violation_on_complaints=0
-
-        rules_with_violations = {r[1]:{'violate_confirm_cnt':0, 'violate_complaint_cnt':0} for r in res}
-
-        for l in complaints_input:
-            complaint_df = pd.read_sql(f"select * from {table_name} where _tid_ = {l}", conn)
-            complaint_tuples = complaint_df.to_dict('records')
-            complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
-            for r in res:
-                has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r[1], complaint=complaint_dicts[0], table_name=table_name, 
-                    violations_dict=None, complaint_selection=False, check_existence_only=True,
-                    user_specify_pairs=False,user_input_pairs=False,pre_selected_pairs=None)
-
-                if(has_violation):
-                    rules_with_violations[r[1]]['violate_complaint_cnt']+=1
-
-        for f in confirmations_input:
-            confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ = {f}", conn)
-            confirm_tuples = confirm_df.to_dict('records')
-            confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
-            for r in res:
-                has_violation=populate_violations(tree_rule=None, conn=conn, rule_text=r[1], complaint=confirm_dicts[0], table_name=table_name, 
-                    violations_dict=None, complaint_selection=False, check_existence_only=True,
-                    user_specify_pairs=False,user_input_pairs=False,pre_selected_pairs=None)
-                if(has_violation):
-                    rules_with_violations[r[1]]['violate_confirm_cnt']+=1
-
-        logger.debug('rules_with_violations')
-        logger.debug(rules_with_violations)
-
-        logger.debug(f" running user input: size: complaint(dirties but should be clean): {len(complaint_input)}, confirmation(clean and should be clean):\
-         {len(confirm_input)}, version: information gain....")
-        logger.debug(f"on complaint size {c}")
-
-        if(complaint_size>0):
-            complaints_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})", conn)
-            logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_input])})")
-            logger.debug(complaints_df)
-            complaints_df.to_csv('complaint_input_tuples.csv', index=False)
-            complaint_tuples = complaints_df.to_dict('records')
-            complaint_dicts = [{'tuple':c, 'expected_label':CLEAN} for c in complaint_tuples]
-        else:
-            complaint_dicts=[]
-
-        if(confirmation_size>0):
-            confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})", conn)
-            logger.debug(confirm_df)
-            confirm_df.to_csv('confirm_input_tuples.csv', index=False)
-            logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirm_input])})")
-            confirm_tuples = confirm_df.to_dict('records')
-            confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
-        else:
-            confirm_dicts = []
-        user_input.extend(complaint_dicts)
-        user_input.extend(confirm_dicts)
+        # if(confirmation_size>0):
+        #     confirm_df = pd.read_sql(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirmation_tuples])})", conn)
+        #     logger.debug(confirm_df)
+        #     confirm_df.to_csv('confirm_input_tuples.csv', index=False)
+        #     logger.debug(f"select * from {table_name} where _tid_ in ({','.join([str(x) for x in confirmation_tuples])})")
+        #     confirm_tuples = confirm_df.to_dict('records')
+        #     confirm_dicts = [{'tuple':c, 'expected_label':DIRTY} for c in confirm_tuples]
+        # else:
+        #     confirm_dicts = []
+        # user_input.extend(complaint_dicts)
+        # user_input.extend(confirm_dicts)
 
     rc = RepairConfig(strategy=dc_input.strategy, deletion_factor=0.000001, complaints=user_input, acc_threshold=0.8, runtime=0)
     rbbm_start = time.time()
@@ -1285,20 +1245,23 @@ def dc_main(dc_input):
     logger.debug(f'"len(new_rules): {len(new_rules)}')
     conn.close()
     new_muse_program= []
-    logger.debug("new_rules")
-    logger.debug(new_rules)
+    logger.critical("new_rules")
+    logger.critical(new_rules)
     for r in new_rules:
         # new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, 'flights_new', 't1')])
         new_muse_program.extend([(table_name, x) for x in convert_dc_to_muse_rule(r, table_name)])
     bbox_start = time.time()
-    muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version='ind')
+    logger.critical('TIME: retrain given fixed rules start')
+    muse_dirties_new = muse_find_mss(rules=new_muse_program, semantic_version=semantic_version)
+    logger.critical('TIME: retrain given fixed rules end')
+
     bbox_end = time.time()
     bbox_runtime+=round(bbox_end-bbox_start,3)
     tupled_muse_dirties_new=[x[1].strip('()').split(',') for x in muse_dirties_new]
     logger.debug(len(tupled_muse_dirties_new))
     logger.debug(tupled_muse_dirties_new)
 
-    conn=psycopg2.connect('dbname=cr user=postgres port=5433')
+    conn=psycopg2.connect('dbname=cr user=postgres port=5432')
     new_dc, new_dd, new_cc, total_cnt_new, new_cd = get_muse_results(table_name, conn, tupled_muse_dirties_new)
 
     logger.debug(f"new_dc:{new_dc}")
@@ -1315,7 +1278,7 @@ def dc_main(dc_input):
         f" union all (select *, 'confirmation' as type from {table_name} where _tid_ in  ({','.join([str(x) for x in complaint_tuples])}))")
 
     df_user_input=pd.read_sql(f"(select *, 'complaint' as type from {table_name} where _tid_ in ({','.join([str(x) for x in complaint_tuples])}))"+\
-        f" union all (select *, 'confirmation' as type from {table_name} where _tid_ in  ({','.join([str(x) for x in complaint_tuples])}))", conn)
+        f" union all (select *, 'confirmation' as type from {table_name} where _tid_ in  ({','.join([str(x) for x in confirmation_tuples])}))", conn)
     df_user_input.to_csv(f'{result_dir}user_input.csv', index=False)
 
     logger.debug(f"before fix, the global accuracy is {(len(dd)+len(cc))/(total_cnt)}")
@@ -1341,18 +1304,18 @@ def dc_main(dc_input):
     if(not os.path.exists(result_dir+'experiment_stats')):
         with open(result_dir+'experiment_stats', 'w') as file:
             # Write some text to the file
-            file.write('strat,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+            file.write('strat,semantic_version,prefilter_runtime,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
                 'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
 
-    for kt,vt in bkeepdict.items():
-        with open(f"{result_dir}/tree_{dc_input.strategy}_{kt}_dot_file", 'a') as file:
-            comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, deleted: {bkeepdict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{bkeepdict[kt]['rule'].reversed_cnt}"
-            dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
-            file.write(dot_file)
+    # for kt,vt in bkeepdict.items():
+    #     with open(f"{result_dir}/tree_{dc_input.strategy}_{kt}_dot_file", 'a') as file:
+    #         comments=f"// presize: {bkeepdict[kt]['pre_fix_size']}, after_size: {bkeepdict[kt]['after_fix_size']}, deleted: {bkeepdict[kt]['deleted']} factor: {deletion_factor} reverse_cnt:{bkeepdict[kt]['rule'].reversed_cnt}"
+    #         dot_file=bkeepdict[kt]['rule'].gen_dot_string(comments)
+    #         file.write(dot_file)
 
     with open(result_dir+'experiment_stats', 'a') as file:
         # Write the row to the file
-        file.write(f'{dc_input.strategy},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{dc_input.user_input_size},{dc_input.complaint_ratio},{complaint_size},{confirmation_size},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
+        file.write(f'{dc_input.strategy},{semantic_version},{prefilter_runtime},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{dc_input.user_input_size},{dc_input.complaint_ratio},{complaint_size},{confirmation_size},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
             f'{round(new_global_accuracy,3)},N/A,N/A,N/A,{deletion_factor},N/A,N/A,N/A,N/A,N/A,'+\
             f'N/A,N/A,lf_only,{pre_filter_thresh}\n')
 

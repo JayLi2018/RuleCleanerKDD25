@@ -21,6 +21,37 @@ filename="seed_file_930_all_lf_experiments.txt"
 global_runs=1
 
 
+x=1
+while [ $x -le $with_optimal_iterations ]
+do
+	for n in ${optimal_sizes[@]}
+		do
+			echo "global_runs: $global_runs"
+			rseed=$(shuf -i 1-1000 -n 1)
+			# echo "rand= ${rseed}"
+			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G naive -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432" >> "$filename"
+			global_runs=$(( $global_runs+1 ))
+			
+			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432 
+			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432" >> "$filename"
+			
+			global_runs=$(( $global_runs+1 ))
+			
+			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G optimal -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432 
+			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G optimal -D 0 -l critical \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432" >> "$filename"
+
+			global_runs=$(( $global_runs+1 ))
+		done
+	x=$(( $x+1 ))
+done
+
 # x=1
 # while [ $x -le $no_optimal_small_size_iterations ]
 # do
@@ -102,33 +133,6 @@ global_runs=1
 # done
 
 
-x=1
-while [ $x -le $with_optimal_iterations ]
-do
-	for n in ${brute_sizes[@]}
-		do
-			echo "global_runs: $global_runs"
-			rseed=$(shuf -i 1-1000 -n 1)
-			# echo "rand= ${rseed}"
-			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G naive -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube" >> "$filename"
-			global_runs=$(( $global_runs+1 ))
-			
-			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube" >> "$filename"
-			
-			global_runs=$(( $global_runs+1 ))
-			
-			python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G optimal -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
-			echo "python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/3_algo/ -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G optimal -D 0 -l critical \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube" >> "$filename"
 
-			global_runs=$(( $global_runs+1 ))
-		done
-	x=$(( $x+1 ))
-done
+# python main.py -U lf -e experiment_results_folders/all_lf_experiments_930/2_algo/ -R true -x 1673 -X test_cases_seed.txt -T 0 -s 320 -r 0.9 -G informat
+# ion_gain -D 0.7 -l critical -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432

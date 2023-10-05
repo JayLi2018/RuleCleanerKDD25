@@ -30,10 +30,13 @@ class IndependentSemantics(AbsSemantics):
 
         # convert the rules so they will store the provenance
         prov_rules, prov_tbls, proj = self.gen_prov_rules()
-
+        print(f'prov_rules: {prov_rules}')
+        print(f'prov_tbls: {prov_tbls}')
+        print(f'proj: {proj}')
         # reload database with all possible and impossible relevant delta tuples
         relevant_tables = list(set([item for sublist in prov_tbls for item in sublist if "delta" not in item]))
         relevant_tables = list(set([name.split(" as")[0] + suffix for name in relevant_tables]))
+        print(f'relevant_tables:{relevant_tables}')
         self.db.load_database_tables(relevant_tables, is_delta=True)
 
         print("solving the program")
@@ -41,12 +44,15 @@ class IndependentSemantics(AbsSemantics):
         assignments = self.eval(schema, prov_rules, prov_tbls, proj)
         # print(f"assignments : {assignments}")
         # process provenance into a formula
+        print("process provenance...")
         self.process_provenance(assignments)
+        print("convert_to_bool_formula..")
         bf = self.convert_to_bool_formula()
         print("solving the bf")
         # print(f"bf: {bf}")
         # find minimum satisfying assignment
         sol, size = self.solve_boolean_formula_with_z3_smt2(bf)
+        print("solved the z3")
 
         # process solution to mss
         mss = self.convert_sat_sol_to_mss(sol)
@@ -54,30 +60,38 @@ class IndependentSemantics(AbsSemantics):
 
     def eval(self, schema, prov_rules, prov_tbls, proj):
         """Use end semantics to derive all possible and impossible delta tuples and store the provenance"""
-        assignments = []   # var to store the assignments
+        assignments = set()   # var to store the assignments
 
         changed = True
         derived_tuples = set()
         prev_len = 0
         while changed:
             for i in range(len(self.rules)):
+                print(f"excecuting query {prov_rules[i][1]}")
                 cur_rows = self.db.execute_query(prov_rules[i][1])
-                print("excecuting query...")
+                print(f"done execute_query query {prov_rules[i][1]}");
+                # print(f"cur_rows: {cur_rows}")
+                # print(f"prov_tbls[i]: {prov_tbls[i]}")
+                # print(f"proj: {proj}")
+                # print(f"prov_rules[i]: {prov_rules[i]}")
+
                 cur_assignments = self.rows_to_prov(cur_rows, prov_tbls[i], schema, proj, prov_rules[i])
+                # print(f"cur_assignments: {cur_assignments}")
 
                 # optimization: check if any new assignments before iterating over them
-                if all(assign in assignments for assign in cur_assignments):
-                    continue
-
+                # if all(assign in assignments for assign in cur_assignments):
+                #     continue
 
                 for assignment in cur_assignments:
                     if assignment not in assignments:
-                        assignments.append(assignment)
+                        assignments.add(assignment)
                         # derived_tuples.add(assignment[0])
+            # print(f"prev_len:{prev_len}, derived_tuples:{len(derived_tuples)}")
             if prev_len == len(derived_tuples):
                 changed = False
             prev_len = len(derived_tuples)
-        return assignments
+        print(f"return assignments: len assignment = {len(assignments)}")
+        return [list(x) for x in assignments]
 
     def gen_prov_rules(self):
         """convert every rule to a rule that outputs the provenance"""
@@ -127,6 +141,7 @@ class IndependentSemantics(AbsSemantics):
         return assignment_tuples, ans
 
     def rows_to_prov(self, res, prov_tbls, schema, proj, rule):
+        # cur_rows, prov_tbls[i], schema, proj, prov_rules[i]
         """separate every result row into provenance tuples"""
         proj_attrs = []
         for p in proj:
@@ -138,7 +153,7 @@ class IndependentSemantics(AbsSemantics):
             row = res[i]
             example_tuples, ans = self.handle_assignment(row, example_tuples, schema, prov_tbls, rule)
             example_tuples = [ans] + example_tuples
-            assignments.append(example_tuples)
+            assignments.append(frozenset(example_tuples))
         return assignments
 
     def process_provenance(self, assignments):
@@ -187,7 +202,13 @@ class IndependentSemantics(AbsSemantics):
             return ''.join(random.choice(letters) for i in range(string_length))
 
         bf = "(or "  # the boolean formula that will be evaluated
+        print(f"len(provenance): {len(self.provenance)}")
+        lp = list(self.provenance)
+        print(lp[:10])
+        i=0
         for delta_tup in self.provenance:
+            if(i%10==0):
+                print(f"assignments for :{i}")
             assignments = self.provenance[delta_tup]
             if len(assignments) > 1:
                 bf += "(or "
@@ -207,6 +228,7 @@ class IndependentSemantics(AbsSemantics):
                 bf = bf[:-1] + ") " if len(assign) > 1 else bf[:-1] + " "
             if len(assignments) > 1:
                 bf = bf[:-1] + ") "
+            i+=1
         return "(not " + bf[:-1] + ")) "
 
     # def solve_boolean_formula_with_z3_smt2(self, bf):

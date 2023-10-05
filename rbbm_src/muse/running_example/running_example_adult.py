@@ -91,7 +91,25 @@ mas_schema = {
 "MarriedExemp",
 "ChildExemp",
 "_tid_",
-"is_dirty")
+"is_dirty"),
+
+"hospital": {"providernumber",
+ "HospitalName",
+ "City",
+ "State",
+ "ZipCode",
+ "CountyName",
+ "PhoneNumber",
+ "HospitalType",
+ "HospitalOwner",
+ "EmergencyService",
+ "Condition",
+ "MeasureCode",
+ "MeasureName",
+ "Sample",
+ "Stateavg",
+ "_tid_",
+ "is_dirty"}
 }
 
 def read_rules(rule_file):
@@ -124,10 +142,10 @@ def read_rules(rule_file):
 
 def database_reset(db, tbl_names):
     """reset the database"""
-    print("executing query: select current_database();")
-    res = db.execute_query("select current_database();")
-    db_name = res[0][0]
-    print(f"dbname: {db_name}")
+    # print("executing query: select current_database();")
+    # res = db.execute_query("select current_database();")
+    # db_name = res[0][0]
+    # print(f"dbname: {db_name}")
     db.delete_tables(tbl_names)
     print(f"deleted tables")
     # db.close_connection()
@@ -182,19 +200,19 @@ def muse_find_mss(rules, semantic_version='ind'):
     if(semantic_version=='ind'):
         ind_sem = IndependentSemantics(db, rules, tbl_names)
         res = ind_sem.find_mss(mas_schema)
-        print("result for independent semantics:", res)
+        # print("result for independent semantics:", res)
     elif(semantic_version=='stage'):
         stage_sem = StageSemantics(db, rules, tbl_names)
         res = stage_sem.find_mss()
-        print("result for stage semantics:", res)
+        # print("result for stage semantics:", res)
     elif(semantic_version=='end'):
         end_sem = EndSemantics(db, rules, tbl_names)
         res = end_sem.find_mss()
-        print("result for end semantics:", res)
+        # print("result for end semantics:", res)
     elif(semantic_version=='step'):
         step_sem = StepSemantics(db, rules, tbl_names)
         res = step_sem.find_mss(mas_schema)
-        print("result for end semantics:", res)
+        # print("result for end semantics:", res)
     else:
         print('not a valid semantic option')
         exit()

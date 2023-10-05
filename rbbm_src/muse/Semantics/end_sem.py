@@ -17,7 +17,7 @@ class EndSemantics(AbsSemantics):
         while changed:
             for i in range(len(self.rules)):
                 results = self.db.execute_query(self.rules[i][1])
-                print(f'executing query... {self.rules[i][1]}')
+                # print(f'executing query... {self.rules[i][1]}')
                 mss.update([(self.rules[i][0], row) for row in results])
                 self.db.delta_update(self.rules[i][0], results)   # update delta table in db
                 self.delta_tuples[self.rules[i][0]].update(results)
@@ -25,7 +25,7 @@ class EndSemantics(AbsSemantics):
             prev_len = len(mss)
         # update original tables at the end of the evaluation
         res_tuples=set([])
-        print(f"end_tuples")
+        # print(f"end_tuples")
         for i in range(len(self.rules)):
             # print(f"rule: {self.rules[i]}")
             # print(f"delta_tuple: {self.delta_tuples[self.rules[i][0]]}")

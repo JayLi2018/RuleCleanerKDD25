@@ -883,9 +883,9 @@ def lf_main(lf_input):
 		rbbm_end = time.time()
 		rbbm_runtime+=round(rbbm_end-rbbm_start,3)
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
-		# print(new_labelling_funcs)
-		# print(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
-		# print(new_fix_book_keeping_dict)
+		logger.critical(new_labelling_funcs)
+		logger.critical(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
+		# logger.critical(new_fix_book_keeping_dict)
 
 		bbox_start = time.time()
 		new_global_accuracy, new_all_sentences_df, new_wrongs_df = run_snorkel(lf_input, LFs=new_labelling_funcs)
