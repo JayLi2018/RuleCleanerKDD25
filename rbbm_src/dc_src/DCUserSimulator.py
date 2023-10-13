@@ -8,6 +8,7 @@ from rbbm_src.dc_src.DCRepair import (eq_op,
 import re
 from rbbm_src.dc_src.src.classes import parse_rule_to_where_clause
 from string import Template
+import pickle
 
 # dc_tuple_violation_template_targeted_t1=\
 # Template("SELECT  t1.id as t1_tid FROM $table t1 where EXISTS (select 1 from $table t2 WHERE $dc_desc)")
@@ -138,14 +139,18 @@ if __name__ == '__main__':
 	# tablename='airport_sample'
 	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/airport_dcs.txt'
 
-	tablename='hospital_sample'
-	dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
+	# tablename='hospital_sample'
+	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
 
-	# tablename='tax'
-	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
+	tablename='tax'
+	dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
 
 	du = DCUser(conn=conn, tablename=tablename)
-	res, res_dict = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=3, predicate_min_threshold=3)
+	res, res_dict = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=3, predicate_min_threshold=2)
+	with open('tax_filtered_rules.pkl', 'wb') as tax_filtered_rules:
+		pickle.dump(res, tax_filtered_rules)
+	with open('tax_filtered_dict.pkl', 'wb') as tax_filtered_dict:
+		pickle.dump(res_dict, tax_filtered_dict)
 	print(res)
 	for k,v in res_dict.items():
 		print(f"{k}: {len(v)}")

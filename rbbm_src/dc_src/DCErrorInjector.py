@@ -1,8 +1,11 @@
 import pandas as pd
 import random
 from math import floor
+from collections import defaultdict
 
 def inject_error(df,  exclude_cols=[], percent_of_errors=-1, number_of_errors=-1, col_to_inject=[]):
+
+	error_records = defaultdict(list)
 
 	if(number_of_errors!=-1):
 		number_of_errors = number_of_errors
@@ -35,19 +38,22 @@ def inject_error(df,  exclude_cols=[], percent_of_errors=-1, number_of_errors=-1
 		# print(f'col_to_inject: {c_to_inject}')
 		candidate_values = domain_dict[c_to_inject]
 		r_to_inject = random.choices(row_ids)[0]
+
 		while(r_to_inject in errored_row_ids):
 			r_to_inject = random.choices(row_ids)[0]
 		errored_row_ids.add(r_to_inject)
 		val = random.choices(candidate_values)[0]
 		# print(str(df.loc[df['_tid_']==r_to_inject, c_to_inject]))
 		# print(val)
-		while(str(df.loc[df['_tid_']==r_to_inject, c_to_inject])==val):
+		cur_cell_value = df.loc[df['_tid_']==r_to_inject, c_to_inject].to_string(index=False)
+		while(cur_cell_value==val):
 			val = random.choices(candidate_values)
+		error_records[r_to_inject].append({'col':c_to_inject, 'before':cur_cell_value, 'after':val})
 		df.loc[df['_tid_']==r_to_inject, c_to_inject]=val
 		df.loc[df['_tid_']==r_to_inject, 'is_dirty']='True'
 		cur_error_cnt+=1
 
-	return df
+	return df, error_records
 
 
 if __name__ == '__main__':

@@ -82,7 +82,7 @@ def gen_amazon_funcs():
 	f8_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f8_root_right_child = PredicateNode(pred=KeywordPredicate(keywords=['shoes','metal','fabric','replace','battery','warranty','plug']))
+	f8_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['shoes','metal','fabric','replace','battery','warranty','plug']))
 	cur_number+=1
 	tree_size+=1
 	f8_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))

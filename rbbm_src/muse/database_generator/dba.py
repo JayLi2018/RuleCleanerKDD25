@@ -213,10 +213,10 @@ class DatabaseEngine():
         'CREATE TABLE IF NOT EXISTS Delta_adult(_tid_ bigint,age text,workclass text, education text,"marital-status" text,occupation text,relationship text,race text,sex text,"hours-per-week" text,\
             "native-country" text, income text);',
 
-        'CREATE TABLE IF NOT EXISTS tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary text,Rate text,SingleExemp text,MarriedExemp text,\
+        'CREATE TABLE IF NOT EXISTS tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary int,Rate float,SingleExemp text,MarriedExemp text,\
             ChildExemp text,_tid_ integer,is_dirty bool);'
 
-        'CREATE TABLE IF NOT EXISTS Delta_tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary text,Rate text,SingleExemp text,MarriedExemp text,\
+        'CREATE TABLE IF NOT EXISTS Delta_tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary int,Rate float,SingleExemp text,MarriedExemp text,\
             ChildExemp text,_tid_ integer,is_dirty bool);'
 
         'CREATE TABLE IF NOT EXISTS flights_new (DAY_OF_WEEK text,FL_DATE text,OP_UNIQUE_CARRIER text,OP_CARRIER_FL_NUM text,ORIGIN_AIRPORT_ID text,ORIGIN text,ORIGIN_CITY_NAME text,ORIGIN_STATE_ABR text,ORIGIN_STATE_NM text, \

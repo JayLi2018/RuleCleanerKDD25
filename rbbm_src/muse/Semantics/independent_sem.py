@@ -203,11 +203,12 @@ class IndependentSemantics(AbsSemantics):
 
         bf = "(or "  # the boolean formula that will be evaluated
         print(f"len(provenance): {len(self.provenance)}")
-        lp = list(self.provenance)
-        print(lp[:10])
+        # lp = list(self.provenance)
+        # print(lp[:10])
+        # print(f"self.provenance[lp[0]]: {self.provenance[lp[0]]}")
         i=0
         for delta_tup in self.provenance:
-            if(i%10==0):
+            if(i%1000==0):
                 print(f"assignments for :{i}")
             assignments = self.provenance[delta_tup]
             if len(assignments) > 1:
@@ -229,6 +230,7 @@ class IndependentSemantics(AbsSemantics):
             if len(assignments) > 1:
                 bf = bf[:-1] + ") "
             i+=1
+        # print(f"self.prov_notations: {self.prov_notations}")
         return "(not " + bf[:-1] + ")) "
 
     # def solve_boolean_formula_with_z3_smt2(self, bf):

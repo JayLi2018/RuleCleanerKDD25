@@ -121,6 +121,12 @@ def main():
 	parser.add_argument('-I', '--user_specify_pairs', metavar='\b', type=str, default='True',
 	help='user specify pairs of violations to repair? (default: %(default)s)')
 
+	parser.add_argument('-B', '--repeatable_muse', metavar='\b', type=str, default='False',
+	help='run all 3 algoritns with repeatable muse? (default: %(default)s)')
+	
+	parser.add_argument('-a', '--repeatable_strats', metavar='\b', type=str, default='information_gain,naive,optimal',
+	help='what strats to run when its repeatable_muse? (default: %(default)s)')
+
 	args = parser.parse_args()
 
 	logger.critical(args)
@@ -130,6 +136,10 @@ def main():
 			user_specify_pairs=True
 		else:
 			user_specify_pairs=False
+		if(args.repeatable_muse=='True'):
+			repeatable_muse=True
+		else:
+			repeatable_muse=False
 			
 		# conn = psycopg2.connect(dbname=args.dbname, user=args.dbuser, password=args.dbpaswd)
 		input_arg_obj = dc_input(
@@ -147,7 +157,9 @@ def main():
 			deletion_factor=args.deletion_factor,
 			acc_threshold=args.retrain_accuracy_thresh,
 			user_specify_pairs=user_specify_pairs,
-			retrain_every_percent=args.retrain_every_percent
+			retrain_every_percent=args.retrain_every_percent,
+			repeatable_muse=args.repeatable_muse,
+			repeatable_strats=args.repeatable_strats,
 			)
 	else:
 		conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password, port=args.port)

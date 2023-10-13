@@ -48,10 +48,10 @@ def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_
 	r1 = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=keywords))
 	cur_number+=1
 	tree_size+=1
-	r1_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	r1_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={SPAM:[], HAM:[]}, used_predicates=set(keywords))
 	tree_size+=1
 	cur_number+=1
-	r1_r = LabelNode(number=cur_number, label=expected_label, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	r1_r = LabelNode(number=cur_number, label=expected_label, pairs={SPAM:[], HAM:[]}, used_predicates=set(keywords))
 	r1.right=r1_r
 	r1.left=r1_l
 

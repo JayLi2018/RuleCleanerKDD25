@@ -128,7 +128,8 @@ class dc_input:
     user_specify_pairs: bool
     desired_dcs_file:str
     retrain_every_percent:float
-
+    repeatable_muse:bool
+    repeatable_strats:str
 
 @dataclass
 class FixMonitor:

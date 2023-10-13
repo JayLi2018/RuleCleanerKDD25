@@ -8,6 +8,7 @@ from rbbm_src.labelling_func_src.src.classes import SPAM, HAM, ABSTAIN, lf_input
 import pickle
 import nltk
 from nltk.corpus import stopwords
+from math import floor
 
 nltk.download('stopwords') 
 stop_words = set(stopwords.words('english')) 
@@ -97,38 +98,35 @@ class KeyWordRuleMiner:
 if __name__ == '__main__':
 
 	# conn = psycopg2.connect(dbname='label', user='postgres', password='123')
-	conn = psycopg2.connect(dbname='label', user='postgres', password='123', port=5433)
+	conn = psycopg2.connect(dbname='label', user='postgres', password='123')
 
 	# sentences_df=pd.read_sql(f'SELECT * FROM youtube', conn)
-	sentences_df=pd.read_sql(f'SELECT * FROM enron', conn)
+	# sentences_df=pd.read_sql(f'SELECT * FROM enron', conn)
 
-	# sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
-	sentences_df = sentences_df.rename(columns={"label": "expected_label",  "content": "old_text"})
+	for t in ['amazon']:
+		for size in [40]:
+			bad_cnt = floor(size/3)
+			good_cnt = size-bad_cnt
+			sentences_df=pd.read_sql(f'SELECT * FROM {t} order by random() limit 2000', conn)
 
-	sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
-	sentences_df = sentences_df[~sentences_df['text'].isna()]
+			# sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+			sentences_df = sentences_df.rename(columns={"class": "expected_label",  "content": "old_text"})
 
-	kwm = KeyWordRuleMiner(sentences_df)
+			sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
+			sentences_df = sentences_df[~sentences_df['text'].isna()]
+			kwm = KeyWordRuleMiner(sentences_df)
+			total_funcs=[]
+			bad_funcs, checked_words=kwm.gen_funcs(count=bad_cnt, 
+				apply_to_sentence_percentage_thresh=0.025, label_accuracy_thresh=0, label_accuracy_cap=0.2, pickle_it=False, pickle_file_name='picked_funcs_620')
 
-	# funcs = kwm.gen_funcs(count=30, 
-	# 	apply_to_sentence_percentage_thresh=0.025, label_accuracy_thresh=0.7, pickle_it=True, pickle_file_name='picked_funcs_613')
+			total_funcs.extend(bad_funcs)
 
-	# funcs = kwm.gen_funcs(count=30, 
-	# 	apply_to_sentence_percentage_thresh=0.025, label_accuracy_thresh=0.7, pickle_it=True, pickle_file_name='picked_funcs_613')
+			good_funcs, checked_words =kwm.gen_funcs(count=good_cnt,
+				apply_to_sentence_percentage_thresh=0.001, label_accuracy_thresh=0.60, label_accuracy_cap=1, pickle_it=False, pickle_file_name='picked_funcs_620', checked_words=checked_words
+				)
 
-	total_funcs=[]
+			total_funcs.extend(good_funcs)
 
-	bad_funcs, checked_words=kwm.gen_funcs(count=10, 
-		apply_to_sentence_percentage_thresh=0.025, label_accuracy_thresh=0, label_accuracy_cap=0.2, pickle_it=False, pickle_file_name='picked_funcs_620')
-
-	total_funcs.extend(bad_funcs)
-
-	good_funcs, checked_words =kwm.gen_funcs(count=20,
-		apply_to_sentence_percentage_thresh=0.03, label_accuracy_thresh=0.65, label_accuracy_cap=1, pickle_it=False, pickle_file_name='picked_funcs_620', checked_words=checked_words
-		)
-
-	total_funcs.extend(good_funcs)
-
-	with open(f'pickled_funcs_enron.pkl', 'wb') as file:
-	    pickle.dump(total_funcs, file)
+			with open(f'pickled_funcs_{t}_{size}.pkl', 'wb') as file:
+			    pickle.dump(total_funcs, file)
 	# print(funcs)

@@ -2,6 +2,8 @@ t1&t2&EQ(t1.AreaCode,t2.AreaCode)&EQ(t1.Phone,t2.Phone):G
 t1&t2&IQ(t1.City,t2.City)&EQ(t1.Zip,t2.Zip):G
 t1&t2&EQ(t1.AreaCode,t2.AreaCode)&IQ(t1.State,t2.State):G
 t1&t2&IQ(t1.State,t2.State)&EQ(t1.Zip,t2.Zip):G
-t1&t2&EQ(t1.State,t2.State)&IQ(t1.ChildExemp,t2.ChildExemp):B
 t1&t2&EQ(t1.State,t2.State)&EQ(t1.MaritalStatus,t2.MaritalStatus)&IQ(t1.SingleExemp,t2.SingleExemp):G
-t1&t2&EQ(t1.State,t2.State)&EQ(t1.Salary,t2.Salary)&IQ(t1.Rate,t2.Rate):G
+t1&t2&EQ(t1.Salary,t2.Salary)&IQ(t1.Rate,t2.Rate):B
+t1&t2&EQ(t1.State,t2.State)&IQ(t1.ChildExemp,t2.ChildExemp):B
+t1&t2&GT(t1.Salary,t2.Salary)&LT(t1.Rate,t2.Rate)&EQ(t1.Fname,'Mathai'):B
+t1&t2&LT(t1.Salary,t2.Salary)&GT(t1.Rate,t2.Rate)&EQ(t1.Fname,'Mathai'):B
