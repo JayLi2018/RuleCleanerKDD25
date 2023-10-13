@@ -1,0 +1,1 @@
+t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode)

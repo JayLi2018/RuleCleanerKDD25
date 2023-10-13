@@ -1,0 +1,107 @@
+db_size: 2000
+we had 101, after predicate filter, we have 26 rules
+on 1/26... t1&t2&LT(t1.PhoneNumber,t2.PhoneNumber)&EQ(t1.MeasureName,t2.MeasureName)&GTE(t1.ZIPCode,t2.ZIPCode)
+
+
+on 2/26... t1&t2&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.ProviderNumber,t2.ProviderNumber)&GTE(t1.ZIPCode,t2.ZIPCode)
+
+
+on 3/26... t1&t2&LT(t1.ZIPCode,t2.ZIPCode)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 4/26... t1&t2&EQ(t1.State,t2.State)&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)
+
+
+on 5/26... t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 6/26... t1&t2&EQ(t1.CountyName,t2.CountyName)&LTE(t1.PhoneNumber,t2.PhoneNumber)&IQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 7/26... t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.ProviderNumber,t2.ProviderNumber)
+
+
+on 8/26... t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName)&IQ(t1.ZIPCode,t2.ZIPCode)
+
+
+on 9/26... t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&GT(t1.ZIPCode,t2.ZIPCode)
+
+
+on 10/26... t1&t2&EQ(t1.State,t2.State)&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.MeasureCode,t2.MeasureCode)
+
+
+on 11/26... t1&t2&EQ(t1.State,t2.State)&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 12/26... t1&t2&IQ(t1.City,t2.City)&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName)
+
+
+on 13/26... t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName)&IQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 14/26... t1&t2&EQ(t1.State,t2.State)&GT(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode)
+
+
+on 15/26... t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.PhoneNumber,t2.PhoneNumber)
+
+
+on 16/26... t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode)
+
+
+on 17/26... t1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 18/26... t1&t2&LT(t1.PhoneNumber,t2.PhoneNumber)&GTE(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode)
+
+
+on 19/26... t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)
+
+
+on 20/26... t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 21/26... t1&t2&IQ(t1.City,t2.City)&EQ(t1.CountyName,t2.CountyName)&LTE(t1.PhoneNumber,t2.PhoneNumber)
+
+
+on 22/26... t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 23/26... t1&t2&EQ(t1.State,t2.State)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 24/26... t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode)&LTE(t1.PhoneNumber,t2.PhoneNumber)
+
+
+on 25/26... t1&t2&LTE(t1.PhoneNumber,t2.PhoneNumber)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)
+
+
+on 26/26... t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&GTE(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode)
+
+
+['t1&t2&EQ(t1.State,t2.State)&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)', 't1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode)', 't1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)', 't1&t2&EQ(t1.State,t2.State)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner)']
+t1&t2&LT(t1.PhoneNumber,t2.PhoneNumber)&EQ(t1.MeasureName,t2.MeasureName)&GTE(t1.ZIPCode,t2.ZIPCode): 1980
+t1&t2&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.ProviderNumber,t2.ProviderNumber)&GTE(t1.ZIPCode,t2.ZIPCode): 1982
+t1&t2&LT(t1.ZIPCode,t2.ZIPCode)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 1345
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType): 16
+t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 1345
+t1&t2&EQ(t1.CountyName,t2.CountyName)&LTE(t1.PhoneNumber,t2.PhoneNumber)&IQ(t1.HospitalOwner,t2.HospitalOwner): 1002
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.ProviderNumber,t2.ProviderNumber): 1942
+t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName)&IQ(t1.ZIPCode,t2.ZIPCode): 1111
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&GT(t1.ZIPCode,t2.ZIPCode): 1942
+t1&t2&EQ(t1.State,t2.State)&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.MeasureCode,t2.MeasureCode): 1942
+t1&t2&EQ(t1.State,t2.State)&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.HospitalOwner,t2.HospitalOwner): 1711
+t1&t2&IQ(t1.City,t2.City)&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName): 828
+t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&EQ(t1.CountyName,t2.CountyName)&IQ(t1.HospitalOwner,t2.HospitalOwner): 1002
+t1&t2&EQ(t1.State,t2.State)&GT(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode): 1942
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName)&LTE(t1.PhoneNumber,t2.PhoneNumber): 1942
+t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode): 0
+t1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 475
+t1&t2&LT(t1.PhoneNumber,t2.PhoneNumber)&GTE(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode): 1980
+t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName): 0
+t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 702
+t1&t2&IQ(t1.City,t2.City)&EQ(t1.CountyName,t2.CountyName)&LTE(t1.PhoneNumber,t2.PhoneNumber): 828
+t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner): 1787
+t1&t2&EQ(t1.State,t2.State)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 7
+t1&t2&EQ(t1.State,t2.State)&EQ(t1.MeasureCode,t2.MeasureCode)&LTE(t1.PhoneNumber,t2.PhoneNumber): 1942
+t1&t2&LTE(t1.PhoneNumber,t2.PhoneNumber)&IQ(t1.HospitalType,t2.HospitalType)&EQ(t1.HospitalOwner,t2.HospitalOwner): 1345
+t1&t2&LTE(t1.ProviderNumber,t2.ProviderNumber)&GTE(t1.ZIPCode,t2.ZIPCode)&EQ(t1.MeasureCode,t2.MeasureCode): 1982

@@ -54,7 +54,7 @@ from rbbm_src import logconfig
 from rbbm_src.labelling_func_src.src.bottom_up import sentence_filter, delete_words
 from rbbm_src.labelling_func_src.src.lfs import (
 	LFs)
-
+import pdb
 from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
 
 
@@ -75,23 +75,24 @@ def populate_violations(tree_rule, complaint):
 	# print('\n')
 	return leaf_node
 
-def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
+def redistribute_after_fix(tree_rule, node, the_fix):
 	# there are some possible "side effects" after repair for a pair of violations
 	# which is solving one pair can simutaneously fix some other pairs so we need 
 	# to redistribute the pairs in newly added nodes if possible
 	sign=None
 	cur_number=tree_rule.max_node_id+1
 
-	the_fix_words, llabel, rlabel = the_fix
-	if(reverse):
-		llabel, rlabel = rlabel, llabel
-	new_predicate_node = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=[the_fix_words]))
+	# the_fix_words, llabel, rlabel = the_fix
+
+	# if(reverse):
+	# 	llabel, rlabel = rlabel, llabel
+	new_predicate_node = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=[the_fix]))
 	new_predicate_node.is_added=True
 	cur_number+=1
-	new_predicate_node.left= LabelNode(number=cur_number, label=llabel, pairs={HAM:[], SPAM:[]}, used_predicates=set([]))
+	new_predicate_node.left= LabelNode(number=cur_number, pairs={HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
 	new_predicate_node.left.is_added=True
 	cur_number+=1
-	new_predicate_node.right=LabelNode(number=cur_number, label=rlabel, pairs={HAM:[], SPAM:[]}, used_predicates=set([]))
+	new_predicate_node.right=LabelNode(number=cur_number, pairs={HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
 	new_predicate_node.right.is_added=True
 	new_predicate_node.left.parent= new_predicate_node
 	new_predicate_node.right.parent= new_predicate_node
@@ -113,6 +114,15 @@ def redistribute_after_fix(tree_rule, node, the_fix, reverse=False):
 			else:
 				new_predicate_node.left.pairs[p['expected_label']].append(p)
 				new_predicate_node.left.used_predicates.add(the_fix)
+
+	if(len(new_predicate_node.left.pairs[DIRTY])>len(new_predicate_node.left.pairs[CLEAN])):
+		new_predicate_node.left.label=DIRTY
+	elif(len(new_predicate_node.left.pairs[DIRTY])<len(new_predicate_node.left.pairs[CLEAN])):
+		new_predicate_node.left.label=CLEAN
+	if(len(new_predicate_node.right.pairs[DIRTY])>len(new_predicate_node.right.pairs[CLEAN])):
+		new_predicate_node.right.label=DIRTY
+	elif(len(new_predicate_node.right.pairs[DIRTY])<len(new_predicate_node.right.pairs[CLEAN])):
+		new_predicate_node.right.label=CLEAN
 
 	new_predicate_node.pairs={SPAM:{}, HAM:{}}
 
@@ -145,7 +155,7 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 
 
 	# start with attribute level and then constants
-	cand=None
+	# cand=None
 	for w in ham_available_words:
 		# tuple cand has x elements: 
 		# w: the word to differentate the 2 sentences
@@ -154,12 +164,11 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# check if the predicate is already present
 		# in the current constraint
 		if(w.lower() not in stop_words):
-			cand = (w, SPAM, HAM)
-			if(cand not in used_predicates):
+			if(w not in used_predicates):
 				if(not all_possible):
-					return cand
+					return w
 				else:
-					res.append(cand)
+					res.append(w)
 
 	for w in spam_available_words:
 		# tuple cand has x elements: 
@@ -169,12 +178,11 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# check if the predicate is already present
 		# in the current constraint
 		if(w.lower() not in stop_words):
-			cand = (w, HAM, SPAM)
-			if(cand not in used_predicates):
+			if(w not in used_predicates):
 				if(not all_possible):
-					return cand
+					return w
 				else:
-					res.append(cand)
+					res.append(w)
 	return res
 
 def locate_node(tree, number):
@@ -228,9 +236,9 @@ def calculate_gini(node, the_fix):
 	# print("pairs:")
 	# print(node.pairs)
 	sign=None
-	the_fix_words, llabel, rlabel = the_fix
+	# the_fix_words, llabel, rlabel = the_fix
 
-	candidate_new_pred_node = PredicateNode(number=1,pred=KeywordPredicate(keywords=[the_fix_words]))
+	candidate_new_pred_node = PredicateNode(number=1,pred=KeywordPredicate(keywords=[the_fix]))
 	
 	right_leaf_spam_cnt=0
 	right_leaf_ham_cnt=0
@@ -250,12 +258,16 @@ def calculate_gini(node, the_fix):
 				else:
 					left_leaf_ham_cnt+=1
 
-	reverse_condition = False
+	# reverse_condition = False
 	left_spam_rate=(left_leaf_spam_cnt)/(left_leaf_spam_cnt+left_leaf_ham_cnt)
 	right_spam_rate=(right_leaf_spam_cnt)/(right_leaf_ham_cnt+right_leaf_spam_cnt)
 
-	if(left_spam_rate > right_spam_rate and llabel!=SPAM):
-		reverse_condition=True
+	# if(left_spam_rate>right_spam_rate):
+	# 	if(llabel!=SPAM)
+
+	# if(left_spam_rate > right_spam_rate and llabel!=SPAM):
+	# 	# pdb.set_trace()
+	# 	reverse_condition=True
 
 	left_total_cnt = left_leaf_spam_cnt+left_leaf_ham_cnt
 	right_total_cnt = right_leaf_spam_cnt+right_leaf_ham_cnt
@@ -267,7 +279,7 @@ def calculate_gini(node, the_fix):
 
 	# print(f"gini_impurity for {the_fix} using {the_fix}: {gini_impurity}, reverse:{reverse_condition}\n")
 	
-	return gini_impurity, reverse_condition
+	return gini_impurity
 
 def fix_violations(treerule, repair_config, leaf_nodes):
 	# print(f"leaf_nodes")
@@ -367,7 +379,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			# in order to differentiate them
 			min_gini=1
 			best_fix = None
-			reverse_condition=False
+			# reverse_condition=False
 
 			if(node.label==ABSTAIN):
 				continue
@@ -381,14 +393,16 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 					for f in the_fixes:
 						if(f in considered_fixes):
 							continue
-						gini, reverse_cond =calculate_gini(node, f)
+						gini =calculate_gini(node, f)
 						considered_fixes.add(f)
 						if(gini<min_gini):
 							min_gini=gini
 							best_fix=f
-							reverse_condition=reverse_cond
+							# reverse_condition=reverse_cond
 				if(best_fix):
-					new_parent_node=redistribute_after_fix(treerule, node, best_fix, reverse_condition)
+					# if(reverse_condition):
+						# pdb.set_trace()
+					new_parent_node=redistribute_after_fix(treerule, node, best_fix)
 			# handle the left and right child after redistribution
 			else:
 				if(node.pairs[SPAM]):
@@ -584,7 +598,7 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 	if(current_start_id_pos+floor(all_rules_cnt*return_after_percent)>=all_rules_cnt):
 		stop_at_id_pos=all_rules_cnt-1
 	else:
-		stop_at_id_pos=current_start_id_pos+floor(all_rules_cnt*return_after_percent)
+		stop_at_id_pos=current_start_id_pos+floor(all_rules_cnt*return_after_percent)-1
 	# print("fix_book_keeping_dict")
 	# print(fix_book_keeping_dict)
 	# print(f"current_start_id:{sorted_rule_ids[current_start_id_pos]}")
@@ -592,6 +606,7 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 
 	while(current_start_id_pos<=stop_at_id_pos):
 		treerule=fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']
+		# pdb.set_trace()
 		# for treerule in rules:
 		leaf_nodes = []
 		for i, c in repair_config.complaints.iterrows():
@@ -693,6 +708,17 @@ def run_snorkel(lf_input, LFs=None):
 
 	return accuracy, df_sentences_filtered, wrong_preds
 
+def calculate_post_fix_tree_size(fix_book_keeping_dict, post_fix_num_funcs):
+	before_total_size = after_total_size = 0
+	for k,v in fix_book_keeping_dict.items():
+		if(not v['deleted']):
+			before_total_size+=v['pre_fix_size']
+			after_total_size+=v['after_fix_size']
+	avg_tree_size_increase=(after_total_size-before_total_size)/post_fix_num_funcs
+
+	return avg_tree_size_increase, after_total_size-before_total_size
+
+
 def lf_main(lf_input):
 
 	conn = lf_input.connection
@@ -719,7 +745,7 @@ def lf_main(lf_input):
 
 	#########
 	current_fixed_percent=0
-	fixed_rate=0
+	fix_rate=0
 	rbbm_runtime=0
 	bbox_runtime=0
 	current_start_id_pos=prev_stop_tree_id_pos=0
@@ -847,7 +873,7 @@ def lf_main(lf_input):
 	stimestamp = datetime.now()
 	rc = RepairConfig(strategy=strat, complaints=sampled_complaints, acc_threshold=0.8, runtime=0, deletion_factor=deletion_factor)
 
-	# print(f"fixed_rate:{fixed_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
+	# print(f"fix_rate:{fix_rate}, retrain_accuracy_thresh:{retrain_accuracy_thresh}")
 	fix_book_keeping_dict = {k.id:{'rule':k, 'deleted':False, 'pre_fix_size':k.size, 'after_fix_size':k.size, 'pre-deleted': False} for k in tree_rules}
 		# fix_book_keeping_dict[treerule.id]['pre_fix_size']=treerule.size
 
@@ -867,8 +893,14 @@ def lf_main(lf_input):
 	tree_ids=[k for k in new_fix_book_keeping_dict]
 	tree_ids.sort()
 
-	while(fixed_rate<retrain_accuracy_thresh):
-		logger.debug(f'curren_fix_rate:{fixed_rate}')
+	if(retrain_accuracy_thresh!=1):
+		retrain_bookkeeping_dict = {'fix_rate':[], 'new_global_accuracy':[], 'avg_tree_size_increase':[], 
+		'total_tree_size_increase':[],'confirm_preserve_rate':[], 'number_of_funcs_fixed':[]}
+	else:
+		retrain_bookkeeping_dict =None
+
+	while(fix_rate<=retrain_accuracy_thresh):
+		logger.debug(f'curren_fix_rate:{fix_rate}')
 		logger.debug(f'retrain_accuracy_thresh: {retrain_accuracy_thresh}')
 		logger.debug(f'current_start_id_pos:{current_start_id_pos}')
 		logger.debug(f'prev_stop_tree_id_pos: {prev_stop_tree_id_pos}')
@@ -883,34 +915,51 @@ def lf_main(lf_input):
 		rbbm_end = time.time()
 		rbbm_runtime+=round(rbbm_end-rbbm_start,3)
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
-		# print(new_labelling_funcs)
-		# print(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
-		# print(new_fix_book_keeping_dict)
+		logger.critical(new_labelling_funcs)
+		logger.critical(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
+		# logger.critical(new_fix_book_keeping_dict)
 
 		bbox_start = time.time()
 		new_global_accuracy, new_all_sentences_df, new_wrongs_df = run_snorkel(lf_input, LFs=new_labelling_funcs)
 		bbox_end = time.time()
 		bbox_runtime+=round(bbox_end-bbox_start,3)
 		new_signaled_cnt=len(new_all_sentences_df)
-		fixed_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df, result_dir+'/'+timestamp_str)
+		fix_rate, confirm_preserve_rate = calculate_retrained_results(sampled_complaints, new_wrongs_df, result_dir+'/'+timestamp_str)
+		if(retrain_bookkeeping_dict):
+			avg_tree_size_increase,total_tree_size_increase = calculate_post_fix_tree_size(fix_book_keeping_dict,post_fix_num_funcs)
+			retrain_bookkeeping_dict['fix_rate'].append(fix_rate)
+			retrain_bookkeeping_dict['new_global_accuracy'].append(new_global_accuracy)
+			retrain_bookkeeping_dict['avg_tree_size_increase'].append(avg_tree_size_increase)
+			retrain_bookkeeping_dict['total_tree_size_increase'].append(total_tree_size_increase)
+			retrain_bookkeeping_dict['confirm_preserve_rate'].append(confirm_preserve_rate)
+			retrain_bookkeeping_dict['number_of_funcs_fixed'].append(num_of_funcs_processed_by_algo)
+			logger.critical("cur retrain_bookkeeping_dict")
+			logger.critical(retrain_bookkeeping_dict)
+
 		if(current_start_id_pos>=len(new_fix_book_keeping_dict)):
 			break
 
+	# avg_tree_size_increase,total_tree_size_increase = calculate_post_fix_tree_size(fix_book_keeping_dict,post_fix_num_funcs)
+
+	if(retrain_bookkeeping_dict):
+		retrain_bookkeeping_dict['fix_rate'].append(fix_rate)
+		retrain_bookkeeping_dict['new_global_accuracy'].append(new_global_accuracy)
+		retrain_bookkeeping_dict['avg_tree_size_increase'].append(avg_tree_size_increase)
+		retrain_bookkeeping_dict['total_tree_size_increase'].append(total_tree_size_increase)
+		retrain_bookkeeping_dict['confirm_preserve_rate'].append(confirm_preserve_rate)
+		retrain_bookkeeping_dict['number_of_funcs_fixed'].append(num_of_funcs_processed_by_algo)
+
+	logger.critical("cur retrain_bookkeeping_dict")
+
 	before_total_size=after_total_size=0
 	fix_book_keeping_dict = {**predeleted_book_keep_dict, **new_fix_book_keeping_dict}
-
-	for k,v in fix_book_keeping_dict.items():
-		if(not v['deleted']):
-			before_total_size+=v['pre_fix_size']
-			after_total_size+=v['after_fix_size']
-
-	avg_tree_size_increase=(after_total_size-before_total_size)/post_fix_num_funcs
+	avg_tree_size_increase, total_tree_size_increase = calculate_post_fix_tree_size(fix_book_keeping_dict,post_fix_num_funcs)
 	# print(f"avg tree_size increase: {avg_tree_size_increase}")
 
 	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
 		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
-			file.write('strat,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+			file.write('strat,seed,table_name,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
 				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
@@ -926,13 +975,19 @@ def lf_main(lf_input):
 	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
 	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
 		# Write the row to the file
-		file.write(f'{strat},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fixed_rate,3)},{round(confirm_preserve_rate,3)},'+\
+		file.write(f'{strat},{rs},{lf_input.dataset_name},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
 			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max},{lf_source},'+\
 			f'{retrain_after_percent},{retrain_accuracy_thresh},{load_funcs_from_pickle},{pre_deletion_threshold}\n')
 
-	with open(result_dir+'/'+timestamp_str+'fix_book_keeping_dict.pkl', 'wb') as file:
+	with open(result_dir+'/'+timestamp_str+'_fix_book_keeping_dict.pkl', 'wb') as file:
 	    # Use pickle.dump() to write the dictionary to the file
 	    pickle.dump(fix_book_keeping_dict, file)
+
+	if(retrain_bookkeeping_dict):
+		with open(result_dir+'/'+timestamp_str+'_retrain_bookkeeping_dict.pkl', 'wb') as file:
+		    # Use pickle.dump() to write the dictionary to the file
+		    pickle.dump(retrain_bookkeeping_dict, file)
+
 
 
 # parameters needed 

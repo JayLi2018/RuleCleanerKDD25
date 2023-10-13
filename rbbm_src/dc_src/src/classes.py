@@ -39,7 +39,6 @@ def get_operator(predicate):
     return sign
 
 def parse_rule_to_where_clause(rule):
-	# support EQ and IQ only so far
 	res = []
 	for xl in rule.split('&'):
 		if(ops.search(xl)):

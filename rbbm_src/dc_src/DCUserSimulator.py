@@ -8,6 +8,7 @@ from rbbm_src.dc_src.DCRepair import (eq_op,
 import re
 from rbbm_src.dc_src.src.classes import parse_rule_to_where_clause
 from string import Template
+import pickle
 
 # dc_tuple_violation_template_targeted_t1=\
 # Template("SELECT  t1.id as t1_tid FROM $table t1 where EXISTS (select 1 from $table t2 WHERE $dc_desc)")
@@ -25,7 +26,7 @@ class DCUser:
 		self.conn = conn
 		self.tablename = tablename
 
-	def select_dc(self, violation_threshold, dc_file_dir, predicate_threshold):
+	def select_dc(self, violation_threshold, dc_file_dir, predicate_max_threshold, predicate_min_threshold):
 		rule_texts = []
 
 		cur = self.conn.cursor()
@@ -40,10 +41,12 @@ class DCUser:
 		with open(dc_file_dir, "r") as file:
 			for line in file:
 				rule=line.strip('\n')
+				if(re.search(r'\.id', rule)):
+					continue
 				total_num_rules+=1
 				predicates = rule.split('&')
 				pred_cnt = len(predicates[2:])
-				if(pred_cnt>predicate_threshold):
+				if(pred_cnt>predicate_max_threshold or pred_cnt<predicate_min_threshold):
 					continue
 				rule_texts.append(rule)
 
@@ -58,8 +61,8 @@ class DCUser:
 			for k in res:
 				for pair in res[k]:
 					# print(pair)
-					rules_with_stats[r].add(pair['t1_id'])
-					rules_with_stats[r].add(pair['t2_id'])
+					rules_with_stats[r].add(pair['t1__tid_'])
+					rules_with_stats[r].add(pair['t2__tid_'])
 			print('\n')
 			i+=1
 		res = []
@@ -69,6 +72,7 @@ class DCUser:
 				res.append(k)
 
 		return res, rules_with_stats
+
 
 def find_tuples_in_violation(conn, dc_text, target_table, cols, targeted=False):
     if(non_symetric_op.search(dc_text)):
@@ -82,6 +86,7 @@ def find_tuples_in_violation(conn, dc_text, target_table, cols, targeted=False):
         res = {'t1':pd.read_sql(q1, conn).to_dict('records')}
         # print(res)
     return res
+
 
 def construct_query_for_violation(role, dc_text, target_table, targeted, cols): 
     predicates = dc_text.split('&')
@@ -115,7 +120,7 @@ def construct_query_for_violation(role, dc_text, target_table, targeted, cols):
 
     else:
     	cond = parse_rule_to_where_clause(dc_text)
-    	cond+=f" AND t1.id!=t2.id"
+    	cond+=f" AND t1._tid_!=t2._tid_"
     	r_q  = template.substitute(t1_desc=t1_cols, t2_desc=t2_cols, table=target_table, dc_desc=cond)
 
     return r_q
@@ -123,25 +128,29 @@ def construct_query_for_violation(role, dc_text, target_table, targeted, cols):
 
 
 if __name__ == '__main__':
-	conn=psycopg2.connect('dbname=label user=postgres port=5433')
+	conn=psycopg2.connect('dbname=cr user=postgres')
 
 	# tablename='tax_sample'
 	# dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/tax_precise_dcs.txt'
 
-	# tablename='adult'
-	# dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/adult_dcs.txt'
+	# tablename='adult_sample'
+	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/adult_dcs.txt'
 
-	# tablename='airport'
-	# dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/airport_dcs.txt'
+	# tablename='airport_sample'
+	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/airport_dcs.txt'
 
-	# tablename='hospital'
-	# dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
+	# tablename='hospital_sample'
+	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
 
-	tablename='tax_sample'
-	dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
+	tablename='tax'
+	dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
 
 	du = DCUser(conn=conn, tablename=tablename)
-	res, res_dict = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_threshold=3)
+	res, res_dict = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=3, predicate_min_threshold=2)
+	with open('tax_filtered_rules.pkl', 'wb') as tax_filtered_rules:
+		pickle.dump(res, tax_filtered_rules)
+	with open('tax_filtered_dict.pkl', 'wb') as tax_filtered_dict:
+		pickle.dump(res_dict, tax_filtered_dict)
 	print(res)
 	for k,v in res_dict.items():
 		print(f"{k}: {len(v)}")

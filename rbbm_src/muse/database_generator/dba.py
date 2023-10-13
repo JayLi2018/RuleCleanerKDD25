@@ -21,7 +21,8 @@ class DatabaseEngine():
     mas_schema = {
     "adult": '(_tid_,age,workclass,education,"marital-status",occupation,relationship,race,sex,"hours-per-week","native-country",income)',
     "flights_new": '(DAY_OF_WEEK,FL_DATE,OP_UNIQUE_CARRIER,OP_CARRIER_FL_NUM,ORIGIN_AIRPORT_ID,ORIGIN,ORIGIN_CITY_NAME,ORIGIN_STATE_ABR,ORIGIN_STATE_NM,DEST_AIRPORT_ID,DEST,DEST_CITY_NAME,DEST_STATE_ABR,DEST_STATE_NM,CRS_DEP_TIME,DEP_TIME,CRS_ARR_TIME,ARR_TIME,ACTUAL_ELAPSED_TIME,DISTANCE,_tid_,is_dirty)',
-    "tax":'(FName,LName,Gender,AreaCode,Phone,City,State,Zip,MaritalStatus,HasChild,Salary,Rate,SingleExemp,MarriedExemp,ChildExemp,_tid_,is_dirty)'
+    "tax":'(FName,LName,Gender,AreaCode,Phone,City,State,Zip,MaritalStatus,HasChild,Salary,Rate,SingleExemp,MarriedExemp,ChildExemp,_tid_,is_dirty)',
+    "hospital": "(providernumber, HospitalName, City, State, ZipCode, CountyName, PhoneNumber, HospitalType, HospitalOwner, EmergencyService, Condition, MeasureCode, MeasureName, Sample, Stateavg,_tid_,is_dirty)"
     }
 
     tpc_h_schema = {"customer": "(c_custkey, c_name, c_address, c_nationkey, c_phone, c_acctbal, C_MKTSEGMENT, c_comment)",
@@ -48,7 +49,7 @@ class DatabaseEngine():
             self.connection = psycopg2.connect(user = "postgres",
                                                # password = "Your Password Here",
                                                # host = "127.0.0.1",
-                                               port = "5433",
+                                               port = "5432",
                                                database = db_name)
             self.connection.set_session(readonly=False, autocommit=True)
 
@@ -208,16 +209,30 @@ class DatabaseEngine():
         create_queries_prov_mas = [
         'CREATE TABLE IF NOT EXISTS adult(_tid_ bigint,age text,workclass text, education text,"marital-status" text,occupation text,relationship text,race text,sex text,"hours-per-week" text,\
             "native-country" text, income text);',
+
         'CREATE TABLE IF NOT EXISTS Delta_adult(_tid_ bigint,age text,workclass text, education text,"marital-status" text,occupation text,relationship text,race text,sex text,"hours-per-week" text,\
             "native-country" text, income text);',
-        'CREATE TABLE tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary text,Rate text,SingleExemp text,MarriedExemp text,\
+
+        'CREATE TABLE IF NOT EXISTS tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary int,Rate float,SingleExemp text,MarriedExemp text,\
             ChildExemp text,_tid_ integer,is_dirty bool);'
-        'CREATE TABLE Delta_tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary text,Rate text,SingleExemp text,MarriedExemp text,\
+
+        'CREATE TABLE IF NOT EXISTS Delta_tax(FName text,LName text,Gender text,AreaCode text,Phone text,City text,State text,Zip text,MaritalStatus text,HasChild text,Salary int,Rate float,SingleExemp text,MarriedExemp text,\
             ChildExemp text,_tid_ integer,is_dirty bool);'
-        'CREATE TABLE flights_new (DAY_OF_WEEK text,FL_DATE text,OP_UNIQUE_CARRIER text,OP_CARRIER_FL_NUM text,ORIGIN_AIRPORT_ID text,ORIGIN text,ORIGIN_CITY_NAME text,ORIGIN_STATE_ABR text,ORIGIN_STATE_NM text, \
+
+        'CREATE TABLE IF NOT EXISTS flights_new (DAY_OF_WEEK text,FL_DATE text,OP_UNIQUE_CARRIER text,OP_CARRIER_FL_NUM text,ORIGIN_AIRPORT_ID text,ORIGIN text,ORIGIN_CITY_NAME text,ORIGIN_STATE_ABR text,ORIGIN_STATE_NM text, \
             DEST_AIRPORT_ID text,DEST text,DEST_CITY_NAME text,DEST_STATE_ABR text, DEST_STATE_NM text,CRS_DEP_TIME text,DEP_TIME text,CRS_ARR_TIME text,ARR_TIME text,ACTUAL_ELAPSED_TIME text, DISTANCE text, _tid_ int, is_dirty bool)',
-        'CREATE TABLE Delta_flights_new (DAY_OF_WEEK text,FL_DATE text,OP_UNIQUE_CARRIER text,OP_CARRIER_FL_NUM text,ORIGIN_AIRPORT_ID text,ORIGIN text,ORIGIN_CITY_NAME text,ORIGIN_STATE_ABR text,ORIGIN_STATE_NM text,\
-            DEST_AIRPORT_ID text,DEST text,DEST_CITY_NAME text,DEST_STATE_ABR text, DEST_STATE_NM text,CRS_DEP_TIME text,DEP_TIME text,CRS_ARR_TIME text,ARR_TIME text,ACTUAL_ELAPSED_TIME text, DISTANCE text, _tid_ int, is_dirty bool)'
+
+        'CREATE TABLE IF NOT EXISTS Delta_flights_new (DAY_OF_WEEK text,FL_DATE text,OP_UNIQUE_CARRIER text,OP_CARRIER_FL_NUM text,ORIGIN_AIRPORT_ID text,ORIGIN text,ORIGIN_CITY_NAME text,ORIGIN_STATE_ABR text,ORIGIN_STATE_NM text,\
+            DEST_AIRPORT_ID text,DEST text,DEST_CITY_NAME text,DEST_STATE_ABR text, DEST_STATE_NM text,CRS_DEP_TIME text,DEP_TIME text,CRS_ARR_TIME text,ARR_TIME text,ACTUAL_ELAPSED_TIME text, DISTANCE text, _tid_ int, is_dirty bool)',
+
+        "CREATE TABLE IF NOT EXISTS hospital (ProviderNumber text, HospitalName text, City text, State text, Zipcode text, CountyName text, PhoneNumber text, \
+            HospitalType text, HospitalOwner text, EmergencyService text, Condition text, MeasureCode text, MeasureName text, Sample text, Stateavg text, \
+            _tid_ int, is_dirty bool);",
+
+        "CREATE TABLE IF NOT EXISTS Delta_hospital (ProviderNumber text, HospitalName text, City text, State text, Zipcode text, CountyName text, PhoneNumber text,\
+         HospitalType text, HospitalOwner text, EmergencyService text, Condition text, MeasureCode text, MeasureName text, Sample text, Stateavg text,\
+          _tid_ int, is_dirty bool);"
+
         ]
         create_queries_prov_tpch = [
             "CREATE TABLE IF NOT EXISTS delta_customer (C_CUSTKEY int NOT NULL, C_NAME varchar(25) NOT NULL, C_ADDRESS varchar(40) NOT NULL, C_NATIONKEY int NOT NULL, C_PHONE char(15) NOT NULL, C_ACCTBAL decimal(15,2) NOT NULL, C_MKTSEGMENT char(10) NOT NULL, C_COMMENT varchar(117) NOT NULL);",
@@ -276,9 +291,9 @@ class DatabaseEngine():
         print(f"lst_names: {lst_names}")
         print(f"self.mas_schema: {self.mas_schema}")
 
-        if all(name in self.mas_schema for name in lst_names):
+        if any(name in self.mas_schema for name in lst_names):
             schema = self.mas_schema
-            path = "/home/perm/chenjie/RBBM/rbbm_src/muse/data/mas/"
+            path = "/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/"
         elif all(name in self.tpc_h_schema for name in lst_names):
             schema = self.tpc_h_schema
             path = "../data/tpch/"

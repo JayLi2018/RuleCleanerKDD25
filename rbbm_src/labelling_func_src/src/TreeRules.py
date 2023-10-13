@@ -127,9 +127,11 @@ class DCAttrPredicate(Predicate):
 	def __str__(self):
 		return f"dc-attr-pred-{self.pred}"
 	def evaluate(self, dict_to_eval:dict):
+		logger.critical(f'dict_to_eval in dc attr: {dict_to_eval}')
+		logger.critical(f"dict_to_eval in dc attr: dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
+		return eval(f"dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
 	    # attr = re.search(r't[1|2]\.([-\w]+)', self.pred).group(1)
 	    # print(f"dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")	    
-	    return eval(f"dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
 
 class DCConstPredicate(Predicate):
 	def __init__(self, pred:str, operator:str):
@@ -138,6 +140,7 @@ class DCConstPredicate(Predicate):
 		# print(self.pred)
 		self.pred_identifier = re.findall(r'(t[1|2])\.([-\w]+),[\"|\'](.*)[\"|\']',self.pred)[0]+ (self.operator,)
 		self.role, self.attr, self.const, _ = self.pred_identifier
+		self.attr=self.attr.lower()
 
 	def __repr__(self):
 		return f"dc-const-pred-{self.pred}"
@@ -147,6 +150,9 @@ class DCConstPredicate(Predicate):
 	
 	def evaluate(self, dict_to_eval:dict):
 		# triples where each triple is in the format of (t1, attr, constant) (or t2)
+		logger.critical(f'dict_to_eval in dc const: {dict_to_eval}')
+		logger.critical(f"dict_to_eval in dc const: dict_to_eval['{self.role}']['{self.attr}']{self.operator}'{self.const}'")
+
 		return eval(f"dict_to_eval['{self.role}']['{self.attr}']{self.operator}'{self.const}'")
 
 class SentimentPredicate(Predicate):
@@ -237,8 +243,8 @@ class TreeRule:
 			else:
 				user_inputs = []
 				for k,v in cur_node.pairs.items():
-					print('cur_node.pairs')
-					print(cur_node.pairs)
+					# print('cur_node.pairs')
+					# print(cur_node.pairs)
 					kstr=f"{str(k)}: ("
 					if(self.rtype=='lf'):
 						i=1
@@ -279,7 +285,7 @@ class TreeRule:
 				queue.append(cur_node.right)
 		str_list.append(f"//{','.join([str(x) for x in extra_info])}")
 		str_list.append('}')
-		print(f'str_list: {str_list}')
+		# print(f'str_list: {str_list}')
 		dot_string= dot_string_template.substitute(nodes_details='\n'.join(str_list))
 		return dot_string
 

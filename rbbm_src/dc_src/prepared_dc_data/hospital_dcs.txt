@@ -1,0 +1,3 @@
+t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State):B
+t1&t2&IQ(t1.StateAvg,t2.StateAvg)&EQ(t1.State,t2.State)&EQ(t1.MeasureName,t2.MeasureName):G
+t1&t2&IQ(t1.City,t2.City)&EQ(t1.ZIPCode,t2.ZIPCode):G
