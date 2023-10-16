@@ -1,2 +1,0 @@
-complaint:
-{'type': 'before_clean', '_tid_': 101.0, 'age': '40', 'workclass': 'private', 'education': '12th', 'marital-status': 'married-civ-spouse', 'occupation': 'prof-specialty', 'relationship': 'husband', 'race': 'white', 'sex': 'male', 'hours-per-week': '40', 'native-country': 'cuba', 'income': '>50k', 'income\n': nan, 'wrong_attr': 'native-country'}

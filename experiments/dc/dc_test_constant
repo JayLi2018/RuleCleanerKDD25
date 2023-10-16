@@ -1,1 +1,0 @@
-t1&t2&EQ(t1.race,t2.race)&IQ(t1.sex,'male')

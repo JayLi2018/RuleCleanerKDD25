@@ -1,1 +1,0 @@
-t1&t2&IQ(t1.Condition,t2.Condition)&EQ(t1.HospitalName,t2.HospitalName)&EQ(t1.HospitalName,"coosa valley medical center")

@@ -1,7 +1,0 @@
-t1&t2&IQ(t1.city,t2.city)&EQ(t1.zipcode,t2.zipcode)
-t1&t2&IQ(t1.state,t2.state)&EQ(t1.zipcode,t2.zipcode)
-t1&t2&IQ(t1.zipcode,t2.zipcode)&EQ(t1.phonenumber,t2.phonenumber)
-t1&t2&EQ(t1.measurecode,t2.measurecode)&IQ(t1.measurename,t2.measurename)
-t1&t2&IQ(t1.measurecode,t2.measurecode)&EQ(t1.measurename,t2.measurename)
-t1&t2&EQ(t1.state,t2.state)&EQ(t1.measurecode,t2.measurecode)&IQ(t1.stateavg,t2.stateavg)
-t1&t2&EQ(t1.providernumber,t2.providernumber)&IQ(t1.phonenumber,t2.phonenumber)

@@ -1,2 +1,0 @@
-t1&t2&EQ(t1.name,t2.name)&IQ(t1.dept,t2.dept)
-t1&t2&EQ(t1.name,t2.name)&IQ(t1.manager,t2.manager)
