@@ -174,3 +174,62 @@ def gen_amazon_funcs():
 
 	amazon_rules = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15]
 	return amazon_rules
+
+
+def gen_professor_teacher_funcs():
+	# HAM: teacher # SPAM: professor
+	# bias_pt
+	# \begin{lfList}
+	# \item \lfClassB{\textbf{teacher:} students{\lfOr}teacher}\lfStats{(coverage: 22\%, accuracy: 81\%)}
+	# \item \lfClassA{\textbf{professor:} research}\lfStats{(coverage: 31\%, accuracy: 92\%)}
+	# \item \lfClassB{\textbf{teacher:} husband{\lfOr}loves{\lfOr}lives}\lfStats{(coverage: 7\%, accuracy: 85\%)}
+	# \item \lfClassA{\textbf{professor:} ph{\lfOr}phd{\lfOr}postdoctoral}\lfStats{(coverage: 17\%, accuracy: 94\%)}
+	# \item \lfClassB{\textbf{teacher:} com{\lfOr}years{\lfOr}music{\lfOr}children{\lfOr}time{\lfOr}classroom{\lfOr}teachers{\lfOr}teach{\lfOr}enjoys{\lfOr}help{\lfOr}schools}\lfStats{(coverage: 39\%, accuracy: 72\%)}
+	# \item \lfClassNull{book{\lfOr}press{\lfOr}author{\lfOr}appeared{\lfOr}politics{\lfOr}political}
+	# \item \lfClassA{\textbf{professor:} medical{\lfOr}medicine{\lfOr}clinical{\lfOr}health}\lfStats{(coverage: 11\%, accuracy: 86\%)}
+	# \item \lfClassNull{people{\lfOr}life{\lfOr}books}
+	# \item \lfClassA{\textbf{professor:} engineering{\lfOr}systems{\lfOr}management{\lfOr}computer}\lfStats{(coverage: 12\%, accuracy: 86\%)}
+	# \item \lfClassNull{english{\lfOr}literature{\lfOr}writing{\lfOr}art}
+	# \end{lfList}
+	TreeRule.rule_counter=0
+	f1 = keyword_labelling_func_builder(['students', 'teacher'], HAM)
+	f2 = keyword_labelling_func_builder(['research'], SPAM)
+	f3 = keyword_labelling_func_builder(['husband','loves','lives'], HAM)
+	f4 = keyword_labelling_func_builder(['ph','phd','postdoctoral'], SPAM)
+	f5 = keyword_labelling_func_builder(['com','years','music','children','time','classroom','teachers','teach','enjoys','help','schools'], HAM)
+	f6 = keyword_labelling_func_builder(['medical','medicine','clinical','health'], SPAM)
+	f7 = keyword_labelling_func_builder(['engineering','systems','management','computer'], SPAM)
+	professor_teacher_funcs = [f1, f2, f3, f4, f5, f6, f7]
+
+	return professor_teacher_funcs
+
+def gen_painter_architecht_funcs():
+	# HAM: painter # SPAM: architect
+	# bias_pa
+	# \begin{lfList}
+	# \item \lfClassB{\textbf{painter:} paintings{\lfOr}painting}\lfStats{(coverage: 25\%, accuracy: 99\%)}
+	# \item \lfClassA{\textbf{architect:} architecture{\lfOr}development{\lfOr}architect{\lfOr}software{\lfOr}architectural{\lfOr}solutions{\lfOr}management}\lfStats{(coverage: 34\%, accuracy: 95\%)}
+	# \item \lfClassB{\textbf{painter:} art{\lfOr}gallery{\lfOr}artist}\lfStats{(coverage: 30\%, accuracy: 88\%)}
+	# \item \lfClassA{\textbf{architect:} data{\lfOr}enterprise}\lfStats{(coverage: 5\%, accuracy: 98\%)}
+	# \item \lfClassA{\textbf{architect:} experience{\lfOr}projects}\lfStats{(coverage: 19\%, accuracy: 86\%)}
+	# \item \lfClassB{\textbf{painter:} paints{\lfOr}life{\lfOr}paint{\lfOr}color}\lfStats{(coverage: 15\%, accuracy: 89\%)}
+	# \item \lfClassA{\textbf{architect:} microsoft{\lfOr}technologies{\lfOr}business{\lfOr}services{\lfOr}applications{\lfOr}web{\lfOr}application}\lfStats{(coverage: 13\%, accuracy: 91\%)}
+	# \item \lfClassB{\textbf{painter:} york}\lfStats{(coverage: 8\%, accuracy: 71\%)}
+	# \item \lfClassB{\textbf{painter:} colors}\lfStats{(coverage: 2\%, accuracy: 97\%)}
+	# \item \lfClassB{\textbf{painter:} images{\lfOr}work{\lfOr}arts{\lfOr}born{\lfOr}school{\lfOr}landscape}\lfStats{(coverage: 43\%, accuracy: 70\%)}
+	# \end{lfList}
+	TreeRule.rule_counter=0
+	f1 = keyword_labelling_func_builder(['paintings', 'painting'], HAM)
+	f2 = keyword_labelling_func_builder(['architecture','architect','software','architectural','solutions','management'], SPAM)
+	f3 = keyword_labelling_func_builder(['art','gallery','artist'], HAM)
+	f4 = keyword_labelling_func_builder(['data','enterprise'], SPAM)
+	f5 = keyword_labelling_func_builder(['experience','projects'], SPAM)
+	f6 = keyword_labelling_func_builder(['microsoft','technologies','business','services','applications','web','application'], SPAM)
+	f7 = keyword_labelling_func_builder(['paints','life','paint','color'], HAM)
+	f8 = keyword_labelling_func_builder(['york'], HAM)
+	f9 = keyword_labelling_func_builder(['colors'], HAM)
+	f10 = keyword_labelling_func_builder(['images','work','arts','born','school','landscape'], HAM)
+
+	painter_architecht_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+
+	return painter_architecht_funcs

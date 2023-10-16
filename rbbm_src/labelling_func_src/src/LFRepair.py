@@ -46,7 +46,11 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	DIRTY,
 	textblob_sentiment
 )
-from rbbm_src.labelling_func_src.src.example_tree_rules import gen_example_funcs,gen_amazon_funcs
+from rbbm_src.labelling_func_src.src.example_tree_rules import (
+	gen_example_funcs,gen_amazon_funcs,
+	gen_professor_teacher_funcs,
+	gen_painter_architecht_funcs
+)
 from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
 from rbbm_src.classes import StatsTracker, FixMonitor, RepairConfig, lf_input
 from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
@@ -586,7 +590,8 @@ def calculate_retrained_results(complaints, new_wrongs_df, file_dir):
 
 	return complaint_fix_rate, confirm_preserve_rate
 
-def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, deletion_factor, current_start_id_pos, sorted_rule_ids):
+def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, deletion_factor, 
+	current_start_id_pos, sorted_rule_ids, deletion_type, deletion_absolute_threshold):
 	all_fixed_rules = []
 	cur_fixed_rules = []
 	all_rules_cnt=len(fix_book_keeping_dict)
@@ -634,11 +639,19 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 			fixed_treerule_text = treerule.serialize()
 			fix_book_keeping_dict[treerule.id]['fixed_treerule_text']=fixed_treerule_text
 			fixed_treerule=tree_rule
-
-		if(fixed_treerule.size/fix_book_keeping_dict[treerule.id]['pre_fix_size']*deletion_factor>=1):
-			fix_book_keeping_dict[treerule.id]['deleted']=True
+		if(deletion_type=='ratio'):
+			if(fixed_treerule.size/fix_book_keeping_dict[treerule.id]['pre_fix_size']*deletion_factor>=1):
+				fix_book_keeping_dict[treerule.id]['deleted']=True
+			else:
+				fix_book_keeping_dict[treerule.id]['deleted']=False
+		elif(deletion_type=='absolute'):
+			if(fixed_treerule.size-fix_book_keeping_dict[treerule.id]['pre_fix_size']>deletion_absolute_threshold):
+				fix_book_keeping_dict[treerule.id]['deleted']=True
+			else:
+				fix_book_keeping_dict[treerule.id]['deleted']=False
 		else:
-			fix_book_keeping_dict[treerule.id]['deleted']=False
+			logger.critical("not a valid deletion type")
+			exit()
 		current_start_id_pos+=1
 
 	return stop_at_id_pos
@@ -732,6 +745,8 @@ def lf_main(lf_input):
 	rseed=lf_input.rseed
 	run_intro=lf_input.run_intro
 	run_amazon = lf_input.run_amazon
+	run_painter = lf_input.run_painter
+	run_professor= lf_input.run_professor
 	retrain_after_percent=lf_input.retrain_every_percent
 	deletion_factor=lf_input.deletion_factor
 	retrain_accuracy_thresh=lf_input.retrain_accuracy_thresh
@@ -739,6 +754,8 @@ def lf_main(lf_input):
 	pickle_file_name=lf_input.pickle_file_name
 	seed_file=lf_input.seed_file
 	pre_deletion_threshold=lf_input.pre_deletion_threshold
+	deletion_absolute_threshold=lf_input.deletion_absolute_threshold
+	deletion_type=lf_input.deletion_type
 	# customized_complaints_file=lf_input.customized_complaints_file
 	######
 	logger.debug(f"lf_input:{lf_input}")
@@ -781,6 +798,12 @@ def lf_main(lf_input):
 	elif(run_amazon):
 		logger.debug("amazon!")
 		tree_rules=gen_amazon_funcs()
+	elif(run_painter):
+		logger.debug("run_painter!")
+		tree_rules=gen_painter_architecht_funcs()
+	elif(run_professor):
+		logger.debug("run_professor!")
+		tree_rules=gen_professor_teacher_funcs()
 	elif(load_funcs_from_pickle=='true'):
 		with open(f'{pickle_file_name}.pkl', 'rb') as file:
 		    tree_rules = pickle.load(file)
@@ -907,7 +930,8 @@ def lf_main(lf_input):
 		logger.debug(f'\n')
 		rbbm_start = time.time()
 		prev_stop_tree_id_pos = fix_rules(repair_config=rc, fix_book_keeping_dict=new_fix_book_keeping_dict, conn=conn, 
-			return_after_percent=retrain_after_percent, deletion_factor=deletion_factor, current_start_id_pos=current_start_id_pos, sorted_rule_ids=tree_ids)
+			return_after_percent=retrain_after_percent, deletion_factor=deletion_factor, current_start_id_pos=current_start_id_pos, 
+			sorted_rule_ids=tree_ids, deletion_type=deletion_type, deletion_absolute_threshold=deletion_absolute_threshold)
 		tree_rules=[v['rule'] for k,v in new_fix_book_keeping_dict.items() if not v['deleted']]
 		num_of_funcs_processed_by_algo+=(prev_stop_tree_id_pos-current_start_id_pos+1)
 		current_start_id_pos=prev_stop_tree_id_pos+1
@@ -959,7 +983,7 @@ def lf_main(lf_input):
 	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
 		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
-			file.write('strat,seed,table_name,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+			file.write('strat,seed,pickle_file_name,table_name,timestamp_str,deletion_type,deletion_absolute_threshold,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
 				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
@@ -975,7 +999,7 @@ def lf_main(lf_input):
 	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
 	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
 		# Write the row to the file
-		file.write(f'{strat},{rs},{lf_input.dataset_name},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
+		file.write(f'{strat},{rs},{pickle_file_name},{lf_input.dataset_name},{timestamp_str},{deletion_type},{deletion_absolute_threshold},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
 			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max},{lf_source},'+\
 			f'{retrain_after_percent},{retrain_accuracy_thresh},{load_funcs_from_pickle},{pre_deletion_threshold}\n')
 

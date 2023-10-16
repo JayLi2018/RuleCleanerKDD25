@@ -94,6 +94,8 @@ class lf_input:
     rseed: int
     run_intro: bool
     run_amazon: bool
+    run_painter: bool
+    run_professor: bool
     retrain_every_percent: float
     deletion_factor: float
     retrain_accuracy_thresh: float
@@ -104,6 +106,8 @@ class lf_input:
     dataset_name: str
     stats: StatsTracker
     lf_source: str
+    deletion_absolute_threshold: int
+    deletion_type: str
 
 @dataclass
 class dc_input:
@@ -130,6 +134,9 @@ class dc_input:
     retrain_every_percent:float
     repeatable_muse:bool
     repeatable_strats:str
+    deletion_absolute_threshold: int
+    deletion_type: str
+    dc_model_type: str
 
 @dataclass
 class FixMonitor:

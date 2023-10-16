@@ -40,6 +40,8 @@ class DCUser:
 
 		with open(dc_file_dir, "r") as file:
 			for line in file:
+				# if(non_symetric_op.search(line)):
+				# 	continue
 				rule=line.strip('\n')
 				if(re.search(r'\.id', rule)):
 					continue
@@ -50,28 +52,28 @@ class DCUser:
 					continue
 				rule_texts.append(rule)
 
-		l_after_filter = len(rule_texts)
+		# l_after_filter = len(rule_texts)
 
 		print(f'we had {total_num_rules}, after predicate filter, we have {len(rule_texts)} rules')
-		rules_with_stats={r:set() for r in rule_texts}
-		i = 1
-		for r in rule_texts:
-			print(f"on {i}/{l_after_filter}... {r}")
-			res = find_tuples_in_violation(conn, r, self.tablename, cols)
-			for k in res:
-				for pair in res[k]:
-					# print(pair)
-					rules_with_stats[r].add(pair['t1__tid_'])
-					rules_with_stats[r].add(pair['t2__tid_'])
-			print('\n')
-			i+=1
-		res = []
+		# rules_with_stats={r:set() for r in rule_texts}
+		# i = 1
+		# for r in rule_texts:
+		# 	print(f"on {i}/{l_after_filter}... {r}")
+		# 	res = find_tuples_in_violation(conn, r, self.tablename, cols)
+		# 	for k in res:
+		# 		for pair in res[k]:
+		# 			# print(pair)
+		# 			rules_with_stats[r].add(pair['t1__tid_'])
+		# 			rules_with_stats[r].add(pair['t2__tid_'])
+		# 	print('\n')
+		# 	i+=1
+		# res = []
 
-		for k,v in rules_with_stats.items():
-			if(len(v)/db_size<=violation_threshold):
-				res.append(k)
+		# for k,v in rules_with_stats.items():
+		# 	if(len(v)/db_size<=violation_threshold):
+		# 		res.append(k)
 
-		return res, rules_with_stats
+		return rule_texts
 
 
 def find_tuples_in_violation(conn, dc_text, target_table, cols, targeted=False):
@@ -146,11 +148,14 @@ if __name__ == '__main__':
 	dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
 
 	du = DCUser(conn=conn, tablename=tablename)
-	res, res_dict = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=3, predicate_min_threshold=2)
-	with open('tax_filtered_rules.pkl', 'wb') as tax_filtered_rules:
-		pickle.dump(res, tax_filtered_rules)
-	with open('tax_filtered_dict.pkl', 'wb') as tax_filtered_dict:
-		pickle.dump(res_dict, tax_filtered_dict)
-	print(res)
-	for k,v in res_dict.items():
-		print(f"{k}: {len(v)}")
+	res = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=5, predicate_min_threshold=2)
+	for r in res:
+		print(r)
+		# print('\n')
+	# with open('tax_filtered_rules.pkl', 'wb') as tax_filtered_rules:
+	# 	pickle.dump(res, tax_filtered_rules)
+	# with open('tax_filtered_dict.pkl', 'wb') as tax_filtered_dict:
+	# 	pickle.dump(res_dict, tax_filtered_dict)
+	# print(res)
+	# for k,v in res_dict.items():
+	# 	print(f"{k}: {len(v)}")

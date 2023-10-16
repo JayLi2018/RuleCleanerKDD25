@@ -115,7 +115,7 @@ class DCAttrPredicate(Predicate):
 	def __init__(self, pred:str, operator:str):
 		self.pred=pred
 		self.operator=operator
-		print(f'self.operator: {self.operator}')
+		# print(f'self.operator: {self.operator}')
 		# print(self.pred)
 		# print(re.findall(r'(t[12])\.[-\w]+,(t[12])\.[-\w]+', self.pred))
 		# print(self.pred)
@@ -127,8 +127,8 @@ class DCAttrPredicate(Predicate):
 	def __str__(self):
 		return f"dc-attr-pred-{self.pred}"
 	def evaluate(self, dict_to_eval:dict):
-		logger.critical(f'dict_to_eval in dc attr: {dict_to_eval}')
-		logger.critical(f"dict_to_eval in dc attr: dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
+		# logger.critical(f'dict_to_eval in dc attr: {dict_to_eval}')
+		# logger.critical(f"dict_to_eval in dc attr: dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
 		return eval(f"dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")
 	    # attr = re.search(r't[1|2]\.([-\w]+)', self.pred).group(1)
 	    # print(f"dict_to_eval['t1']['{self.attr}']{self.operator}dict_to_eval['t2']['{self.attr}']")	    

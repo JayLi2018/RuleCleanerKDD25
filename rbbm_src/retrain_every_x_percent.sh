@@ -1,14 +1,46 @@
 #!/bin/bash
 
-python main.py -e experiment_results_folders/retrain_every_x_percent/ -U lf -x 123 -E 0.1 -A 0.8 -T 0 -s 320 -r 0.5 -G information_gain -D 0 \
-	-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+
+# declare -i repetitions=1
+# xvals=(0.1 0.2 0.3 0.4 0.5)
+# acc_thresh=(0.6 0.7 0.9)
+# x=1
+# while [ $x -le $repetitions ]
+# do
+# 	for v in ${xvals[@]}
+# 	do
+# 		for a in ${acc_thresh[@]}
+# 		do
+# 			python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -E ${v} -A ${a} -T 0 -s 300 -r 0.5 -G information_gain -D 0 \
+# 			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+# 		done
+# 	done
+# 	x=$(( $x+1 ))
+# done
+
+# python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -T 0 -s 300 -r 0.5 -G information_gain -D 0 \
+# -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 
 
+declare -i repetitions=1
+xvals=(0.1 0.2 0.3 0.4 0.5)
+acc_thresh=(0.6 0.7 0.8 0.9)
+x=1
+while [ $x -le $repetitions ]
+do
+	for v in ${xvals[@]}
+	do
+		for a in ${acc_thresh[@]}
+		do
+			python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -E ${v} -A ${a} -T 0 -s 200 -r 0.5 -G information_gain -D 0 \
+			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+		done
+	done
+	x=$(( $x+1 ))
+done
 
-
-
-
-
+python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -T 0 -s 200 -r 0.5 -G information_gain -D 0 \
+-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 
 
 

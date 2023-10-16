@@ -68,6 +68,12 @@ def main():
 	parser.add_argument('-D', '--deletion_factor',  metavar="\b", type=float, default=0.5,
 	  help='this is a factor controlling how aggressive the algorithm chooses to delete the rule from the rulset (default: %(default)s)')
 
+	parser.add_argument('-W', '--deletion_absolute_threshold',  metavar="\b", type=int, default=10,
+	  help='this is threshold for absolute tree size increase (default: %(default)s)')
+
+	parser.add_argument('-b', '--deletion_type',  metavar="\b", type=str, default='ratio',
+	  help='deletion type (ratio/absolute) (default: %(default)s)')
+
 	# Arguments for LF use case only:
 	parser.add_argument('-d','--dbname', metavar="\b", type=str, default='label',
 	  help='database name which stores the dataset, (default: %(default)s)')
@@ -84,6 +90,9 @@ def main():
 	parser.add_argument('-f','--lf_source', metavar="\b", type=str, default='undefined',
 	  help='the source of labelling function (intro / system generate) (default: %(default)s)')
 
+	parser.add_argument('-m','--dc_model_type', metavar="\b", type=str, default='muse',
+	  help='the source of labelling function (intro / system generate) (default: %(default)s)')
+
 	parser.add_argument('-O','--number_of_funcs', metavar="\b", type=int, default=20,
 	  help='if if_source is selected as system generate, how many do you want(default: %(default)s)')
 
@@ -91,7 +100,13 @@ def main():
 	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
 
 	parser.add_argument('-z', '--run_amazon',  metavar="\b", type=str, default='false',
-	  help='do you want to run the intro example with pre selected user input? (default: %(default)s)')
+	  help='do you want to run amazon with witan funcs? (need to put dataset_name as amazon) (default: %(default)s)')
+	
+	parser.add_argument('-w', '--run_painter',  metavar="\b", type=str, default='false',
+	  help='do you want to run painter_architect with witan funcs? (need to put dataset_name as painter_architect (default: %(default)s)')
+	
+	parser.add_argument('-o', '--run_professor',  metavar="\b", type=str, default='false',
+	  help='do you want to run professor_teacher with witan funcs? (need to put dataset_name as professor_teacher (default: %(default)s)')
 
 	parser.add_argument('-k', '--load_funcs_from_pickle',  metavar="\b", type=str, default='false',
 	  help='(flag indicating if we want to load functions from a pickle file default: %(default)s)')
@@ -158,8 +173,11 @@ def main():
 			acc_threshold=args.retrain_accuracy_thresh,
 			user_specify_pairs=user_specify_pairs,
 			retrain_every_percent=args.retrain_every_percent,
-			repeatable_muse=args.repeatable_muse,
+			repeatable_muse=repeatable_muse,
 			repeatable_strats=args.repeatable_strats,
+			deletion_absolute_threshold=args.deletion_absolute_threshold,
+			deletion_type=args.deletion_type,
+			dc_model_type=args.dc_model_type
 			)
 	else:
 		conn = psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password, port=args.port)
@@ -173,6 +191,16 @@ def main():
 			run_amazon=False
 		else:
 			run_amazon=True
+
+		if(args.run_painter=='false'):
+			run_painter=False
+		else:
+			run_painter=True
+
+		if(args.run_professor=='false'):
+			run_professor=False
+		else:
+			run_professor=True
 
 		if(args.load_funcs_from_pickle=='true'):
 			load_funcs_from_pickle=True
@@ -192,6 +220,8 @@ def main():
 		rseed=args.seed,
 		run_intro=run_intro,
 		run_amazon=run_amazon,
+		run_painter=run_painter,
+		run_professor=run_professor,
 		retrain_every_percent=args.retrain_every_percent,
 		deletion_factor=args.deletion_factor,
 		retrain_accuracy_thresh=args.retrain_accuracy_thresh,
@@ -201,7 +231,9 @@ def main():
 		pre_deletion_threshold=args.pre_filter_thresh,
 		dataset_name=args.dataset_name,
 		stats=StatsTracker(),
-		lf_source=args.lf_source
+		lf_source=args.lf_source,
+		deletion_absolute_threshold=args.deletion_absolute_threshold,
+		deletion_type=args.deletion_type,
 		)
 
 	if(isinstance(input_arg_obj, lf_input)):
