@@ -293,7 +293,7 @@ class DatabaseEngine():
 
         if any(name in self.mas_schema for name in lst_names):
             schema = self.mas_schema
-            path = "/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/"
+            path = "/home/opc/author/RBBM/rbbm_src/muse/data/mas/"
         elif all(name in self.tpc_h_schema for name in lst_names):
             schema = self.tpc_h_schema
             path = "../data/tpch/"

@@ -52,7 +52,7 @@ def convert_dc_to_get_violation_tuple_ids(dc_text, target_table):
 
 if __name__ == '__main__':
 
-	# dc_file='/home/opc/chenjie/RBBM/experiments/dc/dc_sample_10'
+	# dc_file='/home/opc/author/RBBM/experiments/dc/dc_sample_10'
 	# table_name='adult'
 	# res=[]
 	# try:
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 	# except IOError:
 	#     print("Error reading the file.")
 
-	dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
+	dc_file='/home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
 	table_name='tax'
 	res=[]
 	try:

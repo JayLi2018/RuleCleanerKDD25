@@ -26,4 +26,4 @@ def evaluate_sample(dir, pattern='pickle_run_'):
 
 if __name__ == '__main__':
 	for pattern in ['pickle_run_dc_sample_10_','pickle_run_dc_sample_20_','pickle_run_dc_sample_30_']:
-		evaluate_sample('/home/opc/chenjie/labelling_explanation', pattern)
+		evaluate_sample('/home/opc/author/labelling_explanation', pattern)

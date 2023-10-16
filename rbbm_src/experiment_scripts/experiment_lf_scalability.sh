@@ -8,10 +8,10 @@
 # do
 # 	for n in ${sizes[@]}
 # 	do
-#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron_30 -n enron -P 5432
-#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
-#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon05 -P 5432
-#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_youtube_30 -n youtube -P 5432
+#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_enron_30 -n enron -P 5432
+#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
+#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon05 -P 5432
+#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_youtube_30 -n youtube -P 5432
 # 	done
 # 	x=$(( $x+1 ))
 # done
@@ -26,9 +26,9 @@ sizes=(80)
 #   do
 #     for dsize in ${dsizes[@]}
 #     do
-#       python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon${dsize} -P 5432
+#       python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon${dsize} -P 5432
 #     done
-#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
+#     python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
 #   done
 #   x=$(( $x+1 ))
 # done
@@ -39,7 +39,7 @@ while [ $x -le $iterations ]
 do
   for n in ${sizes[@]}
   do
-    python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
+    python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_dsize/ -R true -x 123 -X test_cases_seed.txt -T 0 -s ${n} -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_amazon_30 -n amazon -P 5432
   done
   x=$(( $x+1 ))
 done
@@ -57,7 +57,7 @@ done
 #   do
 #     for fsize in ${fsizes[@]}
 #     do
-#       python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_lf/ -R true -x 123 -X test_cases_seed.txt -T 0 -s 100 -r 0.5 -G information_gain -D 0 -k true -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_${d}_${fsize} -n ${d} -P 5432
+#       python main.py -U lf -e experiment_results_folders/experiment_lf_scalability1011_vary_lf/ -R true -x 123 -X test_cases_seed.txt -T 0 -s 100 -r 0.5 -G information_gain -D 0 -k true -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_${d}_${fsize} -n ${d} -P 5432
 #     done
 #   done
 #   x=$(( $x+1 ))
@@ -103,12 +103,12 @@ done
   # -n, --dataset_name 
   #                       dataset used in the use case of labelling functions (default: youtube)
   # -C, --dc_file     holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default:
-  #                       /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
+  #                       /home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
   # -S, --semantic_version 
   #                       muse semantic version (ind/stage/end/step) (default: ind)
   # -t, --table_name  the table name from database cr that you want to work with (default: tax)
   # -F, --desired_dcs_file 
-  #                       the ground truth DCs that so called user think is correct (default: /home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
+  #                       the ground truth DCs that so called user think is correct (default: /home/opc/author/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
   # -I, --user_specify_pairs 
   #                       user specify pairs of violations to repair? (default: True)
 

@@ -12,14 +12,14 @@
 # 		for a in ${acc_thresh[@]}
 # 		do
 # 			python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -E ${v} -A ${a} -T 0 -s 300 -r 0.5 -G information_gain -D 0 \
-# 			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+# 			-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 # 		done
 # 	done
 # 	x=$(( $x+1 ))
 # done
 
 # python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -T 0 -s 300 -r 0.5 -G information_gain -D 0 \
-# -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+# -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 
 
 declare -i repetitions=1
@@ -33,14 +33,14 @@ do
 		for a in ${acc_thresh[@]}
 		do
 			python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -E ${v} -A ${a} -T 0 -s 200 -r 0.5 -G information_gain -D 0 \
-			-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+			-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 		done
 	done
 	x=$(( $x+1 ))
 done
 
 python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ -U lf -x 123 -T 0 -s 200 -r 0.5 -G information_gain -D 0 \
--K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
+-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube -k true -P 5432
 
 
 
@@ -86,12 +86,12 @@ python main.py -e experiment_results_folders/retrain_every_x_percent_reps_1014/ 
 #                         the model used to get the label: majority/snorkel (default: snorkel)
 #   -n, --dataset_name 
 #                         dataset used in the use case of labelling functions (default: youtube)
-#   -C, --dc_file     holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
+#   -C, --dc_file     holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: /home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
 #   -S, --semantic_version 
 #                         muse semantic version (ind/stage/end/step) (default: ind)
 #   -t, --table_name  the table name from database cr that you want to work with (default: tax)
 #   -F, --desired_dcs_file 
-#                         the ground truth DCs that so called user think is correct (default: /home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
+#                         the ground truth DCs that so called user think is correct (default: /home/opc/author/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
 #   -I, --user_specify_pairs 
 #                         user specify pairs of violations to repair? (default: True)
 #   -B, --repeatable_muse 

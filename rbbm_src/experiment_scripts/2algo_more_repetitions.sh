@@ -29,14 +29,14 @@ do
 							rseed=$(shuf -i 1-1000 -n 1)
 							# echo "rand= ${rseed}"
 							python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D ${d} -l critical \
-							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+							-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
 							echo "python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G naive -D ${d} -l critical \
-							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
+							-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
 							global_runs=$(( $global_runs+1 ))
 							python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G information_gain -D ${d} -l critical \
-							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+							-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
 							echo "python main.py -U lf -e experiment_results_folders/without_optimal/basics -R true -x ${rseed} -X test_cases_seed.txt -T 0 -s ${n} -r ${c} -G information_gain -D ${d} -l critical \
-							-K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
+							-K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube " >> "$filename3"
 							global_runs=$(( $global_runs+1 ))
 						done
 				done
@@ -46,7 +46,7 @@ done
 
 
 
-# python main.py -U lf -e experiment_results_folders/exp_test_case_naive -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -K /home/opc/chenjie/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
+# python main.py -U lf -e experiment_results_folders/exp_test_case_naive -R true -x 123 -X test_cases_seed.txt -T 0 -s 40 -r 0.5 -G naive -D 0 -K /home/opc/author/RBBM/rbbm_src/labelling_func_src/src/pickled_funcs_720 -n youtube 
 
 
 # optional arguments:
@@ -87,11 +87,11 @@ done
 #                         the model used to get the label: majority/snorkel (default: snorkel)
 #   -n, --dataset_name 
 #                         dataset used in the use case of labelling functions (default: youtube)
-#   -C, --dc_file     holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: /home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
+#   -C, --dc_file     holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: /home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt)
 #   -S, --semantic_version 
 #                         muse semantic version (ind/stage/end/step) (default: ind)
 #   -t, --table_name  the table name from database cr that you want to work with (default: tax)
 #   -F, --desired_dcs_file 
-#                         the ground truth DCs that so called user think is correct (default: /home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
+#                         the ground truth DCs that so called user think is correct (default: /home/opc/author/RBBM/rbbm_src/dc_src/user_desired_dcs.txt)
 #   -I, --user_specify_pairs 
 #                         user specify pairs of violations to repair? (default: True)

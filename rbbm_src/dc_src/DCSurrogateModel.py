@@ -102,7 +102,7 @@ class DCSurrogateModel:
 if __name__ == '__main__':
     conn=psycopg2.connect('dbname=cr user=postgres port=5432')
     ds = DCSurrogateModel(conn)
-    dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
+    dc_file='/home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
     dcs = []
     try:
         with open(dc_file, "r") as file:

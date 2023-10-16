@@ -133,19 +133,19 @@ if __name__ == '__main__':
 	conn=psycopg2.connect('dbname=cr user=postgres')
 
 	# tablename='tax_sample'
-	# dc_file = '/home/perm/chenjie/RBBM/rbbm_src/dc_src/tax_precise_dcs.txt'
+	# dc_file = '/home/perm/author/RBBM/rbbm_src/dc_src/tax_precise_dcs.txt'
 
 	# tablename='adult_sample'
-	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/adult_dcs.txt'
+	# dc_file = '/home/opc/author/RBBM/rbbm_src/dc_src/adult_dcs.txt'
 
 	# tablename='airport_sample'
-	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/airport_dcs.txt'
+	# dc_file = '/home/opc/author/RBBM/rbbm_src/dc_src/airport_dcs.txt'
 
 	# tablename='hospital_sample'
-	# dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
+	# dc_file = '/home/opc/author/RBBM/rbbm_src/dc_src/hospital_dcs.txt'
 
 	tablename='tax'
-	dc_file = '/home/opc/chenjie/RBBM/rbbm_src/dc_src/tax_dcs.txt'
+	dc_file = '/home/opc/author/RBBM/rbbm_src/dc_src/tax_dcs.txt'
 
 	du = DCUser(conn=conn, tablename=tablename)
 	res = du.select_dc(violation_threshold=0.2, dc_file_dir=dc_file, predicate_max_threshold=5, predicate_min_threshold=2)

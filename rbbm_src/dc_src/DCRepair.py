@@ -909,10 +909,10 @@ def calculate_retrained_results(complaints, confirmations, new_dirties_ids):
 def dc_main(dc_input):
 
 
-    # dc_file='/home/opc/chenjie/RBBM/experiments/dc/dc_sample_10'
+    # dc_file='/home/opc/author/RBBM/experiments/dc/dc_sample_10'
     # table_name='adult'
-    # dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/flights_dcfinder_rules.txt'
-    # dc_file='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
+    # dc_file='/home/opc/author/RBBM/rbbm_src/muse/data/mas/flights_dcfinder_rules.txt'
+    # dc_file='/home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt'
     table_name=dc_input.table_name
     semantic_version=dc_input.semantic_version
     desired_dcs_file=dc_input.desired_dcs_file

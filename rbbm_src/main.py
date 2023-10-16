@@ -121,7 +121,7 @@ def main():
 	help='dataset used in the use case of labelling functions (default: %(default)s)' )
 
 	# Arguments for DC use case only:
-	parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/rbbm_src/muse/data/mas/tax_rules.txt',
+	parser.add_argument('-C', '--dc_file', metavar='\b', type=str, default='/home/opc/author/RBBM/rbbm_src/muse/data/mas/tax_rules.txt',
 	help='holoclean needs a input text file which contains the denial constraints, this will be the file inside dc_dir (default: %(default)s)')
 
 	parser.add_argument('-S', '--semantic_version', metavar='\b', type=str, default='ind',
@@ -130,7 +130,7 @@ def main():
 	parser.add_argument('-t', '--table_name', metavar='\b', type=str, default='tax',
 	help='the table name from database cr that you want to work with (default: %(default)s)')
 
-	parser.add_argument('-F', '--desired_dcs_file', metavar='\b', type=str, default='/home/opc/chenjie/RBBM/rbbm_src/dc_src/user_desired_dcs.txt',
+	parser.add_argument('-F', '--desired_dcs_file', metavar='\b', type=str, default='/home/opc/author/RBBM/rbbm_src/dc_src/user_desired_dcs.txt',
 	help='the ground truth DCs that so called user think is correct (default: %(default)s)')
 
 	parser.add_argument('-I', '--user_specify_pairs', metavar='\b', type=str, default='True',
