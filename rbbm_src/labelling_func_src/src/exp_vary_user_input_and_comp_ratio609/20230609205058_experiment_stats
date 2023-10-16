@@ -1,2 +1,0 @@
-strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo
-information_gain,1.967,0.5,72,8,0.7,0.861,1.0,0.559,1539,433,10,0.5,4,9

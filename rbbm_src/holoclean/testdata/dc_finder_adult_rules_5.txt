@@ -1,5 +1,0 @@
-t1&t2&EQ(t1.Relationship,t2.Relationship)&EQ(t1.Occupation,t2.Occupation)&IQ(t1.Country,t2.Country)
-t1&t2&IQ(t1.Workclass,t2.Workclass)&IQ(t1.Race,t2.Race)&EQ(t1.HoursPerWeek,t2.HoursPerWeek)&IQ(t1.Country,t2.Country)
-t1&t2&EQ(t1.Education,t2.Education)&EQ(t1.Maritalstatus,t2.Maritalstatus)&IQ(t1.Race,t2.Race)&IQ(t1.Country,t2.Country)
-t1&t2&IQ(t1.Sex,t2.Sex)&EQ(t1.Occupation,t2.Occupation)&IQ(t1.Country,t2.Country)
-t1&t2&EQ(t1.Relationship,t2.Relationship)&EQ(t1.Education,t2.Education)&IQ(t1.Maritalstatus,t2.Maritalstatus)

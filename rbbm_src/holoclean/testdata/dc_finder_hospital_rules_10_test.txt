@@ -1,8 +1,0 @@
-t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&EQ(t1.Score,t2.Score)
-t1&t2&EQ(t1.MeasureCode,t2.MeasureCode)
-t1&t2&EQ(t1.Condition,t2.Condition)&EQ(t1.HospitalOwner,t2.HospitalOwner)
-t1&t2&IQ(t1.EmergencyService,t2.EmergencyService)&EQ(t1.Score,t2.Score)
-t1&t2&EQ(t1.Condition,t2.Condition)&IQ(t1.HospitalType,t2.HospitalType)
-t1&t2&EQ(t1.Address1,t2.Address1)
-t1&t2&EQ(t1.Sample,t2.Sample)
-t1&t2&EQ(t1.HospitalOwner,t2.HospitalOwner)&IQ(t1.HospitalType,t2.HospitalType)

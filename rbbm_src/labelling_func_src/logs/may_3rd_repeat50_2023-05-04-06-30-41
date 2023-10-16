@@ -1,3 +1,0 @@
-strat,runtime,avg_tree_size_increase,num_complaints,confirmation_cnt,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt
-naive,0.652,20.0,80,80,0.76,0.912,1.0,0.807,1472,1472
-information gain,6.305,8.444444444444445,80,80,0.76,0.875,1.0,0.863,1472,1472
