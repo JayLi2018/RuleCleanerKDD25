@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    .node { fill: #fff; stroke: #000; }
+    .link { stroke: #000; fill: none; }
+  </style>
+</head>
+<body>
+
+<div id="tree-container"></div>
+<div id="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+</div>
+
+<script>
+// Data for the binary tree
+const treeData = {
+  name: "Root",
+  children: [
+    {
+      name: "Child 1",
+      children: [
+        { name: "Leaf Node 1" },
+        { name: "Leaf Node 2" },
+      ],
+    },
+    { name: "Child 2" },
+  ],
+};
+
+// Set up the D3 tree layout
+const treeLayout = d3.tree().size([400, 200]);
+
+// Create an SVG element within the container
+const svg = d3.select("#tree-container").append("svg")
+  .attr("width", 500)
+  .attr("height", 250)
+  .append("g")
+  .attr("transform", "translate(50, 0)");
+
+// Create a hierarchical tree structure from the data
+const root = d3.hierarchy(treeData);
+
+// Assigns the x and y coordinates to each node
+treeLayout(root);
+
+// Create links between tree nodes
+const links = root.links();
+
+// Create the tree nodes with click event handlers
+const nodes = svg.selectAll("circle.node")
+  .data(root.descendants())
+  .enter().append("circle")
+  .attr("class", "node")
+  .attr("cx", (d) => d.x)
+  .attr("cy", (d) => d.y)
+  .attr("r", 5)
+  .on("click", (d) => {
+    if (!d.children && !d._children) {
+      console.log("clicked!")
+      // If it's a leaf node (no children), load data from a JSON file.
+      loadDataFromJSONFile();
+    }
+  });
+
+// Create the tree links
+const link = svg.selectAll("path.link")
+  .data(links)
+  .enter().append("path")
+  .attr("class", "link")
+  .attr("d", (d) => {
+    return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`;
+  });
+
+// Function to load data from a JSON file
+function loadDataFromJSONFile() {
+  d3.json("data.json").then((data) => {
+    const tableBody = document.getElementById("table-body");
+    tableBody.innerHTML = ""; // Clear the table
+    data.forEach((item) => {
+      const row = tableBody.insertRow();
+      const cell = row.insertCell(0);
+      cell.textContent = item.Value;
+    });
+  });
+}
+</script>
+
+</body>
+</html>
