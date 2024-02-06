@@ -1,6 +1,11 @@
 This is the repository for RuleCleaner submitted to VLDB2024
 
-To run code, the following flags are available:
+
+To run code, please follow those steps:
+
+1. run ```python setup.py install``` to install rulecleaner package under your environment (virtualenv is recommended)  
+
+2. locate under folder rbbm_src/, and use the following instructions to run code. 
 
 ```python
 usage: main.py [-h] [-U] [-e EXPERIMENT_NAME] [-R REPEATABLE] [-x SEED] [-X SEED_FILE] [-E RETRAIN_EVERY_PERCENT] [-A RETRAIN_ACCURACY_THRESH] [-T] [-l] [-s] [-r] [-G STRATEGY]
@@ -64,6 +69,11 @@ optional arguments:
   --run-gpt-rules
   --gpt-dataset       youtube/amazon/pt/pa
   --gpt-pickled-rules-dir 
+```
+
+3. As an example, if you want to run the experiment on GPT generated rules on youtube dataset, you could run 
+```python
+python main.py -e test -U lf -r 0.5 -G information_gain -D 0 --run-gpt-rules --gpt-dataset youtube -n youtube 
 ```
 
 The full version of the paper is [here](full_version.pdf)

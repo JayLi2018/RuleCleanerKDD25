@@ -25,7 +25,7 @@ def main():
 	parser = argparse.ArgumentParser(description='Running experiments of LFRepair')
 	# common arguments needed for LF
 
-	parser.add_argument('-U', '--use_case', metavar='\b', type=str, default='dc',
+	parser.add_argument('-U', '--use_case', metavar='\b', type=str, default='lf',
 		help='use case of the run, is it for dc or lf? (default: %(default)s)')
 
 	parser.add_argument('-e', '--experiment_name',  type=str, default='test_blah',

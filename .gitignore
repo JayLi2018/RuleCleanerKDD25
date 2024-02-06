@@ -140,6 +140,7 @@ cython_debug/
 # pdfs
 *.pdf
 *.csv
+
 *dot_file
 *experiment_stats
 *log*.txt
