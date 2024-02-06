@@ -147,3 +147,19 @@ rbbm_src/experiment_results_folders/
 *seed_file*.txt
 # dist
 dist/
+*.code-workspace
+*.pkl
+*log*/
+experiments/
+old_stuf/
+rt-polaritydata/
+rbbm_src/dc_src/
+experiment_scripts/
+experiment_graphs/
+holoclean/
+rbbm_src/labelling_func_src/data/
+rbbm_src/muse/
+rbbm_src/snorkel/
+*dc*
+
+

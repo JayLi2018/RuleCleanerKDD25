@@ -3,6 +3,7 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 	Node,
 	Predicate,
 	KeywordPredicate,
+	StemPredicate,
 	RegexPredicate,
 	POSPredicate,
 	DCAttrPredicate,
@@ -59,6 +60,26 @@ def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_
 	r1_r.parent=r1
 
 	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3, is_good=is_good)
+
+# stem lfs 
+def stem_labelling_func_builder(stems: List[str], expected_label: int, is_good: bool=True):
+	cur_number=1
+	tree_size=1
+	r1 = PredicateNode(number=cur_number, pred=StemPredicate(stems=stems))
+	cur_number+=1
+	tree_size+=1
+	r1_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={SPAM:[], HAM:[]}, used_predicates=set(stems))
+	tree_size+=1
+	cur_number+=1
+	r1_r = LabelNode(number=cur_number, label=expected_label, pairs={SPAM:[], HAM:[]}, used_predicates=set(stems))
+	r1.right=r1_r
+	r1.left=r1_l
+
+	r1_l.parent=r1
+	r1_r.parent=r1
+
+	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3, is_good=is_good)
+
 
 # regex lfs
 def regex_func_builder(patterns: List[str], expected_label: int):

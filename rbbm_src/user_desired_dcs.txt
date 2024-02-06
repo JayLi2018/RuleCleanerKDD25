@@ -1,4 +1,0 @@
-t1&t2&EQ(t1.State,t2.State)&EQ(t1.HasChild,t2.HasChild)&IQ(t1.ChildExemp,t2.ChildExemp)
-t1&t2&EQ(t1.State,t2.State)&EQ(t1.Salary,t2.Salary)&IQ(t1.Rate,t2.Rate)
-t1&t2&EQ(t1.State,t2.State)&GT(t1.Salary,t2.Salary)&LT(t1.Rate,t2.Rate)&EQ(t1.Fname,'Mathai')
-t1&t2&EQ(t1.State,t2.State)&LT(t1.Salary,t2.Salary)&GT(t1.Rate,t2.Rate)&EQ(t1.Fname,'Mathai')

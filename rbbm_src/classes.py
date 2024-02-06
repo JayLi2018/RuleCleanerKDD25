@@ -108,6 +108,12 @@ class lf_input:
     lf_source: str
     deletion_absolute_threshold: int
     deletion_type: str
+    run_gpt_rules: bool
+    gpt_dataset: str
+    gpt_pickled_rules_dir: str
+    run_user_behavior: bool
+    user_behavior_err_rate: float
+    user_behavior_step : int
 
 @dataclass
 class dc_input:

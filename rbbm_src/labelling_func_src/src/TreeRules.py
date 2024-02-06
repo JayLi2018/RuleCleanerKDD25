@@ -5,6 +5,8 @@ from dataclasses import dataclass
 import re 
 from snorkel.labeling import LabelingFunction
 import nltk
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
 from string import Template
 import logging
 
@@ -56,10 +58,26 @@ class KeywordPredicate(Predicate):
 		return f"keyword_predicate-word-({','.join(self.keywords)})"
 
 	def evaluate(self,instance: str):
-		# print(f"instance: {instance}")
-		# print(f'evaluating {self.keywords} in {instance.text}')
-		# print(f"{self.keywords} in instance? {self.keywords in instance}")
 		return any(x in instance.text.split() for x in self.keywords)
+		# return any(x in instance.get('text', '') for x in self.keywords)
+	
+class StemPredicate(Predicate):
+
+	def __init__(self, stems:List[str]):
+		self.stems=stems
+		self.pred_identifier= f"keyword_predicate-word-({','.join(self.stems)})"
+
+	def __repr__(self):
+		return f"Stem_predicate-stem-({','.join(self.stems)})"
+
+	def __str__(self):
+		return f"Stem_predicate-stem-({','.join(self.stems)})"
+
+	def evaluate(self,instance: str):
+		# Tokenize the sentence into words
+		instance_stems=instance.stems
+		return all([s in instance_stems for s in self.stems])
+	
 
 class SLengthPredicate(Predicate):
 
@@ -417,18 +435,18 @@ if __name__ == '__main__':
 	# # print(eval("'songs' in x"))
 	# # code if song in sentence and sentiment > 0.5 - > HAM 
 	# # else abstain
-	r1n1 = PredicateNode(pred=KeywordPredicate(keyword='song'))
-	r1n2 = LabelNode(label=ABSTAIN)
+	r1n1 = PredicateNode(pred=KeywordPredicate(keywords=['sons']))
+	r1n2 = LabelNode(label=ABSTAIN, used_predicates=set([]))
 	r1n3 = PredicateNode(pred=SentimentPredicate(thresh=0.5, sent_func=textblob_sentiment))
-	r1n4 = LabelNode(label=ABSTAIN)
+	r1n4 = LabelNode(label=ABSTAIN, used_predicates=set([]))
 	# r1n4.left=r1n6
-	r1n5 = LabelNode(label=HAM)
+	r1n5 = LabelNode(label=HAM, used_predicates=set([]))
 	r1n1.left=r1n2
-	r1n1.right=r1n3
-	r1n3.left=r1n4
-	r1n3.right=r1n5
+	# r1n1.right=r1n3
+	# r1n3.left=r1n4
+	r1n1.right=r1n5
 	print(r1n1)
 	print(r1n2)
-	keyword_song_with_sentiment = TreeRule(rtype='lf', root=r1n1)
-	print(keyword_song_with_sentiment)
-	print(keyword_song_with_sentiment.evaluate(x))
+	keyword_song_with_sentiment = TreeRule(rtype='lf', root=r1n1, size=3, max_node_id=3)
+	# print(keyword_song_with_sentiment)
+	print(keyword_song_with_sentiment.evaluate({'text':'i love this song'}))

@@ -24,6 +24,12 @@ import os
 import argparse
 import nltk
 from nltk.corpus import stopwords
+nltk.download('words')
+
+from nltk.corpus import words as nltk_words
+
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
 import copy
 import pickle
 import argparse
@@ -64,6 +70,7 @@ from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_tex
 
 nltk.download('stopwords') 
 stop_words = set(stopwords.words('english')) 
+nltk_words_set =  set(nltk_words.words())
 
 logger = logging.getLogger(__name__)
 
@@ -167,7 +174,7 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# rlabel: the right node label 
 		# check if the predicate is already present
 		# in the current constraint
-		if(w.lower() not in stop_words):
+		if(w.lower() not in stop_words and w.lower() in nltk_words_set):
 			if(w not in used_predicates):
 				if(not all_possible):
 					return w
@@ -181,7 +188,7 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 		# rlabel: the right node label 
 		# check if the predicate is already present
 		# in the current constraint
-		if(w.lower() not in stop_words):
+		if(w.lower() not in stop_words and w.lower() in nltk_words_set):
 			if(w not in used_predicates):
 				if(not all_possible):
 					return w
@@ -235,8 +242,7 @@ def check_tree_purity(tree_rule, start_number=1):
 	return True
 
 def calculate_gini(node, the_fix):
-	# print("node:")
-	# print(node)
+
 	# print("pairs:")
 	# print(node.pairs)
 	sign=None
@@ -263,6 +269,22 @@ def calculate_gini(node, the_fix):
 					left_leaf_ham_cnt+=1
 
 	# reverse_condition = False
+	if((left_leaf_spam_cnt+left_leaf_ham_cnt)==0):
+		# logger.debug("node:")
+		# logger.debug(node)
+		# pdb.set_trace()
+		for k in [SPAM, HAM]:
+			for p in node.pairs[k]:
+				if(candidate_new_pred_node.pred.evaluate(p)):
+					if(k==SPAM):
+						right_leaf_spam_cnt+=1
+					else:
+						right_leaf_ham_cnt+=1
+				else:
+					if(k==SPAM):
+						left_leaf_spam_cnt+=1
+					else:
+						left_leaf_ham_cnt+=1
 	left_spam_rate=(left_leaf_spam_cnt)/(left_leaf_spam_cnt+left_leaf_ham_cnt)
 	right_spam_rate=(right_leaf_spam_cnt)/(right_leaf_ham_cnt+right_leaf_spam_cnt)
 
@@ -595,6 +617,7 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 	all_fixed_rules = []
 	cur_fixed_rules = []
 	all_rules_cnt=len(fix_book_keeping_dict)
+
 	# domain_value_dict = construct_domain_dict(conn, table_name=table_name)
 	# fix_book_keeping_dict = {k.id:{'rule':k} for k in original_rules}
 	# print(domain_value_dict)
@@ -634,11 +657,12 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 			fixed_treerule_text = fixed_treerule.serialize()
 			fix_book_keeping_dict[treerule.id]['fixed_treerule_text']=fixed_treerule_text
 		else:
-			fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']=tree_rule
+			fix_book_keeping_dict[sorted_rule_ids[current_start_id_pos]]['rule']=treerule
 			fix_book_keeping_dict[treerule.id]['after_fix_size']=treerule.size
 			fixed_treerule_text = treerule.serialize()
 			fix_book_keeping_dict[treerule.id]['fixed_treerule_text']=fixed_treerule_text
-			fixed_treerule=tree_rule
+			fixed_treerule=treerule
+		# pdb.set_trace()
 		if(deletion_type=='ratio'):
 			if(fixed_treerule.size/fix_book_keeping_dict[treerule.id]['pre_fix_size']*deletion_factor>=1):
 				fix_book_keeping_dict[treerule.id]['deleted']=True
@@ -656,10 +680,25 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 
 	return stop_at_id_pos
 
+
+
+# Function to apply stemming to a sentence
+def stem_sentence(sentence, stemmer):
+    words = word_tokenize(sentence)
+    stemmed_words = [stemmer.stem(word) for word in words]
+    return stemmed_words
+
+
+
 def run_snorkel(lf_input, LFs=None):
 	conn = lf_input.connection
 	# logger.critical(LFs)
 	sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
+	if(lf_input.run_gpt_rules):
+		stemmer = PorterStemmer()
+		sentences_df['stems'] = sentences_df['content'].apply(lambda x: stem_sentence(x, stemmer))
+
+		logger.debug("created stems for sentences")
 	# logger.critical(sentences_df.head())
 	sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
 	sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
@@ -676,6 +715,7 @@ def run_snorkel(lf_input, LFs=None):
 	# df.to_csv('snorkel.csv')
 
 	if(lf_input.training_model_type=='majority'):
+		# pdb.set_trace()
 		model = MajorityLabelVoter()
 	else:
 		model = LabelModel(cardinality=2, verbose=True, device='cpu')
@@ -745,6 +785,8 @@ def lf_main(lf_input):
 	rseed=lf_input.rseed
 	run_intro=lf_input.run_intro
 	run_amazon = lf_input.run_amazon
+	run_gpt_rules=lf_input.run_gpt_rules
+	gpt_dataset=lf_input.gpt_dataset
 	run_painter = lf_input.run_painter
 	run_professor= lf_input.run_professor
 	retrain_after_percent=lf_input.retrain_every_percent
@@ -756,6 +798,14 @@ def lf_main(lf_input):
 	pre_deletion_threshold=lf_input.pre_deletion_threshold
 	deletion_absolute_threshold=lf_input.deletion_absolute_threshold
 	deletion_type=lf_input.deletion_type
+	gpt_pickled_rules_dir=lf_input.gpt_pickled_rules_dir
+
+	################User Behavior related ############################
+	run_user_behavior=lf_input.run_user_behavior,
+	user_behavior_err_rate=lf_input.user_behavior_err_rate,
+	user_behavior_step = lf_input.user_behavior_step
+	user_behavior_cur_step=1
+	####################################################
 	# customized_complaints_file=lf_input.customized_complaints_file
 	######
 	logger.debug(f"lf_input:{lf_input}")
@@ -793,22 +843,28 @@ def lf_main(lf_input):
 	if not os.path.exists(result_dir):
 		os.makedirs(result_dir)
 
+	
 	if(lf_source=='intro' or run_intro):
 		tree_rules=gen_example_funcs()
-	elif(run_amazon):
+	elif(run_amazon is True):
 		logger.debug("amazon!")
 		tree_rules=gen_amazon_funcs()
-	elif(run_painter):
+	elif(run_painter is True):
 		logger.debug("run_painter!")
 		tree_rules=gen_painter_architecht_funcs()
-	elif(run_professor):
+	elif(run_professor is True):
 		logger.debug("run_professor!")
 		tree_rules=gen_professor_teacher_funcs()
 	elif(load_funcs_from_pickle=='true'):
 		with open(f'{pickle_file_name}.pkl', 'rb') as file:
-		    tree_rules = pickle.load(file)
-		    logger.debug('loaded pickled funcs')
-		    logger.debug(f'we have {len(tree_rules)} funcs')
+			tree_rules = pickle.load(file)
+			logger.debug('loaded pickled funcs')
+			logger.debug(f'we have {len(tree_rules)} funcs')
+	elif(run_gpt_rules is True):
+		with open(f'{gpt_pickled_rules_dir}{gpt_dataset}_gpt_rules.pkl', 'rb') as file:
+			tree_rules = pickle.load(file)
+			logger.debug('loaded pickled funcs')
+			logger.debug(f'we have {len(tree_rules)} funcs')
 	else:
 		sentences_df=pd.read_sql(f'SELECT * FROM {lf_input.dataset_name}', conn)
 		sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
@@ -891,6 +947,7 @@ def lf_main(lf_input):
 		num_complaints=len(sampled_wrongs)
 		num_confirm=len(sampled_confirms)
 
+
 	sampled_complaints['id'] = sampled_complaints.reset_index().index
 
 	stimestamp = datetime.now()
@@ -907,7 +964,10 @@ def lf_main(lf_input):
 		non_abstain_results_cnt=len([x for x in func_results if x!=ABSTAIN])
 		gts = all_sentences_df['expected_label'].values.tolist()
 		match_cnt = len([x for x,y in zip(func_results,gts) if (x == y and x!=ABSTAIN)])
-		if(match_cnt/non_abstain_results_cnt<pre_deletion_threshold):
+		if(non_abstain_results_cnt==0):
+			fix_book_keeping_dict[f.id]['pre-deleted']=True
+			# pdb.set_trace()
+		elif(match_cnt/non_abstain_results_cnt<pre_deletion_threshold):
 			fix_book_keeping_dict[f.id]['pre-deleted']=True
 
 	predeleted_book_keep_dict = {k:v for k,v in fix_book_keeping_dict.items() if v['pre-deleted']==True}
@@ -923,6 +983,7 @@ def lf_main(lf_input):
 		retrain_bookkeeping_dict =None
 
 	while(fix_rate<=retrain_accuracy_thresh):
+		# pdb.set_trace()
 		logger.debug(f'curren_fix_rate:{fix_rate}')
 		logger.debug(f'retrain_accuracy_thresh: {retrain_accuracy_thresh}')
 		logger.debug(f'current_start_id_pos:{current_start_id_pos}')
@@ -961,6 +1022,7 @@ def lf_main(lf_input):
 			logger.critical(retrain_bookkeeping_dict)
 
 		if(current_start_id_pos>=len(new_fix_book_keeping_dict)):
+			logger.debug("break")
 			break
 
 	# avg_tree_size_increase,total_tree_size_increase = calculate_post_fix_tree_size(fix_book_keeping_dict,post_fix_num_funcs)
