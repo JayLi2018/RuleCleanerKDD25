@@ -162,6 +162,5 @@ rbbm_src/muse/
 rbbm_src/snorkel/
 *dc*
 .vscode/
-setup.py
 
 
