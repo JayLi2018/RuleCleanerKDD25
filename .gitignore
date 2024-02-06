@@ -156,7 +156,7 @@ old_stuf/
 rt-polaritydata/
 rbbm_src/dc_src/
 experiment_scripts/
-experiment_graphs/
+rbbm_src/experiment_graphs/
 holoclean/
 rbbm_src/labelling_func_src/data/
 rbbm_src/muse/
