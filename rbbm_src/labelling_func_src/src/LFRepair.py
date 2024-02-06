@@ -800,12 +800,6 @@ def lf_main(lf_input):
 	deletion_type=lf_input.deletion_type
 	gpt_pickled_rules_dir=lf_input.gpt_pickled_rules_dir
 
-	################User Behavior related ############################
-	run_user_behavior=lf_input.run_user_behavior,
-	user_behavior_err_rate=lf_input.user_behavior_err_rate,
-	user_behavior_step = lf_input.user_behavior_step
-	user_behavior_cur_step=1
-	####################################################
 	# customized_complaints_file=lf_input.customized_complaints_file
 	######
 	logger.debug(f"lf_input:{lf_input}")
@@ -1073,24 +1067,3 @@ def lf_main(lf_input):
 		with open(result_dir+'/'+timestamp_str+'_retrain_bookkeeping_dict.pkl', 'wb') as file:
 		    # Use pickle.dump() to write the dictionary to the file
 		    pickle.dump(retrain_bookkeeping_dict, file)
-
-
-
-# parameters needed 
-
-# repair method (str): naive, information gain, optimal
-# userinput size (integer):  
-# complaint ratio
-# lf source? (str: running example, sys_gen)
-# number of lfs (if sysgen)
-# db conn params
-# dataset name
-
-
-
-
-# 1. repeate the experiments to see how stable the runtime + tree size increase changes
-# 2. finish implementing retraing with new rules to get the accuracy (global and user input)
-# 3. add the parameter / functionality to control deleting factor
-# 4. add the functionality of early stopping and retraing (based on percentage of the current fix on the target node)
-# 5. LF sources: revisit witan repository to see if theres a good / new dataset with better lfs available
