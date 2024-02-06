@@ -161,5 +161,7 @@ rbbm_src/labelling_func_src/data/
 rbbm_src/muse/
 rbbm_src/snorkel/
 *dc*
+.vscode/
+setup.py
 
 
