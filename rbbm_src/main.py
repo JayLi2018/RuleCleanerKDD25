@@ -97,6 +97,32 @@ def main():
 	
 	parser.add_argument('-o', '--run_professor',  action="store_true")
 
+	parser.add_argument('-m', '--run_imdb',  action="store_true")
+
+	parser.add_argument('--run-photographer', action="store_true")
+
+	parser.add_argument("--run-physician", action="store_true")
+
+	parser.add_argument("--run-yelp", action="store_true")
+
+	parser.add_argument("--run-plots", action="store_true")
+
+	parser.add_argument("--run-fakenews", action="store_true")
+
+	parser.add_argument("--run-dbpedia", action="store_true")
+
+	parser.add_argument("--run-agnews", action="store_true")
+
+	parser.add_argument("--run-tweets", action="store_true")
+
+	parser.add_argument("--run-spam", action="store_true")
+
+	parser.add_argument("--user-input-percentage",  type=float, default=0.01,
+	  help='(if user-input-sample-strat = percentage, what is the percentage, %(default)s)')
+	
+	parser.add_argument("--user-input-sample-strat", type=str, default="absolute",
+	help='(how is user input sampled/selected (absolute/percentage): %(default)s)')
+
 	parser.add_argument('-k', '--load_funcs_from_pickle',   type=str, default='false',
 	  help='(flag indicating if we want to load functions from a pickle file default: %(default)s)')
 
@@ -116,6 +142,7 @@ def main():
 	parser.add_argument("--gpt-dataset", type=str, metavar='\b', default='youtube', help="youtube/amazon/pt/pa")
 	parser.add_argument("--gpt-pickled-rules-dir", metavar='\b', type=str, default='/home/opc/chenjie/RBBM/chatgpt_rbbm/chatgpt_rules/')
 
+	parser.add_argument("--user-input-strat", type=str, metavar='\b', default='naive', help="naive/active_learning")
 	
 	args = parser.parse_args()
 
@@ -138,6 +165,16 @@ def main():
 	run_amazon=args.run_amazon,
 	run_painter=args.run_painter,
 	run_professor=args.run_professor,
+	run_imdb=args.run_imdb,
+	run_photographer=args.run_photographer,
+	run_physician=args.run_physician,
+	run_spam=args.run_spam,
+	run_tweets=args.run_tweets,
+	run_fakenews=args.run_fakenews,
+	run_plots=args.run_plots,
+	run_yelp=args.run_yelp,
+	run_dbpedia=args.run_dbpedia,
+	run_agnews=args.run_agnews,
 	retrain_every_percent=args.retrain_every_percent,
 	deletion_factor=args.deletion_factor,
 	retrain_accuracy_thresh=args.retrain_accuracy_thresh,
@@ -152,7 +189,10 @@ def main():
 	deletion_type=args.deletion_type,
 	run_gpt_rules=args.run_gpt_rules,
 	gpt_dataset=args.gpt_dataset,
-	gpt_pickled_rules_dir=args.gpt_pickled_rules_dir
+	gpt_pickled_rules_dir=args.gpt_pickled_rules_dir,
+	user_input_strat=args.user_input_strat,
+	user_input_percentage = args.user_input_percentage,
+    user_input_sample_strat = args.user_input_sample_strat
 	)
 	
 	lf_main(input_arg_obj)

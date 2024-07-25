@@ -55,7 +55,17 @@ from rbbm_src.labelling_func_src.src.TreeRules import (
 from rbbm_src.labelling_func_src.src.example_tree_rules import (
 	gen_example_funcs,gen_amazon_funcs,
 	gen_professor_teacher_funcs,
-	gen_painter_architecht_funcs
+	gen_painter_architecht_funcs,
+	gen_imdb_funcs,
+	gen_pj_funcs,
+	gen_pp_funcs,
+	gen_yelp_funcs,
+	gen_plots_funcs,
+	gen_fakenews_funcs,
+	gen_dbpedia_funcs,
+	gen_agnews_funcs,
+	gen_tweets_funcs,
+	gen_spam_funcs
 )
 from rbbm_src.labelling_func_src.src.KeyWordRuleMiner import KeyWordRuleMiner 
 from rbbm_src.classes import StatsTracker, FixMonitor, RepairConfig, lf_input
@@ -722,29 +732,25 @@ def run_snorkel(lf_input, LFs=None):
 		model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
 		# snorkel needs to get an estimator using fit function first
 		# training model with all labelling functions
+	
+	# pdb.set_trace()
+	preds_probs= model.predict_proba(L=initial_vectors)
 
-	probs_test= model.predict_proba(L=initial_vectors)
-	df_sentences_filtered, probs_test_filtered = filter_unlabeled_dataframe(
-			X=sentences_df, y=probs_test, L=initial_vectors
-	)
-	# reset df_train to those receive signals
+	df_sentences_filtered, probs_test_filtered, filtered_vectors = filter_unlabeled_dataframe(
+			X=sentences_df, y=preds_probs, L=initial_vectors
+	)	
+	
+	# pdb.set_trace()
 	df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
-	# df_sentences_filtered=sentences_df
-	filtered_vectors=initial_vectors
-	filtered_vectors = applier.apply(df=df_sentences_filtered, progress_bar=False)
+	prob_diffs = [abs(t[0]-t[1]) for t in probs_test_filtered]
+	prob_diffs_tuples = [(t[0],t[1]) for t in probs_test_filtered]
+	df_sentences_filtered['model_pred_diff'] = pd.Series(prob_diffs)
+	df_sentences_filtered['model_pred_prob_tuple'] = pd.Series(prob_diffs_tuples)
+	df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
 	cached_vectors = dict(zip(LFs, np.transpose(filtered_vectors)))
 	lf_internal_args.func_vectors = cached_vectors
-
-	# logger.critical(cached_vectors)
-	if(lf_input.training_model_type=='snorkel'):
-		model.fit(L_train=filtered_vectors, n_epochs=500, log_freq=100, seed=123)
-
-	df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
-
 	df_sentences_filtered['vectors'] = pd.Series([",".join(map(str, t)) for t in filtered_vectors])
-
 	lf_internal_args.filtered_sentences_df = df_sentences_filtered
-
 	df_sentences_filtered.to_csv('result.csv')
 	# the wrong labels we get
 	wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
@@ -753,6 +759,7 @@ def run_snorkel(lf_input, LFs=None):
 	wrong_preds = wrong_preds.sort_values(['signal_strength'], ascending=False)
 	# logger.critical(wrong_preds)
 	accuracy=(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)
+
 	logger.critical(f"""
 		out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} actually got at least one signal to \n
 		make prediction. Out of all the valid predictions, we have {len(wrong_preds)} wrong predictions, \n
@@ -786,9 +793,19 @@ def lf_main(lf_input):
 	run_intro=lf_input.run_intro
 	run_amazon = lf_input.run_amazon
 	run_gpt_rules=lf_input.run_gpt_rules
-	gpt_dataset=lf_input.gpt_dataset
 	run_painter = lf_input.run_painter
 	run_professor= lf_input.run_professor
+	run_imdb = lf_input.run_imdb
+	run_photographer = lf_input.run_photographer
+	run_physician= lf_input.run_physician
+	run_spam=lf_input.run_spam
+	run_tweets=lf_input.run_tweets
+	run_dbpedia=lf_input.run_dbpedia
+	run_fakenews= lf_input.run_fakenews
+	run_plots = lf_input.run_plots
+	run_yelp=lf_input.run_yelp
+	run_agnews=lf_input.run_agnews
+	gpt_dataset=lf_input.gpt_dataset
 	retrain_after_percent=lf_input.retrain_every_percent
 	deletion_factor=lf_input.deletion_factor
 	retrain_accuracy_thresh=lf_input.retrain_accuracy_thresh
@@ -846,9 +863,48 @@ def lf_main(lf_input):
 	elif(run_painter is True):
 		logger.debug("run_painter!")
 		tree_rules=gen_painter_architecht_funcs()
+
 	elif(run_professor is True):
 		logger.debug("run_professor!")
 		tree_rules=gen_professor_teacher_funcs()
+
+	elif(run_imdb is True):
+		logger.debug("run_imdb!")
+		tree_rules=gen_imdb_funcs()
+
+	elif(run_photographer is True):
+		logger.debug("rum photographer!")
+		tree_rules=gen_pj_funcs()
+
+	elif(run_physician is True):
+		logger.debug("rum physician!")
+		tree_rules = gen_pp_funcs()
+	elif(run_spam is True):
+		logger.debug("rum spam!")
+		tree_rules = gen_spam_funcs()
+	elif(run_tweets is True):
+		logger.debug("rum tweets!")
+		tree_rules = gen_tweets_funcs()
+	elif(run_agnews is True):
+		logger.debug("rum agnews!")
+		tree_rules=gen_agnews_funcs()
+
+	elif(run_plots is True):
+		logger.debug("rum plots!")
+		tree_rules=gen_plots_funcs()
+	
+	elif(run_yelp is True):
+		logger.debug("rum yelp!")
+		tree_rules=gen_yelp_funcs()
+	
+	elif(run_fakenews is True):
+		logger.debug("rum fakenews!")
+		tree_rules=gen_fakenews_funcs()
+	
+	elif(run_dbpedia is True):
+		logger.debug("rum dbpedia!")
+		tree_rules=gen_dbpedia_funcs()
+	
 	elif(load_funcs_from_pickle=='true'):
 		with open(f'{pickle_file_name}.pkl', 'rb') as file:
 			tree_rules = pickle.load(file)
@@ -926,17 +982,41 @@ def lf_main(lf_input):
 		all_confirms=all_sentences_df[all_sentences_df['expected_label']==all_sentences_df['model_pred']]
 		all_confirms=all_confirms.sort_values('cid')
 		complaint_reached_max=False
-		wrong_sample_size=floor(user_input_size*complaint_ratio)
+
+		if(lf_input.user_input_sample_strat=='percentage'):
+			logger.debug("percentage user input strat")
+			# wrong_sample_size = floor(len(all_wrongs)*lf_input.user_input_percentage)
+			wrong_sample_size = min(floor(len(all_wrongs)*lf_input.user_input_percentage),150)
+			logger.debug(f"complaint size: {wrong_sample_size}")
+		else:
+			wrong_sample_size=floor(user_input_size*complaint_ratio)
 		if(wrong_sample_size>=len(all_wrongs)):
 			complaint_reached_max=True
 			wrong_sample_size=len(all_wrongs)
-		sampled_wrongs=all_wrongs.sample(n=wrong_sample_size,random_state=rs)
+		if(lf_input.user_input_strat=='active_learning'):
+			all_wrongs=all_wrongs.sort_values('model_pred_diff')
+			sampled_wrongs=all_wrongs.head(n=wrong_sample_size)
+		else:
+			sampled_wrongs=all_wrongs.sample(n=wrong_sample_size,random_state=rs)
+		
 		confirm_reached_max=False
-		confirm_sample_size=user_input_size-wrong_sample_size
+		if(lf_input.user_input_sample_strat=='percentage'):
+			logger.debug("percentage user input strat")
+			confirm_sample_size = min(floor(len(all_confirms)*lf_input.user_input_percentage),150)
+			logger.debug(f"confirm size: {confirm_sample_size}")
+		else:
+			confirm_sample_size=user_input_size-wrong_sample_size
+
 		if(confirm_sample_size>=len(all_confirms)):
 			confirm_reached_max=True
 			confirm_sample_size=len(all_confirms)
-		sampled_confirms=all_confirms.sample(n=confirm_sample_size, random_state=rs)
+		if(lf_input.user_input_strat=='active_learning'):
+			all_confirms=all_confirms.sort_values('model_pred_diff')
+			# pdb.set_trace()
+			sampled_confirms=all_confirms.head(n=confirm_sample_size)
+		else:
+			sampled_confirms=all_confirms.sample(n=confirm_sample_size, random_state=rs)
+		
 		sampled_complaints=pd.concat([sampled_wrongs, sampled_confirms])
 		num_complaints=len(sampled_wrongs)
 		num_confirm=len(sampled_confirms)
@@ -993,6 +1073,7 @@ def lf_main(lf_input):
 		post_fix_num_funcs=len([value for value in new_fix_book_keeping_dict.values() if not value['deleted']])
 		rbbm_end = time.time()
 		rbbm_runtime+=round(rbbm_end-rbbm_start,3)
+		# pdb.set_trace()
 		new_labelling_funcs = [f.gen_label_rule() for f in tree_rules]
 		logger.critical(new_labelling_funcs)
 		logger.critical(f"new_labelling_funcs len: {len(new_labelling_funcs)}")
@@ -1039,7 +1120,7 @@ def lf_main(lf_input):
 	if(not os.path.exists(result_dir+'/'+timestamp_str+'_experiment_stats')):
 		with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'w') as file:
 			# Write some text to the file
-			file.write('strat,seed,pickle_file_name,table_name,timestamp_str,deletion_type,deletion_absolute_threshold,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
+			file.write('user_input_strat,strat,seed,pickle_file_name,table_name,timestamp_str,deletion_type,deletion_absolute_threshold,rbbm_runtime,bbox_runtime,avg_tree_size_increase,user_input_size,complaint_ratio,num_complaints,num_confirmations,global_accuracy,fix_rate,confirm_preserve_rate,new_global_accuracy,prev_signaled_cnt,new_signaled_cnt,' +\
 				'num_functions,deletion_factor,post_fix_num_funcs,num_of_funcs_processed_by_algo,complaint_reached_max,confirm_reached_max,lf_source,retrain_after_percent,retrain_accuracy_thresh,load_funcs_from_pickle,pre_deletion_threshold\n')
 
 	all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_initial_results.csv', index=False)
@@ -1055,7 +1136,7 @@ def lf_main(lf_input):
 	new_all_sentences_df.to_csv(result_dir+'/'+timestamp_str+'_after_fix_results.csv', index=False)
 	with open(result_dir+'/'+timestamp_str+'_experiment_stats', 'a') as file:
 		# Write the row to the file
-		file.write(f'{strat},{rs},{pickle_file_name},{lf_input.dataset_name},{timestamp_str},{deletion_type},{deletion_absolute_threshold},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
+		file.write(f'{lf_input.user_input_strat},{strat},{rs},{pickle_file_name},{lf_input.dataset_name},{timestamp_str},{deletion_type},{deletion_absolute_threshold},{rbbm_runtime},{bbox_runtime},{avg_tree_size_increase},{user_input_size},{complaint_ratio},{num_complaints},{num_confirm},{round(global_accuracy,3)},{round(fix_rate,3)},{round(confirm_preserve_rate,3)},'+\
 			f'{round(new_global_accuracy,3)},{old_signaled_cnt},{new_signaled_cnt},{num_funcs},{deletion_factor},{post_fix_num_funcs},{num_of_funcs_processed_by_algo},{complaint_reached_max},{confirm_reached_max},{lf_source},'+\
 			f'{retrain_after_percent},{retrain_accuracy_thresh},{load_funcs_from_pickle},{pre_deletion_threshold}\n')
 

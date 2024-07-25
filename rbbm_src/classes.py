@@ -96,6 +96,16 @@ class lf_input:
     run_amazon: bool
     run_painter: bool
     run_professor: bool
+    run_imdb: bool
+    run_photographer: bool
+    run_physician: bool
+    run_fakenews: bool
+    run_yelp: bool
+    run_plots: bool
+    run_dbpedia: bool
+    run_agnews: bool
+    run_tweets: bool
+    run_spam: bool
     retrain_every_percent: float
     deletion_factor: float
     retrain_accuracy_thresh: float
@@ -111,7 +121,9 @@ class lf_input:
     run_gpt_rules: bool
     gpt_dataset: str
     gpt_pickled_rules_dir: str
-
+    user_input_strat: str
+    user_input_percentage: float 
+    user_input_sample_strat: str
 
 @dataclass
 class dc_input:
