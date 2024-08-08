@@ -736,7 +736,7 @@ def run_snorkel(lf_input, LFs=None):
 	# pdb.set_trace()
 	preds_probs= model.predict_proba(L=initial_vectors)
 
-	df_sentences_filtered, probs_test_filtered, filtered_vectors = filter_unlabeled_dataframe(
+	df_sentences_filtered, probs_test_filtered, filtered_vectors, df_no_signal = filter_unlabeled_dataframe(
 			X=sentences_df, y=preds_probs, L=initial_vectors
 	)	
 	

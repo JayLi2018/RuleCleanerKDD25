@@ -58,7 +58,7 @@ class KeywordPredicate(Predicate):
 		return f"keyword_predicate-word-({','.join(self.keywords)})"
 
 	def evaluate(self,instance: str):
-		return any(x in instance.text.split() for x in self.keywords)
+		return any(x in instance.text for x in self.keywords)
 		# return any(x in instance.get('text', '') for x in self.keywords)
 	
 class StemPredicate(Predicate):
@@ -308,43 +308,71 @@ class TreeRule:
 		return dot_string
 
 
+	# def __str__(self):
+	# 	str_list = []
+	# 	level=0
+	# 	queue = deque([(self.root, level)])
+	# 	while(queue):
+	# 		# print(f"level: {level}, queue: {queue}")
+	# 		cur_node, level = queue.popleft()
+	# 		# print(cur_node)
+	# 		if(isinstance(cur_node, PredicateNode)):
+	# 			str_list.append(level*'	'+'pred:'+str(cur_node.pred) + ", id:" + str(cur_node.number))
+	# 			if(cur_node.parent):
+	# 				str_list.append(f'parent_id: {cur_node.parent.number}')
+	# 			else:
+	# 				str_list.append(f'parent_id: NaN')
+
+	# 		else:
+	# 			str_list.append(level*'	'+'label:'+str(cur_node.label) + ", id: " + str(cur_node.number))
+	# 			if(cur_node.parent):
+	# 				str_list.append(f'parent_id: {cur_node.parent.number}')
+	# 			else:
+	# 				str_list.append(f'parent_id: NaN')
+
+	# 			for k,v in cur_node.pairs.items():
+	# 				if(self.rtype=='lf'):
+	# 					str_list.append(f"{k}:{[(m.text, m.expected_label) for m in v]}")
+	# 				else:
+	# 					str_list.append(f"{k}:{v}")
+
+	# 		level+=1
+	# 		str_list.append('\n')
+
+	# 		if(cur_node.left):
+	# 			queue.append((cur_node.left, level))
+	# 		if(cur_node.right):
+	# 			queue.append((cur_node.right, level))
+	# 	return '\n'.join(str_list)
 	def __str__(self):
-		str_list = []
-		level=0
-		queue = deque([(self.root, level)])
-		while(queue):
-			# print(f"level: {level}, queue: {queue}")
-			cur_node, level = queue.popleft()
-			# print(cur_node)
-			if(isinstance(cur_node, PredicateNode)):
-				str_list.append(level*'	'+'pred:'+str(cur_node.pred) + ", id:" + str(cur_node.number))
-				if(cur_node.parent):
-					str_list.append(f'parent_id: {cur_node.parent.number}')
-				else:
-					str_list.append(f'parent_id: NaN')
-
+		def traverse(node, level):
+			indent = '    ' * level
+			if isinstance(node, PredicateNode):
+				node_info = f"{indent}PredicateNode(id={node.number}, pred={node.pred}"
+				if node.is_added:
+					node_info += ", added=True"
+				if node.is_reversed:
+					node_info += ", reversed=True"
+				node_info += ")"
 			else:
-				str_list.append(level*'	'+'label:'+str(cur_node.label) + ", id: " + str(cur_node.number))
-				if(cur_node.parent):
-					str_list.append(f'parent_id: {cur_node.parent.number}')
-				else:
-					str_list.append(f'parent_id: NaN')
+				node_info = f"{indent}LabelNode(id={node.number}, label={node.label}"
+				if node.is_added:
+					node_info += ", added=True"
+				if node.is_reversed:
+					node_info += ", reversed=True"
+				node_info += ")"
 
-				for k,v in cur_node.pairs.items():
-					if(self.rtype=='lf'):
-						str_list.append(f"{k}:{[(m.text, m.expected_label) for m in v]}")
-					else:
-						str_list.append(f"{k}:{v}")
+			result.append(node_info)
 
-			level+=1
-			str_list.append('\n')
+			if node.left:
+				traverse(node.left, level + 1)
+			if node.right:
+				traverse(node.right, level + 1)
 
-			if(cur_node.left):
-				queue.append((cur_node.left, level))
-			if(cur_node.right):
-				queue.append((cur_node.right, level))
-		return '\n'.join(str_list)
-
+		result = []
+		traverse(self.root, 0)
+		return '\n'.join(result)
+	
 	def __repr__(self):
 		return self.__str__()
 
@@ -384,7 +412,9 @@ class TreeRule:
 
 	def gen_label_rule(self, pre=None):
 		t=self
-		return LabelingFunction(name=str(self.id), f=self.evaluate, resources={'rule':t}, use_resourece_as_self=True, pre=pre)
+		return LabelingFunction(name=self.__str__(), f=self.evaluate, resources={'rule':t}, 
+						  use_resourece_as_self=True, 
+						  pre=pre, str_repr=self.__str__())
 
 
 	def serialize(self):

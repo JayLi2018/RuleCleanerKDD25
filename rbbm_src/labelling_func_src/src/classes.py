@@ -87,7 +87,7 @@ def make_keyword_lf(keywords, label=SPAM, name=None):
 
 def clean_text(text):
     text = text.encode("ascii", "ignore").decode()
-    text = re.sub('[^a-zA-Z]', ' ', text)
+    text = re.sub('[^a-zA-Z0-9\s\.\,\!\?\;\:\'\"]', ' ', text)  # Allowing common punctuation
     # punctuationfree="".join([i for i in text if i not in text.lower()])
     res = text.lower()
 
