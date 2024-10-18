@@ -48,16 +48,16 @@ def gen_amazon_funcs():
 	f4_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['great']))
 	cur_number+=1
 	tree_size+=1
-	f4_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f4_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['stars','works']))
 	cur_number+=1
 	tree_size+=1
-	f4_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f4_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f4_root.left = f4_root_left_leaf
 	f4_root_left_leaf.parent=f4_root
 	f4_root.right = f4_root_right_child
@@ -79,16 +79,16 @@ def gen_amazon_funcs():
 	f8_root = PredicateNode(pred=KeywordPredicate(keywords=['junk','bought','like','dont','just','use','buy','work','small','didnt','did','disappointed']))
 	cur_number+=1
 	tree_size+=1
-	f8_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f8_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f8_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['shoes','metal','fabric','replace','battery','warranty','plug']))
 	cur_number+=1
 	tree_size+=1
-	f8_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f8_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f8_root_right_child_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f8_root_right_child_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	
 	f8_root.left = f8_root_left_leaf
 	f8_root_left_leaf.parent=f8_root
@@ -114,16 +114,16 @@ def gen_amazon_funcs():
 	f10_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy']))
 	cur_number+=1
 	tree_size+=1
-	f10_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f10_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['stars', 'soft']))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN,  pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM,  pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM,  pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f10_root.left = f10_root_left_leaf
 	f10_root_left_leaf.parent=f10_root
 	f10_root.right = f10_root_right_child
@@ -142,17 +142,17 @@ def gen_amazon_funcs():
 	f11_root = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy']))
 	cur_number+=1
 	tree_size+=1
-	f11_root_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f11_root_right_child = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=['shoes', 'bought', 'use', 'purchase', 'purchased', 'colors', 'install', 'clean', 'design',
 	 'pair', 'screen', 'comfortable', 'products']))
 	cur_number+=1
 	tree_size+=1
-	f11_root_right_child_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_right_child_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f11_root_right_child_right_leaf = LabelNode(number=cur_number,label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_right_child_right_leaf = LabelNode(number=cur_number,label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f11_root.left = f11_root_left_leaf
 	f11_root_left_leaf.parent=f11_root
 	f11_root.right = f11_root_right_child
@@ -256,16 +256,16 @@ def gen_imdb_funcs():
 	f2_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['movie']))
 	cur_number+=1
 	tree_size+=1
-	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f2_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['waste','bad','stupid','crap']))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f2_root.left = f2_root_left
 	f2_root_left.parent=f2_root
 	f2_root.right = f2_root_right
@@ -281,16 +281,16 @@ def gen_imdb_funcs():
 	f3_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['movie']))
 	cur_number+=1
 	tree_size+=1
-	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f3_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['horrible']))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f3_root.left = f3_root_left
 	f3_root_left.parent=f3_root
 	f3_root.right = f3_root_right
@@ -341,16 +341,16 @@ def gen_pj_funcs():
 									  "reporting","writes","correspondent","journalist","writer","politics","author","twitter"]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f3_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["previously", "political", "public", "washington"]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f3_root.left = f3_root_left
 	f3_root_left.parent=f3_root
 	f3_root.right = f3_root_right
@@ -375,16 +375,16 @@ def gen_pj_funcs():
 																			  "daily","previously","tv","blog","weekly","guardian"]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f10_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["reporter","written","reporting"]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f10_root.left = f10_root_left
 	f10_root_left.parent=f10_root
 	f10_root.right = f10_root_right
@@ -435,16 +435,16 @@ def gen_pp_funcs():
 	f2_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['specializes']))
 	cur_number+=1
 	tree_size+=1
-	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f2_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["spanish"]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f2_root.left = f2_root_left
 	f2_root_left.parent=f2_root
 	f2_root.right = f2_root_right
@@ -461,16 +461,16 @@ def gen_pp_funcs():
 	f3_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['specializes']))
 	cur_number+=1
 	tree_size+=1
-	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f3_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["center"]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f3_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f3_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f3_root.left = f3_root_left
 	f3_root_left.parent=f3_root
 	f3_root.right = f3_root_right
@@ -493,16 +493,16 @@ def gen_pp_funcs():
 	f9_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["medical","hospital"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f9_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["insurance"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f9_root.left = f9_root_left
 	f9_root_left.parent=f9_root
 	f9_root.right = f9_root_right
@@ -523,16 +523,16 @@ def gen_pp_funcs():
 																			 "teaches","project","articles","teaching","courses","theory","political","worked","editor"]))
 	cur_number+=1
 	tree_size+=1
-	f11_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f11_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["ph","phd"]))
 	cur_number+=1
 	tree_size+=1
-	f11_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f11_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f11_root.left = f11_root_left
 	f11_root_left.parent=f11_root
 	f11_root.right = f11_root_right
@@ -550,16 +550,16 @@ def gen_pp_funcs():
 	f13_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["number"]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f13_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["registry"]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f13_root.left = f13_root_left
 	f13_root_left.parent=f13_root
 	f13_root.right = f13_root_right
@@ -584,16 +584,16 @@ def gen_pp_funcs():
 									   "professor","public","technology","environmental","systems","study"]))
 	cur_number+=1
 	tree_size+=1
-	f18_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f18_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f18_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["ph","phd"]))
 	cur_number+=1
 	tree_size+=1
-	f18_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f18_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f18_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f18_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f18_root.left = f18_root_left
 	f18_root_left.parent=f18_root
 	f18_root.right = f18_root_right
@@ -607,36 +607,6 @@ def gen_pp_funcs():
 	pp_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17,f18]
 
 	return pp_funcs
-
-
-def gen_yelp_funcs():
-	# HAM: negative, SPAM: positive
-
-	# bad: customer / rude / horrible / worst / terrible / company (coverage: 19%, accuracy: 84%)
-	# good: delicious (coverage: 8%, accuracy: 86%)
-	# good: love / great / amazing / favorite (coverage: 41%, accuracy: 71%)
-	# bad: phone / called (coverage: 8%, accuracy: 74%)
-	# good: excellent (coverage: 4%, accuracy: 82%)
-	# bad: dirty (coverage: 2%, accuracy: 89%)
-	# good: helpful (coverage: 3%, accuracy: 76%)
-	# bad: employees (coverage: 2%, accuracy: 71%)
-
-
-	TreeRule.rule_counter=0
-
-	f1 = keyword_labelling_func_builder(["customer","rude","horrible","worst","terrible","company"], HAM)
-	f2 = keyword_labelling_func_builder(["delicious"], SPAM)
-	f3 = keyword_labelling_func_builder(["love","great","amazing","favorite"], SPAM)
-	f4 = keyword_labelling_func_builder(["phone","called"], HAM)
-	f5 = keyword_labelling_func_builder(["excellent"], SPAM)
-	f6 = keyword_labelling_func_builder(["dirty"], HAM)
-	f7 = keyword_labelling_func_builder(["helpful"], SPAM)
-	f8 = keyword_labelling_func_builder(["employees"], HAM)
-	
-	yelp_funcs = [f1, f2, f3, f4, f5, f6, f7, f8]
-
-	return yelp_funcs
-
 
 
 
@@ -723,16 +693,16 @@ def gen_fakenews_funcs():
 	f2_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["getty","screenshot"]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f2_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["registry"]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f2_root.left = f2_root_left
 	f2_root_left.parent=f2_root
 	f2_root.right = f2_root_right
@@ -753,16 +723,16 @@ def gen_fakenews_funcs():
 	f5_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["wednesday","spokesman","thursday","representatives","nov"]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f5_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["legislation"]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f5_root.left = f5_root_left
 	f5_root_left.parent=f5_root
 	f5_root.right = f5_root_right
@@ -780,16 +750,16 @@ def gen_fakenews_funcs():
 	f7_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["korea","missile","region","regional","authorities"]))
 	cur_number+=1
 	tree_size+=1
-	f7_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f7_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f7_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["korean"]))
 	cur_number+=1
 	tree_size+=1
-	f7_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f7_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f7_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f7_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f7_root.left = f7_root_left
 	f7_root_left.parent=f7_root
 	f7_root.right = f7_root_right
@@ -842,16 +812,16 @@ def gen_dbpedia_funcs():
 	f2_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["company","based","founded","headquartered","owned","products","label"]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f2_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["airline","services","software","manufacturer","provides","operates","production","limited"]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f2_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f2_root.left = f2_root_left
 	f2_root_left.parent=f2_root
 	f2_root.right = f2_root_right
@@ -869,16 +839,16 @@ def gen_dbpedia_funcs():
 	f4_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["politician","born","member","served"]))
 	cur_number+=1
 	tree_size+=1
-	f4_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f4_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["representatives"]))
 	cur_number+=1
 	tree_size+=1
-	f4_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f4_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f4_root.left = f4_root_left
 	f4_root_left.parent=f4_root
 	f4_root.right = f4_root_right
@@ -895,16 +865,16 @@ def gen_dbpedia_funcs():
 	f5_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["politician","born","member","served"]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f5_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["canadian"]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f5_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f5_root.left = f5_root_left
 	f5_root_left.parent=f5_root
 	f5_root.right = f5_root_right
@@ -921,16 +891,16 @@ def gen_dbpedia_funcs():
 	f6_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["politician","born","member","served"]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f6_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["assembly", "legislative"]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f6_root.left = f6_root_left
 	f6_root_left.parent=f6_root
 	f6_root.right = f6_root_right
@@ -951,16 +921,16 @@ def gen_dbpedia_funcs():
 	f9_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["representatives","district", "state"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f9_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["representing"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f9_root.left = f9_root_left
 	f9_root_left.parent=f9_root
 	f9_root.right = f9_root_right
@@ -983,16 +953,16 @@ def gen_dbpedia_funcs():
 	f13_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["record","records","software","known"]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f13_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["label"]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f13_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f13_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f13_root.left = f13_root_left
 	f13_root_left.parent=f13_root
 	f13_root.right = f13_root_right
@@ -1086,16 +1056,16 @@ def gen_tweets_funcs():
 	f6_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["hold", "phone"]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f6_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["usairways"]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f6_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f6_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f6_root.left = f6_root_left
 	f6_root_left.parent=f6_root
 	f6_root.right = f6_root_right
@@ -1117,16 +1087,16 @@ def gen_tweets_funcs():
 	f9_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["flight"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f9_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["southwestair"]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f9_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f9_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f9_root.left = f9_root_left
 	f9_root_left.parent=f9_root
 	f9_root.right = f9_root_right
@@ -1143,16 +1113,16 @@ def gen_tweets_funcs():
 	f10_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["flight"]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f10_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["americanair","usairways"]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f10_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f10_root.left = f10_root_left
 	f10_root_left.parent=f10_root
 	f10_root.right = f10_root_right
@@ -1175,16 +1145,16 @@ def gen_tweets_funcs():
 	f15_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["people","don","worst","waiting"]))
 	cur_number+=1
 	tree_size+=1
-	f15_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f15_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f15_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["americanair"]))
 	cur_number+=1
 	tree_size+=1
-	f15_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f15_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f15_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f15_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f15_root.left = f15_root_left
 	f15_root_left.parent=f15_root
 	f15_root.right = f15_root_right
@@ -1200,16 +1170,16 @@ def gen_tweets_funcs():
 	f16_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["people","don","worst","waiting"]))
 	cur_number+=1
 	tree_size+=1
-	f16_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f16_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
 	f16_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["usairways", "united"]))
 	cur_number+=1
 	tree_size+=1
-	f16_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f16_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	cur_number+=1
 	tree_size+=1
-	f16_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={SPAM:[], HAM:[]}, used_predicates=set([]))
+	f16_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
 	f16_root.left = f16_root_left
 	f16_root_left.parent=f16_root
 	f16_root.right = f16_root_right
@@ -1272,3 +1242,258 @@ def gen_spam_funcs():
 	spam_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17]
 
 	return spam_funcs
+
+
+
+def gen_gpt_refined_amazon_funcs_user_input_20():
+	TreeRule.rule_counter=0
+	f1 = keyword_labelling_func_builder(['star', 'stars', 'rating', 'out of five', 'rated'], HAM)
+	f2 = keyword_labelling_func_builder(['product', 'fit', 'quality', 'size', 'cheap', 'wear', 'material', 'design', 'durable'], SPAM)
+	f3 = keyword_labelling_func_builder(['great'], HAM)
+
+	# f4 is an estension of f3
+	cur_number=1
+	tree_size=1
+	f4_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['great', 'excellent', 'amazing']))
+	cur_number+=1
+	tree_size+=1
+	f4_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f4_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['stars','works','fantastic', 'love']))
+	cur_number+=1
+	tree_size+=1
+	f4_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f4_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f4_root.left = f4_root_left_leaf
+	f4_root_left_leaf.parent=f4_root
+	f4_root.right = f4_root_right_child
+	f4_root_right_child.parent=f4_root
+	f4_root_right_child.left = f4_root_right_child_left_leaf
+	f4_root_right_child_left_leaf.parent=f4_root_right_child
+	f4_root_right_child.right = f4_root_right_child_right_leaf
+	f4_root_right_child_right_leaf.parent=f4_root_right_child
+	f4 = TreeRule(rtype='lf', root=f4_root, size=tree_size, max_node_id=cur_number, is_good=True)
+
+	# f4 = keyword_labelling_func_builder(['great','stars','works'], HAM)
+	f5 = keyword_labelling_func_builder(['waste','not worth', 'disappointed', 'regret', 'poor value'], SPAM)
+	f6 = keyword_labelling_func_builder(['shoes','item','price','comfortable','plastic'], HAM)
+	f7 = keyword_labelling_func_builder(['junk', 'bought', 'like', 'dont', 'just', 'use', 'buy', 'work', 'small', 'didnt', 'did', 'disappointed', 
+                'bad', 'terrible', 'horrible', 'awful', 'useless'], SPAM)
+
+	# f8 is an estension of f7
+	cur_number=1
+	tree_size=1
+	f8_root = PredicateNode(pred=KeywordPredicate(keywords=['junk', 'bought', 'like', 'dont', 'just', 'use', 'buy', 'work', 'small', 'didnt', 'did', 'disappointed', 
+                 'bad', 'terrible', 'horrible', 'awful', 'useless']))
+	cur_number+=1
+	tree_size+=1
+	f8_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f8_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['shoes', 'metal', 'fabric', 
+																						'replace', 'battery', 'warranty', 'plug', 'defective', 'broken']))
+	cur_number+=1
+	tree_size+=1
+	f8_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f8_root_right_child_right_leaf = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	
+	f8_root.left = f8_root_left_leaf
+	f8_root_left_leaf.parent=f8_root
+
+	f8_root.right = f8_root_right_child
+	f8_root_right_child.parent=f8_root
+
+	f8_root_right_child.left = f8_root_right_child_left_leaf
+	f8_root_right_child_left_leaf.parent=f8_root_right_child
+	f8_root_right_child.right = f8_root_right_child_right_leaf
+	f8_root_right_child_right_leaf.parent=f8_root_right_child
+	f8 = TreeRule(rtype='lf', root=f8_root, size=tree_size, max_node_id=cur_number, is_good=True)
+
+
+	# f8 = keyword_labelling_func_builder(['junk','bought','like','dont','just','use','buy','work','small','didnt','did','disappointed',
+	# 	'shoes','metal','fabric','replace','battery','warranty','plug'], SPAM)
+
+	f9  = keyword_labelling_func_builder(['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy', 'fantastic', 'recommend'], HAM)
+
+	# f10 is an estension of f9
+	cur_number=1
+	tree_size=1
+	f10_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy']))
+	cur_number+=1
+	tree_size+=1
+	f10_root_left_leaf = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f10_root_right_child = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=['stars', 'soft']))
+	cur_number+=1
+	tree_size+=1
+	f10_root_right_child_left_leaf = LabelNode(number=cur_number, label=ABSTAIN,  pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f10_root_right_child_right_leaf = LabelNode(number=cur_number, label=HAM,  pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f10_root.left = f10_root_left_leaf
+	f10_root_left_leaf.parent=f10_root
+	f10_root.right = f10_root_right_child
+	f10_root_right_child.parent=f10_root
+	f10_root_right_child.left = f10_root_right_child_left_leaf
+	f10_root_right_child_left_leaf.parent=f10_root_right_child
+	f10_root_right_child.right = f10_root_right_child_right_leaf
+	f10_root_right_child_right_leaf.parent=f10_root_right_child
+	f10 = TreeRule(rtype='lf', root=f10_root,size=tree_size, max_node_id=cur_number, is_good=True)
+	# f10  = keyword_labelling_func_builder(['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy', 'stars', 'soft'], HAM)
+
+
+	# f11 is an estension of f9
+	cur_number=1
+	tree_size=1
+	f11_root = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy']))
+	cur_number+=1
+	tree_size+=1
+	f11_root_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f11_root_right_child = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=['shoes', 'bought', 'use', 'purchase', 'purchased', 'colors', 'install', 'clean', 'design',
+	 'pair', 'screen', 'comfortable', 'products']))
+	cur_number+=1
+	tree_size+=1
+	f11_root_right_child_left_leaf = LabelNode(number=cur_number,label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f11_root_right_child_right_leaf = LabelNode(number=cur_number,label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f11_root.left = f11_root_left_leaf
+	f11_root_left_leaf.parent=f11_root
+	f11_root.right = f11_root_right_child
+	f11_root_right_child.parent=f11_root
+	f11_root_right_child.left = f11_root_right_child_left_leaf
+	f11_root_right_child_left_leaf.parent=f11_root_right_child
+	f11_root_right_child.right = f11_root_right_child_right_leaf
+	f11_root_right_child_right_leaf.parent=f11_root_right_child
+	f11 = TreeRule(rtype='lf', root=f11_root,size=tree_size, max_node_id=cur_number, is_good=True)
+
+	# f11 = keyword_labelling_func_builder(['love', 'perfect', 'loved', 'nice', 'excellent', 'works', 'loves', 'awesome', 'easy', 'stars', 'soft',
+	# 	'shoes', 'bought', 'use', 'purchase', 'purchased', 'colors', 'install', 'clean', 'design', 'pair', 'screen', 'comfortable', 'products'], HAM)
+
+	f12  = keyword_labelling_func_builder(['returned','broke','battery','cable','fits','install','sturdy','ordered','usb','replacement','brand','installed','unit',
+		'batteries','box','warranty','defective','cheaply','durable','advertised'], SPAM)
+	f13 = keyword_labelling_func_builder(['cute','shirt'], HAM)
+	f14 = keyword_labelling_func_builder(['fabric', 'return', 'money', 'poor', 'garbage', 'poorly', 'terrible', 'useless', 'horrible', 'returning', 'flimsy', 'falling apart'], SPAM)
+	f15 = keyword_labelling_func_builder(['pants','looks','toy','color','camera','water','phone','bag','worked','arrived','lasted'], SPAM)
+
+	amazon_rules = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15]
+	return amazon_rules
+
+
+def gen_gpt_refined_fakenews_funcs_user_input_40():
+	# HAM: true, SPAM: fake
+
+	# fake: "video","featured" (coverage: 36%, accuracy: 96%)
+		# fake: "getty","screenshot" (coverage: 10%, accuracy: 100%)
+	# true: "minister","ministry","parliament" (coverage: 16%, accuracy: 89%)
+	# fake: "pic" (coverage: 8%, accuracy: 100%)
+	# true: "wednesday","spokesman","thursday","representatives","nov" (coverage: 39%, accuracy: 75%)
+		# true: "legislation" (coverage: 4%, accuracy: 87%)
+	# true: "korea","missile","region","regional","authorities" (coverage: 16%, accuracy: 78%)
+		# true: "korean" (coverage: 2%, accuracy: 86%)
+	# fake: "getty","watch","image","com","https","don","woman","didn","gop" (coverage: 46%, accuracy: 88%)
+	# true: "talks" (coverage: 6%, accuracy: 85%)
+	# true: "rex" (coverage: 2%, accuracy: 83%)
+	# true: "northern","turkey","britain","forces","ruling","european" (coverage: 20%, accuracy: 78%)
+
+	TreeRule.rule_counter=0
+
+	f1 = keyword_labelling_func_builder(["video", "featured", "clip", "footage"], SPAM)
+	cur_number=1
+	tree_size=1
+	f2_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["getty", "screenshot", "image"]))
+	cur_number+=1
+	tree_size+=1
+	f2_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f2_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["registry", "database"]))
+	cur_number+=1
+	tree_size+=1
+	f2_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f2_root_right_right = LabelNode(number=cur_number, label=SPAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f2_root.left = f2_root_left
+	f2_root_left.parent=f2_root
+	f2_root.right = f2_root_right
+	f2_root_right.parent=f2_root
+	f2_root_right.left = f2_root_right_left
+	f2_root_right_left.parent=f2_root_right
+	f2_root_right.right = f2_root_right_right
+	f2_root_right_right.parent=f2_root_right
+	f2 = TreeRule(rtype='lf', root=f2_root, size=tree_size, max_node_id=cur_number, is_good=True)
+
+	f3 = keyword_labelling_func_builder(["minister", "ministry", "parliament", "government", "official"], HAM)
+
+	f4 = keyword_labelling_func_builder(["pic", "photo", "image", "snapshot"], SPAM)
+	f5 = keyword_labelling_func_builder(["wednesday", "spokesman", "thursday", "representatives", "nov", "tuesday", "monday"], HAM)
+
+	cur_number=1
+	tree_size=1
+	f5_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["wednesday", "spokesman", "thursday", "representatives", "nov", "tuesday", "monday"]))
+	cur_number+=1
+	tree_size+=1
+	f5_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f5_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["legislation", "bill", "law"]))
+	cur_number+=1
+	tree_size+=1
+	f5_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f5_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f5_root.left = f5_root_left
+	f5_root_left.parent=f5_root
+	f5_root.right = f5_root_right
+	f5_root_right.parent=f5_root
+	f5_root_right.left = f5_root_right_left
+	f5_root_right_left.parent=f5_root_right
+	f5_root_right.right = f5_root_right_right
+	f5_root_right_right.parent=f5_root_right
+	f5 = TreeRule(rtype='lf', root=f5_root, size=tree_size, max_node_id=cur_number, is_good=True)
+
+	f6 = keyword_labelling_func_builder(["korea", "missile", "region", "regional", "authorities", "conflict", "war", "border"], HAM)
+
+	cur_number=1
+	tree_size=1
+	f7_root = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["korea", "missile", "region", "regional", "authorities", "conflict", "war", "border"]))
+	cur_number+=1
+	tree_size+=1
+	f7_root_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f7_root_right = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=["korean", "diplomatic"]))
+	cur_number+=1
+	tree_size+=1
+	f7_root_right_left = LabelNode(number=cur_number, label=ABSTAIN, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	cur_number+=1
+	tree_size+=1
+	f7_root_right_right = LabelNode(number=cur_number, label=HAM, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set([]))
+	f7_root.left = f7_root_left
+	f7_root_left.parent=f7_root
+	f7_root.right = f7_root_right
+	f7_root_right.parent=f7_root
+	f7_root_right.left = f7_root_right_left
+	f7_root_right_left.parent=f7_root_right
+	f7_root_right.right = f7_root_right_right
+	f7_root_right_right.parent=f7_root_right
+	f7 = TreeRule(rtype='lf', root=f7_root, size=tree_size, max_node_id=cur_number, is_good=True)
+
+	f8 = keyword_labelling_func_builder(["getty", "watch", "image", "com", "https", "don", "woman", "didn", "gop", "site", "web"], SPAM)
+	f9 = keyword_labelling_func_builder(["talks", "negotiations", "discussions"], HAM)
+	f10 = keyword_labelling_func_builder(["rex", "rex images", "rex news"], SPAM)
+	f11 = keyword_labelling_func_builder(["northern", "turkey", "britain", "forces", "ruling", "european", "alliance", "nato", "eu"], HAM)
+
+	fake_news_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11]
+
+	return fake_news_funcs

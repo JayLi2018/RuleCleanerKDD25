@@ -76,7 +76,7 @@ from rbbm_src.labelling_func_src.src.lfs import (
 	LFs)
 import pdb
 from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
-
+import pdb
 
 nltk.download('stopwords') 
 stop_words = set(stopwords.words('english')) 
@@ -90,6 +90,9 @@ def populate_violations(tree_rule, complaint):
 	# to the leaf nodes
 
 	leaf_node = tree_rule.evaluate(complaint,'node')
+	# TODO: Tentative fix to add abstain if absent
+	if(ABSTAIN not in leaf_node.pairs):
+		leaf_node.pairs[ABSTAIN] = []
 	leaf_node.pairs[complaint['expected_label']].append(complaint)
 	# print(leaf_nodes)
 	# print(tree_rule)
@@ -110,16 +113,16 @@ def redistribute_after_fix(tree_rule, node, the_fix):
 	new_predicate_node = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=[the_fix]))
 	new_predicate_node.is_added=True
 	cur_number+=1
-	new_predicate_node.left= LabelNode(number=cur_number, pairs={HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
+	new_predicate_node.left= LabelNode(number=cur_number, pairs={ABSTAIN:[], HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
 	new_predicate_node.left.is_added=True
 	cur_number+=1
-	new_predicate_node.right=LabelNode(number=cur_number, pairs={HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
+	new_predicate_node.right=LabelNode(number=cur_number, pairs={ABSTAIN:[], HAM:[], SPAM:[]}, used_predicates=set([the_fix]))
 	new_predicate_node.right.is_added=True
 	new_predicate_node.left.parent= new_predicate_node
 	new_predicate_node.right.parent= new_predicate_node
 	tree_rule.max_node_id=max(cur_number, tree_rule.max_node_id)
 
-	# print(node)
+	# reassign parent and child with new predicate node
 	if(node.parent.left is node):
 		node.parent.left=new_predicate_node
 	else:
@@ -127,7 +130,7 @@ def redistribute_after_fix(tree_rule, node, the_fix):
 
 	new_predicate_node.parent = node.parent
 
-	for k in [SPAM, HAM]:
+	for k in [SPAM, HAM, ABSTAIN]:
 		for p in node.pairs[k]:
 			if(new_predicate_node.pred.evaluate(p)):
 				new_predicate_node.right.pairs[p['expected_label']].append(p)
@@ -135,21 +138,28 @@ def redistribute_after_fix(tree_rule, node, the_fix):
 			else:
 				new_predicate_node.left.pairs[p['expected_label']].append(p)
 				new_predicate_node.left.used_predicates.add(the_fix)
+	
+	# find the dominate node 
+	dominate_class_left= max(new_predicate_node.left.pairs, key=lambda k: len(new_predicate_node.left.pairs[k]))
+	dominate_class_right= max(new_predicate_node.right.pairs, key=lambda k: len(new_predicate_node.right.pairs[k]))
 
-	if(len(new_predicate_node.left.pairs[DIRTY])>len(new_predicate_node.left.pairs[CLEAN])):
-		new_predicate_node.left.label=DIRTY
-	elif(len(new_predicate_node.left.pairs[DIRTY])<len(new_predicate_node.left.pairs[CLEAN])):
-		new_predicate_node.left.label=CLEAN
-	if(len(new_predicate_node.right.pairs[DIRTY])>len(new_predicate_node.right.pairs[CLEAN])):
-		new_predicate_node.right.label=DIRTY
-	elif(len(new_predicate_node.right.pairs[DIRTY])<len(new_predicate_node.right.pairs[CLEAN])):
-		new_predicate_node.right.label=CLEAN
+	new_predicate_node.left.label= dominate_class_left
+	new_predicate_node.right.label = dominate_class_right
 
-	new_predicate_node.pairs={SPAM:{}, HAM:{}}
+	# if(len(new_predicate_node.left.pairs[DIRTY])>len(new_predicate_node.left.pairs[CLEAN])):
+	# 	new_predicate_node.left.label=DIRTY
+	# elif(len(new_predicate_node.left.pairs[DIRTY])<len(new_predicate_node.left.pairs[CLEAN])):
+	# 	new_predicate_node.left.label=CLEAN
+	# if(len(new_predicate_node.right.pairs[DIRTY])>len(new_predicate_node.right.pairs[CLEAN])):
+	# 	new_predicate_node.right.label=DIRTY
+	# elif(len(new_predicate_node.right.pairs[DIRTY])<len(new_predicate_node.right.pairs[CLEAN])):
+	# 	new_predicate_node.right.label=CLEAN
+
+	new_predicate_node.pairs={SPAM:{}, HAM:{}, ABSTAIN:{}}
 
 	return new_predicate_node
 
-def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_possible=False):
+def find_available_repair(ins1, ins2, used_predicates, all_possible=False):
 	"""
 	given a leafnode, we want to find an attribute that can be used
 	to give a pair of tuples the desired label.
@@ -164,10 +174,10 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 	res = []
 
 	# find the difference between ham_pair and spam_pair
-	ham_sentence, spam_sentence = ham_sentence.text, spam_sentence.text
+	ins1_text, ins2_text = ins1.text, ins2.text
 
-	ham_available_words=list(OrderedDict.fromkeys([h for h in ham_sentence.split() if h not in spam_sentence.split()]))
-	spam_available_words=list(OrderedDict.fromkeys([h for h in spam_sentence.split() if h not in ham_sentence.split()]))
+	ins1_available_words=list(OrderedDict.fromkeys([h for h in ins1_text.split() if h not in ins2_text.split()]))
+	ins2_available_words=list(OrderedDict.fromkeys([h for h in ins2_text.split() if h not in ins1_text.split()]))
 
 	# print(f'ham_available_words: {ham_available_words}')
 	# print(f'spam_available_words: {spam_available_words}')
@@ -177,7 +187,7 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 
 	# start with attribute level and then constants
 	# cand=None
-	for w in ham_available_words:
+	for w in ins1_available_words:
 		# tuple cand has x elements: 
 		# w: the word to differentate the 2 sentences
 		# llabel: the left node label
@@ -191,7 +201,7 @@ def find_available_repair(ham_sentence, spam_sentence, used_predicates, all_poss
 				else:
 					res.append(w)
 
-	for w in spam_available_words:
+	for w in ins2_available_words:
 		# tuple cand has x elements: 
 		# w: the word to differentate the 2 sentences
 		# llabel: the left node label
@@ -242,7 +252,7 @@ def check_tree_purity(tree_rule, start_number=1):
 
 	for n in leaf_nodes:
 		# print(f'leaf node label : {n.label}')
-		for k in [HAM,SPAM]:
+		for k in [HAM,SPAM,ABSTAIN]:
 			for p in n.pairs[k]:
 				# print(p)
 				if(p['expected_label']!=n.label):
@@ -258,45 +268,57 @@ def calculate_gini(node, the_fix):
 	sign=None
 	# the_fix_words, llabel, rlabel = the_fix
 
+	# logger.critical("the node")
+	# logger.critical(node)
+	# logger.critical("the fix")
+	# logger.critical(the_fix)
 	candidate_new_pred_node = PredicateNode(number=1,pred=KeywordPredicate(keywords=[the_fix]))
 	
 	right_leaf_spam_cnt=0
 	right_leaf_ham_cnt=0
+	right_leaf_abstain_cnt=0
 	left_leaf_spam_cnt=0
 	left_leaf_ham_cnt=0
+	left_leaf_abstain_cnt=0
 
-	for k in [SPAM, HAM]:
-		for p in node.pairs[k]:
-			if(candidate_new_pred_node.pred.evaluate(p)):
-				if(k==SPAM):
-					right_leaf_spam_cnt+=1
-				else:
-					right_leaf_ham_cnt+=1
-			else:
-				if(k==SPAM):
-					left_leaf_spam_cnt+=1
-				else:
-					left_leaf_ham_cnt+=1
-
-	# reverse_condition = False
-	if((left_leaf_spam_cnt+left_leaf_ham_cnt)==0):
-		# logger.debug("node:")
-		# logger.debug(node)
-		# pdb.set_trace()
-		for k in [SPAM, HAM]:
+	for k in [SPAM, HAM, ABSTAIN]:
+		if(k in node.pairs):
 			for p in node.pairs[k]:
 				if(candidate_new_pred_node.pred.evaluate(p)):
+					if(k==ABSTAIN):
+						right_leaf_abstain_cnt+=1
 					if(k==SPAM):
 						right_leaf_spam_cnt+=1
 					else:
 						right_leaf_ham_cnt+=1
 				else:
+					if(k==ABSTAIN):
+						left_leaf_abstain_cnt+=1
 					if(k==SPAM):
 						left_leaf_spam_cnt+=1
 					else:
 						left_leaf_ham_cnt+=1
-	left_spam_rate=(left_leaf_spam_cnt)/(left_leaf_spam_cnt+left_leaf_ham_cnt)
-	right_spam_rate=(right_leaf_spam_cnt)/(right_leaf_ham_cnt+right_leaf_spam_cnt)
+
+	# # reverse_condition = False
+	# if((left_leaf_spam_cnt+left_leaf_ham_cnt)==0):
+	# 	# logger.debug("node:")
+	# 	# logger.debug(node)
+	# 	# pdb.set_trace()
+	# 	for k in [SPAM, HAM]:
+	# 		for p in node.pairs[k]:
+	# 			if(candidate_new_pred_node.pred.evaluate(p)):
+	# 				if(k==SPAM):
+	# 					right_leaf_spam_cnt+=1
+	# 				else:
+	# 					right_leaf_ham_cnt+=1
+	# 			else:
+	# 				if(k==SPAM):
+	# 					left_leaf_spam_cnt+=1
+	# 				else:
+	# 					left_leaf_ham_cnt+=1
+
+	# left_spam_rate=(left_leaf_spam_cnt)/(left_leaf_spam_cnt+left_leaf_ham_cnt)
+	# right_spam_rate=(right_leaf_spam_cnt)/(right_leaf_ham_cnt+right_leaf_spam_cnt)
 
 	# if(left_spam_rate>right_spam_rate):
 	# 	if(llabel!=SPAM)
@@ -305,21 +327,31 @@ def calculate_gini(node, the_fix):
 	# 	# pdb.set_trace()
 	# 	reverse_condition=True
 
-	left_total_cnt = left_leaf_spam_cnt+left_leaf_ham_cnt
-	right_total_cnt = right_leaf_spam_cnt+right_leaf_ham_cnt
-
+	left_total_cnt = left_leaf_spam_cnt+left_leaf_ham_cnt+left_leaf_abstain_cnt
+	right_total_cnt = right_leaf_spam_cnt+right_leaf_ham_cnt+right_leaf_abstain_cnt
 	total_cnt=left_total_cnt+right_total_cnt
 
-	gini_impurity = (left_total_cnt/total_cnt)*(1-((left_leaf_spam_cnt/left_total_cnt)**2+(left_leaf_ham_cnt/left_total_cnt)**2))+ \
-	(right_total_cnt/total_cnt)*(1-((right_leaf_spam_cnt/right_total_cnt)**2+(right_leaf_ham_cnt/right_total_cnt)**2))
 
+	if(left_total_cnt!=0):
+		L=(left_total_cnt/total_cnt)*(1-((left_leaf_spam_cnt/left_total_cnt)**2+\
+								   (left_leaf_abstain_cnt/left_total_cnt)**2+(left_leaf_ham_cnt/left_total_cnt)**2))
+	else:
+		L=0
+	if(right_total_cnt!=0):
+		R=(right_total_cnt/total_cnt)*(1-((right_leaf_spam_cnt/right_total_cnt)**2+\
+									(right_leaf_abstain_cnt/right_total_cnt)**2+(right_leaf_ham_cnt/right_total_cnt)**2))
+	else:
+		R=0
+	gini_impurity = L+R
+
+	# logger.critical(f"left_total_cnt: {left_total_cnt},  right_total_cnt:{right_total_cnt}")
 	# print(f"gini_impurity for {the_fix} using {the_fix}: {gini_impurity}, reverse:{reverse_condition}\n")
 	
 	return gini_impurity
 
-def fix_violations(treerule, repair_config, leaf_nodes):
+def fix_violations(treerule, repair_strategy, leaf_nodes):
 	# print(f"leaf_nodes")
-	if(repair_config.strategy=='naive'):
+	if(repair_strategy=='naive'):
 		# initialize the queue to work with
 		queue = deque([])
 		for ln in leaf_nodes:
@@ -332,25 +364,42 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			node = queue.popleft()
 			# print(f'node.pairs: HAM={len(node.pairs[HAM])}, SPAM={len(node.pairs[SPAM])},')
 			new_parent_node=None
-			# need to find a pair of violations that get the different label
-			# in order to differentiate them
-			if(node.label==ABSTAIN):
-				continue
-			if(node.pairs[SPAM] and node.pairs[HAM]):
+			node_lists = [node.pairs[SPAM], node.pairs[HAM], node.pairs[ABSTAIN]]
+			# if(node.pairs[SPAM] and node.pairs[HAM]):
+			if(sum(bool(lst) for lst in node_lists))>= 2:
 				found=False
 				the_fix=None
-				for si in range(len(node.pairs[SPAM])):
+				for i in range(len(node_lists)):
 					if(found):
 						break
-					for hi in range(len(node.pairs[HAM])):		
-						the_fix = find_available_repair(node.pairs[SPAM][si],
-						 node.pairs[HAM][hi], node.used_predicates)
-						if(the_fix):
-							found=True
-							break
+					for j in range(i + 1, len(node_lists)):
+						for pair in list(product(node_lists[i], node_lists[j])):
+							the_fix = find_available_repair(pair[0],
+							pair[1], node.used_predicates)
+							if(the_fix):
+								found=True
+								break
+				new_parent_node=redistribute_after_fix(treerule, node, the_fix)
+				
+			# old implementation
+			# need to find a pair of violations that get the different label
+			# in order to differentiate them
+			# if(node.label==ABSTAIN):
+			# 	continue
+			# if(node.pairs[SPAM] and node.pairs[HAM]):
+			# 	found=False
+			# 	the_fix=None
+			# 	for si in range(len(node.pairs[SPAM])):
+			# 		if(found):
+			# 			break
+			# 		for hi in range(len(node.pairs[HAM])):		
+			# 			the_fix = find_available_repair(node.pairs[SPAM][si],
+			# 			 node.pairs[HAM][hi], node.used_predicates)
+			# 			if(the_fix):
+			# 				found=True
+			# 				break
 				# print(f"the fix number={i}")
 				# print(the_fix)
-				new_parent_node=redistribute_after_fix(treerule, node, the_fix)
 
 			# handle the left and right child after redistribution
 			else:
@@ -367,13 +416,17 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 						treerule.reversed_cnt+=1
 						treerule.setsize(treerule.size+2)
 				else:
-					continue
+					if(node.label!=ABSTAIN):
+						node.label=ABSTAIN
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				# if(check_tree_purity(treerule)):
 				# 	return treerule
 
 			if(new_parent_node):
 				still_inpure=False
-				for k in [SPAM,HAM]:
+				for k in [SPAM,HAM,ABSTAIN]:
 					if(still_inpure):
 						break
 					for p in new_parent_node.left.pairs[k]:
@@ -382,7 +435,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							still_inpure=True
 							break
 				still_inpure=False          
-				for k in [SPAM,HAM]:
+				for k in [SPAM,HAM,ABSTAIN]:
 					if(still_inpure):
 						break
 					for p in new_parent_node.right.pairs[k]:
@@ -394,7 +447,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 				treerule.setsize(treerule.size+2)
 		return treerule
 
-	elif(repair_config.strategy=='information_gain'):
+	elif(repair_strategy=='information_gain'):
 		# new implementation
 		# 1. ignore the label of nodes at first
 		# calculate the gini index of the split
@@ -417,23 +470,27 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			best_fix = None
 			# reverse_condition=False
 
-			if(node.label==ABSTAIN):
-				continue
-			if(node.pairs[SPAM] and node.pairs[HAM]):
-				# need to examine all possible pair combinations
+			# if(node.label==ABSTAIN):
+			# 	continue
+			node_lists = [node.pairs[SPAM], node.pairs[HAM], node.pairs[ABSTAIN]]
+			# if(node.pairs[SPAM] and node.pairs[HAM]):
+			if(sum(bool(lst) for lst in node_lists))>= 2:
+				the_fix=None
 				considered_fixes = set()
-				for pair in list(product(node.pairs[SPAM], node.pairs[HAM])):
-					the_fixes = find_available_repair(pair[0],
-					 pair[1], node.used_predicates,
-					 all_possible=True)
-					for f in the_fixes:
-						if(f in considered_fixes):
-							continue
-						gini =calculate_gini(node, f)
-						considered_fixes.add(f)
-						if(gini<min_gini):
-							min_gini=gini
-							best_fix=f
+				for i in range(len(node_lists)):
+					for j in range(i + 1, len(node_lists)):
+						for pair in list(product(node_lists[i], node_lists[j])):
+							the_fixes = find_available_repair(pair[0],
+							pair[1], node.used_predicates,
+							all_possible=True)
+							for f in the_fixes:
+								if(f in considered_fixes):
+									continue
+								gini =calculate_gini(node, f)
+								considered_fixes.add(f)
+								if(gini<min_gini):
+									min_gini=gini
+									best_fix=f
 							# reverse_condition=reverse_cond
 				if(best_fix):
 					# if(reverse_condition):
@@ -454,12 +511,16 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 						treerule.reversed_cnt+=1
 						treerule.setsize(treerule.size+2)
 				else:
-					continue
+					if(node.label!=ABSTAIN):
+						node.label=ABSTAIN
+						node.is_reversed=True
+						treerule.reversed_cnt+=1
+						treerule.setsize(treerule.size+2)
 				# if(check_tree_purity(treerule)):
 
 			if(new_parent_node):
 				still_inpure=False
-				for k in [HAM,SPAM]:
+				for k in [HAM,SPAM,ABSTAIN]:
 					if(still_inpure):
 						break
 					for p in new_parent_node.left.pairs[k]:
@@ -468,7 +529,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							still_inpure=True
 							break
 				still_inpure=False          
-				for k in [SPAM,HAM]:
+				for k in [SPAM,HAM,ABSTAIN]:
 					if(still_inpure):
 						break
 					for p in new_parent_node.right.pairs[k]:
@@ -481,7 +542,7 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 
 		return treerule
 
-	elif(repair_config.strategy=='optimal'):
+	elif(repair_strategy=='optimal'):
 		# 1. create a queue with tree nodes
 		# 2. need to deepcopy the tree in order to enumerate all possible trees
 		# logger.debug("leaf_nodes:")
@@ -491,7 +552,8 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 			queue.append(ln.number)
 		# print(f"number of leaf_nodes: {len(queue)}")
 		# print("queue")
-		# print(queue)
+		# print(queue)'
+		# pdb.set_trace()
 		cur_fixed_tree = treerule
 		while(queue):
 			sub_root_number = queue.popleft()
@@ -504,74 +566,76 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 				logger.debug(f"len of subqueue: {len(subqueue)}")
 				prev_tree, leaf_node_number, subtree_root_number = subqueue.popleft()
 				node = locate_node(prev_tree, leaf_node_number)
-				if(node.label==ABSTAIN):
-					continue
-				if(node.pairs[HAM] and node.pairs[SPAM]):
-					# need to examine all possible pair combinations
-					considered_fixes = set()
-					# print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
-					for pair in list(product(node.pairs[HAM], node.pairs[SPAM])):
-						if(sub_node_pure):
-							break
-						fixes = find_available_repair(pair[0],pair[1], node.used_predicates,all_possible=True)
-						valid_fixes = [x for x in fixes if x]
-						if(not valid_fixes):
-							continue
-						else:
-							for f in valid_fixes:
-								new_parent_node=None
-								if(f in considered_fixes):
-									continue
-								considered_fixes.add(f)
-								new_tree = copy.deepcopy(prev_tree)
-								node = locate_node(new_tree, node.number)
-								new_parent_node = redistribute_after_fix(new_tree, node, f)
-								if(leaf_node_number==sub_root_number):
-									# first time replacing subtree root, 
-									# the node number will change so we need 
-									# to replace it
-									subtree_root_number=new_parent_node.number
-									# print(f"subtree_root_number is being updated to {new_parent_node.number}")
-								new_tree.setsize(new_tree.size+2)
-								if(check_tree_purity(new_tree, subtree_root_number)):
-									# print("done with this leaf node, the fixed tree is updated to")
-									cur_fixed_tree = new_tree
-									# print(cur_fixed_tree)
-									sub_node_pure=True
+
+				node_lists = [node.pairs[SPAM], node.pairs[HAM], node.pairs[ABSTAIN]]
+				
+				if(sum(bool(lst) for lst in node_lists))>= 2:
+					for i in range(len(node_lists)):
+						for j in range(i + 1, len(node_lists)):
+							considered_fixes = set()
+							# print(list(product(node.pairs[CLEAN], node.pairs[DIRTY])))
+							for pair in list(product(node_lists[i], node_lists[j])):
+								if(sub_node_pure):
 									break
-								# else:
-								#     print("not pure yet, need to enqueue")
-								# handle the left and right child after redistribution
-								still_inpure=False
-								for k in [HAM,SPAM]:
-									if(still_inpure):
-										break
-									for p in new_parent_node.left.pairs[k]:
-										if(p['expected_label']!=new_parent_node.left.label):
-											# print("enqueued")
-											# print("current_queue: ")
-											new_tree = copy.deepcopy(new_tree)
-											parent_node = locate_node(new_tree, new_parent_node.number)
-											subqueue.append((new_tree, parent_node.left.number, subtree_root_number))
-											# print(subqueue)
-											still_inpure=True
+								fixes = find_available_repair(pair[0],pair[1], node.used_predicates,all_possible=True)
+								valid_fixes = [x for x in fixes if x]
+								if(not valid_fixes):
+									continue
+								else:
+									for f in valid_fixes:
+										new_parent_node=None
+										if(f in considered_fixes):
+											continue
+										considered_fixes.add(f)
+										new_tree = copy.deepcopy(prev_tree)
+										node = locate_node(new_tree, node.number)
+										new_parent_node = redistribute_after_fix(new_tree, node, f)
+										if(leaf_node_number==sub_root_number):
+											# first time replacing subtree root, 
+											# the node number will change so we need 
+											# to replace it
+											subtree_root_number=new_parent_node.number
+											# print(f"subtree_root_number is being updated to {new_parent_node.number}")
+										new_tree.setsize(new_tree.size+2)
+										if(check_tree_purity(new_tree, subtree_root_number)):
+											# print("done with this leaf node, the fixed tree is updated to")
+											cur_fixed_tree = new_tree
+											# print(cur_fixed_tree)
+											sub_node_pure=True
 											break
-								still_inpure=False          
-								for k in [HAM,SPAM]:
-									if(still_inpure):
-										break
-									for p in new_parent_node.right.pairs[k]:
-										if(p['expected_label']!=new_parent_node.right.label):
-											# print("enqueued")
-											# print("current_queue: ")
-											new_tree = copy.deepcopy(new_tree)
-											parent_node = locate_node(new_tree, new_parent_node.number)
-											# new_parent_node=redistribute_after_fix(new_tree, new_node, f)
-											subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
-											# print(subqueue)
-											still_inpure=True
-											break
-								# print('\n')
+										# else:
+										#     print("not pure yet, need to enqueue")
+										# handle the left and right child after redistribution
+										still_inpure=False
+										for k in [HAM,SPAM,ABSTAIN]:
+											if(still_inpure):
+												break
+											for p in new_parent_node.left.pairs[k]:
+												if(p['expected_label']!=new_parent_node.left.label):
+													# print("enqueued")
+													# print("current_queue: ")
+													new_tree = copy.deepcopy(new_tree)
+													parent_node = locate_node(new_tree, new_parent_node.number)
+													subqueue.append((new_tree, parent_node.left.number, subtree_root_number))
+													# print(subqueue)
+													still_inpure=True
+													break
+										still_inpure=False          
+										for k in [HAM,SPAM,ABSTAIN]:
+											if(still_inpure):
+												break
+											for p in new_parent_node.right.pairs[k]:
+												if(p['expected_label']!=new_parent_node.right.label):
+													# print("enqueued")
+													# print("current_queue: ")
+													new_tree = copy.deepcopy(new_tree)
+													parent_node = locate_node(new_tree, new_parent_node.number)
+													# new_parent_node=redistribute_after_fix(new_tree, new_node, f)
+													subqueue.append((new_tree, parent_node.right.number, subtree_root_number))
+													# print(subqueue)
+													still_inpure=True
+													break
+										# print('\n')
 				else:
 					# print("just need to reverse node condition")
 					if(node.pairs[SPAM]):
@@ -586,6 +650,12 @@ def fix_violations(treerule, repair_config, leaf_nodes):
 							node.is_reversed=True
 							treerule.reversed_cnt+=1
 							prev_tree.setsize(prev_tree.size+2)
+					else:
+						if(node.label!=ABSTAIN):
+							node.label=ABSTAIN
+							node.is_reversed=True
+							treerule.reversed_cnt+=1
+							treerule.setsize(treerule.size+2)
 					# if(check_tree_purity(prev_tree,subtree_root_number)):                
 					# 	# print("done with this leaf node, the fixed tree is updated to")
 					# 	cur_fixed_tree = prev_tree
@@ -691,6 +761,41 @@ def fix_rules(repair_config, fix_book_keeping_dict, conn, return_after_percent, 
 	return stop_at_id_pos
 
 
+def fix_rules_with_solver_input(fix_book_keeping_dict, repair_strategy='information_gain'):
+	# user input is customized for each rule, instead of the same
+	# across all the rules
+
+	all_rules_cnt=len(fix_book_keeping_dict)
+	for tid in fix_book_keeping_dict:
+		treerule=fix_book_keeping_dict[tid]['rule']
+		user_input = fix_book_keeping_dict[tid]['user_input']
+		leaf_nodes = []
+		for i, c in user_input.iterrows():
+			# print("the complaint is")
+			# print(c.text)
+			# print(type(c.text))
+			leaf_node_with_complaints = populate_violations(treerule, c)
+			if(leaf_node_with_complaints not in leaf_nodes):
+				# if node is already in leaf nodes, dont
+				# need to add it again
+				leaf_nodes.append(leaf_node_with_complaints)
+		if(leaf_nodes):
+			# its possible for certain rule we dont have any violations
+			# if(sorted_rule_ids[current_start_id_pos]==6):
+			# 	import pudb; pudb.set_trace()
+			fixed_treerule = fix_violations(treerule, repair_strategy, leaf_nodes)
+			fix_book_keeping_dict[tid]['rule']=fixed_treerule
+			# print(fixed_treerule)
+			fix_book_keeping_dict[tid]['after_fix_size']=fixed_treerule.size
+			fixed_treerule_text = fixed_treerule.serialize()
+			fix_book_keeping_dict[tid]['fixed_treerule_text']=fixed_treerule_text
+		else:
+			fix_book_keeping_dict[tid]['rule']=treerule
+			fix_book_keeping_dict[tid]['after_fix_size']=treerule.size
+			fixed_treerule_text = treerule.serialize()
+			fix_book_keeping_dict[tid]['fixed_treerule_text']=fixed_treerule_text
+			fixed_treerule=treerule
+
 
 # Function to apply stemming to a sentence
 def stem_sentence(sentence, stemmer):
@@ -746,10 +851,7 @@ def run_snorkel(lf_input, LFs=None):
 	prob_diffs_tuples = [(t[0],t[1]) for t in probs_test_filtered]
 	df_sentences_filtered['model_pred_diff'] = pd.Series(prob_diffs)
 	df_sentences_filtered['model_pred_prob_tuple'] = pd.Series(prob_diffs_tuples)
-	df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
-	cached_vectors = dict(zip(LFs, np.transpose(filtered_vectors)))
-	lf_internal_args.func_vectors = cached_vectors
-	df_sentences_filtered['vectors'] = pd.Series([",".join(map(str, t)) for t in filtered_vectors])
+ 
 	lf_internal_args.filtered_sentences_df = df_sentences_filtered
 	df_sentences_filtered.to_csv('result.csv')
 	# the wrong labels we get

@@ -9,7 +9,8 @@ import torch
 import torch.nn as nn
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
-
+import pulp as lp
+import pandas as pd
 from snorkel.classification.data import DictDataset, DictDataLoader
 
 
@@ -153,3 +154,94 @@ def get_pytorch_mlp(hidden_dim, num_layers):
     for _ in range(num_layers):
         layers.extend([nn.Linear(hidden_dim, hidden_dim), nn.ReLU()])
     return nn.Sequential(*layers)
+
+
+def lf_constraint_solve(input_df, lf_acc_thresh=0.5, instance_acc_thresh=0.5, new_lf_names=[]):
+    # Problem initialization
+    prob = pulp.LpProblem("Label_Flip_Minimization", pulp.LpMinimize)
+
+    # Parameters
+    labeling_functions = input_df.columns[:-1]  
+    num_instances = len(input_df)
+    M = 1000 
+    x_nlf1 = pulp.LpVariable("x_nlf1", cat='Binary')
+
+    P_vars = pulp.LpVariable.dicts("P", (range(num_instances), labeling_functions), 
+                                lowBound=-1, upBound=1, cat='Integer')
+    new_lf_weight = 100
+
+    # Binary variables for each type of flip
+    flip_1_to_0 = pulp.LpVariable.dicts("flip_1_to_0", (range(num_instances), labeling_functions), cat='Binary')
+    flip_1_to_neg1 = pulp.LpVariable.dicts("flip_1_to_neg1", (range(num_instances), labeling_functions), cat='Binary')
+    flip_0_to_1 = pulp.LpVariable.dicts("flip_0_to_1", (range(num_instances), labeling_functions), cat='Binary')
+    flip_0_to_neg1 = pulp.LpVariable.dicts("flip_0_to_neg1", (range(num_instances), labeling_functions), cat='Binary')
+    flip_neg1_to_1 = pulp.LpVariable.dicts("flip_neg1_to_1", (range(num_instances), labeling_functions), cat='Binary')
+    flip_neg1_to_0 = pulp.LpVariable.dicts("flip_neg1_to_0", (range(num_instances), labeling_functions), cat='Binary')
+
+    # Binary variables to track correctness of predictions (1 if correct, 0 if not)
+    correctness_vars = pulp.LpVariable.dicts("correct", (range(num_instances), labeling_functions), cat='Binary')
+
+    # Objective: Minimize the number of flips
+    flip_cost = pulp.lpSum([flip_1_to_0[i][lf] + flip_1_to_neg1[i][lf] + 
+                            flip_0_to_1[i][lf] + flip_0_to_neg1[i][lf] + 
+                            flip_neg1_to_1[i][lf] + flip_neg1_to_0[i][lf] 
+                            for i in range(num_instances) for lf in labeling_functions])
+
+    prob += flip_cost + new_lf_weight*x_nlf1, "Minimize_Flips"
+
+    # Mutual exclusivity
+    for i in range(num_instances):
+        for lf in labeling_functions:
+            prob += (flip_1_to_0[i][lf] + flip_1_to_neg1[i][lf] + 
+                    flip_0_to_1[i][lf] + flip_0_to_neg1[i][lf] + 
+                    flip_neg1_to_1[i][lf] + flip_neg1_to_0[i][lf]) <= 1, f"Flip_Exclusivity_{i}_{lf}"
+
+    for i in range(num_instances):
+        for lf in labeling_functions:
+            original_val = input_df.loc[i, lf]
+
+            if original_val == 1:
+                prob += P_vars[i][lf] == 0 * flip_1_to_0[i][lf] + (-1) * flip_1_to_neg1[i][lf] + 1 * (1 - flip_1_to_0[i][lf] - flip_1_to_neg1[i][lf]), f"Flip_From_1_{i}_{lf}"
+            elif original_val == 0:
+                prob += P_vars[i][lf] == 1 * flip_0_to_1[i][lf] + (-1) * flip_0_to_neg1[i][lf] + 0 * (1 - flip_0_to_1[i][lf] - flip_0_to_neg1[i][lf]), f"Flip_From_0_{i}_{lf}"
+            elif original_val == -1:
+                prob += P_vars[i][lf] == 1 * flip_neg1_to_1[i][lf] + 0 * flip_neg1_to_0[i][lf] + (-1) * (1 - flip_neg1_to_1[i][lf] - flip_neg1_to_0[i][lf]), f"Flip_From_neg1_{i}_{lf}"
+
+    # Accuracy constraint for each labeling function (except nlf1)
+    for lf in labeling_functions:
+        if lf == 'nlf1':
+            lf_correct_predictions = pulp.lpSum([correctness_vars[i][lf] for i in range(num_instances)])
+            prob += lf_correct_predictions >= lf_acc_thresh * num_instances - M * (1 - x_nlf1), f"LF_nlf1_Accuracy"
+        else:
+            lf_correct_predictions = pulp.lpSum([correctness_vars[i][lf] for i in range(num_instances)])
+            prob += lf_correct_predictions >= lf_acc_thresh * num_instances, f"LF_{lf}_Accuracy"
+
+    # Instance accuracy constraint (nlf1 is optional, conditional on x_nlf1)
+    for i in range(num_instances):
+        # Big-M method applied to conditional inclusion of nlf1
+        # Ensure that nlf1's correctness is only counted if x_nlf1 == 1
+        prob += correctness_vars[i]['nlf1'] <= M * x_nlf1, f"nlf1_active_{i}"
+        
+        correct_predictions_per_instance = pulp.lpSum([correctness_vars[i][lf] for lf in labeling_functions if lf != 'nlf1']) \
+                                        + correctness_vars[i]['nlf1']
+        num_labeling_functions_used = len(labeling_functions) - 1 + x_nlf1  # Adjust number of LFs based on nlf1
+        prob += correct_predictions_per_instance >= instance_acc_thresh * num_labeling_functions_used, f"Instance_{i}_Accuracy"
+
+    # Ensure correctness tracking between P_vars and true labels
+    for i in range(num_instances):
+        for lf in labeling_functions:
+            true_label = input_df['tlabel'][i]
+            
+            # Ensure that correctness_vars[i][lf] is 1 if P_vars[i][lf] equals true_label, else 0
+            prob += P_vars[i][lf] - true_label <= M * (1 - correctness_vars[i][lf]), f"Correctness_UpperBound_{i}_{lf}"
+            prob += true_label - P_vars[i][lf] <= M * (1 - correctness_vars[i][lf]), f"Correctness_LowerBound_{i}_{lf}"
+
+
+    # Solve the integer program
+    prob.solve()
+
+    p_vars_solution = pd.DataFrame(index=input_df.index, columns=labeling_functions)
+
+    for i in range(num_instances):
+        for lf in labeling_functions:
+            p_vars_solution.loc[i, lf] = pulp.value(P_vars[i][lf])

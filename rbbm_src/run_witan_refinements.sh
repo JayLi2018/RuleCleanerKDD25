@@ -21,7 +21,7 @@ do
 	x=$(( $x+1 ))
 done
 
-    python main.py -e al_witan_results/amazon/ -U lf -x 123 -T 0 -s 40 -r 0.5 -G information_gain -D 0 -z -n amazon -P 5432 --user-input-strat naive
+    # python main.py -e al_witan_results/amazon/ -U lf -x 123 -T 0 -s 40 -r 0.5 -G information_gain -D 0 -z -n amazon -P 5432 --user-input-strat naive
 
 
 

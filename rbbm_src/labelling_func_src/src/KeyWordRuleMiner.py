@@ -52,7 +52,7 @@ class KeyWordRuleMiner:
 
 
 	def gen_funcs(self, count, apply_to_sentence_percentage_thresh, label_accuracy_thresh, label_accuracy_cap, pickle_it=False, 
-		pickle_file_name=None, checked_words=None, is_good=False, cardinality_thresh=1):
+		pickle_file_name=None, checked_words=None, is_good=True, cardinality_thresh=1):
 		res = []
 		if(not checked_words):
 			checked_words = set([])
@@ -65,13 +65,17 @@ class KeyWordRuleMiner:
 			cur_card = 1
 			while(cur_card<=cardinality_thresh):
 				cur_words = [cw for cw in combinations(words,cur_card)]
-				for w in cur_words:
-					if(self.verify_word(w, stop_words, checked_words)):
-						checked_words.add(w)
-					else:
+				for ws in cur_words:
+					checked = False
+					for w in ws:
+						if(self.verify_word(w, stop_words, checked_words)):
+							checked_words.add(w)
+						else:
+							checked=True 
+					if(checked):
 						continue
 					for t in [SPAM, HAM]:
-						cand_f = keyword_labelling_func_builder(keywords=[x for x in w], expected_label=t, is_good=is_good)
+						cand_f = keyword_labelling_func_builder(keywords=[x for x in ws], expected_label=t, is_good=is_good)
 						tree_rules=[cand_f]
 						labelling_funcs=[f.gen_label_rule() for f in tree_rules]
 						applier = PandasLFApplier(lfs=labelling_funcs)
@@ -84,7 +88,7 @@ class KeyWordRuleMiner:
 							match_cnt = len([x for x,y in zip(func_results,gts) if (x == y and x!=ABSTAIN)])
 							if(label_accuracy_thresh <= match_cnt/non_abstain_results_cnt <= label_accuracy_cap):
 								cur_cnt+=1
-								print(f"word: {w}, label:{t}, match_cnt: {match_cnt}, non_abstain_results_cnt: {non_abstain_results_cnt}, accuracy:{match_cnt/non_abstain_results_cnt}, current cnt={cur_cnt}")
+								print(f"word: {ws}, label:{t}, match_cnt: {match_cnt}, non_abstain_results_cnt: {non_abstain_results_cnt}, accuracy:{match_cnt/non_abstain_results_cnt}, current cnt={cur_cnt}")
 								res.append(cand_f)
 								print(f"sentence_cnt: {ccnt}, current result_cnt={cur_cnt}")
 								if(len(res)>=count):
@@ -101,8 +105,9 @@ class KeyWordRuleMiner:
 				# print('\n')
 				cur_card+=1
 
-		print('didnt have enough words / threshold too high to have eligible funcs')
-		exit()
+		print('didnt have enough words / threshold too high to have eligible funcs, returned the found funcs anyway')
+		return res, checked_words
+		# exit()
 
 
 

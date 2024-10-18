@@ -198,7 +198,7 @@ class PredicateNode(Node):
 class LabelNode(Node):
 	label: int=ABSTAIN
 	pairs: dict=None
-	used_predicates: set([])=None
+	used_predicates: set([])=None		
 
 # @dataclass
 # DenialPredicate(Predicate):
