@@ -164,5 +164,5 @@ rbbm_src/snorkel/
 *dc*
 .vscode/
 local/
-
+!ExperimentsInPaper/
 
