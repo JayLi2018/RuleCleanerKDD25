@@ -165,4 +165,5 @@ rbbm_src/snorkel/
 .vscode/
 local/
 !ExperimentsInPaper/
-
+!ExperimentsInPaper/*
+ExperimentsInPaper/.ipynb_checkpoints/
