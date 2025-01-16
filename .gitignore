@@ -167,3 +167,4 @@ local/
 !ExperimentsInPaper/
 !ExperimentsInPaper/*
 ExperimentsInPaper/.ipynb_checkpoints/
+ExperimentsInPaper/*.pkl
