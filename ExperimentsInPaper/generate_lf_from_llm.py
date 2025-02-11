@@ -146,31 +146,3 @@ for k, v in mapping_dicts.items():
     with open(f'lf_raw_response_datase_{k}_new.pkl', 'wb') as f:
         pickle.dump(responses, f)
 
-
-# # Step 1: Embed the tex
-# embeddings = embed_text(texts)  # Use a pre-trained embedding model
-
-# # Step 2: Find the optimal number of clusters
-# silhouette_scores = []
-# for k in range(2, 20):
-#     kmeans = KMeans(n_clusters=k)
-#     labels = kmeans.fit_predict(embeddings)
-#     silhouette_scores.append(silhouette_score(embeddings, labels))
-# optimal_k = np.argmax(silhouette_scores) + 2  # Add 2 because range starts at 2
-
-# # Step 3: Distribute LFs across clusters
-# kmeans = KMeans(n_clusters=optimal_k)
-# cluster_labels = kmeans.fit_predict(embeddings)
-# cluster_sizes = np.bincount(cluster_labels)
-# total_lfs = 100  # Example: Generate 100 LFs
-# lfs_per_cluster = (cluster_sizes / len(texts)) * total_lfs
-
-# # Step 4: Generate LFs using ChatGPT
-# for cluster_id in range(optimal_k):
-#     cluster_examples = [texts[i] for i in range(len(texts)) if cluster_labels[i] == cluster_id]
-#     num_lfs = int(lfs_per_cluster[cluster_id])
-#     for _ in range(num_lfs):
-#         prompt = f"Generate a keyword-based labeling function for the following examples: {cluster_examples[:5]}"
-#         response = openai.Completion.create(prompt=prompt, model="gpt-4")
-#         lf = response.choices[0].text
-#         save_labeling_function(lf)  # Save the generated LF
