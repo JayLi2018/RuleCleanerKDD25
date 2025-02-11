@@ -12,6 +12,13 @@ from rulecleaner_src.TreeRules import (
 )
 from rulecleaner_src.lfs_tree import keyword_labelling_func_builder, regex_func_builder, senti_func_builder, pos_func_builder, length_func_builder
 
+
+INTER  = 0
+SPORTS = 1
+TECH = 2
+BUSI = 3
+
+
 def gen_example_funcs():
 	TreeRule.rule_counter=0
 	f1 = keyword_labelling_func_builder(['songs', 'song'], HAM)
@@ -1490,3 +1497,210 @@ def gen_gpt_refined_fakenews_funcs_user_input_40():
 	fake_news_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11]
 
 	return fake_news_funcs
+
+
+def gen_agnews_funcs_4_class():
+	
+	#### 0: international
+	r1 = ["atomic", "captives", "baghdad", "israeli", "iraqis", "iranian", "afghanistan", "wounding", "terrorism", "soldiers", \
+    "palestinians", "palestinian", "policemen", "iraqi", "terrorist", 'north korea', 'korea', \
+    'israel', 'u.n.', 'egypt', 'iran', 'iraq', 'nato', 'armed', 'peace']
+	f1 = keyword_labelling_func_builder(r1, INTER, possible_labels=[0,1,2,3])
+	
+	r2= [' war ', 'prime minister', 'president', 'commander', 'minister',  'annan', "military", "militant", "kill", 'operator']
+	
+	f2 = keyword_labelling_func_builder(r2, INTER, possible_labels=[0,1,2,3])
+
+    #### 1: sports
+	r3 = ["goals", "bledsoe", "coaches",  "touchdowns", "kansas", "rankings", "no.", \
+     "champ", "cricketers", "hockey", "champions", "quarterback", 'club', 'team',  'baseball', 'basketball', 'soccer', 'football', 'boxing',  'swimming', \
+     'world cup', 'nba',"olympics","final", "finals", 'fifa',  'racist', 'racism']
+	f3 = keyword_labelling_func_builder(r3, SPORTS, possible_labels=[0,1,2,3])
+	
+	r4 = ['athlete',  'striker', 'defender', 'goalkeeper',  'midfielder', 'shooting guard', 'power forward', 'point guard', 'pitcher', 'catcher', 'first base', 'second base', 'third base','shortstop','fielder']
+	f4 = keyword_labelling_func_builder(r4, SPORTS, possible_labels=[0,1,2,3])
+
+    #r3 = ["tech", "digital", "internet", "mobile"]
+	r5=['lakers','chelsea', 'piston','cavaliers', 'rockets', 'clippers','ronaldo', \
+        'celtics', 'hawks','76ers', 'raptors', 'pacers', 'suns', 'warriors','blazers','knicks','timberwolves', 'hornets', 'wizards', 'nuggets', 'mavericks', 'grizzlies', 'spurs', \
+        'cowboys', 'redskins', 'falcons', 'panthers', 'eagles', 'saints', 'buccaneers', '49ers', 'cardinals', 'texans', 'seahawks', 'vikings', 'patriots', 'colts', 'jaguars', 'raiders', 'chargers', 'bengals', 'steelers', 'browns', \
+        'braves','marlins','mets','phillies','cubs','brewers','cardinals', 'diamondbacks','rockies', 'dodgers', 'padres', 'orioles', 'sox', 'yankees', 'jays', 'sox', 'indians', 'tigers', 'royals', 'twins','astros', 'angels', 'athletics', 'mariners', 'rangers', \
+        'arsenal', 'burnley', 'newcastle', 'leicester', 'manchester united', 'everton', 'southampton', 'hotspur','tottenham', 'fulham', 'watford', 'sheffield','crystal palace', 'derby', 'charlton', 'aston villa', 'blackburn', 'west ham', 'birmingham city', 'middlesbrough', \
+        'real madrid', 'barcelona', 'villarreal', 'valencia', 'betis', 'espanyol','levante', 'sevilla', 'juventus', 'inter milan', 'ac milan', 'as roma', 'benfica', 'porto', 'getafe', 'bayern', 'schalke', 'bremen', 'lyon', 'paris saint', 'monaco', 'dynamo']
+	f5 = keyword_labelling_func_builder(r5, SPORTS, possible_labels=[0,1,2,3])
+    
+	#### 3:tech
+	r6 = ["technology", "engineering", "science", "research", "cpu", "windows", "unix", "system", 'computing',  'compute']#, "wireless","chip", "pc", ]
+	f6 = keyword_labelling_func_builder(r6, TECH, possible_labels=[0,1,2,3])
+
+	r7= ["google", "apple", "microsoft", "nasa", "yahoo", "intel", "dell", \
+    'huawei',"ibm", "siemens", "nokia", "samsung", 'panasonic', \
+     't-mobile', 'nvidia', 'adobe', 'salesforce', 'linkedin', 'silicon', 'wiki'
+    ]
+	f7 = keyword_labelling_func_builder(r7, TECH,  possible_labels=[0,1,2,3])
+
+    #### 2:business
+	r8= ["stock", "account", "financ", "goods", "retail", 'economy', 'chairman', 'bank', 'deposit', 'economic', 'dow jones', 'index', '$',  'percent', 'interest rate', 'growth', 'profit', 'tax', 'loan',  'credit', 'invest']
+	f8 = keyword_labelling_func_builder(r8, BUSI, possible_labels=[0,1,2,3])
+
+	r9= ["delta", "cola", "toyota", "costco", "gucci", 'citibank', 'airlines']
+	f9 = keyword_labelling_func_builder(r9, BUSI, possible_labels=[0,1,2,3])
+
+	agnews_4_calss_funcs = [f1, f2, f3, f4, f5, f6, f7, f8, f9]
+
+	return agnews_4_calss_funcs
+
+
+def gen_chemprot_func():
+      
+      ## Part of
+	f1 = keyword_labelling_func_builder(['amino acid'], 0, possible_labels=list(range(0,10)))
+	f2 = keyword_labelling_func_builder(['replace'], 0, possible_labels=list(range(0,10)))
+	f3 = keyword_labelling_func_builder(['mutant', 'mutat'],0, possible_labels=list(range(0,10)))
+      
+# ## Part of
+# @labeling_function()
+# def lf_amino_acid(x):
+#     return 1 if 'amino acid' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_replace(x):
+#     return 1 if 'replace' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_mutant(x):
+#     return 1 if 'mutant' in x.sentence.lower() or 'mutat' in x.sentence.lower() else ABSTAIN
+
+	f4 = keyword_labelling_func_builder(['bind'], 1, possible_labels=list(range(0,10)))
+	f5 = keyword_labelling_func_builder(['interact'], 1, possible_labels=list(range(0,10)))
+	f6 = keyword_labelling_func_builder(['affinit'],1, possible_labels=list(range(0,10)))
+# ## Regulator
+# @labeling_function()
+# def lf_bind(x):
+#     return 2 if 'bind' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_interact(x):
+#     return 2 if 'interact' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_affinity(x):
+#     return 2 if 'affinit' in x.sentence.lower() else ABSTAIN
+
+	f7 = keyword_labelling_func_builder(['activat'], 2, possible_labels=list(range(0,10)))
+	f8 = keyword_labelling_func_builder(['increas'], 2, possible_labels=list(range(0,10)))
+	f9 = keyword_labelling_func_builder(['induc'], 2, possible_labels=list(range(0,10)))
+	f10 = keyword_labelling_func_builder(['stimulat'],2, possible_labels=list(range(0,10)))
+	f11 = keyword_labelling_func_builder(['upregulat'],2, possible_labels=list(range(0,10)))
+
+## Upregulator
+# Activator
+# @labeling_function()
+# def lf_activate(x):
+#     return 3 if 'activat' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_increase(x):
+#     return 3 if 'increas' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_induce(x):
+#     return 3 if 'induc' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_stimulate(x):
+#     return 3 if 'stimulat' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_upregulate(x):
+#     return 3 if 'upregulat' in x.sentence.lower() else ABSTAIN
+
+
+	f12 = keyword_labelling_func_builder(['downregulat', 'down-regulat'], 3, possible_labels=list(range(0,10)))
+	f13 = keyword_labelling_func_builder(['reduc'], 3, possible_labels=list(range(0,10)))
+	f14 = keyword_labelling_func_builder(['inhibit'],3, possible_labels=list(range(0,10)))
+	f15 = keyword_labelling_func_builder(['decreas'],3, possible_labels=list(range(0,10)))
+
+## Downregulator
+# @labeling_function()
+# def lf_downregulate(x):
+#     return 4 if 'downregulat' in x.sentence.lower() or 'down-regulat' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_reduce(x):
+#     return 4 if 'reduc' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_inhibit(x):
+#     return 4 if 'inhibit' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_decrease(x):
+#     return 4 if 'decreas' in x.sentence.lower() else ABSTAIN
+
+
+	f16 = keyword_labelling_func_builder([' agoni', '\tagoni'], 4, possible_labels=list(range(0,10)))
+
+## Agonist
+# @labeling_function()
+# def lf_agonist(x):
+#     return 5 if ' agoni' in x.sentence.lower() or "\tagoni" in x.sentence.lower() else ABSTAIN
+
+	f17 = keyword_labelling_func_builder(['antagon'], 5, possible_labels=list(range(0,10)))
+
+## Antagonist
+# @labeling_function() 
+# def lf_antagonist(x):
+#     return 6 if 'antagon' in x.sentence.lower() else ABSTAIN
+	f18 = keyword_labelling_func_builder(['modulat'], 6, possible_labels=list(range(0,10)))
+	f19 = keyword_labelling_func_builder(['allosteric'], 6, possible_labels=list(range(0,10)))
+
+## Modulator
+# @labeling_function()
+# def lf_modulate(x):
+#     return 7 if 'modulat' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_allosteric(x):
+#     return 7 if 'allosteric' in x.sentence.lower() else ABSTAIN
+
+	f20 = keyword_labelling_func_builder(['cofactor'], 7, possible_labels=list(range(0,10)))
+
+## Cofactor
+# @labeling_function()
+# def lf_cofactor(x):
+#     return 8 if 'cofactor' in x.sentence.lower() else ABSTAIN
+
+	f21 = keyword_labelling_func_builder(['substrate'], 8, possible_labels=list(range(0,10)))
+	f22 = keyword_labelling_func_builder(['transport'], 8, possible_labels=list(range(0,10)))
+	f23 = keyword_labelling_func_builder(['catalyz', 'catalys'], 8, possible_labels=list(range(0,10)))
+	f24 = keyword_labelling_func_builder(['produc'], 8, possible_labels=list(range(0,10)))
+	f25 = keyword_labelling_func_builder(['conver'], 8, possible_labels=list(range(0,10)))
+## Substrate/Product
+# @labeling_function()
+# def lf_substrate(x):
+#     return 9 if 'substrate' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_transport(x):
+#     return 9 if 'transport' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_catalyze(x):
+#     return 9 if 'catalyz' in x.sentence.lower() or 'catalys' in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_product(x):
+#     return 9 if "produc" in x.sentence.lower() else ABSTAIN
+
+# @labeling_function()
+# def lf_convert(x):
+#     return 9 if "conver" in x.sentence.lower() else ABSTAIN
+	f26 = keyword_labelling_func_builder(['not'], 9, possible_labels=list(range(0,10)))
+
+## NOT
+# @labeling_function()
+# def lf_not(x):
+#     return 10 if 'not' in x.sentence.lower() else ABSTAIN
+	return [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16,
+		 f17, f18, f19, f20, f21, f22, f23, f24, f25, f26]

@@ -21,8 +21,6 @@ from rulecleaner_src.TreeRules import (
 )
 from itertools import product
 from collections import deque
-from rbbm_src.classes import StatsTracker,FixMonitor, RepairConfig, lf_input
-from rbbm_src.labelling_func_src.src.classes import lf_input_internal, clean_text
 from datetime import datetime
 import psycopg2 
 import time
@@ -40,19 +38,17 @@ import logging
 import random
 
 
-# logger = logging.getLogger(__name__)
-
 # keyword lfs
-def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_good: bool=True):
+def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_good: bool=True, possible_labels=[0,1]):
 	cur_number=1
 	tree_size=1
 	r1 = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=keywords))
 	cur_number+=1
 	tree_size+=1
-	r1_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set(keywords))
+	r1_l = LabelNode(number=cur_number, label=ABSTAIN,  pairs={k:[] for k in possible_labels}, used_predicates=set(keywords))
 	tree_size+=1
 	cur_number+=1
-	r1_r = LabelNode(number=cur_number, label=expected_label, pairs={ABSTAIN:[], SPAM:[], HAM:[]}, used_predicates=set(keywords))
+	r1_r = LabelNode(number=cur_number, label=expected_label, pairs={k:[] for k in possible_labels}, used_predicates=set(keywords))
 	r1.right=r1_r
 	r1.left=r1_l
 

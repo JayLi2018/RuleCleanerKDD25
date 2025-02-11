@@ -6,14 +6,45 @@ import os
 import datetime
 import pickle
 sys.path.append(os.path.join(os.getcwd(), ".."))
-from lf_solver import  lf_constraint_solve_no_new_lf
-from utils import (construct_input_df_to_solver,
+from rulecleaner_src.lf_solver import  lf_constraint_solve_no_new_lf, lf_constraint_solve_no_new_lf_multi_class
+from rulecleaner_src.utils import (construct_input_df_to_solver,
                    create_solver_input_df_copies,
                    select_user_input
 
 )
 from rulecleaner_src.LFRepair import fix_rules_with_solver_input
 from rulecleaner_src.utils import run_snorkel_with_funcs
+from rulecleaner_src.lfs_tree import keyword_labelling_func_builder, regex_func_builder
+import logging
+
+
+logging.basicConfig(
+    level=logging.DEBUG,  #(DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("rulecleaner.log"),  
+        logging.StreamHandler()  
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+
+def convert_to_treerules(lf_info):
+    """
+    Converts extracted labeling functions into TreeRule objects.
+    """
+    if lf_info["type"] == "keyword":
+        tree_rule = keyword_labelling_func_builder(
+            keywords=lf_info["keywords"],
+            expected_label=lf_info["expected_label"]
+        )
+    elif lf_info["type"] == "regex":
+        tree_rule = regex_func_builder(
+            patterns=lf_info["patterns"],
+            expected_label=lf_info["expected_label"]
+        )
+    return tree_rule
 
 def main(user_input_size,
          lf_acc_thresh,
@@ -24,7 +55,9 @@ def main(user_input_size,
         funcs_dictionary,
        instance_acc_on_valid,
        use_non_abstain,
-       pickle_result_file_name_prefix):
+       pickle_result_file_name_prefix,
+       lf_source='witan',
+       num_possible_labels=2):
     
     for arg_name, value in locals().items():
         print(f"{arg_name} = {value}")
@@ -32,19 +65,25 @@ def main(user_input_size,
     run_times = ['snorkel_first_run','snorkel_run_after_fix', 'solver_runtime','repair_time']
     runtime_dict = {r:0 for r in run_times}
 
-    gen_input_tree_rules_func = funcs_dictionary[dataset_name]
-    
+    if(lf_source=='witan'):
+        gen_input_tree_rules_func = funcs_dictionary[dataset_name]
+        treerules = gen_input_tree_rules_func()
+    else:
+        treerules  = [convert_to_treerules(x) for x in funcs_dictionary[dataset_name]]
+
     conn = psycopg2.connect(dbname='label', user='postgres')
     
     user_complaint_size = math.floor(user_input_size * 0.5)
     user_confirm_size = user_input_size - user_complaint_size
          
-    treerules = gen_input_tree_rules_func()
     
     funcs = [f.gen_label_rule() for f in treerules]
+
+    print(f"func names:\n")
+    print('*************************\n'.join([f.name for f in funcs]))
     
     first_snorkel_run_start = time.time()
-    df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, global_accuracy, global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs, conn=conn)
+    df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, global_accuracy, global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs, conn=conn, cardinality=num_possible_labels)
     first_snorkel_run_end = time.time()
     first_snorkel_run_time = first_snorkel_run_end - first_snorkel_run_start
     runtime_dict['snorkel_first_run'] = first_snorkel_run_time
@@ -57,16 +96,28 @@ def main(user_input_size,
     combined_df = construct_input_df_to_solver(user_vecs, gts)
     
     solver_runtime_start = time.time()
+
+    if(num_possible_labels==2):
+        res_df, res_flip_cost = lf_constraint_solve_no_new_lf(df=combined_df, 
+                    lf_acc_thresh=lf_acc_thresh,
+                    instance_acc_thresh=instance_acc_thresh,
+                    min_non_abstain_thresh=min_non_abstain_thresh,      
+                    expected_label_col='expected_label',
+                    instance_acc_on_valid=instance_acc_on_valid,
+                use_non_abstain=use_non_abstain)
+    else:
+        res_df, res_flip_cost = lf_constraint_solve_no_new_lf_multi_class(df=combined_df, 
+                    lf_acc_thresh=lf_acc_thresh,
+                    instance_acc_thresh=instance_acc_thresh,
+                    min_non_abstain_thresh=min_non_abstain_thresh,      
+                    expected_label_col='expected_label',
+                    instance_acc_on_valid=instance_acc_on_valid,
+                use_non_abstain=use_non_abstain,
+                class_num=num_possible_labels)
     
-    res_df, res_flip_cost = lf_constraint_solve_no_new_lf(df=combined_df, 
-                lf_acc_thresh=lf_acc_thresh,
-                instance_acc_thresh=instance_acc_thresh,
-                min_non_abstain_thresh=min_non_abstain_thresh,      
-                expected_label_col='expected_label',
-                instance_acc_on_valid=instance_acc_on_valid,
-               use_non_abstain=use_non_abstain)
-    
-    
+    logger.debug(f"solver output :{res_df}")
+        
+
     solver_runtime_end = time.time()
     solver_runtime = solver_runtime_end - solver_runtime_start
     runtime_dict['solver_runtime'] = solver_runtime
@@ -94,7 +145,7 @@ def main(user_input_size,
     
     
     repair_alghorithm_start = time.time()
-    fix_rules_with_solver_input(fix_book_keeping_dict=fix_book_keeping_dict)
+    fix_rules_with_solver_input(fix_book_keeping_dict=fix_book_keeping_dict, num_class=num_possible_labels)
     repair_alghorithm_end = time.time()
     repair_alghorithm_time = repair_alghorithm_end - repair_alghorithm_start
     runtime_dict['repair_time'] = repair_alghorithm_time
@@ -103,7 +154,7 @@ def main(user_input_size,
     funcs_after_fix = [f.gen_label_rule() for f in new_trees]
 
     snorkel_run_after_fix_start = time.time()
-    new_df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, new_global_accuracy, new_global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs_after_fix, conn=conn) 
+    new_df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, new_global_accuracy, new_global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs_after_fix, conn=conn, cardinality=num_possible_labels) 
     snorkel_run_after_fix_end = time.time()
     snorkel_run_after_fix_time = snorkel_run_after_fix_end - snorkel_run_after_fix_start
     runtime_dict['snorkel_run_after_fix'] = snorkel_run_after_fix_time

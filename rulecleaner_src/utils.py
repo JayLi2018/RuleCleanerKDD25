@@ -4,7 +4,8 @@ import sys
 import os
 import numpy as np 
 import pandas as pd
-import re 
+import re
+import pickle
 sys.path.append(os.path.join(os.getcwd(), ".."))
 
 
@@ -21,7 +22,7 @@ def clean_text(text):
     return text.lower()
 
 
-def run_snorkel_with_funcs(dataset_name, funcs, conn):
+def run_snorkel_with_funcs(dataset_name, funcs, conn, cardinality):
     
     sentences_df=pd.read_sql(f'SELECT * FROM {dataset_name}', conn)
     sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
@@ -29,7 +30,12 @@ def run_snorkel_with_funcs(dataset_name, funcs, conn):
     sentences_df = sentences_df[~sentences_df['text'].isna()]
     applier = PandasLFApplier(lfs=funcs)
     initial_vectors = applier.apply(df=sentences_df, progress_bar=False)
-    model = LabelModel(cardinality=2, verbose=True, device='cpu')
+    print(f"initial_vectors: {initial_vectors.shape}")
+    print(f"initial_vectors:\n {initial_vectors}")
+    with open('initial_vectors.pkl', 'wb') as f:
+        pickle.dump(initial_vectors, f)
+    
+    model = LabelModel(cardinality=cardinality, verbose=True, device='cpu')
     model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
     probs_test= model.predict_proba(L=initial_vectors)
     df_sentences_filtered, probs_test_filtered, filtered_vectors, df_no_signal  = filter_unlabeled_dataframe(

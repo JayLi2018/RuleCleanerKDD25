@@ -335,7 +335,7 @@ class TreeRule:
 
 		result = []
 		traverse(self.root, 0)
-		return '\n'.join(result)
+		return f'rid:{self.id}'+'\n'.join(result)
 	
 	def __repr__(self):
 		return self.__str__()
