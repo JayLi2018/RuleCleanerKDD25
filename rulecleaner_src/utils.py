@@ -6,6 +6,9 @@ import numpy as np
 import pandas as pd
 import re
 import pickle
+from wrench.labelmodel import DawidSkene, FlyingSquid, MeTaL, HyperLM, EBCC, IBCC, Fable
+from wrench.labelmodel.majority_voting import MajorityVoting, MajorityWeightedVoting
+
 sys.path.append(os.path.join(os.getcwd(), ".."))
 
 
@@ -22,59 +25,175 @@ def clean_text(text):
     return text.lower()
 
 
-def run_snorkel_with_funcs(dataset_name, funcs, conn, cardinality):
+# def run_snorkel_with_funcs(dataset_name, funcs, conn, cardinality):
     
-    sentences_df=pd.read_sql(f'SELECT * FROM {dataset_name}', conn)
+#     sentences_df=pd.read_sql(f'SELECT * FROM {dataset_name}', conn)
+#     sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
+#     sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
+#     sentences_df = sentences_df[~sentences_df['text'].isna()]
+#     applier = PandasLFApplier(lfs=funcs)
+#     initial_vectors = applier.apply(df=sentences_df, progress_bar=False)
+#     print(f"initial_vectors: {initial_vectors.shape}")
+#     print(f"initial_vectors:\n {initial_vectors}")
+#     with open('initial_vectors.pkl', 'wb') as f:
+#         pickle.dump(initial_vectors, f)
+    
+#     model = LabelModel(cardinality=cardinality, verbose=True, device='cpu')
+#     model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
+#     probs_test= model.predict_proba(L=initial_vectors)
+#     df_sentences_filtered, probs_test_filtered, filtered_vectors, df_no_signal  = filter_unlabeled_dataframe(
+#         X=sentences_df, y=probs_test, L=initial_vectors
+#     )	
+
+#     df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
+#     prob_diffs = [abs(t[0]-t[1]) for t in probs_test_filtered]
+#     prob_diffs_tuples = [(t[0],t[1]) for t in probs_test_filtered]
+#     df_sentences_filtered['model_pred_diff'] = pd.Series(prob_diffs)
+#     df_sentences_filtered['model_pred_prob_tuple'] = pd.Series(prob_diffs_tuples)
+#     df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
+
+#     wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
+#     # df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)
+#     # logger.critical(wrong_preds)
+#     global_accuray_on_valid=(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)
+
+#     print(f"""
+#         out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} actually got at least one signal to \n
+#         make prediction. Out of all the valid predictions, we have {len(wrong_preds)} wrong predictions, \n
+#         accuracy = {(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)} 
+#     """)
+    
+#     global_accuracy = (len(df_sentences_filtered)-len(wrong_preds))/len(sentences_df)
+    
+    
+#     ground_truth = df_sentences_filtered['expected_label']
+#     snorkel_predictions = df_sentences_filtered['model_pred']
+#     snorkel_probs = df_sentences_filtered['model_pred_diff']
+#     df_sentences_filtered['vectors'] = pd.Series([",".join(map(str, t)) for t in filtered_vectors])
+#     correct_predictions = (snorkel_predictions == ground_truth)
+#     incorrect_predictions = (snorkel_predictions != ground_truth)
+#     correct_preds_by_snorkel = df_sentences_filtered[correct_predictions].reset_index(drop=True)
+#     wrong_preds_by_snorkel = df_sentences_filtered[incorrect_predictions].reset_index(drop=True)
+    
+#     return df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, \
+#           incorrect_predictions, global_accuracy, global_accuray_on_valid 
+
+def run_label_model_with_funcs(dataset_name, funcs, conn, cardinality, model_type="snorkel"):
+    # Load and clean data
+    sentences_df = pd.read_sql(f'SELECT * FROM {dataset_name}', conn)
     sentences_df = sentences_df.rename(columns={"class": "expected_label", "content": "old_text"})
     sentences_df['text'] = sentences_df['old_text'].apply(lambda s: clean_text(s))
     sentences_df = sentences_df[~sentences_df['text'].isna()]
+
+    # Apply labeling functions
     applier = PandasLFApplier(lfs=funcs)
     initial_vectors = applier.apply(df=sentences_df, progress_bar=False)
     print(f"initial_vectors: {initial_vectors.shape}")
-    print(f"initial_vectors:\n {initial_vectors}")
     with open('initial_vectors.pkl', 'wb') as f:
         pickle.dump(initial_vectors, f)
+
+    # Fit model
+    if model_type == "snorkel":
+        model = LabelModel(cardinality=cardinality, verbose=True, device='cpu')
+        model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
+        probs_test = model.predict_proba(L=initial_vectors)
+        predictions = model.predict(L=initial_vectors)
+
+    elif model_type == "dawidskene":
+        model = DawidSkene(n_epochs=100, tolerance=1e-4)
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+
+    elif model_type == "flyingsquid":
+        model = FlyingSquid()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+
+    elif model_type == "metal":
+        model = MeTaL()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
     
-    model = LabelModel(cardinality=cardinality, verbose=True, device='cpu')
-    model.fit(L_train=initial_vectors, n_epochs=500, log_freq=100, seed=123)
-    probs_test= model.predict_proba(L=initial_vectors)
-    df_sentences_filtered, probs_test_filtered, filtered_vectors, df_no_signal  = filter_unlabeled_dataframe(
+    elif model_type == "hyperlm":
+        model = HyperLM()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+    elif model_type == "majority":
+        model = MajorityVoting()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+    elif model_type == "weighted_majority":
+        model = MajorityWeightedVoting()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+    elif model_type == "ebcc":
+        model = EBCC()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+    elif model_type == "ibcc":
+        model = IBCC()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+    elif model_type == "fable":
+        model = Fable()
+        model.fit(initial_vectors, n_class=cardinality)
+        probs_test = model.predict_proba(initial_vectors)
+        predictions = np.argmax(probs_test, axis=1)
+
+
+    else:
+        raise ValueError(f"Unknown model_type: {model_type}")
+
+    # Filter unlabeled
+    df_sentences_filtered, probs_test_filtered, filtered_vectors, df_no_signal = filter_unlabeled_dataframe(
         X=sentences_df, y=probs_test, L=initial_vectors
-    )	
+    )
 
     df_sentences_filtered = df_sentences_filtered.reset_index(drop=True)
-    prob_diffs = [abs(t[0]-t[1]) for t in probs_test_filtered]
-    prob_diffs_tuples = [(t[0],t[1]) for t in probs_test_filtered]
+    prob_diffs = [abs(t[0] - t[1]) for t in probs_test_filtered]
+    prob_diffs_tuples = [tuple(t) for t in probs_test_filtered]
     df_sentences_filtered['model_pred_diff'] = pd.Series(prob_diffs)
     df_sentences_filtered['model_pred_prob_tuple'] = pd.Series(prob_diffs_tuples)
-    df_sentences_filtered['model_pred'] = pd.Series(model.predict(L=filtered_vectors))
+    df_sentences_filtered['model_pred'] = pd.Series(np.argmax(probs_test_filtered, axis=1))
 
-    wrong_preds = df_sentences_filtered[(df_sentences_filtered['expected_label']!=df_sentences_filtered['model_pred'])]
-    # df_sentences_filtered.to_csv('predictions_shakira.csv', index=False)
-    # logger.critical(wrong_preds)
-    global_accuray_on_valid=(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)
+    # Accuracy
+    wrong_preds = df_sentences_filtered[
+        df_sentences_filtered['expected_label'] != df_sentences_filtered['model_pred']
+    ]
+    global_accuracy = (len(df_sentences_filtered) - len(wrong_preds)) / len(sentences_df)
+    global_accuracy_on_valid = (len(df_sentences_filtered) - len(wrong_preds)) / len(df_sentences_filtered)
 
     print(f"""
-        out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} actually got at least one signal to \n
-        make prediction. Out of all the valid predictions, we have {len(wrong_preds)} wrong predictions, \n
-        accuracy = {(len(df_sentences_filtered)-len(wrong_preds))/len(df_sentences_filtered)} 
+        Out of {len(sentences_df)} sentences, {len(df_sentences_filtered)} got signal for prediction.
+        {len(wrong_preds)} predictions were incorrect.
+        Accuracy on valid = {global_accuracy_on_valid:.4f}
+        Overall accuracy = {global_accuracy:.4f}
     """)
-    
-    global_accuracy = (len(df_sentences_filtered)-len(wrong_preds))/len(sentences_df)
-    
-    
-    ground_truth = df_sentences_filtered['expected_label']
-    snorkel_predictions = df_sentences_filtered['model_pred']
-    snorkel_probs = df_sentences_filtered['model_pred_diff']
-    df_sentences_filtered['vectors'] = pd.Series([",".join(map(str, t)) for t in filtered_vectors])
-    correct_predictions = (snorkel_predictions == ground_truth)
-    incorrect_predictions = (snorkel_predictions != ground_truth)
-    correct_preds_by_snorkel = df_sentences_filtered[correct_predictions].reset_index(drop=True)
-    wrong_preds_by_snorkel = df_sentences_filtered[incorrect_predictions].reset_index(drop=True)
-    
-    return df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, \
-          incorrect_predictions, global_accuracy, global_accuray_on_valid 
 
+    # Return
+    correct_predictions = df_sentences_filtered['expected_label'] == df_sentences_filtered['model_pred']
+    incorrect_predictions = ~correct_predictions
+    correct_preds_by_model = df_sentences_filtered[correct_predictions].reset_index(drop=True)
+    wrong_preds_by_model = df_sentences_filtered[incorrect_predictions].reset_index(drop=True)
+
+    return (
+        df_sentences_filtered,
+        correct_preds_by_model,
+        wrong_preds_by_model,
+        filtered_vectors,
+        correct_predictions,
+        incorrect_predictions,
+        global_accuracy,
+        global_accuracy_on_valid,
+    )
 
 def select_user_input(user_confirm_size,
                      user_complaint_size,

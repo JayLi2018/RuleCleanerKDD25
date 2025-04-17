@@ -87,7 +87,9 @@ def redistribute_after_fix(tree_rule, node, the_fix):
 
 	# if(reverse):
 	# 	llabel, rlabel = rlabel, llabel
-	possible_labels = list(tree_rule.root.right.pairs)
+	possible_labels = tree_rule.possible_labels
+	print(f"pssible_labels: {possible_labels}")
+	print(f'tree_rule: {tree_rule}')
 	
 
 	new_predicate_node = PredicateNode(number=cur_number,pred=KeywordPredicate(keywords=[the_fix]))

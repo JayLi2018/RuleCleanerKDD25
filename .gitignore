@@ -165,3 +165,6 @@ rbbm_src/snorkel/
 .vscode/
 ExperimentsInPaper/.ipynb_checkpoints/
 ExperimentsInPaper/*.pkl
+*DS_Store
+*__pycache__
+*wrench_datasets/

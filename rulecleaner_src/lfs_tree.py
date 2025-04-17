@@ -39,7 +39,7 @@ import random
 
 
 # keyword lfs
-def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_good: bool=True, possible_labels=[0,1]):
+def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_good: bool=True, possible_labels=[-1,0,1]):
 	cur_number=1
 	tree_size=1
 	r1 = PredicateNode(number=cur_number, pred=KeywordPredicate(keywords=keywords))
@@ -55,7 +55,7 @@ def keyword_labelling_func_builder(keywords: List[str], expected_label: int, is_
 	r1_l.parent=r1
 	r1_r.parent=r1
 
-	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3, is_good=is_good)
+	return TreeRule(rtype='lf', root=r1, size=tree_size, max_node_id=3, is_good=is_good, possible_labels=possible_labels)
 
 # stem lfs 
 def stem_labelling_func_builder(stems: List[str], expected_label: int, is_good: bool=True):

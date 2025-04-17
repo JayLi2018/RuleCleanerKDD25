@@ -219,7 +219,7 @@ class TreeRule:
 	# def eval_rule(ls, rule, instance):
 	# 	return rule.evaluate(instance)
 
-	def __init__(self, rtype: str, root: 'Node', size: int, max_node_id: int, is_good:bool=True):
+	def __init__(self, rtype: str, root: 'Node', size: int, max_node_id: int, is_good:bool=True, possible_labels:list=[-1,0,1]):
 		self.rtype = rtype
 		self.root = root
 		self.size = size
@@ -227,6 +227,7 @@ class TreeRule:
 		self.max_node_id=max_node_id
 		self.reversed_cnt=0
 		self.is_good=is_good
+		self.possible_labels=possible_labels
 		TreeRule.rule_counter+=1
 
 	def setsize(self, new_size:int):

@@ -13,7 +13,9 @@ from rulecleaner_src.utils import (construct_input_df_to_solver,
 
 )
 from rulecleaner_src.LFRepair import fix_rules_with_solver_input
-from rulecleaner_src.utils import run_snorkel_with_funcs
+# from rulecleaner_src.utils import run_snorkel_with_funcs
+from rulecleaner_src.utils import run_label_model_with_funcs
+
 from rulecleaner_src.lfs_tree import keyword_labelling_func_builder, regex_func_builder
 import logging
 
@@ -57,7 +59,8 @@ def main(user_input_size,
        use_non_abstain,
        pickle_result_file_name_prefix,
        lf_source='witan',
-       num_possible_labels=2):
+       num_possible_labels=2,
+       model_type='snorkel'):
     
     for arg_name, value in locals().items():
         print(f"{arg_name} = {value}")
@@ -83,7 +86,11 @@ def main(user_input_size,
     print('*************************\n'.join([f.name for f in funcs]))
     
     first_snorkel_run_start = time.time()
-    df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, global_accuracy, global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs, conn=conn, cardinality=num_possible_labels)
+    df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, global_accuracy, global_accuracy_on_valid =run_label_model_with_funcs(dataset_name=dataset_name, 
+                                                                                                                                                                                                                 funcs=funcs, 
+                                                                                                                                                                                                                 conn=conn, 
+                                                                                                                                                                                                                 cardinality=num_possible_labels,
+                                                                                                                                                                                                                 model_type=model_type)
     first_snorkel_run_end = time.time()
     first_snorkel_run_time = first_snorkel_run_end - first_snorkel_run_start
     runtime_dict['snorkel_first_run'] = first_snorkel_run_time
@@ -154,7 +161,11 @@ def main(user_input_size,
     funcs_after_fix = [f.gen_label_rule() for f in new_trees]
 
     snorkel_run_after_fix_start = time.time()
-    new_df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, new_global_accuracy, new_global_accuracy_on_valid =run_snorkel_with_funcs(dataset_name=dataset_name, funcs=funcs_after_fix, conn=conn, cardinality=num_possible_labels) 
+    new_df_sentences_filtered, correct_preds_by_snorkel, wrong_preds_by_snorkel, filtered_vectors, correct_predictions, incorrect_predictions, new_global_accuracy, new_global_accuracy_on_valid =run_label_model_with_funcs(dataset_name=dataset_name, 
+                                                                                                                                                                                                                             funcs=funcs_after_fix, 
+                                                                                                                                                                                                                             conn=conn, 
+                                                                                                                                                                                                                             cardinality=num_possible_labels,
+                                                                                                                                                                                                                             model_type=model_type) 
     snorkel_run_after_fix_end = time.time()
     snorkel_run_after_fix_time = snorkel_run_after_fix_end - snorkel_run_after_fix_start
     runtime_dict['snorkel_run_after_fix'] = snorkel_run_after_fix_time
@@ -186,18 +197,19 @@ def main(user_input_size,
            'new_valid_global_data_size': len(new_df_sentences_filtered),
            'runtimes': runtime_dict,
            'optimal_objective_value': res_flip_cost,
+           'model_type': model_type,
            }
     
     res_to_save = {'summary': ret, 'fix_details': fix_book_keeping_dict}
 
     directory = os.path.dirname(pickle_result_file_name_prefix)
-
+    print(f"directory: {directory}")
     if directory: 
         os.makedirs(directory, exist_ok=True)
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    with open(f'{pickle_result_file_name_prefix}-{dataset_name}_sample_params_{user_input_size}-{lf_acc_thresh}-{instance_acc_thresh}-{min_non_abstain_thresh}-{random_state}-{timestamp}.pkl', 'wb') as resf:
+    with open(f'{pickle_result_file_name_prefix}{dataset_name}_sample_params_{user_input_size}-{lf_acc_thresh}-{instance_acc_thresh}-{min_non_abstain_thresh}-{random_state}-{timestamp}.pkl', 'wb') as resf:
         pickle.dump(res_to_save, resf)
     
     conn.close()
