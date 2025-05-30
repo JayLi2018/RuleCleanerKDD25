@@ -1,0 +1,16 @@
+version: "3.6"
+services:
+  wrench-container:
+    platform: linux/amd64
+    build: .
+    container_name: wrench-container
+    ports:
+      - "8888:8888"                     # For Jupyter
+    volumes:
+      - ../rulecleaner_src:/app/rulecleaner_src
+      - ../ExperimentsInPaper:/app/ExperimentsInPaper
+      - ./results_from_docker:/app/results
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
