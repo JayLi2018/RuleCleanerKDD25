@@ -74,8 +74,8 @@ def main(user_input_size,
     else:
         treerules  = [convert_to_treerules(x) for x in funcs_dictionary[dataset_name]]
 
-    # conn = psycopg2.connect(dbname='label', user='postgres')
-    conn = psycopg2.connect(dbname='label', user='postgres',host="host.docker.internal")
+    conn = psycopg2.connect(dbname='label', user='postgres')
+    # conn = psycopg2.connect(dbname='label', user='postgres',host="host.docker.internal")
     
     
     user_complaint_size = math.floor(user_input_size * 0.5)

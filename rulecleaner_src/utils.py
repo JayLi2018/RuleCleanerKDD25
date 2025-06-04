@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import re
 import pickle
-from wrench.labelmodel import DawidSkene, FlyingSquid, MeTaL, HyperLM, EBCC, IBCC, Fable
-from wrench.labelmodel.majority_voting import MajorityVoting, MajorityWeightedVoting
+# from wrench.labelmodel import DawidSkene, FlyingSquid, MeTaL, HyperLM, EBCC, IBCC, Fable
+# from wrench.labelmodel.majority_voting import MajorityVoting, MajorityWeightedVoting
 
 sys.path.append(os.path.join(os.getcwd(), ".."))
 
